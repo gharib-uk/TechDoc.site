@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Osint :: Tag :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/tags/osint/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate>Tue, 06 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/tags/osint/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OSINT Tools</title>
+      <link>https://blog.alirezagharib.ir/osint/osint19/index.html</link>
+      <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/osint/osint19/index.html</guid>
+      <description>OSINT Tools</description>
+    </item>
+    <item>
+      <title>OSINT Tools 1</title>
+      <link>https://blog.alirezagharib.ir/osint/osint/index.html</link>
+      <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/osint/osint/index.html</guid>
+      <description>OSINT Tools</description>
+    </item>
+    <item>
+      <title>OSINT Tools 2</title>
+      <link>https://blog.alirezagharib.ir/osint/osint2/index.html</link>
+      <pubDate>Mon, 05 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/osint/osint2/index.html</guid>
+      <description>OSINT Tools set 2</description>
+    </item>
+    <item>
+      <title>OSINT Tools</title>
+      <link>https://blog.alirezagharib.ir/osint/osint16/index.html</link>
+      <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/osint/osint16/index.html</guid>
+      <description>OSINT Tools</description>
+    </item>
+  </channel>
+</rss>

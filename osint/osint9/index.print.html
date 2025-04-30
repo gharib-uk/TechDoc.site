@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="Honeypots Tools">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Honeypots Tools :: Gharib Blog">
+    <meta name="twitter:description" content="Honeypots Tools">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/osint/osint9/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="Honeypots Tools :: Gharib Blog">
+    <meta property="og:description" content="Honeypots Tools">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="OSINt">
+    <meta property="article:published_time" content="2024-08-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-01T00:00:00+00:00">
+    <meta property="article:tag" content="Honeypots">
+    <meta itemprop="name" content="Honeypots Tools :: Gharib Blog">
+    <meta itemprop="description" content="Honeypots Tools">
+    <meta itemprop="datePublished" content="2024-08-01T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-01T00:00:00+00:00">
+    <meta itemprop="wordCount" content="3410">
+    <meta itemprop="keywords" content="Honeypots">
+    <title>Honeypots Tools :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/osint/osint9/index.html" rel="canonical" type="text/html" title="Honeypots Tools :: Gharib Blog">
+    <link href="../../osint/osint9/index.xml" rel="alternate" type="application/rss+xml" title="Honeypots Tools :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/osint\/osint9\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../osint/osint9/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#honeypots-1">Honeypots</a></li>
+    <li><a href="#honeyd-tools">Honeyd Tools</a></li>
+    <li><a href="#network-and-artifact-analysis">Network and Artifact Analysis</a></li>
+    <li><a href="#data-tools">Data Tools</a></li>
+    <li><a href="#guides">Guides</a></li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../osint/index.html"><span itemprop="name">OSINT</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Honeypots Tools</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint9/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint20/index.html" title="OSINT Countries Tools (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint16/index.html" title="OSINT Tools (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/honeypots/index.html">Honeypots</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="honeypots-tools">Honeypots Tools</h1>
+
+<h1 id="honeypots">Honeypots</h1>
+<p>A curated list of honeypots, plus related components and much more, divided into categories such as Web, services, and others, with a focus on free and open source projects.</p>
+<h2 id="honeypots-1">Honeypots</h2>
+<ul>
+<li>
+<p>Database Honeypots</p>
+<ul>
+<li><a href="https://github.com/SecurityTW/delilah" rel="external" target="_self">Delilah</a> - Elasticsearch Honeypot written in Python (originally from Novetta).</li>
+<li><a href="https://github.com/mycert/ESPot" rel="external" target="_self">ESPot</a> - Elasticsearch honeypot written in NodeJS, to capture every attempts to exploit CVE-2014-3120.</li>
+<li><a href="https://gitlab.com/bontchev/elasticpot" rel="external" target="_self">ElasticPot</a> - An Elasticsearch Honeypot.</li>
+<li><a href="https://github.com/jordan-wright/elastichoney" rel="external" target="_self">Elastic honey</a> - Simple Elasticsearch Honeypot.</li>
+<li><a href="https://github.com/Plazmaz/MongoDB-HoneyProxy" rel="external" target="_self">MongoDB-HoneyProxy</a> - MongoDB honeypot proxy.</li>
+<li><a href="https://github.com/torque59/nosqlpot" rel="external" target="_self">NoSQLpot</a> - Honeypot framework built on a NoSQL-style database.</li>
+<li><a href="https://github.com/sjinks/mysql-honeypotd" rel="external" target="_self">mysql-honeypotd</a> - Low interaction MySQL honeypot written in C.</li>
+<li><a href="https://github.com/schmalle/MysqlPot" rel="external" target="_self">MysqlPot</a> - MySQL honeypot, still very early stage.</li>
+<li><a href="https://github.com/betheroot/pghoney" rel="external" target="_self">pghoney</a> - Low-interaction Postgres Honeypot.</li>
+<li><a href="https://github.com/betheroot/sticky_elephant" rel="external" target="_self">sticky_elephant</a> - Medium interaction postgresql honeypot.</li>
+<li><a href="https://github.com/cypwnpwnsocute/RedisHoneyPot" rel="external" target="_self">RedisHoneyPot</a> - High Interaction Honeypot Solution for Redis protocol.</li>
+</ul>
+</li>
+<li>
+<p>Web honeypots</p>
+<ul>
+<li><a href="https://github.com/christophe77/express-honeypot" rel="external" target="_self">Express honeypot</a> - RFI &amp; LFI honeypot using nodeJS and express.</li>
+<li><a href="https://github.com/eymengunay/EoHoneypotBundle" rel="external" target="_self">EoHoneypotBundle</a> - Honeypot type for Symfony2 forms.</li>
+<li><a href="https://github.com/mushorg/glastopf" rel="external" target="_self">Glastopf</a> - Web Application Honeypot.</li>
+<li><a href="http://ghh.sourceforge.net" rel="external" target="_self">Google Hack Honeypot</a> - Designed to provide reconnaissance against attackers that use search engines as a hacking tool against your resources.</li>
+<li><a href="https://github.com/yunginnanet/HellPot" rel="external" target="_self">HellPot</a> - Honeypot that tries to crash the bots and clients that visit it&rsquo;s location.</li>
+<li><a href="https://github.com/msurguy/Honeypot" rel="external" target="_self">Laravel Application Honeypot</a> - Simple spam prevention package for Laravel applications.</li>
+<li><a href="https://github.com/schmalle/Nodepot" rel="external" target="_self">Nodepot</a> - NodeJS web application honeypot.</li>
+<li><a href="https://github.com/Marist-Innovation-Lab/PasitheaHoneypot" rel="external" target="_self">PasitheaHoneypot</a> - RestAPI honeypot.</li>
+<li><a href="https://github.com/schmalle/servletpot" rel="external" target="_self">Servletpot</a> - Web application Honeypot.</li>
+<li><a href="https://shadowd.zecure.org/overview/introduction/" rel="external" target="_self">Shadow Daemon</a> - Modular Web Application Firewall / High-Interaction Honeypot for PHP, Perl, and Python apps.</li>
+<li><a href="https://github.com/Cymmetria/StrutsHoneypot" rel="external" target="_self">StrutsHoneypot</a> - Struts Apache 2 based honeypot as well as a detection module for Apache 2 servers.</li>
+<li><a href="https://github.com/IllusiveNetworks-Labs/WebTrap" rel="external" target="_self">WebTrap</a> - Designed to create deceptive webpages to deceive and redirect attackers away from real websites.</li>
+<li><a href="https://github.com/bjeborn/basic-auth-pot" rel="external" target="_self">basic-auth-pot (bap)</a> - HTTP Basic Authentication honeypot.</li>
+<li><a href="https://github.com/graneed/bwpot" rel="external" target="_self">bwpot</a> - Breakable Web applications honeyPot.</li>
+<li><a href="https://github.com/dmpayton/django-admin-honeypot" rel="external" target="_self">django-admin-honeypot</a> - Fake Django admin login screen to notify admins of attempted unauthorized access.</li>
+<li><a href="https://github.com/d1str0/drupot" rel="external" target="_self">drupo</a> - Drupal Honeypot.</li>
+<li><a href="https://github.com/0x4D31/galah" rel="external" target="_self">galah</a> - an LLM-powered web honeypot using the OpenAI API.</li>
+<li><a href="https://github.com/bocajspear1/honeyhttpd" rel="external" target="_self">honeyhttpd</a> - Python-based web server honeypot builder.</li>
+<li><a href="https://github.com/LogoiLab/honeyup" rel="external" target="_self">honeyup</a> - An uploader honeypot designed to look like poor website security.</li>
+<li><a href="https://github.com/referefref/modpot" rel="external" target="_self">modpot</a> - Modpot is a modular web application honeypot framework and management application written in Golang and making use of gin framework.</li>
+<li><a href="https://github.com/joda32/owa-honeypot" rel="external" target="_self">owa-honeypot</a> - A basic flask based Outlook Web Honey pot.</li>
+<li><a href="https://github.com/gfoss/phpmyadmin_honeypot" rel="external" target="_self">phpmyadmin_honeypot</a> - Simple and effective phpMyAdmin honeypot.</li>
+<li><a href="https://github.com/threatstream/shockpot" rel="external" target="_self">shockpot</a> - WebApp Honeypot for detecting Shell Shock exploit attempts.</li>
+<li><a href="https://github.com/freak3dot/smart-honeypot" rel="external" target="_self">smart-honeypot</a> - PHP Script demonstrating a smart honey pot.</li>
+<li>Snare/Tanner - successors to Glastopf
+<ul>
+<li><a href="https://github.com/mushorg/snare" rel="external" target="_self">Snare</a> - Super Next generation Advanced Reactive honeypot.</li>
+<li><a href="https://github.com/mushorg/tanner" rel="external" target="_self">Tanner</a> - Evaluating SNARE events.</li>
+</ul>
+</li>
+<li><a href="https://github.com/CHH/stack-honeypot" rel="external" target="_self">stack-honeypot</a> - Inserts a trap for spam bots into responses.</li>
+<li><a href="https://github.com/helospark/tomcat-manager-honeypot" rel="external" target="_self">tomcat-manager-honeypot</a> - Honeypot that mimics Tomcat manager endpoints. Logs requests and saves attacker&rsquo;s WAR file for later study.</li>
+<li>WordPress honeypots
+<ul>
+<li><a href="https://github.com/MartinIngesen/HonnyPotter" rel="external" target="_self">HonnyPotter</a> - WordPress login honeypot for collection and analysis of failed login attempts.</li>
+<li><a href="https://github.com/kungfuguapo/HoneyPress" rel="external" target="_self">HoneyPress</a> - Python based WordPress honeypot in a Docker container.</li>
+<li><a href="https://github.com/freak3dot/wp-smart-honeypot" rel="external" target="_self">wp-smart-honeypot</a> - WordPress plugin to reduce comment spam with a smarter honeypot.</li>
+<li><a href="https://github.com/gbrindisi/wordpot" rel="external" target="_self">wordpot</a> - WordPress Honeypot.</li>
+</ul>
+</li>
+<li><a href="https://github.com/OWASP/Python-Honeypot" rel="external" target="_self">Python-Honeypot</a> - OWASP Honeypot, Automated Deception Framework.</li>
+</ul>
+</li>
+<li>
+<p>Service Honeypots</p>
+<ul>
+<li><a href="https://github.com/huuck/ADBHoney" rel="external" target="_self">ADBHoney</a> - Low interaction honeypot that simulates an Android device running Android Debug Bridge (ADB) server process.</li>
+<li><a href="https://github.com/packetflare/amthoneypot" rel="external" target="_self">AMTHoneypot</a> - Honeypot for Intel&rsquo;s AMT Firmware Vulnerability CVE-2017-5689.</li>
+<li><a href="https://github.com/aelth/ddospot" rel="external" target="_self">ddospot</a> - NTP, DNS, SSDP, Chargen and generic UDP-based amplification DDoS honeypot.</li>
+<li><a href="https://github.com/DinoTools/dionaea" rel="external" target="_self">dionaea</a> - Home of the dionaea honeypot.</li>
+<li><a href="https://github.com/ciscocsirt/dhp" rel="external" target="_self">dhp</a> - Simple Docker Honeypot server emulating small snippets of the Docker HTTP API.</li>
+<li><a href="https://github.com/Marist-Innovation-Lab/DolosHoneypot" rel="external" target="_self">DolosHoneypot</a> - SDN (software defined networking) honeypot.</li>
+<li><a href="https://github.com/ahoernecke/ensnare" rel="external" target="_self">Ensnare</a> - Easy to deploy Ruby honeypot.</li>
+<li><a href="https://github.com/Zeerg/helix-honeypot" rel="external" target="_self">Helix</a> - K8s API Honeypot with Active Defense Capabilities.</li>
+<li><a href="https://github.com/Cymmetria/honeycomb_plugins" rel="external" target="_self">honeycomb_plugins</a> - Plugin repository for Honeycomb, the honeypot framework by Cymmetria.</li>
+<li>[honeydb] (<a href="https://honeydb.io/downloads" rel="external" target="_self">https://honeydb.io/downloads</a>) - Multi-service honeypot that is easy to deploy and configure. Can be configured to send interaction data to to HoneyDB&rsquo;s centralized collectors for access via REST API.</li>
+<li><a href="https://github.com/fygrave/honeyntp" rel="external" target="_self">honeyntp</a> - NTP logger/honeypot.</li>
+<li><a href="https://github.com/alexbredo/honeypot-camera" rel="external" target="_self">honeypot-camera</a> - Observation camera honeypot.</li>
+<li><a href="https://github.com/alexbredo/honeypot-ftp" rel="external" target="_self">honeypot-ftp</a> - FTP Honeypot.</li>
+<li><a href="https://github.com/qeeqbox/honeypots" rel="external" target="_self">honeypots</a> - 25 different honeypots in a single pypi package! (dns, ftp, httpproxy, http, https, imap, mysql, pop3, postgres, redis, smb, smtp, socks5, ssh, telnet, vnc, mssql, elastic, ldap, ntp, memcache, snmp, oracle, sip and irc).</li>
+<li><a href="https://github.com/honeytrap/honeytrap" rel="external" target="_self">honeytrap</a> - Advanced Honeypot framework written in Go that can be connected with other honeypot software.</li>
+<li><a href="https://github.com/foospidy/HoneyPy" rel="external" target="_self">HoneyPy</a> - Low interaction honeypot.</li>
+<li><a href="https://github.com/UHH-ISS/honeygrove" rel="external" target="_self">Honeygrove</a> - Multi-purpose modular honeypot based on Twisted.</li>
+<li><a href="https://github.com/securitygeneration/Honeyport" rel="external" target="_self">Honeyport</a> - Simple honeyport written in Bash and Python.</li>
+<li><a href="https://github.com/glaslos/honeyprint" rel="external" target="_self">Honeyprint</a> - Printer honeypot.</li>
+<li><a href="https://hub.docker.com/r/lyrebird/honeypot-base/" rel="external" target="_self">Lyrebird</a> - Modern high-interaction honeypot framework.</li>
+<li><a href="https://github.com/Cymmetria/micros_honeypot" rel="external" target="_self">MICROS honeypot</a> - Low interaction honeypot to detect CVE-2018-2636 in the Oracle Hospitality Simphony component of Oracle Hospitality Applications (MICROS).</li>
+<li><a href="https://github.com/christophe77/node-ftp-honeypot" rel="external" target="_self">node-ftp-honeypot</a> - FTP server honeypot in JS.</li>
+<li><a href="https://github.com/gosecure/pyrdp" rel="external" target="_self">pyrdp</a> - RDP man-in-the-middle and library for Python 3 with the ability to watch connections live or after the fact.</li>
+<li><a href="https://github.com/kryptoslogic/rdppot" rel="external" target="_self">rdppot</a> - RDP honeypot</li>
+<li><a href="https://github.com/citronneur/rdpy" rel="external" target="_self">RDPy</a> - Microsoft Remote Desktop Protocol (RDP) honeypot implemented in Python.</li>
+<li><a href="https://github.com/r0hi7/HoneySMB" rel="external" target="_self">SMB Honeypot</a> - High interaction SMB service honeypot capable of capturing wannacry-like Malware.</li>
+<li><a href="https://github.com/inguardians/toms_honeypot" rel="external" target="_self">Tom&rsquo;s Honeypot</a> - Low interaction Python honeypot.</li>
+<li><a href="https://github.com/0xBallpoint/trapster-community" rel="external" target="_self">Trapster Commmunity</a> - Modural and easy to install Python Honeypot, with comprehensive alerting</li>
+<li><a href="https://github.com/dutchcoders/troje/" rel="external" target="_self">troje</a> - Honeypot that runs each connection with the service within a separate LXC container.</li>
+<li><a href="https://github.com/Cymmetria/weblogic_honeypot" rel="external" target="_self">WebLogic honeypot</a> - Low interaction honeypot to detect CVE-2017-10271 in the Oracle WebLogic Server component of Oracle Fusion Middleware.</li>
+<li><a href="https://github.com/csirtgadgets/csirtg-honeypot" rel="external" target="_self">WhiteFace Honeypot</a> - Twisted based honeypot for WhiteFace.</li>
+</ul>
+</li>
+<li>
+<p>Distributed Honeypots</p>
+<ul>
+<li><a href="https://github.com/RevengeComing/DemonHunter" rel="external" target="_self">DemonHunter</a> - Low interaction honeypot server.</li>
+</ul>
+</li>
+<li>
+<p>Anti-honeypot stuff</p>
+<ul>
+<li><a href="https://github.com/referefref/canarytokendetector" rel="external" target="_self">canarytokendetector</a> - Tool for detection and nullification of Thinkst CanaryTokens</li>
+<li><a href="https://github.com/referefref/honeydet" rel="external" target="_self">honeydet</a> - Signature based honeypot detector tool written in Golang</li>
+<li><a href="https://github.com/andrew-morris/kippo_detect" rel="external" target="_self">kippo_detect</a> - Offensive component that detects the presence of the kippo honeypot.</li>
+</ul>
+</li>
+<li>
+<p>ICS/SCADA honeypots</p>
+<ul>
+<li><a href="https://github.com/mushorg/conpot" rel="external" target="_self">Conpot</a> - ICS/SCADA honeypot.</li>
+<li><a href="https://github.com/sjhilt/GasPot" rel="external" target="_self">GasPot</a> - Veeder Root Gaurdian AST, common in the oil and gas industry.</li>
+<li><a href="http://scadahoneynet.sourceforge.net" rel="external" target="_self">SCADA honeynet</a> - Building Honeypots for Industrial Networks.</li>
+<li><a href="https://github.com/sk4ld/gridpot" rel="external" target="_self">gridpot</a> - Open source tools for realistic-behaving electric grid honeynets.</li>
+<li><a href="http://www.digitalbond.com/blog/2007/07/24/scada-honeynet-article-in-infragard-publication/" rel="external" target="_self">scada-honeynet</a> - Mimics many of the services from a popular PLC and better helps SCADA researchers understand potential risks of exposed control system devices.</li>
+</ul>
+</li>
+<li>
+<p>Other/random</p>
+<ul>
+<li><a href="https://github.com/MalwareTech/CitrixHoneypot" rel="external" target="_self">CitrixHoneypot</a> - Detect and log CVE-2019-19781 scan and exploitation attempts.</li>
+<li><a href="https://github.com/naorlivne/dshp" rel="external" target="_self">Damn Simple Honeypot (DSHP)</a> - Honeypot framework with pluggable handlers.</li>
+<li><a href="https://github.com/nsmfoo/dicompot" rel="external" target="_self">dicompot</a> - DICOM Honeypot.</li>
+<li><a href="https://gitlab.com/bontchev/ipphoney" rel="external" target="_self">IPP Honey</a> - A honeypot for the Internet Printing Protocol.</li>
+<li><a href="https://github.com/thomaspatzke/Log4Pot" rel="external" target="_self">Log4Pot</a> - A honeypot for the Log4Shell vulnerability (CVE-2021-44228).</li>
+<li><a href="https://github.com/ivre/masscanned" rel="external" target="_self">Masscanned</a> - Let&rsquo;s be scanned. A low-interaction honeypot focused on network scanners and bots. It integrates very well with IVRE to build a self-hosted alternative to GreyNoise.</li>
+<li><a href="https://github.com/schmalle/medpot" rel="external" target="_self">medpot</a> -  HL7 / FHIR honeypot.</li>
+<li><a href="https://github.com/DataSoft/Nova" rel="external" target="_self">NOVA</a> - Uses honeypots as detectors, looks like a complete system.</li>
+<li><a href="https://github.com/upa/ofpot" rel="external" target="_self">OpenFlow Honeypot (OFPot)</a> - Redirects traffic for unused IPs to a honeypot, built on POX.</li>
+<li><a href="https://github.com/thinkst/opencanary" rel="external" target="_self">OpenCanary</a> - Modular and decentralised honeypot daemon that runs several canary versions of services that alerts when a service is (ab)used.</li>
+<li><a href="https://github.com/cymmetria/ciscoasa_honeypot" rel="external" target="_self">ciscoasa_honeypot</a> A low interaction honeypot for the Cisco ASA component capable of detecting CVE-2018-0101, a DoS and remote code execution vulnerability.</li>
+<li><a href="https://github.com/sa7mon/miniprint" rel="external" target="_self">miniprint</a> - A medium interaction printer honeypot.</li>
+</ul>
+</li>
+<li>
+<p>Botnet C2 tools</p>
+<ul>
+<li><a href="https://github.com/pjlantz/Hale" rel="external" target="_self">Hale</a> - Botnet command and control monitor.</li>
+<li><a href="https://code.google.com/archive/p/dns-mole/" rel="external" target="_self">dnsMole</a> - Analyses DNS traffic and potentionaly detect botnet command and control server activity, along with infected hosts.</li>
+</ul>
+</li>
+<li>
+<p>IPv6 attack detection tool</p>
+<ul>
+<li><a href="https://github.com/mzweilin/ipv6-attack-detector/" rel="external" target="_self">ipv6-attack-detector</a> - Google Summer of Code 2012 project, supported by The Honeynet Project organization.</li>
+</ul>
+</li>
+<li>
+<p>Dynamic code instrumentation toolkit</p>
+<ul>
+<li><a href="https://www.frida.re" rel="external" target="_self">Frida</a> - Inject JavaScript to explore native apps on Windows, Mac, Linux, iOS and Android.</li>
+</ul>
+</li>
+<li>
+<p>Tool to convert website to server honeypots</p>
+<ul>
+<li><a href="http://hihat.sourceforge.net/" rel="external" target="_self">HIHAT</a> - Transform arbitrary PHP applications into web-based high-interaction Honeypots.</li>
+</ul>
+</li>
+<li>
+<p>Malware collector</p>
+<ul>
+<li><a href="https://bruteforcelab.com/kippo-malware" rel="external" target="_self">Kippo-Malware</a> - Python script that will download all malicious files stored as URLs in a Kippo SSH honeypot database.</li>
+</ul>
+</li>
+<li>
+<p>Distributed sensor deployment</p>
+<ul>
+<li><a href="https://communityhoneynetwork.readthedocs.io/en/stable/" rel="external" target="_self">Community Honey Network</a> - CHN aims to make deployments honeypots and honeypot management tools easy and flexible. The default deployment method uses Docker Compose and Docker to deploy with a few simple commands.</li>
+<li><a href="https://github.com/threatstream/mhn" rel="external" target="_self">Modern Honey Network</a> - Multi-snort and honeypot sensor management, uses a network of VMs, small footprint SNORT installations, stealthy dionaeas, and a centralized server for management.</li>
+</ul>
+</li>
+<li>
+<p>Network Analysis Tool</p>
+<ul>
+<li><a href="https://code.google.com/archive/p/tracexploit/" rel="external" target="_self">Tracexploit</a> - Replay network packets.</li>
+</ul>
+</li>
+<li>
+<p>Log anonymizer</p>
+<ul>
+<li><a href="http://code.google.com/archive/p/loganon/" rel="external" target="_self">LogAnon</a> - Log anonymization library that helps having anonymous logs consistent between logs and network captures.</li>
+</ul>
+</li>
+<li>
+<p>Low interaction honeypot (router back door)</p>
+<ul>
+<li><a href="https://github.com/knalli/honeypot-for-tcp-32764" rel="external" target="_self">Honeypot-32764</a> - Honeypot for router backdoor (TCP 32764).</li>
+<li><a href="https://github.com/lcashdol/WAPot" rel="external" target="_self">WAPot</a> - Honeypot that can be used to observe traffic directed at home routers.</li>
+</ul>
+</li>
+<li>
+<p>honeynet farm traffic redirector</p>
+<ul>
+<li><a href="https://web.archive.org/web/20100326040550/http://www.honeynet.org.pt:80/index.php/HoneyMole" rel="external" target="_self">Honeymole</a> - Deploy multiple sensors that redirect traffic to a centralized collection of honeypots.</li>
+</ul>
+</li>
+<li>
+<p>HTTPS Proxy</p>
+<ul>
+<li><a href="https://mitmproxy.org/" rel="external" target="_self">mitmproxy</a> - Allows traffic flows to be intercepted, inspected, modified, and replayed.</li>
+</ul>
+</li>
+<li>
+<p>System instrumentation</p>
+<ul>
+<li><a href="https://sysdig.com/opensource/" rel="external" target="_self">Sysdig</a> - Open source, system-level exploration allows one to capture system state and activity from a running GNU/Linux instance, then save, filter, and analyze the results.</li>
+<li><a href="https://github.com/rabbitstack/fibratus" rel="external" target="_self">Fibratus</a> - Tool for exploration and tracing of the Windows kernel.</li>
+</ul>
+</li>
+<li>
+<p>Honeypot for USB-spreading malware</p>
+<ul>
+<li><a href="https://github.com/honeynet/ghost-usb-honeypot" rel="external" target="_self">Ghost-usb</a> - Honeypot for malware that propagates via USB storage devices.</li>
+</ul>
+</li>
+<li>
+<p>Data Collection</p>
+<ul>
+<li><a href="https://bruteforcelab.com/kippo2mysql" rel="external" target="_self">Kippo2MySQL</a> - Extracts some very basic stats from Kippo’s text-based log files and inserts them in a MySQL database.</li>
+<li><a href="https://bruteforcelab.com/kippo2elasticsearch" rel="external" target="_self">Kippo2ElasticSearch</a> - Python script to transfer data from a Kippo SSH honeypot MySQL database to an ElasticSearch instance (server or cluster).</li>
+</ul>
+</li>
+<li>
+<p>Passive network audit framework parser</p>
+<ul>
+<li><a href="https://github.com/jusafing/pnaf" rel="external" target="_self">Passive Network Audit Framework (pnaf)</a> - Framework that combines multiple passive and automated analysis techniques in order to provide a security assessment of network platforms.</li>
+</ul>
+</li>
+<li>
+<p>VM monitoring and tools</p>
+<ul>
+<li><a href="https://github.com/nsmfoo/antivmdetection" rel="external" target="_self">Antivmdetect</a> - Script to create templates to use with VirtualBox to make VM detection harder.</li>
+<li><a href="https://github.com/hatching/vmcloak" rel="external" target="_self">VMCloak</a> - Automated Virtual Machine Generation and Cloaking for Cuckoo Sandbox.</li>
+<li><a href="http://libvmi.com/" rel="external" target="_self">vmitools</a> - C library with Python bindings that makes it easy to monitor the low-level details of a running virtual machine.</li>
+</ul>
+</li>
+<li>
+<p>Binary debugger</p>
+<ul>
+<li><a href="https://github.com/hexgolems/pint" rel="external" target="_self">Hexgolems - Pint Debugger Backend</a> - Debugger backend and LUA wrapper for PIN.</li>
+<li><a href="https://github.com/hexgolems/schem" rel="external" target="_self">Hexgolems - Schem Debugger Frontend</a> - Debugger frontend.</li>
+</ul>
+</li>
+<li>
+<p>Mobile Analysis Tool</p>
+<ul>
+<li><a href="https://github.com/androguard/androguard" rel="external" target="_self">Androguard</a> - Reverse engineering, Malware and goodware analysis of Android applications and more.</li>
+<li><a href="https://github.com/honeynet/apkinspector/" rel="external" target="_self">APKinspector</a> - Powerful GUI tool for analysts to analyze the Android applications.</li>
+</ul>
+</li>
+<li>
+<p>Low interaction honeypot</p>
+<ul>
+<li><a href="https://sourceforge.net/projects/honeyperl/" rel="external" target="_self">Honeyperl</a> - Honeypot software based in Perl with plugins developed for many functions like : wingates, telnet, squid, smtp, etc.</li>
+<li><a href="https://github.com/dtag-dev-sec/tpotce" rel="external" target="_self">T-Pot</a> - All in one honeypot appliance from telecom provider T-Mobile</li>
+<li><a href="https://github.com/mariocandela/beelzebub" rel="external" target="_self">beelzebub</a> - A secure honeypot framework, extremely easy to configure by yaml 🚀</li>
+</ul>
+</li>
+<li>
+<p>Honeynet data fusion</p>
+<ul>
+<li><a href="https://projects.honeynet.org/hflow" rel="external" target="_self">HFlow2</a> - Data coalesing tool for honeynet/network analysis.</li>
+</ul>
+</li>
+<li>
+<p>Server</p>
+<ul>
+<li><a href="http://amunhoney.sourceforge.net" rel="external" target="_self">Amun</a> - Vulnerability emulation honeypot.</li>
+<li><a href="https://github.com/trustedsec/artillery/" rel="external" target="_self">Artillery</a> - Open-source blue team tool designed to protect Linux and Windows operating systems through multiple methods.</li>
+<li><a href="http://baitnswitch.sourceforge.net" rel="external" target="_self">Bait and Switch</a> - Redirects all hostile traffic to a honeypot that is partially mirroring your production system.</li>
+<li><a href="https://github.com/Ziemeck/bifrozt-ansible" rel="external" target="_self">Bifrozt</a> - Automatic deploy bifrozt with ansible.</li>
+<li><a href="http://conpot.org/" rel="external" target="_self">Conpot</a> - Low interactive server side Industrial Control Systems honeypot.</li>
+<li><a href="https://github.com/johnnykv/heralding" rel="external" target="_self">Heralding</a> - Credentials catching honeypot.</li>
+<li><a href="https://github.com/CanadianJeff/honeywrt" rel="external" target="_self">HoneyWRT</a> - Low interaction Python honeypot designed to mimic services or ports that might get targeted by attackers.</li>
+<li><a href="https://github.com/provos/honeyd" rel="external" target="_self">Honeyd</a> - See <a href="../../osint/osint9/index.html#honeyd-tools">honeyd tools</a>.</li>
+<li><a href="http://www.honeynet.org/node/773" rel="external" target="_self">Honeysink</a> - Open source network sinkhole that provides a mechanism for detection and prevention of malicious traffic on a given network.</li>
+<li><a href="https://github.com/stamparm/hontel" rel="external" target="_self">Hontel</a> - Telnet Honeypot.</li>
+<li><a href="http://www.keyfocus.net/kfsensor/" rel="external" target="_self">KFSensor</a> - Windows based honeypot Intrusion Detection System (IDS).</li>
+<li><a href="http://labrea.sourceforge.net/labrea-info.html" rel="external" target="_self">LaBrea</a> - Takes over unused IP addresses, and creates virtual servers that are attractive to worms, hackers, and other denizens of the Internet.</li>
+<li><a href="https://github.com/Cymmetria/MTPot" rel="external" target="_self">MTPot</a> - Open Source Telnet Honeypot, focused on Mirai malware.</li>
+<li><a href="https://github.com/blaverick62/SIREN" rel="external" target="_self">SIREN</a> - Semi-Intelligent HoneyPot Network - HoneyNet Intelligent Virtual Environment.</li>
+<li><a href="https://github.com/balte/TelnetHoney" rel="external" target="_self">TelnetHoney</a> - Simple telnet honeypot.</li>
+<li><a href="https://github.com/jekil/UDPot" rel="external" target="_self">UDPot Honeypot</a> - Simple UDP/DNS honeypot scripts.</li>
+<li><a href="https://github.com/fnzv/YAFH" rel="external" target="_self">Yet Another Fake Honeypot (YAFH)</a> - Simple honeypot written in Go.</li>
+<li><a href="https://github.com/ajackal/arctic-swallow" rel="external" target="_self">arctic-swallow</a> - Low interaction honeypot.</li>
+<li><a href="https://github.com/fofapro/fapro" rel="external" target="_self">fapro</a> - Fake Protocol Server.</li>
+<li><a href="https://github.com/mushorg/glutton" rel="external" target="_self">glutton</a> - All eating honeypot.</li>
+<li><a href="https://github.com/Mojachieee/go-HoneyPot" rel="external" target="_self">go-HoneyPot</a> - Honeypot server written in Go.</li>
+<li><a href="https://github.com/kingtuna/go-emulators" rel="external" target="_self">go-emulators</a> - Honeypot Golang emulators.</li>
+<li><a href="https://github.com/sec51/honeymail" rel="external" target="_self">honeymail</a> - SMTP honeypot written in Golang.</li>
+<li><a href="https://github.com/tillmannw/honeytrap" rel="external" target="_self">honeytrap</a> - Low-interaction honeypot and network security tool written to catch attacks against TCP and UDP services.</li>
+<li><a href="https://github.com/yvesago/imap-honey" rel="external" target="_self">imap-honey</a> - IMAP honeypot written in Golang.</li>
+<li><a href="https://www.openhub.net/p/mwcollectd" rel="external" target="_self">mwcollectd</a> - Versatile malware collection daemon, uniting the best features of nepenthes and honeytrap.</li>
+<li><a href="https://github.com/lnslbrty/potd" rel="external" target="_self">potd</a> - Highly scalable low- to medium-interaction SSH/TCP honeypot designed for OpenWrt/IoT devices leveraging several Linux kernel features, such as namespaces, seccomp and thread capabilities.</li>
+<li><a href="https://github.com/bartnv/portlurker" rel="external" target="_self">portlurker</a> - Port listener in Rust with protocol guessing and safe string display.</li>
+<li><a href="https://github.com/rshipp/slipm-honeypot" rel="external" target="_self">slipm-honeypot</a> - Simple low-interaction port monitoring honeypot.</li>
+<li><a href="https://github.com/Phype/telnet-iot-honeypot" rel="external" target="_self">telnet-iot-honeypot</a> - Python telnet honeypot for catching botnet binaries.</li>
+<li><a href="https://github.com/robertdavidgraham/telnetlogger" rel="external" target="_self">telnetlogger</a> - Telnet honeypot designed to track the Mirai botnet.</li>
+<li><a href="https://github.com/magisterquis/vnclowpot" rel="external" target="_self">vnclowpot</a> - Low interaction VNC honeypot.</li>
+</ul>
+</li>
+<li>
+<p>IDS signature generation</p>
+<ul>
+<li><a href="http://www.icir.org/christian/honeycomb/" rel="external" target="_self">Honeycomb</a> - Automated signature creation using honeypots.</li>
+</ul>
+</li>
+<li>
+<p>Lookup service for AS-numbers and prefixes</p>
+<ul>
+<li><a href="http://www.cc2asn.com/" rel="external" target="_self">CC2ASN</a> - Simple lookup service for AS-numbers and prefixes belonging to any given country in the world.</li>
+</ul>
+</li>
+<li>
+<p>Data Collection / Data Sharing</p>
+<ul>
+<li><a href="http://hpfriends.honeycloud.net/#/home" rel="external" target="_self">HPfriends</a> - Honeypot data-sharing platform.
+<ul>
+<li><a href="https://heipei.io/sigint-hpfriends/" rel="external" target="_self">hpfriends - real-time social data-sharing</a> - Presentation about HPFriends feed system</li>
+</ul>
+</li>
+<li><a href="https://github.com/rep/hpfeeds/" rel="external" target="_self">HPFeeds</a> - Lightweight authenticated publish-subscribe protocol.</li>
+</ul>
+</li>
+<li>
+<p>Central management tool</p>
+<ul>
+<li><a href="http://www.nepenthespharm.com/" rel="external" target="_self">PHARM</a> - Manage, report, and analyze your distributed Nepenthes instances.</li>
+</ul>
+</li>
+<li>
+<p>Network connection analyzer</p>
+<ul>
+<li><a href="http://impost.sourceforge.net/" rel="external" target="_self">Impost</a> - Network security auditing tool designed to analyze the forensics behind compromised and/or vulnerable daemons.</li>
+</ul>
+</li>
+<li>
+<p>Honeypot deployment</p>
+<ul>
+<li><a href="https://github.com/referefref/honeyfs" rel="external" target="_self">honeyfs</a> - Tool to create artificial file systems for medium/high interaction honeypots.</li>
+<li><a href="http://threatstream.github.io/mhn/" rel="external" target="_self">Modern Honeynet Network</a> - Streamlines deployment and management of secure honeypots.</li>
+</ul>
+</li>
+<li>
+<p>Honeypot extensions to Wireshark</p>
+<ul>
+<li><a href="https://www.honeynet.org/project/WiresharkExtensions" rel="external" target="_self">Wireshark Extensions</a> - Apply Snort IDS rules and signatures against packet capture files using Wireshark.</li>
+</ul>
+</li>
+<li>
+<p>Client</p>
+<ul>
+<li><a href="https://www.gfi.com/products-and-solutions/all-products" rel="external" target="_self">CWSandbox / GFI Sandbox</a></li>
+<li><a href="https://redmine.honeynet.org/projects/linux-capture-hpc/wiki" rel="external" target="_self">Capture-HPC-Linux</a></li>
+<li><a href="https://github.com/CERT-Polska/HSN-Capture-HPC-NG" rel="external" target="_self">Capture-HPC-NG</a></li>
+<li><a href="https://projects.honeynet.org/capture-hpc" rel="external" target="_self">Capture-HPC</a> - High interaction client honeypot (also called honeyclient).</li>
+<li><a href="http://www.atomicsoftwaresolutions.com/" rel="external" target="_self">HoneyBOT</a></li>
+<li><a href="https://projects.honeynet.org/honeyc" rel="external" target="_self">HoneyC</a></li>
+<li><a href="https://github.com/CERT-Polska/hsn2-bundle" rel="external" target="_self">HoneySpider Network</a> - Highly-scalable system integrating multiple client honeypots to detect malicious websites.</li>
+<li><a href="https://code.google.com/archive/p/gsoc-honeyweb/" rel="external" target="_self">HoneyWeb</a> - Web interface created to manage and remotely share Honeyclients resources.</li>
+<li><a href="https://github.com/urule99/jsunpack-n" rel="external" target="_self">Jsunpack-n</a></li>
+<li><a href="http://monkeyspider.sourceforge.net" rel="external" target="_self">MonkeySpider</a></li>
+<li><a href="https://github.com/honeynet/phoneyc" rel="external" target="_self">PhoneyC</a> - Python honeyclient (later replaced by Thug).</li>
+<li><a href="https://github.com/shjalayeri/pwnypot" rel="external" target="_self">Pwnypot</a> - High Interaction Client Honeypot.</li>
+<li><a href="https://github.com/thugs-rumal/" rel="external" target="_self">Rumal</a> - Thug&rsquo;s Rumāl: a Thug&rsquo;s dress and weapon.</li>
+<li><a href="https://www.cs.vu.nl/~herbertb/misc/shelia/" rel="external" target="_self">Shelia</a> - Client-side honeypot for attack detection.</li>
+<li><a href="https://buffer.github.io/thug/" rel="external" target="_self">Thug</a> - Python-based low-interaction honeyclient.</li>
+<li><a href="https://thug-distributed.readthedocs.io/en/latest/index.html" rel="external" target="_self">Thug Distributed Task Queuing</a></li>
+<li><a href="https://www.honeynet.org/project/Trigona" rel="external" target="_self">Trigona</a></li>
+<li><a href="https://urlquery.net/" rel="external" target="_self">URLQuery</a></li>
+<li><a href="https://github.com/Masood-M/yalih" rel="external" target="_self">YALIH (Yet Another Low Interaction Honeyclient)</a> - Low-interaction client honeypot designed to detect malicious websites through signature, anomaly, and pattern matching techniques.</li>
+</ul>
+</li>
+<li>
+<p>Honeypot</p>
+<ul>
+<li><a href="http://www.all.net/dtk/dtk.html" rel="external" target="_self">Deception Toolkit</a></li>
+<li><a href="https://github.com/mushorg/imhoneypot" rel="external" target="_self">IMHoneypot</a></li>
+</ul>
+</li>
+<li>
+<p>PDF document inspector</p>
+<ul>
+<li><a href="https://github.com/jesparza/peepdf" rel="external" target="_self">peepdf</a> - Powerful Python tool to analyze PDF documents.</li>
+</ul>
+</li>
+<li>
+<p>Hybrid low/high interaction honeypot</p>
+<ul>
+<li><a href="http://honeybrid.sourceforge.net" rel="external" target="_self">HoneyBrid</a></li>
+</ul>
+</li>
+<li>
+<p>SSH Honeypots</p>
+<ul>
+<li><a href="https://github.com/morian/blacknet" rel="external" target="_self">Blacknet</a> - Multi-head SSH honeypot system.</li>
+<li><a href="https://github.com/cowrie/cowrie" rel="external" target="_self">Cowrie</a> - Cowrie SSH Honeypot (based on kippo).</li>
+<li><a href="https://github.com/xme/dshield-docker" rel="external" target="_self">DShield docker</a> - Docker container running cowrie with DShield output enabled.</li>
+<li><a href="https://github.com/skeeto/endlessh" rel="external" target="_self">endlessh</a> - SSH tarpit that slowly sends an endless banner. (<a href="https://hub.docker.com/r/linuxserver/endlessh" rel="external" target="_self">docker image</a>)</li>
+<li><a href="https://github.com/tnich/honssh" rel="external" target="_self">HonSSH</a> - Logs all SSH communications between a client and server.</li>
+<li><a href="https://github.com/Cryptix720/HUDINX" rel="external" target="_self">HUDINX</a> - Tiny interaction SSH honeypot engineered in Python to log brute force attacks and, most importantly, the entire shell interaction performed by the attacker.</li>
+<li><a href="https://github.com/desaster/kippo" rel="external" target="_self">Kippo</a> - Medium interaction SSH honeypot.</li>
+<li><a href="https://github.com/gregcmartin/Kippo_JunOS" rel="external" target="_self">Kippo_JunOS</a> - Kippo configured to be a backdoored netscreen.</li>
+<li><a href="https://github.com/madirish/kojoney2" rel="external" target="_self">Kojoney2</a> - Low interaction SSH honeypot written in Python and based on Kojoney by Jose Antonio Coret.</li>
+<li><a href="http://kojoney.sourceforge.net/" rel="external" target="_self">Kojoney</a> - Python-based Low interaction honeypot that emulates an SSH server implemented with Twisted Conch.</li>
+<li><a href="https://github.com/deroux/longitudinal-analysis-cowrie" rel="external" target="_self">Longitudinal Analysis of SSH Cowrie Honeypot Logs</a> - Python based command line tool to analyze cowrie logs over time.</li>
+<li><a href="http://longtail.it.marist.edu/honey/" rel="external" target="_self">LongTail Log Analysis @ Marist College</a> - Analyzed SSH honeypot logs.</li>
+<li><a href="https://github.com/batchmcnulty/Malbait" rel="external" target="_self">Malbait</a> - Simple TCP/UDP honeypot implemented in Perl.</li>
+<li><a href="https://github.com/ncouture/MockSSH" rel="external" target="_self">MockSSH</a> - Mock an SSH server and define all commands it supports (Python, Twisted).</li>
+<li><a href="https://github.com/xlfe/cowrie2neo" rel="external" target="_self">cowrie2neo</a> - Parse cowrie honeypot logs into a neo4j database.</li>
+<li><a href="https://github.com/ashmckenzie/go-sshoney" rel="external" target="_self">go-sshoney</a> - SSH Honeypot.</li>
+<li><a href="https://github.com/fzerorubigd/go0r" rel="external" target="_self">go0r</a> - Simple ssh honeypot in Golang.</li>
+<li><a href="https://github.com/PaulMaddox/gohoney" rel="external" target="_self">gohoney</a> - SSH honeypot written in Go.</li>
+<li><a href="https://github.com/sahilm/hived" rel="external" target="_self">hived</a> - Golang-based honeypot.</li>
+<li><a href="https://github.com/joshrendek/hnypots-agent" rel="external" target="_self">hnypots-agent)</a> - SSH Server in Go that logs username and password combinations.</li>
+<li><a href="https://github.com/mdp/honeypot.go" rel="external" target="_self">honeypot.go</a> - SSH Honeypot written in Go.</li>
+<li><a href="https://github.com/ppacher/honeyssh" rel="external" target="_self">honeyssh</a> - Credential dumping SSH honeypot with statistics.</li>
+<li><a href="https://github.com/czardoz/hornet" rel="external" target="_self">hornet</a> - Medium interaction SSH honeypot that supports multiple virtual hosts.</li>
+<li><a href="https://github.com/JustinAzoff/ssh-auth-logger" rel="external" target="_self">ssh-auth-logger</a> - Low/zero interaction SSH authentication logging honeypot.</li>
+<li><a href="https://github.com/droberson/ssh-honeypot" rel="external" target="_self">ssh-honeypot</a> - Fake sshd that logs IP addresses, usernames, and passwords.</li>
+<li><a href="https://github.com/amv42/sshd-honeypot" rel="external" target="_self">ssh-honeypot</a> - Modified version of the OpenSSH deamon that forwards commands to Cowrie where all commands are interpreted and returned.</li>
+<li><a href="https://github.com/sjinks/ssh-honeypotd" rel="external" target="_self">ssh-honeypotd</a> - Low-interaction SSH honeypot written in C.</li>
+<li><a href="https://github.com/traetox/sshForShits" rel="external" target="_self">sshForShits</a> - Framework for a high interaction SSH honeypot.</li>
+<li><a href="https://github.com/jaksi/sshesame" rel="external" target="_self">sshesame</a> - Fake SSH server that lets everyone in and logs their activity.</li>
+<li><a href="https://github.com/magisterquis/sshhipot" rel="external" target="_self">sshhipot</a> - High-interaction MitM SSH honeypot.</li>
+<li><a href="https://github.com/magisterquis/sshlowpot" rel="external" target="_self">sshlowpot</a> - Yet another no-frills low-interaction SSH honeypot in Go.</li>
+<li><a href="https://github.com/mkishere/sshsyrup" rel="external" target="_self">sshsyrup</a> - Simple SSH Honeypot with features to capture terminal activity and upload to asciinema.org.</li>
+<li><a href="https://github.com/lanjelot/twisted-honeypots" rel="external" target="_self">twisted-honeypots</a> - SSH, FTP and Telnet honeypots based on Twisted.</li>
+</ul>
+</li>
+<li>
+<p>Distributed sensor project</p>
+<ul>
+<li><a href="https://sites.google.com/site/webhoneypotsite/" rel="external" target="_self">DShield Web Honeypot Project</a></li>
+</ul>
+</li>
+<li>
+<p>A pcap analyzer</p>
+<ul>
+<li><a href="https://projects.honeynet.org/honeysnap/" rel="external" target="_self">Honeysnap</a></li>
+</ul>
+</li>
+<li>
+<p>Network traffic redirector</p>
+<ul>
+<li><a href="https://projects.honeynet.org/honeywall/" rel="external" target="_self">Honeywall</a></li>
+</ul>
+</li>
+<li>
+<p>Honeypot Distribution with mixed content</p>
+<ul>
+<li><a href="https://bruteforcelab.com/honeydrive" rel="external" target="_self">HoneyDrive</a></li>
+</ul>
+</li>
+<li>
+<p>Honeypot sensor</p>
+<ul>
+<li><a href="https://redmine.honeynet.org/projects/honeeepi/wiki" rel="external" target="_self">Honeeepi</a> - Honeypot sensor on a Raspberry Pi based on a customized Raspbian OS.</li>
+</ul>
+</li>
+<li>
+<p>File carving</p>
+<ul>
+<li><a href="https://www.cgsecurity.org/" rel="external" target="_self">TestDisk &amp; PhotoRec</a></li>
+</ul>
+</li>
+<li>
+<p>Behavioral analysis tool for win32</p>
+<ul>
+<li><a href="https://www.honeynet.org/node/315" rel="external" target="_self">Capture BAT</a></li>
+</ul>
+</li>
+<li>
+<p>Live CD</p>
+<ul>
+<li><a href="https://www.secviz.org/node/89" rel="external" target="_self">DAVIX</a> - The DAVIX Live CD.</li>
+</ul>
+</li>
+<li>
+<p>Spamtrap</p>
+<ul>
+<li><a href="https://metacpan.org/pod/release/MIKER/Mail-SMTP-Honeypot-0.11/Honeypot.pm" rel="external" target="_self">Mail::SMTP::Honeypot</a> - Perl module that appears to provide the functionality of a standard SMTP server.</li>
+<li><a href="https://github.com/awhitehatter/mailoney" rel="external" target="_self">Mailoney</a> - SMTP honeypot, Open Relay, Cred Harvester written in python.</li>
+<li><a href="https://github.com/johestephan/VerySimpleHoneypot" rel="external" target="_self">SendMeSpamIDS.py</a> - Simple SMTP fetch all IDS and analyzer.</li>
+<li><a href="https://github.com/shiva-spampot/shiva" rel="external" target="_self">Shiva</a> - Spam Honeypot with Intelligent Virtual Analyzer.
+<ul>
+<li><a href="https://www.pentestpartners.com/security-blog/shiva-the-spam-honeypot-tips-and-tricks-for-getting-it-up-and-running/" rel="external" target="_self">Shiva The Spam Honeypot Tips And Tricks For Getting It Up And Running</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/referefref/SMTPLLMPot" rel="external" target="_self">SMTPLLMPot</a> - A super simple SMTP Honeypot built using GPT3.5</li>
+<li><a href="https://github.com/miguelraulb/spamhat" rel="external" target="_self">SpamHAT</a> - Spam Honeypot Tool.</li>
+<li><a href="http://www.spamhole.net/" rel="external" target="_self">Spamhole</a></li>
+<li><a href="https://github.com/jadb/honeypot" rel="external" target="_self">honeypot</a> - The Project Honey Pot un-official PHP SDK.</li>
+<li><a href="http://man.openbsd.org/cgi-bin/man.cgi?query=spamd%26apropos=0%26sektion=0%26manpath=OpenBSD+Current%26arch=i386%26format=html" rel="external" target="_self">spamd</a></li>
+</ul>
+</li>
+<li>
+<p>Commercial honeynet</p>
+<ul>
+<li><a href="ttps://cymmetria.com/products/mazerunner/" rel="external" target="_self">Cymmetria Mazerunner</a> - Leads attackers away from real targets and creates a footprint of the attack.</li>
+</ul>
+</li>
+<li>
+<p>Server (Bluetooth)</p>
+<ul>
+<li><a href="https://github.com/andrewmichaelsmith/bluepot" rel="external" target="_self">Bluepot</a></li>
+</ul>
+</li>
+<li>
+<p>Dynamic analysis of Android apps</p>
+<ul>
+<li><a href="https://code.google.com/archive/p/droidbox/" rel="external" target="_self">Droidbox</a></li>
+</ul>
+</li>
+<li>
+<p>Dockerized Low Interaction packaging</p>
+<ul>
+<li><a href="https://github.com/sreinhardt/Docker-Honeynet" rel="external" target="_self">Docker honeynet</a> - Several Honeynet tools set up for Docker containers.</li>
+<li><a href="https://hub.docker.com/r/honeynet/thug/" rel="external" target="_self">Dockerized Thug</a> - Dockerized <a href="https://github.com/buffer/thug" rel="external" target="_self">Thug</a> to analyze malicious web content.</li>
+<li><a href="https://github.com/mrschyte/dockerpot" rel="external" target="_self">Dockerpot</a> - Docker based honeypot.</li>
+<li><a href="https://github.com/andrewmichaelsmith/manuka" rel="external" target="_self">Manuka</a> - Docker based honeypot (Dionaea and Kippo).</li>
+<li><a href="https://github.com/run41/honey_ports" rel="external" target="_self">honey_ports</a> - Very simple but effective docker deployed honeypot to detect port scanning in your environment.</li>
+<li><a href="https://github.com/MattCarothers/mhn-core-docker" rel="external" target="_self">mhn-core-docker</a> - Core elements of the Modern Honey Network implemented in Docker.</li>
+</ul>
+</li>
+<li>
+<p>Network analysis</p>
+<ul>
+<li><a href="https://bitbucket.org/zaccone/quechua" rel="external" target="_self">Quechua</a></li>
+</ul>
+</li>
+<li>
+<p>SIP Server</p>
+<ul>
+<li><a href="http://artemisa.sourceforge.net" rel="external" target="_self">Artemnesia VoIP</a></li>
+</ul>
+</li>
+<li>
+<p>SIP</p>
+<ul>
+<li><a href="https://github.com/SentryPeer/SentryPeer" rel="external" target="_self">SentryPeer</a> - Protect your SIP Servers from bad actors.</li>
+</ul>
+</li>
+<li>
+<p>IOT Honeypot</p>
+<ul>
+<li><a href="https://github.com/omererdem/honeything" rel="external" target="_self">HoneyThing</a> - TR-069 Honeypot.</li>
+<li><a href="https://github.com/darkarnium/kako" rel="external" target="_self">Kako</a> - Honeypots for a number of well known and deployed embedded device vulnerabilities.</li>
+</ul>
+</li>
+<li>
+<p>Honeytokens</p>
+<ul>
+<li><a href="https://github.com/thinkst/canarytokens" rel="external" target="_self">CanaryTokens</a> - Self-hostable honeytoken generator and reporting dashboard; demo version available at <a href="https://canarytokens.org/generate" rel="external" target="_self">CanaryTokens.org</a>.</li>
+<li><a href="https://github.com/0x4D31/honeybits" rel="external" target="_self">Honeybits</a> - Simple tool designed to enhance the effectiveness of your traps by spreading breadcrumbs and honeytokens across your production servers and workstations to lure the attacker toward your honeypots.</li>
+<li><a href="https://github.com/0x4D31/honeylambda" rel="external" target="_self">Honeyλ (HoneyLambda)</a> - Simple, serverless application designed to create and monitor URL honeytokens, on top of AWS Lambda and Amazon API Gateway.</li>
+<li><a href="https://github.com/secureworks/dcept" rel="external" target="_self">dcept</a> - Tool for deploying and detecting use of Active Directory honeytokens.</li>
+<li><a href="https://github.com/0x4D31/honeyku" rel="external" target="_self">honeyku</a> - Heroku-based web honeypot that can be used to create and monitor fake HTTP endpoints (i.e. honeytokens).</li>
+</ul>
+</li>
+</ul>
+<h2 id="honeyd-tools">Honeyd Tools</h2>
+<ul>
+<li>
+<p>Honeyd plugin</p>
+<ul>
+<li><a href="http://www.honeyd.org/tools.php" rel="external" target="_self">Honeycomb</a></li>
+</ul>
+</li>
+<li>
+<p>Honeyd viewer</p>
+<ul>
+<li><a href="http://honeyview.sourceforge.net/" rel="external" target="_self">Honeyview</a></li>
+</ul>
+</li>
+<li>
+<p>Honeyd to MySQL connector</p>
+<ul>
+<li><a href="https://bruteforcelab.com/honeyd2mysql" rel="external" target="_self">Honeyd2MySQL</a></li>
+</ul>
+</li>
+<li>
+<p>A script to visualize statistics from honeyd</p>
+<ul>
+<li><a href="https://bruteforcelab.com/honeyd-viz" rel="external" target="_self">Honeyd-Viz</a></li>
+</ul>
+</li>
+<li>
+<p>Honeyd stats</p>
+<ul>
+<li><a href="https://github.com/DataSoft/Honeyd/blob/master/scripts/misc/honeydsum-v0.3/honeydsum.pl" rel="external" target="_self">Honeydsum.pl</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="network-and-artifact-analysis">Network and Artifact Analysis</h2>
+<ul>
+<li>
+<p>Sandbox</p>
+<ul>
+<li><a href="http://www.few.vu.nl/argos/" rel="external" target="_self">Argos</a> - Emulator for capturing zero-day attacks.</li>
+<li><a href="https://help.comodo.com/topic-72-1-451-4768-.html" rel="external" target="_self">COMODO automated sandbox</a></li>
+<li><a href="https://cuckoosandbox.org/" rel="external" target="_self">Cuckoo</a> - Leading open source automated malware analysis system.</li>
+<li><a href="https://github.com/buffer/pylibemu" rel="external" target="_self">Pylibemu</a> - Libemu Cython wrapper.</li>
+<li><a href="https://monkey.org/~jose/software/rfi-sandbox/" rel="external" target="_self">RFISandbox</a> - PHP 5.x script sandbox built on top of <a href="https://pecl.php.net/package/funcall" rel="external" target="_self">funcall</a>.</li>
+<li><a href="https://github.com/m4rco-/dorothy2" rel="external" target="_self">dorothy2</a> - Malware/botnet analysis framework written in Ruby.</li>
+<li><a href="https://github.com/hbhzwj/imalse" rel="external" target="_self">imalse</a> - Integrated MALware Simulator and Emulator.</li>
+<li><a href="https://github.com/buffer/libemu" rel="external" target="_self">libemu</a> - Shellcode emulation library, useful for shellcode detection.</li>
+</ul>
+</li>
+<li>
+<p>Sandbox-as-a-Service</p>
+<ul>
+<li><a href="https://www.hybrid-analysis.com" rel="external" target="_self">Hybrid Analysis</a> - Free malware analysis service powered by Payload Security that detects and analyzes unknown threats using a unique Hybrid Analysis technology.</li>
+<li><a href="https://jbxcloud.joesecurity.org/login" rel="external" target="_self">Joebox Cloud</a> - Analyzes the behavior of malicious files including PEs, PDFs, DOCs, PPTs, XLSs, APKs, URLs and MachOs on Windows, Android and Mac OS X for suspicious activities.</li>
+<li><a href="https://www.virustotal.com/" rel="external" target="_self">VirusTotal</a> - Analyze suspicious files and URLs to detect types of malware, and automatically share them with the security community.</li>
+<li><a href="https://malwr.com/" rel="external" target="_self">malwr.com</a> - Free malware analysis service and community.</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-tools">Data Tools</h2>
+<ul>
+<li>
+<p>Front Ends</p>
+<ul>
+<li><a href="https://github.com/rubenespadas/DionaeaFR" rel="external" target="_self">DionaeaFR</a> - Front Web to Dionaea low-interaction honeypot.</li>
+<li><a href="https://github.com/jedie/django-kippo" rel="external" target="_self">Django-kippo</a> - Django App for kippo SSH Honeypot.</li>
+<li><a href="https://github.com/GovCERT-CZ/Shockpot-Frontend" rel="external" target="_self">Shockpot-Frontend</a> - Full featured script to visualize statistics from a Shockpot honeypot.</li>
+<li><a href="https://github.com/aplura/Tango" rel="external" target="_self">Tango</a> - Honeypot Intelligence with Splunk.</li>
+<li><a href="https://github.com/GovCERT-CZ/Wordpot-Frontend" rel="external" target="_self">Wordpot-Frontend</a> - Full featured script to visualize statistics from a Wordpot honeypot.</li>
+<li><a href="https://github.com/schmalle/honeyalarmg2" rel="external" target="_self">honeyalarmg2</a> - Simplified UI for showing honeypot alarms.</li>
+<li><a href="https://github.com/Joss-Steward/honeypotDisplay" rel="external" target="_self">honeypotDisplay</a> - Flask website which displays data gathered from an SSH Honeypot.</li>
+</ul>
+</li>
+<li>
+<p>Visualization</p>
+<ul>
+<li><a href="https://github.com/hgascon/acapulco" rel="external" target="_self">Acapulco</a> - Automated Attack Community Graph Construction.</li>
+<li><a href="https://github.com/ayrus/afterglow-cloud" rel="external" target="_self">Afterglow Cloud</a></li>
+<li><a href="http://afterglow.sourceforge.net/" rel="external" target="_self">Afterglow</a></li>
+<li><a href="https://github.com/katkad/Glastopf-Analytics" rel="external" target="_self">Glastopf Analytics</a> - Easy honeypot statistics.</li>
+<li><a href="https://github.com/SneakersInc/HoneyMalt" rel="external" target="_self">HoneyMalt</a> - Maltego tranforms for mapping Honeypot systems.</li>
+<li><a href="https://github.com/fw42/honeymap" rel="external" target="_self">HoneyMap</a> - Real-time websocket stream of GPS events on a fancy SVG world map.</li>
+<li><a href="https://sourceforge.net/projects/honeystats/" rel="external" target="_self">HoneyStats</a> - Statistical view of the recorded activity on a Honeynet.</li>
+<li><a href="https://github.com/yuchincheng/HpfeedsHoneyGraph" rel="external" target="_self">HpfeedsHoneyGraph</a> - Visualization app to visualize hpfeeds logs.</li>
+<li><a href="https://github.com/ivre/ivre" rel="external" target="_self">IVRE</a> - Network recon framework, published by @cea-sec &amp; @ANSSI-FR. Build your own, self-hosted and fully-controlled alternatives to Criminalip / Shodan / ZoomEye / Censys and GreyNoise, run your Passive DNS service, collect and analyse network intelligence from your sensors, and much more!</li>
+<li><a href="https://github.com/mfontani/kippo-stats" rel="external" target="_self">Kippo stats</a> - Mojolicious app to display statistics for your kippo SSH honeypot.</li>
+<li><a href="https://bruteforcelab.com/kippo-graph" rel="external" target="_self">Kippo-Graph</a> - Full featured script to visualize statistics from a Kippo SSH honeypot.</li>
+<li><a href="https://github.com/jpyorre/IntelligentHoneyNet" rel="external" target="_self">The Intelligent HoneyNet</a> - Create actionable information from honeypots.</li>
+<li><a href="https://github.com/oguzy/ovizart" rel="external" target="_self">ovizart</a> - Visual analysis for network traffic.</li>
+</ul>
+</li>
+</ul>
+<h2 id="guides">Guides</h2>
+<ul>
+<li>
+<p><a href="https://dtag-dev-sec.github.io/mediator/feature/2015/03/17/concept.html" rel="external" target="_self">T-Pot: A Multi-Honeypot Platform</a></p>
+</li>
+<li>
+<p><a href="https://github.com/andrewmichaelsmith/honeypot-setup-script/" rel="external" target="_self">Honeypot (Dionaea and kippo) setup script</a></p>
+</li>
+<li>
+<p>Deployment</p>
+<ul>
+<li><a href="http://andrewmichaelsmith.com/2012/03/dionaea-honeypot-on-ec2-in-20-minutes/" rel="external" target="_self">Dionaea and EC2 in 20 Minutes</a> - Tutorial on setting up Dionaea on an EC2 instance.</li>
+<li><a href="https://isc.sans.edu/diary/22680" rel="external" target="_self">Using a Raspberry Pi honeypot to contribute data to DShield/ISC</a> - The Raspberry Pi based system will allow us to maintain one code base that will make it easier to collect rich logs beyond firewall logs.</li>
+<li><a href="https://github.com/free5ty1e/honeypotpi" rel="external" target="_self">honeypotpi</a> - Script for turning a Raspberry Pi into a HoneyPot Pi.</li>
+</ul>
+</li>
+<li>
+<p>Research Papers</p>
+<ul>
+<li><a href="https://github.com/shbhmsingh72/Honeypot-Research-Papers" rel="external" target="_self">Honeypot research papers</a> - PDFs of research papers on honeypots.</li>
+<li><a href="https://link.springer.com/article/10.1007%2Fs10115-008-0137-3" rel="external" target="_self">vEYE</a> - Behavioral footprinting for self-propagating worm detection and profiling.</li>
+</ul>
+</li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 1, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/honeypots/index.html">Honeypots</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

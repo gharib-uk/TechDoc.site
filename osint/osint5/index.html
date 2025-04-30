@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="Android Sec Tools">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Android Sec :: Gharib Blog">
+    <meta name="twitter:description" content="Android Sec Tools">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/osint/osint5/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="Android Sec :: Gharib Blog">
+    <meta property="og:description" content="Android Sec Tools">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="OSINt">
+    <meta property="article:published_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:tag" content="Sec, Android, Security">
+    <meta itemprop="name" content="Android Sec :: Gharib Blog">
+    <meta itemprop="description" content="Android Sec Tools">
+    <meta itemprop="datePublished" content="2024-08-06T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-06T00:00:00+00:00">
+    <meta itemprop="wordCount" content="1974">
+    <meta itemprop="keywords" content="Sec, Android, Security">
+    <title>Android Sec :: Gharib Blog</title>
+    <link href="../../osint/osint5/index.xml" rel="alternate" type="application/rss+xml" title="Android Sec :: Gharib Blog">
+    <link href="../../osint/osint5/index.print.html" rel="alternate" type="text/html" title="Android Sec :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990495" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990495" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990495" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990495" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990495" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1745990495" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990495" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990495" defer></script>
+    <script src="../../js/search.min.js?1745990495" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/osint\/osint5\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990495";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support html" data-url="../../osint/osint5/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a>
+      <ul>
+        <li><a href="#online-analyzers">Online Analyzers</a></li>
+        <li><a href="#static-analysis-tools">Static Analysis Tools</a></li>
+        <li><a href="#app-vulnerability-scanners">App Vulnerability Scanners</a></li>
+        <li><a href="#dynamic-analysis-tools">Dynamic Analysis Tools</a></li>
+        <li><a href="#reverse-engineering">Reverse Engineering</a></li>
+        <li><a href="#fuzz-testing">Fuzz Testing</a></li>
+        <li><a href="#app-repackaging-detectors">App Repackaging Detectors</a></li>
+        <li><a href="#market-crawlers">Market Crawlers</a></li>
+        <li><a href="#misc-tools">Misc Tools</a></li>
+        <li><a href="#vulnerable-applications-for-practice">Vulnerable Applications for practice</a></li>
+      </ul>
+    </li>
+    <li><a href="#academicresearchpublicationsbooks">Academic/Research/Publications/Books</a>
+      <ul>
+        <li><a href="#research-papers">Research Papers</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#others">Others</a></li>
+      </ul>
+    </li>
+    <li><a href="#exploitsvulnerabilitiesbugs">Exploits/Vulnerabilities/Bugs</a>
+      <ul>
+        <li><a href="#list">List</a></li>
+        <li><a href="#malware">Malware</a></li>
+        <li><a href="#bounty-programs">Bounty Programs</a></li>
+        <li><a href="#how-to-report-security-issues">How to report Security issues</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../osint/index.html"><span itemprop="name">OSINT</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Android Sec</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint5/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/index.html" title="OSINt (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint6/index.html" title="App Sec (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/sec-android-security/index.html">Sec, Android, Security</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="android-sec">Android Sec</h1>
+
+<h1 id="android-security">Android Security</h1>
+<p>A collection of Android security-related resources.</p>
+<h2 id="tools">Tools</h2>
+<h3 id="online-analyzers">Online Analyzers</h3>
+<ul>
+<li><a href="http://andrototal.org/" rel="external" target="_self">AndroTotal</a></li>
+<li><a href="https://www.appknox.com/" rel="external" target="_self">Appknox</a> - not free</li>
+<li><a href="https://www.virustotal.com/" rel="external" target="_self">Virustotal</a> - max 128MB</li>
+<li><a href="http://app-ray.co/" rel="external" target="_self">Fraunhofer App-ray</a> - not free</li>
+<li><a href="https://www.nowsecure.com/blog/2016/09/19/announcing-nowsecure-lab-automated/" rel="external" target="_self">NowSecure Lab Automated</a> - Enterprise tool for mobile app security testing both Android and iOS mobile apps. Lab Automated features dynamic and static analysis on real devices in the cloud to return results in minutes. Not free</li>
+<li><a href="https://appdetonator.run/" rel="external" target="_self">App Detonator</a> - Detonate APK binary to provide source code level details including app author, signature, build, and manifest information. 3 Analysis/day free quota.</li>
+<li><a href="https://beta.pithus.org/" rel="external" target="_self">Pithus</a> - Open-Source APK analyzer. Still in Beta for the moment and limited to static analysis for the moment. Possible to hunt malware with Yara rules. More <a href="https://beta.pithus.org/about/" rel="external" target="_self">here</a>.</li>
+<li><a href="https://oversecured.com/" rel="external" target="_self">Oversecured</a> - Enterprise vulnerability scanner for Android and iOS apps, it offers app owners and developers the ability to secure each new version of a mobile app by integrating Oversecured into the development process. Not free.</li>
+<li><a href="https://appsweep.guardsquare.com/" rel="external" target="_self">AppSweep by Guardsquare</a> - Free, fast Android application security testing for developers</li>
+<li><a href="https://koodous.com" rel="external" target="_self">Koodous</a> - Performs static/dynamic malware analysis over a vast repository of Android samples and checks them against public and private Yara rules.</li>
+<li><a href="https://www.immuniweb.com/mobile/" rel="external" target="_self">Immuniweb</a>. Does a &ldquo;OWASP Mobile Top 10 Test&rdquo;, &ldquo;Mobile App Privacy Check&rdquo; and an application permissions test. Free tier is 4 tests per day incl. report after registration</li>
+<li><a href="https://malab.bitbaan.com/" rel="external" target="_self">BitBaan</a></li>
+<li><a href="http://undroid.av-comparatives.info/" rel="external" target="_self">AVC UnDroid</a></li>
+<li><a href="https://amaaas.com" rel="external" target="_self">AMAaaS</a> - Free Android Malware Analysis Service. A bare-metal service features static and dynamic analysis for Android applications. A product of <a href="https://malwarepot.com/index.php/AMAaaS" rel="external" target="_self">MalwarePot</a>.</li>
+<li><a href="https://appcritique.boozallen.com" rel="external" target="_self">AppCritique</a> - Upload your Android APKs and receive comprehensive free security assessments</li>
+<li><a href="https://apkscan.nviso.be/" rel="external" target="_self">NVISO ApkScan</a> - sunsetting on Oct 31, 2019</li>
+<li><a href="http://www.mobilemalware.com.br/analysis/index_en.php" rel="external" target="_self">Mobile Malware Sandbox</a></li>
+<li><a href="https://appscan.bluemix.net/mobileAnalyzer" rel="external" target="_self">IBM Security AppScan Mobile Analyzer</a> - not free</li>
+<li><a href="https://www.visualthreat.com/" rel="external" target="_self">Visual Threat</a> - no longer an Android app analyzer</li>
+<li><a href="http://tracedroid.few.vu.nl/" rel="external" target="_self">Tracedroid</a></li>
+<li><a href="https://habo.qq.com/" rel="external" target="_self">habo</a> - 10/day</li>
+<li><a href="http://copperdroid.isg.rhul.ac.uk/copperdroid/" rel="external" target="_self">CopperDroid</a></li>
+<li><a href="http://sanddroid.xjtu.edu.cn/" rel="external" target="_self">SandDroid</a></li>
+<li><a href="http://www.android-permissions.org/" rel="external" target="_self">Stowaway</a></li>
+<li><a href="http://anubis.iseclab.org/" rel="external" target="_self">Anubis</a></li>
+<li><a href="http://www.mobile-app-insight.org" rel="external" target="_self">Mobile app insight</a></li>
+<li><a href="http://mobile-sandbox.com" rel="external" target="_self">Mobile-Sandbox</a></li>
+<li><a href="http://safe.ijiami.cn/" rel="external" target="_self">Ijiami</a></li>
+<li><a href="http://www.comdroid.org/" rel="external" target="_self">Comdroid</a></li>
+<li><a href="http://www.androidsandbox.net/" rel="external" target="_self">Android Sandbox</a></li>
+<li><a href="http://www.foresafe.com/scan" rel="external" target="_self">Foresafe</a></li>
+<li><a href="https://dexter.dexlabs.org/" rel="external" target="_self">Dexter</a></li>
+<li><a href="http://www.mobiseclab.org/eacus.jsp" rel="external" target="_self">MobiSec Eacus</a></li>
+<li><a href="https://fireeye.ijinshan.com/" rel="external" target="_self">Fireeye</a>- max 60MB 15/day</li>
+<li><a href="https://approver.talos-sec.com/" rel="external" target="_self">approver</a> - Approver  is a fully automated security analysis and risk assessment platform for Android and iOS apps. Not free.</li>
+</ul>
+<h3 id="static-analysis-tools">Static Analysis Tools</h3>
+<ul>
+<li><a href="https://github.com/maaaaz/androwarn/" rel="external" target="_self">Androwarn</a> - detect and warn the user about potential malicious behaviors developed by an Android application.</li>
+<li><a href="https://github.com/sonyxperiadev/ApkAnalyser" rel="external" target="_self">ApkAnalyser</a></li>
+<li><a href="https://github.com/honeynet/apkinspector/" rel="external" target="_self">APKInspector</a></li>
+<li><a href="https://www.cert.org/secure-coding/tools/didfail.cfm" rel="external" target="_self">Droid Intent Data Flow Analysis for Information Leakage</a></li>
+<li><a href="https://bitbucket.org/srl/droidlegacy" rel="external" target="_self">DroidLegacy</a></li>
+<li><a href="https://blogs.uni-paderborn.de/sse/tools/flowdroid/" rel="external" target="_self">FlowDroid</a></li>
+<li><a href="https://www.pnfsoftware.com/" rel="external" target="_self">Android Decompiler</a> – not free</li>
+<li><a href="https://security.csl.toronto.edu/pscout/" rel="external" target="_self">PSCout</a> - A tool that extracts the permission specification from the Android OS source code using static analysis</li>
+<li><a href="http://amandroid.sireum.org/" rel="external" target="_self">Amandroid</a></li>
+<li><a href="https://github.com/dorneanu/smalisca" rel="external" target="_self">SmaliSCA</a> - Smali Static Code Analysis</li>
+<li><a href="https://github.com/douggard/CFGScanDroid" rel="external" target="_self">CFGScanDroid</a> - Scans and compares CFG against CFG of malicious applications</li>
+<li><a href="https://github.com/maldroid/maldrolyzer" rel="external" target="_self">Madrolyzer</a> - extracts actionable data like C&amp;C, phone number etc.</li>
+<li><a href="https://www.cs.washington.edu/sparta" rel="external" target="_self">SPARTA</a> - verifies (proves) that an app satisfies an information-flow security policy; built on the <a href="https://types.cs.washington.edu/checker-framework/" rel="external" target="_self">Checker Framework</a></li>
+<li><a href="https://github.com/JulianSchuette/ConDroid" rel="external" target="_self">ConDroid</a> - Performs a combination of symbolic + concrete execution of the app</li>
+<li><a href="https://github.com/serval-snt-uni-lu/DroidRA" rel="external" target="_self">DroidRA</a></li>
+<li><a href="https://github.com/ClaudiuGeorgiu/RiskInDroid" rel="external" target="_self">RiskInDroid</a> - A tool for calculating the risk of Android apps based on their permissions, with an online demo available.</li>
+<li><a href="https://github.com/SUPERAndroidAnalyzer/super" rel="external" target="_self">SUPER</a> - Secure, Unified, Powerful and Extensible Rust Android Analyzer</li>
+<li><a href="https://github.com/google/android-classyshark" rel="external" target="_self">ClassyShark</a> - Standalone binary inspection tool which can browse any Android executable and show important info.</li>
+<li><a href="https://github.com/vincentcox/StaCoAn" rel="external" target="_self">StaCoAn</a> - Cross-platform tool which aids developers, bug-bounty hunters, and ethical hackers in performing static code analysis on mobile applications. This tool was created with a big focus on usability and graphical guidance in the user interface.</li>
+<li><a href="https://github.com/flankerhqd/JAADAS" rel="external" target="_self">JAADAS</a> - Joint intraprocedural and interprocedural program analysis tool to find vulnerabilities in Android apps, built on Soot and Scala</li>
+<li><a href="https://github.com/quark-engine/quark-engine" rel="external" target="_self">Quark-Engine</a> - An Obfuscation-Neglect Android Malware Scoring System</li>
+<li><a href="https://github.com/b-mueller/apkx" rel="external" target="_self">One Step Decompiler</a> - Android APK Decompilation for the Lazy</li>
+<li><a href="https://github.com/dwisiswant0/apkleaks" rel="external" target="_self">APKLeaks</a> - Scanning APK file for URIs, endpoints &amp; secrets.</li>
+<li><a href="https://github.com/mpast/mobileAudit" rel="external" target="_self">Mobile Audit</a> - Web application for performing Static Analysis and detecting malware in Android APKs.</li>
+<li><a href="https://github.com/EugenioDelfa/Smali-CFGs" rel="external" target="_self">Smali CFG generator</a></li>
+<li><a href="http://siis.cse.psu.edu/tools.html" rel="external" target="_self">Several tools from PSU</a></li>
+</ul>
+<h3 id="app-vulnerability-scanners">App Vulnerability Scanners</h3>
+<ul>
+<li><a href="https://github.com/linkedin/qark/" rel="external" target="_self">QARK</a> - QARK by LinkedIn is for app developers to scan apps for security issues</li>
+<li><a href="https://github.com/AndroBugs/AndroBugs_Framework" rel="external" target="_self">AndroBugs</a></li>
+<li><a href="https://github.com/google/nogotofail" rel="external" target="_self">Nogotofail</a></li>
+<li><a href="https://devknox.io/" rel="external" target="_self">Devknox</a> - IDE plugin to build secure Android apps. Not maintained anymore.</li>
+</ul>
+<h3 id="dynamic-analysis-tools">Dynamic Analysis Tools</h3>
+<ul>
+<li><a href="http://www.mulliner.org/blog/blosxom.cgi/security/androiddbiv02.html" rel="external" target="_self">Android DBI frameowork</a></li>
+<li><a href="https://github.com/sh4hin/Androl4b" rel="external" target="_self">Androl4b</a>- A Virtual Machine For Assessing Android applications, Reverse Engineering and Malware Analysis</li>
+<li><a href="https://github.com/nccgroup/house" rel="external" target="_self">House</a>- House: A runtime mobile application analysis toolkit with a Web GUI, powered by Frida, written in Python.</li>
+<li><a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF" rel="external" target="_self">Mobile-Security-Framework MobSF</a> - Mobile Security Framework is an intelligent, all-in-one open-source mobile application (Android/iOS) automated pen-testing framework capable of performing static, dynamic analysis and web API testing.</li>
+<li><a href="https://appsec-labs.com/AppUse/" rel="external" target="_self">AppUse</a> – custom build for penetration testing</li>
+<li><a href="https://github.com/pjlantz/droidbox" rel="external" target="_self">Droidbox</a></li>
+<li><a href="https://github.com/mwrlabs/drozer" rel="external" target="_self">Drozer</a></li>
+<li><a href="https://forum.xda-developers.com/xposed/xposed-installer-versions-changelog-t2714053" rel="external" target="_self">Xposed</a> - equivalent of doing Stub-based code injection but without any modifications to the binary</li>
+<li><a href="https://github.com/ac-pm/Inspeckage" rel="external" target="_self">Inspeckage</a> - Android Package Inspector - dynamic analysis with API hooks, start unexported activities, and more. (Xposed Module)</li>
+<li><a href="https://github.com/AndroidHooker/hooker" rel="external" target="_self">Android Hooker</a> - Dynamic Java code instrumentation (requires the Substrate Framework)</li>
+<li><a href="https://github.com/ZSShen/ProbeDroid" rel="external" target="_self">ProbeDroid</a> - Dynamic Java code instrumentation</li>
+<li><a href="https://github.com/sycurelab/DECAF" rel="external" target="_self">DECAF</a> - Dynamic Executable Code Analysis Framework based on QEMU (DroidScope is now an extension to DECAF)</li>
+<li><a href="https://github.com/idanr1986/cuckoo-droid" rel="external" target="_self">CuckooDroid</a> - Android extension for Cuckoo sandbox</li>
+<li><a href="https://github.com/MobileForensicsResearch/mem" rel="external" target="_self">Mem</a> - Memory analysis of Android (root required)</li>
+<li><a href="http://www.ida.liu.se/labs/rtslab/publications/2011/spsm11-burguera.pdf" rel="external" target="_self">Crowdroid</a> – unable to find the actual tool</li>
+<li><a href="https://github.com/nwhusted/AuditdAndroid" rel="external" target="_self">AuditdAndroid</a> – android port of auditd, not under active development anymore</li>
+<li><a href="https://code.google.com/p/asef/" rel="external" target="_self">Android Security Evaluation Framework</a> - not under active development anymore</li>
+<li><a href="https://github.com/xurubin/aurasium" rel="external" target="_self">Aurasium</a> – Practical security policy enforcement for Android apps via bytecode rewriting and in-place reference monitor.</li>
+<li><a href="https://github.com/strazzere/android-lkms" rel="external" target="_self">Android Linux Kernel modules</a></li>
+<li><a href="https://manifestsecurity.com/appie/" rel="external" target="_self">Appie</a> - Appie is a software package that has been pre-configured to function as an Android Pentesting Environment. It is completely portable and can be carried on a USB stick or smartphone. This is a one-stop answer for all the tools needed in Android Application Security Assessment and an awesome alternative to existing virtual machines.</li>
+<li><a href="https://github.com/zyrikby/StaDynA" rel="external" target="_self">StaDynA</a> - a system supporting security app analysis in the presence of dynamic code update features (dynamic class loading and reflection). This tool combines static and dynamic analysis of Android applications in order to reveal the hidden/updated behavior and extend static analysis results with this information.</li>
+<li><a href="https://github.com/zhengmin1989/DroidAnalytics" rel="external" target="_self">DroidAnalytics</a> - incomplete</li>
+<li><a href="https://github.com/oguzhantopgul/Vezir-Project" rel="external" target="_self">Vezir Project</a> - Virtual Machine for Mobile Application Pentesting and Mobile Malware Analysis</li>
+<li><a href="https://github.com/xtiankisutsa/MARA_Framework" rel="external" target="_self">MARA</a> - Mobile Application Reverse Engineering and Analysis Framework</li>
+<li><a href="http://appanalysis.org" rel="external" target="_self">Taintdroid</a> - requires AOSP compilation</li>
+<li><a href="https://artist.cispa.saarland" rel="external" target="_self">ARTist</a> - a flexible open-source instrumentation and hybrid analysis framework for Android apps and Android&rsquo;s Java middleware. It is based on the Android Runtime&rsquo;s (ART) compiler and modifies code during on-device compilation.</li>
+<li><a href="https://github.com/Areizen/Android-Malware-Sandbox" rel="external" target="_self">Android Malware Sandbox</a></li>
+<li><a href="https://github.com/alexMyG/AndroPyTool" rel="external" target="_self">AndroPyTool</a> - a tool for extracting static and dynamic features from Android APKs. It combines different well-known Android app analysis tools such as DroidBox, FlowDroid, Strace, AndroGuard, or VirusTotal analysis.</li>
+<li><a href="https://github.com/m0bilesecurity/RMS-Runtime-Mobile-Security" rel="external" target="_self">Runtime Mobile Security (RMS)</a> - is a powerful web interface that helps you to manipulate Android and iOS Apps at Runtime</li>
+<li><a href="https://github.com/Dado1513/PAPIMonitor" rel="external" target="_self">PAPIMonitor</a> – PAPIMonitor (Python API Monitor for Android apps) is a Python tool based on Frida for monitoring user-select APIs during the app execution.</li>
+<li><a href="https://github.com/NotSoSecure/android_application_analyzer" rel="external" target="_self">Android_application_analyzer</a> - The tool is used to analyze the content of the Android application in local storage.</li>
+<li><a href="https://www.decompiler.com/" rel="external" target="_self">Decompiler.com</a> - Online APK and Java decompiler</li>
+<li><a href="https://androidtamer.com/" rel="external" target="_self">Android Tamer</a> - Virtual / Live Platform for Android Security Professionals</li>
+<li><a href="http://www.mobilemalware.com.br/amat/download.html" rel="external" target="_self">Android Malware Analysis Toolkit</a> - (Linux distro) Earlier it use to be an <a href="http://dunkelheit.com.br/amat/analysis/index_en.php" rel="external" target="_self">online analyzer</a></li>
+<li><a href="https://redmine.honeynet.org/projects/are/wiki" rel="external" target="_self">Android Reverse Engineering</a> – ARE (android reverse engineering) not under active development anymore</li>
+<li><a href="https://www.nowsecure.com/blog/2014/09/09/introducing-vialab-community-edition/" rel="external" target="_self">ViaLab Community Edition</a></li>
+<li><a href="https://labs.mwrinfosecurity.com/tools/2012/03/16/mercury/" rel="external" target="_self">Mercury</a></li>
+<li><a href="https://thecobraden.com/projects/cobradroid/" rel="external" target="_self">Cobradroid</a> – custom image for malware analysis</li>
+</ul>
+<h3 id="reverse-engineering">Reverse Engineering</h3>
+<ul>
+<li><a href="https://github.com/JesusFreke/smali" rel="external" target="_self">Smali/Baksmali</a> – apk decompilation</li>
+<li><a href="https://github.com/strazzere/Emacs-Smali" rel="external" target="_self">emacs syntax coloring for smali files</a></li>
+<li><a href="http://codetastrophe.com/smali.vim" rel="external" target="_self">vim syntax coloring for smali files</a></li>
+<li><a href="https://github.com/swdunlop/AndBug" rel="external" target="_self">AndBug</a></li>
+<li><a href="https://github.com/androguard/androguard" rel="external" target="_self">Androguard</a> – powerful, integrates well with other tools</li>
+<li><a href="https://ibotpeaches.github.io/Apktool/" rel="external" target="_self">Apktool</a> – really useful for compilation/decompilation (uses smali)</li>
+<li><a href="https://github.com/appknox/AFE" rel="external" target="_self">Android Framework for Exploitation</a></li>
+<li><a href="https://github.com/iSECPartners/Android-KillPermAndSigChecks" rel="external" target="_self">Bypass signature and permission checks for IPCs</a></li>
+<li><a href="https://github.com/iSECPartners/Android-OpenDebug" rel="external" target="_self">Android OpenDebug</a> – make any application on the device debuggable (using cydia substrate).</li>
+<li><a href="https://github.com/pxb1988/dex2jar" rel="external" target="_self">Dex2Jar</a> - dex to jar converter</li>
+<li><a href="https://github.com/google/enjarify" rel="external" target="_self">Enjarify</a> - dex to jar converter from Google</li>
+<li><a href="https://sourceforge.net/projects/dedexer/" rel="external" target="_self">Dedexer</a></li>
+<li><a href="https://github.com/sysdream/fino" rel="external" target="_self">Fino</a></li>
+<li><a href="https://www.frida.re/" rel="external" target="_self">Frida</a> - inject javascript to explore applications and a <a href="https://github.com/antojoseph/diff-gui" rel="external" target="_self">GUI tool</a> for it</li>
+<li><a href="https://bitbucket.org/aseemjakhar/indroid" rel="external" target="_self">Indroid</a> – thread injection kit</li>
+<li><a href="https://www.nccgroup.com/us/our-research/intent-sniffer/" rel="external" target="_self">IntentSniffer</a></li>
+<li><a href="https://github.com/iSECPartners/Introspy-Android" rel="external" target="_self">Introspy</a></li>
+<li><a href="https://varaneckas.com/jad/" rel="external" target="_self">Jad</a> - Java decompiler</li>
+<li><a href="https://github.com/java-decompiler/jd-gui" rel="external" target="_self">JD-GUI</a> - Java decompiler</li>
+<li><a href="http://www.benf.org/other/cfr/" rel="external" target="_self">CFR</a> - Java decompiler</li>
+<li><a href="https://github.com/Storyyeller/Krakatau" rel="external" target="_self">Krakatau</a> - Java decompiler</li>
+<li><a href="https://github.com/fesh0r/fernflower" rel="external" target="_self">FernFlower</a> - Java decompiler</li>
+<li><a href="https://github.com/plum-umd/redexer" rel="external" target="_self">Redexer</a> – apk manipulation</li>
+<li><a href="https://github.com/CalebFenton/simplify" rel="external" target="_self">Simplify Android deobfuscator</a></li>
+<li><a href="https://github.com/Konloch/bytecode-viewer" rel="external" target="_self">Bytecode viewer</a></li>
+<li><a href="https://github.com/radare/radare2" rel="external" target="_self">Radare2</a></li>
+<li><a href="https://github.com/skylot/jadx" rel="external" target="_self">Jadx</a></li>
+<li><a href="https://github.com/iGio90/Dwarf" rel="external" target="_self">Dwarf</a> - GUI for reverse engineering</li>
+<li><a href="https://github.com/secrary/Andromeda" rel="external" target="_self">Andromeda</a> - Another basic command-line reverse engineering tool</li>
+<li><a href="https://github.com/shroudedcode/apk-mitm" rel="external" target="_self">apk-mitm</a> - A CLI application that prepares Android APK files for HTTPS inspection</li>
+<li><a href="https://github.com/0x742/noia" rel="external" target="_self">Noia</a> - Simple Android application sandbox file browser tool</li>
+<li><a href="https://github.com/ClaudiuGeorgiu/Obfuscapk" rel="external" target="_self">Obfuscapk</a> - Obfuscapk is a modular Python tool for obfuscating Android apps without needing their source code.</li>
+<li><a href="https://github.com/Mobile-IoT-Security-Lab/ARMANDroid" rel="external" target="_self">ARMANDroid</a> - ARMAND (Anti-Repackaging through Multi-patternAnti-tampering based on Native Detection) is a novel anti-tampering protection scheme that embeds logic bombs and AT detection nodes directly in the apk file without needing their source code.</li>
+<li><a href="https://github.com/mvt-project/mvt" rel="external" target="_self">MVT (Mobile Verification Toolkit)</a> - a collection of utilities to simplify and automate the process of gathering forensic traces helpful to identify a potential compromise of Android and iOS devices</li>
+<li><a href="https://github.com/google/dexmod" rel="external" target="_self">Dexmod</a> - tool to exemplify patching Dalvik bytecode in a DEX (Dalvik Executable) file, and assist in the static analysis of Android applications.</li>
+<li><a href="https://bitbucket.org/mstrobel/procyon/wiki/Java%20Decompiler" rel="external" target="_self">Procyon</a> - Java decompiler</li>
+<li><a href="http://blog.avlyun.com/wp-content/uploads/2014/04/SmaliViewer.zip" rel="external" target="_self">Smali viewer</a></li>
+<li><a href="https://github.com/BaiduSecurityLabs/ZjDroid" rel="external" target="_self">ZjDroid</a>, <a href="https://github.com/yangbean9/ZjDroid" rel="external" target="_self">fork/mirror</a></li>
+<li><a href="http://siis.cse.psu.edu/dare/index.html" rel="external" target="_self">Dare</a> – .dex to .class converter</li>
+</ul>
+<h3 id="fuzz-testing">Fuzz Testing</h3>
+<ul>
+<li><a href="https://github.com/anestisb/radamsa-android" rel="external" target="_self">Radamsa Fuzzer</a></li>
+<li><a href="https://github.com/google/honggfuzz" rel="external" target="_self">Honggfuzz</a></li>
+<li><a href="https://github.com/anestisb/melkor-android" rel="external" target="_self">An Android port of the Melkor ELF fuzzer</a></li>
+<li><a href="https://github.com/fuzzing/MFFA" rel="external" target="_self">Media Fuzzing Framework for Android</a></li>
+<li><a href="https://github.com/jonmetz/AndroFuzz" rel="external" target="_self">AndroFuzz</a></li>
+<li><a href="https://github.com/quarkslab/android-fuzzing" rel="external" target="_self">QuarksLab&rsquo;s Android Fuzzing</a></li>
+<li><a href="https://www.nccgroup.trust/us/about-us/resources/intent-fuzzer/" rel="external" target="_self">IntentFuzzer</a></li>
+</ul>
+<h3 id="app-repackaging-detectors">App Repackaging Detectors</h3>
+<ul>
+<li><a href="https://github.com/zyrikby/FSquaDRA" rel="external" target="_self">FSquaDRA</a> - a tool for the detection of repackaged Android applications based on app resources hash comparison.</li>
+</ul>
+<h3 id="market-crawlers">Market Crawlers</h3>
+<ul>
+<li><a href="https://github.com/Akdeniz/google-play-crawler" rel="external" target="_self">Google Play crawler (Java)</a></li>
+<li><a href="https://github.com/egirault/googleplay-api" rel="external" target="_self">Google Play crawler (Python)</a></li>
+<li><a href="https://github.com/dweinstein/node-google-play" rel="external" target="_self">Google Play crawler (Node)</a> - get app details and download apps from the official Google Play Store.</li>
+<li><a href="https://github.com/dweinstein/node-aptoide" rel="external" target="_self">Aptoide downloader (Node)</a> - download apps from Aptoide third-party Android market</li>
+<li><a href="https://github.com/dweinstein/node-appland" rel="external" target="_self">Appland downloader (Node)</a> - download apps from Appland third-party Android market</li>
+<li><a href="https://github.com/ClaudiuGeorgiu/PlaystoreDownloader" rel="external" target="_self">PlaystoreDownloader</a> - PlaystoreDownloader is a tool for downloading Android applications directly from the Google Play Store. After an initial (one-time) configuration, applications can be downloaded by specifying their package name.</li>
+<li><a href="https://apkcombo.com/apk-downloader/" rel="external" target="_self">APK Downloader</a> Online Service to download APK from Playstore for specific Android Device Configuration</li>
+<li><a href="https://apkpure.com/" rel="external" target="_self">Apkpure</a> - Online apk downloader. Provides also its own app for downloading.</li>
+</ul>
+<h3 id="misc-tools">Misc Tools</h3>
+<ul>
+<li><a href="http://androidcracking.blogspot.com/2011/03/original-smalihook-java-source.html" rel="external" target="_self">smalihook</a></li>
+<li><a href="http://code.google.com/p/android4me/downloads/detail?name=AXMLPrinter2.jar" rel="external" target="_self">AXMLPrinter2</a> - to convert binary XML files to human-readable XML files</li>
+<li><a href="https://github.com/mbrubeck/android-completion" rel="external" target="_self">adb autocomplete</a></li>
+<li><a href="https://github.com/mitmproxy/mitmproxy" rel="external" target="_self">mitmproxy</a></li>
+<li><a href="https://github.com/dweinstein/dockerfile-androguard" rel="external" target="_self">dockerfile/androguard</a></li>
+<li><a href="https://github.com/AndroidVTS/android-vts" rel="external" target="_self">Android Vulnerability Test Suite</a> - android-vts scans a device for set of vulnerabilities</li>
+<li><a href="https://github.com/dpnishant/appmon" rel="external" target="_self">AppMon</a>- AppMon is an automated framework for monitoring and tampering with system API calls of native macOS, iOS, and Android apps. It is based on Frida.</li>
+<li><a href="https://github.com/seemoo-lab/internalblue" rel="external" target="_self">Internal Blue</a> - Bluetooth experimentation framework based on Reverse Engineering of Broadcom Bluetooth Controllers</li>
+<li><a href="https://github.com/SecTheTech/AMDH" rel="external" target="_self">Android Mobile Device Hardening</a> - AMDH scans and hardens the device&rsquo;s settings and lists harmful installed Apps based on permissions.</li>
+<li><a href="https://www.android-device-security.org/client/datatable" rel="external" target="_self">Android Device Security Database</a> - Database of security features of Android devices</li>
+<li><a href="http://ww38.xchg.info/corkami/opcodes_tables.pdf" rel="external" target="_self">Opcodes table for quick reference</a></li>
+<li><a href="http://codekiem.com/2012/02/24/apk-downloader/" rel="external" target="_self">APK-Downloader</a> - seems dead now</li>
+<li><a href="http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html" rel="external" target="_self">Dalvik opcodes</a></li>
+</ul>
+<h3 id="vulnerable-applications-for-practice">Vulnerable Applications for practice</h3>
+<ul>
+<li><a href="https://github.com/payatu/diva-android" rel="external" target="_self">Damn Insecure Vulnerable Application (DIVA)</a></li>
+<li><a href="https://github.com/jaiswalakshansh/Vuldroid" rel="external" target="_self">Vuldroid</a></li>
+<li><a href="http://securitycompass.github.io/AndroidLabs/setup.html" rel="external" target="_self">ExploitMe Android Labs</a></li>
+<li><a href="https://github.com/jackMannino/OWASP-GoatDroid-Project" rel="external" target="_self">GoatDroid</a></li>
+<li><a href="https://github.com/dineshshetty/Android-InsecureBankv2" rel="external" target="_self">Android InsecureBank</a></li>
+<li><a href="https://github.com/optiv/insecureshop" rel="external" target="_self">Insecureshop</a></li>
+<li><a href="https://github.com/oversecured/ovaa" rel="external" target="_self">Oversecured Vulnerable Android App (OVAA)</a></li>
+</ul>
+<h2 id="academicresearchpublicationsbooks">Academic/Research/Publications/Books</h2>
+<h3 id="research-papers">Research Papers</h3>
+<ul>
+<li><a href="https://www.exploit-db.com/papers/" rel="external" target="_self">Exploit Database</a></li>
+<li><a href="https://github.com/jacobsoo/AndroidSlides" rel="external" target="_self">Android security-related presentations</a></li>
+<li><a href="https://tthtlc.wordpress.com/2011/09/01/static-analysis-of-android-applications/" rel="external" target="_self">A good collection of static analysis papers</a></li>
+</ul>
+<h3 id="books">Books</h3>
+<ul>
+<li><a href="https://www.securecoding.cert.org/confluence/display/android/Android+Secure+Coding+Standard" rel="external" target="_self">SEI CERT Android Secure Coding Standard</a></li>
+</ul>
+<h3 id="others">Others</h3>
+<ul>
+<li><a href="https://github.com/OWASP/owasp-mstg" rel="external" target="_self">OWASP Mobile Security Testing Guide Manual</a></li>
+<li><a href="https://github.com/doridori/Android-Security-Reference" rel="external" target="_self">doridori/Android-Security-Reference</a></li>
+<li><a href="https://github.com/b-mueller/android_app_security_checklist" rel="external" target="_self">android app security checklist</a></li>
+<li><a href="https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet" rel="external" target="_self">Mobile App Pentest Cheat Sheet</a></li>
+<li><a href="http://web.archive.org/web/20180721134044/http://www.fasteque.com:80/android-reverse-engineering-101-part-1/" rel="external" target="_self">Android Reverse Engineering 101 by Daniele Altomare (Web Archive link)</a></li>
+<li><a href="https://mobile-security.zeef.com" rel="external" target="_self">Mobile Security Reading Room</a> - A reading room that contains well-categorized technical reading material about mobile penetration testing, mobile malware, mobile forensics, and all kind of mobile security-related topics</li>
+</ul>
+<h2 id="exploitsvulnerabilitiesbugs">Exploits/Vulnerabilities/Bugs</h2>
+<h3 id="list">List</h3>
+<ul>
+<li><a href="https://source.android.com/security/bulletin/" rel="external" target="_self">Android Security Bulletins</a></li>
+<li><a href="https://www.cvedetails.com/vulnerability-list/vendor_id-1224/product_id-19997/Google-Android.html" rel="external" target="_self">Android&rsquo;s reported security vulnerabilities</a></li>
+<li><a href="https://code.google.com/p/android/issues/list?can=2&q=priority=Critical&sort=-opened" rel="external" target="_self">AOSP - Issue tracker</a></li>
+<li><a href="https://www.owasp.org/index.php/Mobile_Top_10_2016-Top_10" rel="external" target="_self">OWASP Mobile Top 10 2016</a></li>
+<li><a href="https://www.exploit-db.com/search/?action=search&q=android" rel="external" target="_self">Exploit Database</a> - click search</li>
+<li><a href="https://docs.google.com/spreadsheet/pub?key=0Am5hHW4ATym7dGhFU1A4X2lqbUJtRm1QSWNRc3E0UlE&single=true&gid=0&output=html" rel="external" target="_self">Vulnerability Google Doc</a></li>
+<li><a href="https://source.android.com/security/reports/Google_Android_Security_PHA_classifications.pdf" rel="external" target="_self">Google Android Security Team’s Classifications for Potentially Harmful Applications (Malware)</a></li>
+<li><a href="https://kb.androidtamer.com/Device_Security_Patch_tracker/" rel="external" target="_self">Android Devices Security Patch Status</a></li>
+</ul>
+<h3 id="malware">Malware</h3>
+<ul>
+<li><a href="https://code.google.com/p/androguard/wiki/DatabaseAndroidMalwares" rel="external" target="_self">androguard - Database Android Malware wiki</a></li>
+<li><a href="https://github.com/ashishb/android-malware" rel="external" target="_self">Android Malware Github repo</a></li>
+<li><a href="http://www.malgenomeproject.org/policy.html" rel="external" target="_self">Android Malware Genome Project</a> - contains 1260 malware samples categorized into 49 different malware families, free for research purposes.</li>
+<li><a href="http://contagiominidump.blogspot.com" rel="external" target="_self">Contagio Mobile Malware Mini Dump</a></li>
+<li><a href="https://www.sec.tu-bs.de/~danarp/drebin/" rel="external" target="_self">Drebin</a></li>
+<li><a href="https://www.hudsonrock.com/threat-intelligence-cybercrime-tools" rel="external" target="_self">Hudson Rock</a> - Free cybercrime intelligence toolset that can indicate if a specific APK package was compromised in an Infostealer malware attack.</li>
+<li><a href="http://kharon.gforge.inria.fr/dataset/" rel="external" target="_self">Kharon Malware Dataset</a> - 7 malware which have been reverse-engineered and documented</li>
+<li><a href="https://www.unb.ca/cic/datasets/android-adware.html" rel="external" target="_self">Android Adware and General Malware Dataset</a></li>
+<li><a href="https://androzoo.uni.lu/" rel="external" target="_self">AndroZoo</a> - AndroZoo is a growing collection of Android Applications collected from several sources, including the official Google Play app market.</li>
+<li><a href="http://pralab.diee.unica.it/en/AndroidPRAGuardDataset" rel="external" target="_self">Android PRAGuard Dataset</a> - The dataset contains 10479 samples, obtained by obfuscating the MalGenome and the Contagio Minidump datasets with seven different obfuscation techniques.</li>
+<li><a href="http://admire.necst.it/" rel="external" target="_self">Admire</a></li>
+</ul>
+<h3 id="bounty-programs">Bounty Programs</h3>
+<ul>
+<li><a href="https://www.google.com/about/appsecurity/android-rewards/" rel="external" target="_self">Android Security Reward Program</a></li>
+</ul>
+<h3 id="how-to-report-security-issues">How to report Security issues</h3>
+<ul>
+<li><a href="https://source.android.com/security/overview/updates-resources.html#report-issues" rel="external" target="_self">Android - reporting security issues</a></li>
+<li><a href="https://github.com/B3nac/Android-Reports-and-Resources" rel="external" target="_self">Android Reports and Resources</a> - List of Android Hackerone disclosed reports and other resources</li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 6, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/sec-android-security/index.html">Sec, Android, Security</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          
+          <a id="R-logo" href="../../index.html">
+<svg class="inlinecontent lazy figure-image" style=" height: auto; width: auto;" xmlns="http://www.w3.org/2000/svg" viewBox="75 75 350 350">
+  <style>
+    @media (prefers-color-scheme: dark) {
+    path { fill: white; }
+    }
+  </style>
+  <path
+    d="M250,80 a170,170 0 1,0 0,340 a170,170 0 1,0 0,-340 M250,95 a155,155 0 1,1 0,310 a155,155 0 1,1 0,-310 Z" />
+  <path
+    d="M 250 110 C 223.33333 123.33333 203.33333 156.66667 190 210 C 190 230 200 246.66667 220 260 C 246.66667 273.33333 270 273.33333 290 260 C 310 246.66667 316.66667 230 310 210 C 296.66667 156.66667 276.66667 123.33333 250 110 z M 230 152 A 22 28 0 0 1 250.02539 168.43164 A 22 28 0 0 1 270 152 A 22 28 0 0 1 292 180 A 22 28 0 0 1 270 208 A 22 28 0 0 1 250 191.48828 A 22 28 0 0 1 230 208 A 22 28 0 0 1 208 180 A 22 28 0 0 1 230 152 z " />
+  <path
+    d="M 232 190 A 7 7 0 1 0 218 190 A 7 7 0 1 0 232 190" />
+  <path
+    d="M 282 190 A 7 7 0 1 0 268 190 A 7 7 0 1 0 282 190" />
+  <path
+    d="m 251.62695,262.67773 -3.2539,14.64454 c 29.6411,6.58691 52.50119,14.00059 68.27343,21.88671 15.77224,7.88612 23.89316,16.12675 26.23829,23.16211 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.45724,-7.3717 0.9861,-15.4399 -2.90625,-23.22461 l 0.40625,0.98243 c -4.32154,-12.96464 -16.20062,-23.05735 -33.76171,-31.83789 -17.5611,-8.78055 -41.36767,-16.36687 -71.72657,-23.11329 z" />
+  <path
+    d="m 251.06055,262.57617 -2.1211,14.84766 c 22.66512,3.23787 40.0389,8.90614 52.08594,16.43554 12.04704,7.52941 18.84739,16.55167 21.69922,27.95899 l 0.19922,0.79883 0.36719,0.73633 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36474,-7.09422 1.02935,-14.82889 -2.53906,-22.33984 -3.93242,-14.96263 -13.69431,-27.38609 -28.10156,-36.39063 -14.61962,-9.13726 -33.91251,-15.13566 -57.91406,-18.56445 z" />
+  <path
+    d="m 254.16016,263.75977 -8.32032,12.48046 c 18.87994,12.58663 30.93166,27.79106 37.04493,46.13086 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36103,-7.08308 1.03217,-14.80481 -2.52343,-22.30468 -7.22746,-21.63209 -21.83225,-39.74038 -42.93164,-53.80664 z" />
+  <path
+    d="m 245.83984,263.75977 c -21.09939,14.06626 -35.70418,32.17455 -42.93164,53.80664 -3.5556,7.49987 -4.88446,15.2216 -2.52343,22.30468 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 6.11327,-18.3398 18.16499,-33.54423 37.04493,-46.13086 z" />
+  <path
+    d="m 248.5293,262.64648 c -35.0305,7.0061 -60.89872,25.32088 -75.23828,54 C 169.62227,323.98397 167.5,330.83333 167.5,337.5 c 0,6.66667 2.53811,13.14358 7.19727,17.80273 5.1011,5.1011 13.27646,6.61163 20.17382,4.3125 6.89737,-2.29912 13.32304,-7.20389 20.43164,-14.3125 l 0.86133,-0.85937 0.54492,-1.08984 c 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.58408,11.16816 5.64385,21.1051 0.42382,32.1914 -5.75159,5.55819 -10.66362,8.86574 -13.58593,9.83985 -3.10264,1.03421 -3.26061,0.87806 -4.82618,-0.6875 C 183.29523,342.68976 182.5,340.83333 182.5,337.5 c 0,-3.33333 1.21106,-8.15064 4.20898,-14.14648 12.32711,-24.65421 33.12555,-39.67277 64.76172,-46 z" />
+  <path
+    d="m 248.37305,262.67773 c -30.3589,6.74642 -54.16547,14.33274 -71.72657,23.11329 -17.56109,8.78054 -29.44017,18.87325 -33.76171,31.83789 l 0.40625,-0.98243 c -3.89235,7.78471 -5.36349,15.85291 -2.90625,23.22461 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 2.34513,-7.03536 10.46605,-15.27599 26.23829,-23.16211 15.77224,-7.88612 38.63233,-15.2998 68.27343,-21.88671 z" />
+</svg>
+            <div class="logo-title">GharibBlog</div>
+          </a>
+        </div>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="../../index.html"><i class="fa-fw fas fa-anchor"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/about/index.html"><a class="padding" href="../../about/index.html"><i class="fa-fw fas fa-info-circle"></i> About</a></li>
+            <li class="" data-nav-id="/linux/index.html"><a class="padding" href="../../linux/index.html">Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/sec/index.html"><a class="padding" href="../../sec/index.html">Security</a><ul id="R-subsections-00a310d136b3ca0ada6555e05603515b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/devops/index.html"><a class="padding" href="../../devops/index.html">DevOps</a><ul id="R-subsections-389d4feb4920b919bcbc0b1e9947dace" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/data/index.html"><a class="padding" href="../../data/index.html">Data</a><ul id="R-subsections-4caa791091d21d23e63637080226f370" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vpn/index.html"><a class="padding" href="../../vpn/index.html">VPN</a><ul id="R-subsections-db063ce8b8420f6f2b9daa1d41f37eaf" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/software/index.html"><a class="padding" href="../../software/index.html">Software</a><ul id="R-subsections-3cdb59a63a3cd12f868155fa9018f956" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/onion/index.html"><a class="padding" href="../../onion/index.html">ONION</a><ul id="R-subsections-1741fdcc6dd4676b5d37f741fb66e01c" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/osint/index.html"><a class="padding" href="../../osint/index.html">OSINT</a><ul id="R-subsections-b7b3e3b782000076c296abdb0bfb1528" class="collapsible-menu">
+            <li class="active " data-nav-id="/osint/osint5/index.html"><a class="padding" href="../../osint/osint5/index.html">Android Sec</a></li>
+            <li class="" data-nav-id="/osint/osint6/index.html"><a class="padding" href="../../osint/osint6/index.html">App Sec</a></li>
+            <li class="" data-nav-id="/osint/osint7/index.html"><a class="padding" href="../../osint/osint7/index.html">Capture The Flag</a></li>
+            <li class="" data-nav-id="/osint/osint21/index.html"><a class="padding" href="../../osint/osint21/index.html">OSINT Collections</a></li>
+            <li class="" data-nav-id="/osint/osint19/index.html"><a class="padding" href="../../osint/osint19/index.html">OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint/index.html"><a class="padding" href="../../osint/osint/index.html">OSINT Tools 1</a></li>
+            <li class="" data-nav-id="/osint/osint15/index.html"><a class="padding" href="../../osint/osint15/index.html">Social Engineering Tools</a></li>
+            <li class="" data-nav-id="/osint/osint2/index.html"><a class="padding" href="../../osint/osint2/index.html">OSINT Tools 2</a></li>
+            <li class="" data-nav-id="/osint/osint3/index.html"><a class="padding" href="../../osint/osint3/index.html">OSINT-Forensic Tools</a></li>
+            <li class="" data-nav-id="/osint/osint4/index.html"><a class="padding" href="../../osint/osint4/index.html">OSINT-Forensic Tools 2</a></li>
+            <li class="" data-nav-id="/osint/osint14/index.html"><a class="padding" href="../../osint/osint14/index.html">Security Tools</a></li>
+            <li class="" data-nav-id="/osint/osint8/index.html"><a class="padding" href="../../osint/osint8/index.html">Hacking Tools</a></li>
+            <li class="" data-nav-id="/osint/osint18/index.html"><a class="padding" href="../../osint/osint18/index.html">Social Media OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint10/index.html"><a class="padding" href="../../osint/osint10/index.html">Incident Resposne Tools</a></li>
+            <li class="" data-nav-id="/osint/osint17/index.html"><a class="padding" href="../../osint/osint17/index.html">Offensive OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint20/index.html"><a class="padding" href="../../osint/osint20/index.html">OSINT Countries Tools</a></li>
+            <li class="" data-nav-id="/osint/osint9/index.html"><a class="padding" href="../../osint/osint9/index.html">Honeypots Tools</a></li>
+            <li class="" data-nav-id="/osint/osint16/index.html"><a class="padding" href="../../osint/osint16/index.html">OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint11/index.html"><a class="padding" href="../../osint/osint11/index.html">Infosec Tools</a></li>
+            <li class="" data-nav-id="/osint/osint12/index.html"><a class="padding" href="../../osint/osint12/index.html">Malware Analysis Tools</a></li>
+            <li class="" data-nav-id="/osint/osint13/index.html"><a class="padding" href="../../osint/osint13/index.html">Penetration Testing Tools</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://alirezagharib.ir"><a class="padding" href="https://alirezagharib.ir" rel="external" target="_self"><i class="fa-fw fas fa-puzzle-piece"></i> Author</a></li>
+            <li class="" data-nav-id="https://github.com/gharib-uk"><a class="padding" href="https://github.com/gharib-uk" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard/clipboard.min.js?1745990495" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990495" defer></script>
+    <script src="../../js/theme.min.js?1745990495" defer></script>
+  </body>
+</html>

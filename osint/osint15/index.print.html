@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="Social Engineering Tools">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Social Engineering Tools :: Gharib Blog">
+    <meta name="twitter:description" content="Social Engineering Tools">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/osint/osint15/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="Social Engineering Tools :: Gharib Blog">
+    <meta property="og:description" content="Social Engineering Tools">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="OSINt">
+    <meta property="article:published_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:tag" content="Social, Social_engineering">
+    <meta itemprop="name" content="Social Engineering Tools :: Gharib Blog">
+    <meta itemprop="description" content="Social Engineering Tools">
+    <meta itemprop="datePublished" content="2024-08-06T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-06T00:00:00+00:00">
+    <meta itemprop="wordCount" content="1106">
+    <meta itemprop="keywords" content="Social, Social_engineering">
+    <title>Social Engineering Tools :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/osint/osint15/index.html" rel="canonical" type="text/html" title="Social Engineering Tools :: Gharib Blog">
+    <link href="../../osint/osint15/index.xml" rel="alternate" type="application/rss+xml" title="Social Engineering Tools :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/osint\/osint15\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../osint/osint15/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#slides">Slides</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#movies">Movies</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#license-1">License</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../osint/index.html"><span itemprop="name">OSINT</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Social Engineering Tools</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint15/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint/index.html" title="OSINT Tools 1 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint2/index.html" title="OSINT Tools 2 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/social-social_engineering/index.html">Social, Social_engineering</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="social-engineering-tools">Social Engineering Tools</h1>
+
+<h1 id="social-engineering">Social Engineering</h1>
+<p>===============
+A curated list of social engineering resources.
+Those resources and tools are intended only for cybersecurity professional, penetration testers and educational use in a controlled environment.</p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ol>
+<li><a href="../../osint/osint15/index.html#online-courses">Online Courses</a></li>
+<li><a href="../../osint/osint15/index.html#capture-the-flag">Capture the Flag</a></li>
+<li><a href="../../osint/osint15/index.html#psychology-books">Psychology Books</a></li>
+<li><a href="../../osint/osint15/index.html#social-engineering-books">Books</a></li>
+<li><a href="../../osint/osint15/index.html#documentation">Documentation</a></li>
+<li><a href="../../osint/osint15/index.html#tools">Tools</a></li>
+<li><a href="../../osint/osint15/index.html#miscellaneous">Miscellaneus</a></li>
+<li><a href="../../osint/osint15/index.html#osint">OSINT</a></li>
+</ol>
+<h1 id="online-courses">Online Courses</h1>
+<ul>
+<li>
+<p><a href="https://www.udemy.com/learn-social-engineering-from-scratch" rel="external" target="_self">Udemy - Learn Social Engineering from Scratch</a></p>
+</li>
+<li>
+<p><a href="https://www.packtpub.com/application-development/learn-social-engineering-scratch-video" rel="external" target="_self">PacktPub - Learn Social Engineering From Scratch by Zaid Sabih</a></p>
+</li>
+<li>
+<p><a href="https://www.cybrary.it/course/social-engineering/" rel="external" target="_self">Cybrary - Social Engineering and Manipulation</a> - Free Course</p>
+</li>
+</ul>
+<h1 id="capture-the-flag">Capture the Flag</h1>
+<h4 id="social-engineercom---the-sectf-defcon">Social-Engineer.com - The SECTF, DEFCON</h4>
+<ul>
+<li><a href="https://www.social-engineer.org/sevillage-def-con/the-sectf/" rel="external" target="_self">Social-Engineer.com - DEFCON SECTF</a></li>
+</ul>
+<h1 id="psychology-books">Psychology Books</h1>
+<p>Most of these books covers the basics of psychology useful for a social engineer.</p>
+<ul>
+<li>
+<p><a href="https://www.amazon.com/Artful-Persuasion-Command-Attention-Influence/dp/0814470637" rel="external" target="_self">Artful Persuasion – How to command attention, Change minds and influence People – Harry Mills</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/What-Every-BODY-Saying-Speed-Reading-ebook/dp/B0010SKSTO/ref=sr_1_1?dchild=1&keywords=what+is+everybody+saying+%E2%80%93+joe+navarro&qid=1614256945&s=books&sr=1-1" rel="external" target="_self">What is every BODY saying – Joe Navarro</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Conflict-Power-Persuasion-Negotiating-Effectively/dp/B0015E4JMK/ref=sr_1_1?dchild=1&keywords=Conflict%2C+power+and+persuasion+%E2%80%93+Ben+Hoffman&qid=1614256960&s=books&sr=1-1" rel="external" target="_self">Conflict, power and persuasion – Ben Hoffman</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Dealing-Difficult-People-McGraw-Hill-Professional-ebook/dp/B000P2A3R8/ref=sr_1_4?dchild=1&keywords=Dealing+with+difficult+people+%E2%80%93+McGraw+Hill&qid=1614256977&s=books&sr=1-4" rel="external" target="_self">Dealing with difficult people – McGraw Hill</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Get-Anyone-Anything-Again-Psychological/dp/B01NH07LGD/ref=sr_1_2?dchild=1&keywords=Get+anyone+to+do+anything+%E2%80%93+David+J+Lieberman&qid=1614257001&s=books&sr=1-2" rel="external" target="_self">Get anyone to do anything – David J Lieberman</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/How-Start-Conversation-Make-Friends/dp/1451610998/ref=sr_1_1?dchild=1&keywords=How+to+start+a+conversation+and+make+friends+-+Don+Gabor%5D&qid=1614257018&s=books&sr=1-1" rel="external" target="_self">How to start a conversation and make friends - Don Gabor</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Art-Psychological-Warfare-Skillfully-Undetected/dp/1530719151/ref=sr_1_1?dchild=1&keywords=The+art+of+Psychological+Warfare+%E2%80%93+Michael+T+Stevens&qid=1614257033&s=books&sr=1-1" rel="external" target="_self">The art of Psychological Warfare – Michael T Stevens</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/d/Books/How-Win-Friends-Influence-People-Dale-Carnegie/0091906814/ref=sr_1_1?ie=UTF8&qid=1494621059&sr=8-1&keywords=how+to+win+friends+and+influence+people" rel="external" target="_self">How to Win Friends and Influence People - Dale Carnegie</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/d/Books/48-Laws-Power-Robert-Greene-Collection/1861972784/ref=sr_1_1?ie=UTF8&qid=1494621512&sr=8-1&keywords=the+48+laws+of+power" rel="external" target="_self">The 48 Laws of Power - Robert Greene</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/d/Books/Psychology-Book-Nigel-Benson/1405391243/ref=sr_1_1?ie=UTF8&qid=1494621589&sr=8-1&keywords=psychology" rel="external" target="_self">The Psychology Book</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/Power-Habit-Why-What-Change/dp/1847946240/ref=sr_1_1?ie=UTF8&qid=1494621842&sr=8-1&keywords=the+power+of+habit" rel="external" target="_self">The Power of Habit: Why We Do What We Do, and How to Change - Charles Duhigg</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/d/cka/Influence-Psychology-Persuasion-Robert-B-PhD-Cialdini/006124189X/ref=sr_1_1?ie=UTF8&qid=1494621912&sr=8-1&keywords=influence" rel="external" target="_self">Influence: The Psychology of Persuasion Paperback – Robert B., PhD Cialdini</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/Emotions-Revealed-Understanding-Faces-Feelings/dp/0753817659/ref=sr_1_1?ie=UTF8&qid=1494622003&sr=8-1&keywords=paul+ekman" rel="external" target="_self">Emotions Revealed: Understanding Faces and Feelings - Prof Paul Ekman</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/Psychology-Interrogations-Confessions-Handbook-Policing-x/dp/0470844612/ref=sr_1_1?s=books&ie=UTF8&qid=1494624501&sr=1-1&keywords=psychology+of+interrogation" rel="external" target="_self">The Psychology of Interrogations and Confessions: A Handbook - Gisli H. Gudjonsson</a></p>
+</li>
+<li>
+<p><a href="https://www.goodreads.com/book/show/4049997-mindfucking" rel="external" target="_self">Mindfucking: A Critique of Mental Manipulation - Colin McGinn</a></p>
+</li>
+</ul>
+<h1 id="social-engineering-books">Social Engineering Books</h1>
+<ul>
+<li>
+<p><a href="https://humanhackingbook.com/" rel="external" target="_self">Human Hacking – Chris Hadnagy</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Learn-Social-Engineering-internationally-renowned-ebook/dp/B079HYPC27/ref=sr_1_1?dchild=1&keywords=Learn+Social+Engineering+%E2%80%93+Dr.+Erdal+Ozkaya&qid=1614257055&s=books&sr=1-1" rel="external" target="_self">Learn Social Engineering – Dr. Erdal Ozkaya</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/Social-Engineering-Art-Human-Hacking/dp/0470639539/ref=sr_1_1?ie=UTF8&qid=1494622911&sr=8-1&keywords=chris+hadnagy" rel="external" target="_self">Social Engineering: The Art of Human Hacking - Chris Hadnagy</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/111943338X/ref=dbs_a_def_rwt_bibl_vppi_i0" rel="external" target="_self">Social Engineering: The Science of Human Hacking</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Unmasking-Social-Engineer-Element-Security/dp/1118608577" rel="external" target="_self">Unmasking the Social Engineer: The Human Element of Security - Christopher Hadnagy, Dr. Ekman Paul</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/Phishing-Dark-Waters-Offensive-Defensive-x/dp/1118958470/ref=sr_1_fkmr0_1?ie=UTF8&qid=1494622911&sr=8-1-fkmr0&keywords=chris+hadnagy" rel="external" target="_self">Phishing Dark Waters: The Offensive and Defensive Sides of Malicious Emails - Christopher Hadnagy, Michele Fincher, Robin Dreeke </a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Social-Engineering-Security-Techniques-Networking/dp/0071818464" rel="external" target="_self">Social Engineering in IT Security: Tools, Tactics, and Techniques, Sharon Conheady</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/No-Tech-Hacking-Engineering-Dumpster/dp/1597492159/ref=sr_1_1?ie=UTF8&qid=1494624109&sr=8-1&keywords=no+tech+hacking" rel="external" target="_self">No Tech Hacking - Johnny Long, Kevin D. Mitnick</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.it/Low-Tech-Hacking-Security-Professionals/dp/1597496650" rel="external" target="_self">Low Tech Hacking: Street Smarts for Security Professionals - Jack Wiles, Terry Gudaitis, Jennifer Jabbusch, Russ Rogers</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.co.uk/Art-Deception-Controlling-Element-Security/dp/076454280X/ref=pd_sim_14_1?_encoding=UTF8&psc=1&refRID=37KD2B6G2Q981MB8D2GM" rel="external" target="_self">The Art of Deception: Controlling the Human Element of Security, Kevin D. Mitnick, William L. Simon</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037729/ref=sr_1_1?s=books&ie=UTF8&qid=1494769979&sr=1-1&keywords=ghost+in+the+wires" rel="external" target="_self">Ghost in the Wires: My Adventures as the World&rsquo;s Most Wanted Hacker - Kevin D. Mitnick, William L. Simon, Steve Wozniak</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Art-Invisibility-Worlds-Teaches-Brother/dp/0316380520/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1494770268&sr=1-1" rel="external" target="_self">The Art of Invisibility: The World&rsquo;s Most Famous Hacker Teaches You How to Be Safe in the Age of Big Brother and Big Data -  Kevin Mitnick, Robert Vamosi</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Social-Engineers-Playbook-Practical-Pretexting/dp/0692306617/ref=sr_1_1?s=books&ie=UTF8&qid=1494770673&sr=1-1&keywords=The+Social+Engineer%27s+Playbook%3A+A+Practical+Guide+to+Pretexting" rel="external" target="_self">The Social Engineer&rsquo;s Playbook: A Practical Guide to Pretexting - Jeremiah Talamantes</a></p>
+</li>
+<li>
+<p><a href="https://www.packtpub.com/networking-and-servers/learn-social-engineering" rel="external" target="_self">Learn Social Engineering - Erdal Ozkaya</a></p>
+</li>
+</ul>
+<h1 id="communities">COMMUNITIES</h1>
+<p><a href="https://discord.gg/zn3wsrr" rel="external" target="_self">Abstract Security</a> - community od Discord that is focused around Physical Security and it has many members that are in the buissness of Physical Security.</p>
+<h1 id="documentation">Documentation</h1>
+<h4 id="social-engineer-resources">Social Engineer resources</h4>
+<ul>
+<li>
+<p><a href="https://www.social-engineer.org/" rel="external" target="_self">The Social-Engineer portal</a> - Everything you need to know as a social engineer is in this site. You will find podcasts, resources, framework, informations about next events, blog ecc&hellip;</p>
+</li>
+<li>
+<p><a href="https://layer8conference.com/" rel="external" target="_self">Layer 8 conference and podcast</a> - Conference and podcast that is focused on OSINT and Social Engineering.</p>
+</li>
+</ul>
+<h1 id="tools">Tools</h1>
+<h4 id="useful-tools">Useful tools</h4>
+<ul>
+<li><a href="https://www.torproject.org/" rel="external" target="_self">Tor</a> - The free software for enabling onion routing online anonymity</li>
+<li><a href="https://github.com/trustedsec/social-engineer-toolkit" rel="external" target="_self">SET</a> - The Social-Engineer Toolkit from TrustedSec</li>
+</ul>
+<h4 id="phishing-tools">Phishing tools</h4>
+<ul>
+<li><a href="https://getgophish.com/" rel="external" target="_self">Gophish</a> - Open-Source Phishing Framework</li>
+<li><a href="https://github.com/securestate/king-phisher" rel="external" target="_self">King Phisher</a> - Phishing campaign toolkit used for creating and managing multiple simultaneous phishing attacks with custom email and server content.</li>
+<li><a href="https://github.com/sophron/wifiphisher" rel="external" target="_self">wifiphisher</a> - Automated phishing attacks against Wi-Fi networks</li>
+<li><a href="https://www.phishingfrenzy.com/" rel="external" target="_self">PhishingFrenzy</a> - Phishing Frenzy is an Open Source Ruby on Rails application that is leveraged by penetration testers to manage email phishing campaigns.</li>
+<li><a href="https://github.com/kgretzky/evilginx2" rel="external" target="_self">Evilginx2</a> - MITM attack framework used for phishing credentials and session cookies from any Web service</li>
+<li><a href="https://www.lucysecurity.com/" rel="external" target="_self">Lucy Phishing Server</a> - (commercial) tool to perform security awareness trainings for employees including custom phishing campaigns, malware attacks etc. Includes many useful attack templates as well as training materials to raise security awareness.</li>
+</ul>
+<h1 id="miscellaneous">Miscellaneous</h1>
+<h3 id="slides">Slides</h3>
+<ul>
+<li><a href="https://www.owasp.org/images/5/54/Presentation_Social_Engineering.pdf" rel="external" target="_self">OWASP Presentation of Social Engineering</a> - OWASP</li>
+<li><a href="https://media.defcon.org/DEF%20CON%2024/DEF%20CON%2024%20presentations/DEFCON-24-Seymour-Tully-Weaponizing-Data-Science-For-Social-Engineering-WP.pdf" rel="external" target="_self">Weaponizing data science for social engineering: Automated E2E spear phishing on Twitter</a> - Defcon 23</li>
+<li><a href="https://www.rsaconference.com/writable/presentations/file_upload/das-301_williams_rader.pdf" rel="external" target="_self">Using Social Engineering Tactics For Big Data Espionage</a> - RSA Conference Europe 2012</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=OOQGsFlTHMQ" rel="external" target="_self">Chris Hadnagy - 7 Jedi Mind Tricks Influence Your Target without a Word</a></li>
+<li><a href="https://www.youtube.com/watch?v=nQqp6yqf4Ao" rel="external" target="_self">Robert Anderson - US Interrogation Techniques and Social Engineering</a></li>
+<li><a href="https://www.youtube.com/watch?v=H3gfMkvw76o" rel="external" target="_self">Ian Harris - Understanding Social Engineering Attacks with Natural Language Processing</a></li>
+<li><a href="https://www.youtube.com/watch?v=cI9xOR7xEi0" rel="external" target="_self">Chris Hadnagy - Social Engineering for Fun and Profit</a></li>
+<li><a href="https://www.youtube.com/watch?v=DoDWBe9atIo" rel="external" target="_self">Chris Hadnagy - Decoding humans live</a> - DerbyCon 2015</li>
+<li><a href="https://www.youtube.com/watch?v=lc7scxvKQOo" rel="external" target="_self">This is how hackers hack you using simple social engineering</a></li>
+</ul>
+<h3 id="articles">Articles</h3>
+<ul>
+<li><a href="https://www.technologyreview.com/s/526561/the-limits-of-social-engineering/" rel="external" target="_self">The Limits of Social Engineering</a> - MIT, Technology Review</li>
+<li><a href="http://www.darkreading.com/the-7-best-social-engineering-attacks-ever/d/d-id/1319411" rel="external" target="_self">The 7 Best Social Engineering Attacks Ever</a> - DarkReading</li>
+<li><a href="http://resources.infosecinstitute.com/social-engineering-compromising-users-using-office-document/" rel="external" target="_self">Social Engineering: Compromising Users with an Office Document</a> - Infosec Institute</li>
+<li><a href="http://blog.dilbert.com/post/129784168866/the-persuasion-reading-list" rel="external" target="_self">The Persuasion Reading List</a> - Scott Adams&rsquo; Blog</li>
+<li><a href="https://motherboard.vice.com/en_us/article/qv34zb/how-i-socially-engineer-myself-into-high-security-facilities" rel="external" target="_self">How I Socially Engineer Myself Into High Security Facilities</a> - Sophie Daniel</li>
+</ul>
+<h3 id="movies">Movies</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Tiger_Team_" rel="external" target="_self">Tiger Team (TV series)</a></li>
+<li><a href="http://www.imdb.com/title/tt0264464/" rel="external" target="_self">Catch Me If You Can</a></li>
+<li><a href="http://www.imdb.com/title/tt1375666/" rel="external" target="_self">Inception</a></li>
+<li><a href="https://www.imdb.com/title/tt0070735/" rel="external" target="_self">The Sting</a></li>
+<li><a href="https://www.imdb.com/title/tt0105435/" rel="external" target="_self">Sneakers</a></li>
+</ul>
+<h1 id="osint">OSINT</h1>
+<h4 id="osint-resources">OSINT Resources</h4>
+<ul>
+<li><a href="https://github.com/jivoi/awesome-osint" rel="external" target="_self">Awesome OSINT</a> - Awesome list of OSINT</li>
+<li><a href="http://osintframework.com/" rel="external" target="_self">OSINT Framework</a> - Collection of various OSInt tools broken out by category.</li>
+<li><a href="http://netbootcamp.org/osinttools/" rel="external" target="_self">NetBootcamp OSINT Tools</a> - A collection of OSINT links and custom Web interfaces to other services such as <a href="http://netbootcamp.org/facebook.html" rel="external" target="_self">Facebook Graph Search</a> and <a href="http://netbootcamp.org/pastesearch.html" rel="external" target="_self">various paste sites</a>.</li>
+<li><a href="http://www.automatingosint.com/blog/" rel="external" target="_self">Automating OSINT blog</a> - A blog about OSINT curated by Justin Seitz, the same author of BHP.</li>
+</ul>
+<h4 id="osint-tools">OSINT Tools</h4>
+<ul>
+<li><a href="https://github.com/evilsocket/xray" rel="external" target="_self">XRay</a> - XRay is a tool for recon, mapping and OSINT gathering from public networks.</li>
+<li><a href="https://inteltechniques.com/buscador/" rel="external" target="_self">Buscador</a> - A Linux Virtual Machine that is pre-configured for online investigators</li>
+<li><a href="http://www.paterva.com/web7/" rel="external" target="_self">Maltego</a> - Proprietary software for open source intelligence and forensics, from Paterva.</li>
+<li><a href="https://github.com/laramies/theHarvester" rel="external" target="_self">theHarvester</a> - E-mail, subdomain and people names harvester</li>
+<li><a href="https://github.com/ilektrojohn/creepy" rel="external" target="_self">creepy</a> - A geolocation OSINT tool</li>
+<li><a href="https://github.com/mceachen/exiftool.rb" rel="external" target="_self">exiftool.rb</a> - A ruby wrapper of the exiftool, a open-source tool used to extract metadata from files.</li>
+<li><a href="https://github.com/laramies/metagoofil" rel="external" target="_self">metagoofil</a> - Metadata harvester</li>
+<li><a href="https://www.exploit-db.com/google-hacking-database/" rel="external" target="_self">Google Hacking Database</a> - a database of Google dorks; can be used for recon</li>
+<li><a href="https://github.com/arimogi/Google-Dorks" rel="external" target="_self">Google-Dorks</a> - Common google dorks and others you prolly don&rsquo;t know</li>
+<li><a href="https://github.com/k3170makan/GooDork" rel="external" target="_self">GooDork</a> - Command line go0gle dorking tool</li>
+<li><a href="https://github.com/jgor/dork-cli" rel="external" target="_self">dork-cli</a> - Command-line Google dork tool.</li>
+<li><a href="https://www.shodan.io/" rel="external" target="_self">Shodan</a> - Shodan is the world&rsquo;s first search engine for Internet-connected devices</li>
+<li><a href="https://bitbucket.org/LaNMaSteR53/recon-ng" rel="external" target="_self">recon-ng</a> - A full-featured Web Reconnaissance framework written in Python</li>
+<li><a href="https://github.com/techgaun/github-dorks" rel="external" target="_self">github-dorks</a> - CLI tool to scan github repos/organizations for potential sensitive information leak</li>
+<li><a href="https://github.com/melvinsh/vcsmap" rel="external" target="_self">vcsmap</a> - A plugin-based tool to scan public version control systems for sensitive information</li>
+<li><a href="http://www.spiderfoot.net/" rel="external" target="_self">Spiderfoot</a> - multi-source OSINT automation tool with a Web UI and report visualizations</li>
+<li><a href="https://github.com/upgoingstar/datasploit" rel="external" target="_self">DataSploit</a> - OSINT visualizer utilizing Shodan, Censys, Clearbit, EmailHunter, FullContact, and Zoomeye behind the scenes.</li>
+<li><a href="https://github.com/Smaash/snitch" rel="external" target="_self">snitch</a> - information gathering via dorks</li>
+<li><a href="https://github.com/Pinperepette/Geotweet_GUI" rel="external" target="_self">Geotweet_GUI</a> - Track geographical locations of tweets and then export to google maps.</li>
+</ul>
+<h1 id="contribution">Contribution</h1>
+<p>Your contributions and suggestions are heartily♥ welcome. (✿◕‿◕). Please check the <a href="CONTRIBUTING.md">Contributing Guidelines</a> for more details.</p>
+<h1 id="license">License</h1>
+<h3 id="license-1">License</h3>
+<p><a href="https://creativecommons.org/licenses/by/4.0/" rel="external" target="_self"><a href="#R-image-bf03eb31ebbf8129b9d80d1f229a3e11" class="lightbox-link"><img alt="Creative Commons License" class="lazy lightbox figure-image" loading="lazy" src="http://i.creativecommons.org/l/by/4.0/88x31.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bf03eb31ebbf8129b9d80d1f229a3e11"><img alt="Creative Commons License" class="lazy lightbox lightbox-image" loading="lazy" src="http://i.creativecommons.org/l/by/4.0/88x31.png"></a></a></p>
+<p>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="external" target="_self">Creative Commons Attribution 4.0 International License</a></p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 6, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/socialengineering-social/index.html">SocialEngineering, Social</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

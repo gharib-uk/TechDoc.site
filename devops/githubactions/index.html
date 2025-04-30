@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="How efficiently use Github Action ?">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Github Actions :: Gharib Blog">
+    <meta name="twitter:description" content="How efficiently use Github Action ?">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/devops/githubactions/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="Github Actions :: Gharib Blog">
+    <meta property="og:description" content="How efficiently use Github Action ?">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="DevOps">
+    <meta property="article:published_time" content="2024-08-29T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-29T00:00:00+00:00">
+    <meta property="article:tag" content="Cicd, Github, Actions">
+    <meta itemprop="name" content="Github Actions :: Gharib Blog">
+    <meta itemprop="description" content="How efficiently use Github Action ?">
+    <meta itemprop="datePublished" content="2024-08-29T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-29T00:00:00+00:00">
+    <meta itemprop="wordCount" content="3482">
+    <meta itemprop="keywords" content="Cicd, Github, Actions">
+    <title>Github Actions :: Gharib Blog</title>
+    <link href="../../devops/githubactions/index.xml" rel="alternate" type="application/rss+xml" title="Github Actions :: Gharib Blog">
+    <link href="../../devops/githubactions/index.print.html" rel="alternate" type="text/html" title="Github Actions :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990494" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990494" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990494" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990494" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990494" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1745990494" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990494" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990494" defer></script>
+    <script src="../../js/search.min.js?1745990494" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/devops\/githubactions\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990494";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support html" data-url="../../devops/githubactions/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#official-resources">Official Resources</a>
+      <ul>
+        <li><a href="#workflow-examples">Workflow Examples</a></li>
+        <li><a href="#create-your-actions">Create your Actions</a></li>
+      </ul>
+    </li>
+    <li><a href="#community-resources">Community Resources</a>
+      <ul>
+        <li><a href="#github-tools-and-management">GitHub Tools and Management</a></li>
+        <li><a href="#collection-of-actions">Collection of Actions</a></li>
+        <li><a href="#utility">Utility</a></li>
+        <li><a href="#static-analysis">Static Analysis</a></li>
+        <li><a href="#dynamic-analysis">Dynamic Analysis</a></li>
+        <li><a href="#monitoring">Monitoring</a></li>
+        <li><a href="#pull-requests">Pull Requests</a></li>
+        <li><a href="#github-pages">GitHub Pages</a></li>
+        <li><a href="#notifications-and-messages">Notifications and Messages</a></li>
+        <li><a href="#deployment">Deployment</a></li>
+        <li><a href="#external-services">External Services</a></li>
+        <li><a href="#frontend-tools">Frontend Tools</a></li>
+        <li><a href="#machine-learning-ops">Machine Learning Ops</a></li>
+        <li><a href="#build">Build</a></li>
+        <li><a href="#database">Database</a></li>
+        <li><a href="#networking">Networking</a></li>
+        <li><a href="#localization">Localization</a></li>
+        <li><a href="#fun">Fun</a></li>
+        <li><a href="#cheat-sheet">Cheat Sheet</a></li>
+      </ul>
+    </li>
+    <li><a href="#tutorials">Tutorials</a></li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../devops/index.html"><span itemprop="name">DevOps</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Github Actions</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../devops/githubactions/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../devops/element/index.html" title="Run Private Matrix (Element) Instance (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../devops/selfhosted/index.html" title="Self-Hosted (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/cicd-github-actions/index.html">Cicd, Github, Actions</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="github-actions">Github Actions</h1>
+
+<h1 id="github-actions">Github Actions</h1>
+<p>A curated list of things related to GitHub Actions.</p>
+<p>Actions are triggered by GitHub platform events directly in a repo and run on-demand workflows either on Linux, Windows or macOS virtual machines or inside a container in response. With GitHub Actions you can automate your workflow from idea to production.</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="../../devops/githubactions/index.html#official-resources">Official Resources</a>
+<ul>
+<li><a href="../../devops/githubactions/index.html#workflow-examples">Workflow Examples</a></li>
+<li><a href="../../devops/githubactions/index.html#official-actions">Official Actions</a></li>
+<li><a href="../../devops/githubactions/index.html#create-your-actions">Create your Actions</a></li>
+</ul>
+</li>
+<li><a href="../../devops/githubactions/index.html#community-resources">Community Resources</a>
+<ul>
+<li><a href="../../devops/githubactions/index.html#github-tools-and-management">GitHub Tools and Management</a></li>
+<li><a href="../../devops/githubactions/index.html#collection-of-actions">Collection of Actions</a></li>
+<li><a href="../../devops/githubactions/index.html#utility">Utility</a></li>
+<li><a href="../../devops/githubactions/index.html#static-analysis">Static Analysis</a></li>
+<li><a href="../../devops/githubactions/index.html#dynamic-analysis">Dynamic Analysis</a></li>
+<li><a href="../../devops/githubactions/index.html#monitoring">Monitoring</a></li>
+<li><a href="../../devops/githubactions/index.html#pull-requests">Pull Requests</a></li>
+<li><a href="../../devops/githubactions/index.html#github-pages">GitHub Pages</a></li>
+<li><a href="../../devops/githubactions/index.html#notifications-and-messages">Notifications and Messages</a></li>
+<li><a href="../../devops/githubactions/index.html#deployment">Deployment</a></li>
+<li><a href="../../devops/githubactions/index.html#external-services">External Services</a></li>
+<li><a href="../../devops/githubactions/index.html#frontend-tools">Frontend Tools</a></li>
+<li><a href="../../devops/githubactions/index.html#machine-learning-ops">Machine Learning Ops</a></li>
+<li><a href="../../devops/githubactions/index.html#build">Build</a></li>
+<li><a href="../../devops/githubactions/index.html#database">Database</a></li>
+<li><a href="../../devops/githubactions/index.html#networking">Networking</a></li>
+<li><a href="../../devops/githubactions/index.html#localization">Localization</a></li>
+<li><a href="../../devops/githubactions/index.html#fun">Fun</a></li>
+<li><a href="../../devops/githubactions/index.html#cheat-sheet">Cheat Sheet</a></li>
+</ul>
+</li>
+<li><a href="../../devops/githubactions/index.html#tutorials">Tutorials</a></li>
+</ul>
+<h2 id="official-resources">Official Resources</h2>
+<ul>
+<li><a href="https://github.com/features/actions" rel="external" target="_self">Official Site</a></li>
+<li><a href="https://help.github.com/en/actions" rel="external" target="_self">Official Documentation</a></li>
+<li><a href="https://github.com/actions" rel="external" target="_self">Official Actions organization</a>
+<ul>
+<li><a href="https://github.com/actions/virtual-environments" rel="external" target="_self">actions/virtual-environments</a> - GitHub Actions virtual environments.</li>
+<li><a href="https://github.com/actions/runner" rel="external" target="_self">actions/runner</a> - The Runner for GitHub Actions.</li>
+</ul>
+</li>
+<li><a href="https://github.blog/2018-10-17-action-demos/" rel="external" target="_self">GitHub Blog Announcement</a></li>
+</ul>
+<h3 id="workflow-examples">Workflow Examples</h3>
+<ul>
+<li><a href="https://github.com/actions/starter-workflows" rel="external" target="_self">actions/starter-workflows</a> - Starter workflow management.</li>
+<li><a href="https://github.com/actions/example-services" rel="external" target="_self">actions/example-services</a> - Example workflows using service containers.</li>
+</ul>
+<h4 id="workflow-tool-actions">Workflow Tool Actions</h4>
+<p>Tool actions for your workflow.</p>
+<ul>
+<li><a href="https://github.com/actions/checkout" rel="external" target="_self">actions/checkout</a> - Setup your repository on your workflow.</li>
+<li><a href="https://github.com/actions/upload-artifact" rel="external" target="_self">actions/upload-artifact</a> - Upload artifacts from your workflow.</li>
+<li><a href="https://github.com/actions/download-artifact" rel="external" target="_self">actions/download-artifact</a> - Download artifacts from your build.</li>
+<li><a href="https://github.com/actions/cache" rel="external" target="_self">actions/cache</a> - Cache dependencies and build outputs in GitHub Actions.</li>
+<li><a href="https://github.com/actions/github-script" rel="external" target="_self">actions/github-script</a> - Write a script for GitHub API and the workflow contexts.</li>
+</ul>
+<h4 id="actions-for-github-automation">Actions for GitHub Automation</h4>
+<p>Automate management for issues, pull requests, and releases.</p>
+<ul>
+<li><a href="https://github.com/actions/create-release" rel="external" target="_self">actions/create-release</a> - An Action to create releases via the GitHub Release API.</li>
+<li><a href="https://github.com/actions/upload-release-asset" rel="external" target="_self">actions/upload-release-asset</a> - An Action to upload a release asset via the GitHub Release API.</li>
+<li><a href="https://github.com/actions/first-interaction" rel="external" target="_self">actions/first-interaction</a> - An action for filtering pull requests and issues from first-time contributors.</li>
+<li><a href="https://github.com/actions/stale" rel="external" target="_self">actions/stale</a> - Marks issues and pull requests that have not had recent interaction.</li>
+<li><a href="https://github.com/actions/labeler" rel="external" target="_self">actions/labeler</a> - An action for automatically labelling pull requests.</li>
+<li><a href="https://github.com/actions/delete-package-versions" rel="external" target="_self">actions/delete-package-versions</a> - Delete versions of a package from GitHub Packages.</li>
+</ul>
+<h4 id="setup-actions">Setup Actions</h4>
+<p>Set up your GitHub Actions workflow with a specific version of your programming languages.</p>
+<ul>
+<li><a href="https://github.com/actions/setup-node" rel="external" target="_self">actions/setup-node: Node.js</a></li>
+<li><a href="https://github.com/actions/setup-python" rel="external" target="_self">actions/setup-python: Python</a></li>
+<li><a href="https://github.com/actions/setup-go" rel="external" target="_self">actions/setup-go: Go</a></li>
+<li><a href="https://github.com/actions/setup-dotnet" rel="external" target="_self">actions/setup-dotnet: .NET core sdk</a></li>
+<li><a href="https://github.com/actions/setup-haskell" rel="external" target="_self">actions/setup-haskell: Haskell (GHC and Cabal)</a></li>
+<li><a href="https://github.com/actions/setup-java" rel="external" target="_self">actions/setup-java: Java</a></li>
+<li><a href="https://github.com/actions/setup-ruby" rel="external" target="_self">actions/setup-ruby: Ruby</a></li>
+<li><a href="https://github.com/actions/setup-elixir" rel="external" target="_self">actions/setup-elixir: Elixir</a></li>
+<li><a href="https://github.com/julia-actions/setup-julia" rel="external" target="_self">actions/setup-julia: Julia</a></li>
+</ul>
+<h3 id="create-your-actions">Create your Actions</h3>
+<h4 id="javascript-and-typescript-actions">JavaScript and TypeScript Actions</h4>
+<ul>
+<li><a href="https://github.com/actions/toolkit" rel="external" target="_self">actions/toolkit</a> - The GitHub ToolKit for developing GitHub Actions.</li>
+<li><a href="https://github.com/actions/hello-world-javascript-action" rel="external" target="_self">actions/hello-world-javascript-action</a> - A template to demonstrate how to build a JavaScript action.</li>
+<li><a href="https://github.com/actions/javascript-action" rel="external" target="_self">actions/javascript-action</a> - Create a JavaScript Action.</li>
+<li><a href="https://github.com/actions/typescript-action" rel="external" target="_self">actions/typescript-action</a> - Create a TypeScript Action.</li>
+<li><a href="https://github.com/actions/http-client" rel="external" target="_self">actions/http-client</a> - A lightweight HTTP client optimized for use with actions, TypeScript with generics and async await.</li>
+</ul>
+<h4 id="docker-container-actions">Docker Container Actions</h4>
+<ul>
+<li><a href="https://github.com/actions/hello-world-docker-action" rel="external" target="_self">actions/hello-world-docker-action</a> - A template to demonstrate how to build a Docker action.</li>
+<li><a href="https://github.com/actions/container-toolkit-action" rel="external" target="_self">actions/container-toolkit-action</a> - Template repo for creating container actions using actions/toolkit.</li>
+</ul>
+<h2 id="community-resources">Community Resources</h2>
+<h3 id="github-tools-and-management">GitHub Tools and Management</h3>
+<ul>
+<li><a href="https://github.com/lannonbr/issue-label-manager-action" rel="external" target="_self">Declaratively setup GitHub Labels</a></li>
+<li><a href="https://github.com/micnncim/action-label-syncer" rel="external" target="_self">Action to sync GitHub labels in the declarative way</a></li>
+<li><a href="https://github.com/elgohr/Github-Release-Action" rel="external" target="_self">Add releases to GitHub</a></li>
+<li><a href="https://github.com/elgohr/Publish-Docker-Github-Action" rel="external" target="_self">Publish a docker image to Dockerhub</a></li>
+<li><a href="https://github.com/peter-evans/create-issue-from-file" rel="external" target="_self">Create an issue using content from a file</a></li>
+<li><a href="https://github.com/softprops/action-gh-release" rel="external" target="_self">Publish GitHub Releases with Assets</a></li>
+<li><a href="https://github.com/alex-page/github-project-automation-plus" rel="external" target="_self">GitHub Project Automation+</a> - Automate GitHub Project cards with any webhook event.</li>
+<li><a href="https://github.com/phishy/wflow" rel="external" target="_self">Run GitHub Actions Locally with a web interface</a></li>
+<li><a href="https://github.com/nektos/act" rel="external" target="_self">Run GitHub Actions Locally in Terminal</a></li>
+<li><a href="https://github.com/ShaunLWM/action-release-debugapk" rel="external" target="_self">Build and Publish Android debug APK</a></li>
+<li><a href="https://github.com/einaregilsson/build-number" rel="external" target="_self">Generate sequential build numbers for GitHub Actions</a></li>
+<li><a href="https://github.com/ad-m/github-push-action" rel="external" target="_self">Push Git changes to GitHub repository without authentication difficulties</a></li>
+<li><a href="https://github.com/Decathlon/release-notes-generator-action" rel="external" target="_self">Generate release notes based on your events</a></li>
+<li><a href="https://github.com/Decathlon/wiki-page-creator-action" rel="external" target="_self">Create a GitHub wiki page based on the provided markdown file</a></li>
+<li><a href="https://github.com/Decathlon/pull-request-labeler-action" rel="external" target="_self">Label your Pull Requests auto-magically (using committed files)</a></li>
+<li><a href="https://github.com/JulienKode/team-labeler-action" rel="external" target="_self">Add Label to your Pull Requests based on the author team name</a></li>
+<li><a href="https://github.com/trilom/file-changes-action" rel="external" target="_self">Get a list of file changes with PR/Push</a></li>
+<li><a href="https://github.com/InVisionApp/private-action-loader" rel="external" target="_self">Use private actions in any workflow</a></li>
+<li><a href="https://github.com/damccorm/tag-ur-it" rel="external" target="_self">Label Your Issues Using the Issue&rsquo;s Contents</a></li>
+<li><a href="https://github.com/author/action-rollback" rel="external" target="_self">Rollback a GitHub Release</a></li>
+<li><a href="https://github.com/dessant/lock-threads" rel="external" target="_self">Lock Closed Issues and Pull Requests after a Period of Inactivity</a></li>
+<li><a href="https://github.com/jessicalostinspace/commit-difference-action" rel="external" target="_self">Get Commit Difference Count Between Two Branches</a></li>
+<li><a href="https://github.com/metcalfc/changelog-generator" rel="external" target="_self">Generate Release Notes Based on Git References</a></li>
+<li><a href="https://github.com/talos-systems/conform" rel="external" target="_self">Enforce Policies on GitHub Repositories and Commits</a></li>
+<li><a href="https://github.com/Renato66/auto-label" rel="external" target="_self">Auto Label Issue Based on Issue Description</a></li>
+<li><a href="https://github.com/fabasoad/ghacu" rel="external" target="_self">Update Configured GitHub Actions to the Latest Versions</a></li>
+<li><a href="https://github.com/robvanderleek/create-issue-branch" rel="external" target="_self">Create Issue Branch</a></li>
+<li><a href="https://github.com/c-hive/gha-remove-artifacts" rel="external" target="_self">Remove Old Artifacts</a></li>
+<li><a href="https://github.com/rlespinasse/git-commit-data-action" rel="external" target="_self">Expose Git Commit Data As Environment Variables</a></li>
+<li><a href="https://github.com/kai-tub/external-repo-sync-action" rel="external" target="_self">Sync Defined Files/Binaries to Wiki or External Repositories</a></li>
+<li><a href="https://github.com/Andrew-Chen-Wang/github-wiki-action" rel="external" target="_self">Create/Update/Delete a GitHub Wiki Page Based on Any File</a></li>
+<li><a href="https://github.com/jpmcb/prow-github-actions" rel="external" target="_self">Prow GitHub Actions</a> - Automation of policy enforcement, chat-ops, and automatic PR merging.</li>
+<li><a href="https://github.com/crazy-max/ghaction-github-status" rel="external" target="_self">Check GitHub Status in your Workflow</a></li>
+<li><a href="https://github.com/crazy-max/ghaction-github-labeler" rel="external" target="_self">Manage Labels on GitHub (create/rename/update/delete) as Code</a></li>
+<li><a href="https://github.com/protontypes/libreselery" rel="external" target="_self">Continuous Distribution of Funding to your Project Contributors and Dependencies</a></li>
+<li><a href="https://github.com/gagoar/use-herald-action" rel="external" target="_self">Herald Rules for GitHub: Add Subscribers, Assignees, Labels, and More to Your PR</a></li>
+<li><a href="https://github.com/mszostok/codeowners-validator" rel="external" target="_self">GitHub Codeowners Validator</a> - Ensures the correctness of your GitHub CODEOWNERS file. It supports public and private GitHub repositories and also GitHub Enterprise installations.</li>
+<li><a href="https://github.com/olivr/copybara-action" rel="external" target="_self">Copybara Action</a> - Move and transform code between repositories (ideal to maintain several repos from one monorepo).</li>
+</ul>
+<h3 id="collection-of-actions">Collection of Actions</h3>
+<ul>
+<li><a href="https://github.com/hashicorp/setup-terraform" rel="external" target="_self">Use HashiCorp&rsquo;s Terraform</a></li>
+<li><a href="https://github.com/Borales/actions-yarn" rel="external" target="_self">GitHub Actions for Yarn 1</a></li>
+<li><a href="https://github.com/sergioramos/yarn-actions" rel="external" target="_self">GitHub Actions for Yarn 2</a></li>
+<li><a href="https://github.com/cedrickring/golang-action" rel="external" target="_self">GitHub Actions for Golang</a></li>
+<li><a href="http://maxheld.de/ghactions/" rel="external" target="_self">GitHub Actions for R and accompanying #rstats package</a></li>
+<li><a href="https://github.com/10up/actions-wordpress/" rel="external" target="_self">GitHub Actions for WordPress</a></li>
+<li><a href="https://github.com/MilesChou/composer-action" rel="external" target="_self">GitHub Actions for Composer</a></li>
+<li><a href="https://github.com/subosito/flutter-action" rel="external" target="_self">GitHub Actions for Flutter</a></li>
+<li><a href="https://github.com/shivammathur/setup-php" rel="external" target="_self">GitHub Actions for PHP</a></li>
+<li><a href="https://github.com/actions-rs" rel="external" target="_self">GitHub Actions for Rust</a></li>
+<li><a href="https://github.com/Malinskiy/action-android" rel="external" target="_self">GitHub Actions for Android</a></li>
+<li><a href="https://github.com/logtalk-actions" rel="external" target="_self">GitHub Actions for Logtalk and Prolog</a></li>
+<li><a href="https://github.com/denolib/setup-deno" rel="external" target="_self">GitHub Actions for Deno</a></li>
+<li><a href="https://github.com/webbertakken/unity-actions" rel="external" target="_self">GitHub Actions for Unity</a></li>
+<li><a href="https://github.com/maxkomarychev/octions" rel="external" target="_self">Octions - GitHub Actions for GitHub REST API</a></li>
+<li><a href="https://github.com/docker/github-actions" rel="external" target="_self">GitHub Actions for Docker</a></li>
+<li><a href="https://github.com/clowdhaus/aws-github-actions" rel="external" target="_self">GitHub Actions for AWS</a></li>
+<li><a href="https://github.com/actionshub" rel="external" target="_self">Actions Hub</a></li>
+</ul>
+<h3 id="utility">Utility</h3>
+<ul>
+<li><a href="https://github.com/webfactory/ssh-agent" rel="external" target="_self">Setup <code>ssh-agent</code></a> - Run <code>ssh-agent</code> with additional SSH keys to access private repositories.</li>
+<li><a href="https://github.com/atrox/github-actions-badge" rel="external" target="_self">GitHub Actions Badges for your README</a></li>
+<li><a href="https://github.com/abatilo/actions-poetry" rel="external" target="_self">GitHub Actions for Python project with poetry</a></li>
+<li><a href="https://github.com/gabrielfalcao/pyenv-action" rel="external" target="_self">GitHub Actions for Python project with pyenv</a></li>
+<li><a href="https://github.com/xu-cheng/latex-action" rel="external" target="_self">GitHub Actions to compile LaTeX documents</a></li>
+<li><a href="https://github.com/meetup/maxmind-updater" rel="external" target="_self">Update Maxmind Databases</a></li>
+<li><a href="https://github.com/mxschmitt/action-tmate" rel="external" target="_self">Debug with SSH over tmate</a> - Debug the Action directly by providing a SSH connection.</li>
+<li><a href="https://github.com/sliteteam/github-action-git-crypt-unlock" rel="external" target="_self">Unlock git-crypt files</a></li>
+<li><a href="https://github.com/crazy-max/ghaction-xgo" rel="external" target="_self">Golang CGO cross compiler</a></li>
+<li><a href="https://github.com/uraimo/run-on-arch-action" rel="external" target="_self">Run your job on another architecture: arm32, aarch64 and others</a></li>
+<li><a href="https://github.com/technote-space/toc-generator" rel="external" target="_self">Generate a table of contents</a></li>
+<li><a href="https://github.com/Naturalclar/issue-action" rel="external" target="_self">Automatically add Label or Assignee to an Issue</a></li>
+<li><a href="https://github.com/micnncim/action-lgtm-reaction" rel="external" target="_self">Action to send LGTM reaction as image or GIF when we say lgtm</a></li>
+<li><a href="https://github.com/zyborg/gh-action-buildnum" rel="external" target="_self">Generate build numbers across multiple scopes</a></li>
+<li><a href="https://github.com/skx/github-action-publish-binaries" rel="external" target="_self">Publish GitHub release artifacts</a></li>
+<li><a href="https://github.com/David-Byrne/jekyll-diff-action" rel="external" target="_self">Jekyll Diff Action</a> - Diffs the built Jekyll site after a change, and comments the result back to GitHub.</li>
+<li><a href="https://github.com/benjefferies/branch-protection-bot" rel="external" target="_self">Branch Protection Bot</a> - Temporarily disable and re-enable &ldquo;Include administrators&rdquo; option in branch protection.</li>
+<li><a href="https://github.com/WyriHaximus/github-action-wait-for-status" rel="external" target="_self">Wait for commit statuses</a> - Wait until all statuses and checks are successful or any of them has failed and set its status output accordingly.</li>
+<li><a href="https://github.com/WyriHaximus/github-action-get-previous-tag" rel="external" target="_self">Get Latest Tag</a> - Get the previous tag from git.</li>
+<li><a href="https://github.com/WyriHaximus/github-action-create-milestone" rel="external" target="_self">Create Milestone</a> - Create a new open milestone given the title and description.</li>
+<li><a href="https://github.com/WyriHaximus/github-action-close-milestone" rel="external" target="_self">Close Milestone</a> - Close the given milestone.</li>
+<li><a href="https://github.com/deepakputhraya/action-branch-name" rel="external" target="_self">Action to enforce branch naming rules</a></li>
+<li><a href="https://github.com/marketplace/actions/github-slug" rel="external" target="_self">Expose slug of some GitHub variables</a></li>
+<li><a href="https://github.com/max/awesome-lint" rel="external" target="_self">awesome-lint as a GitHub Action</a></li>
+<li><a href="https://github.com/deef0000dragon1/json-edit-action" rel="external" target="_self">Edit JSON File</a></li>
+<li><a href="https://github.com/Decathlon/slate-builder-action" rel="external" target="_self">Build Slate documentation</a></li>
+<li><a href="https://github.com/christian-draeger/read-properties" rel="external" target="_self">Read Properties</a> - Read values from <code>.properties</code> files.</li>
+<li><a href="https://github.com/christian-draeger/write-properties" rel="external" target="_self">Write Properties</a> - Write values to <code>.properties</code> files.</li>
+<li><a href="https://github.com/butlerlogic/action-autotag" rel="external" target="_self">Autotag</a> - Automatically generate a new tag when the manifest file (i.e. <code>package.json</code>) version changes.</li>
+<li><a href="https://github.com/cuchi/jinja2-action" rel="external" target="_self">Apply templates with Jinja2</a> - Use the Jinja2 template engine to generate files from templates.</li>
+<li><a href="https://github.com/UnicornGlobal/has-changes-action" rel="external" target="_self">Has Changes</a> - Check if there are code changes from previous steps.</li>
+<li><a href="https://github.com/tailaiw/mind-your-language-action" rel="external" target="_self">Mind Your Language Action</a> - Detect offensive comments in issues and pull requests, and warn senders.</li>
+<li><a href="https://github.com/fabasoad/yaml-json-xml-converter-action" rel="external" target="_self">YAML/JSON/XML Converter</a> - Converts YAML/JSON/XML file formats interchangeably.</li>
+<li><a href="https://github.com/fabasoad/nsfw-detection-action" rel="external" target="_self">NSFW Detection</a> - Detect NSFW content in committed files.</li>
+<li><a href="https://github.com/MarceloPrado/has-changed-path" rel="external" target="_self">Has Changed Path</a> - Conditionally run actions based on changed paths.</li>
+<li><a href="https://github.com/fabasoad/linguist-action" rel="external" target="_self">Linguist</a> - Checks a repository and produces information about used languages in output.</li>
+<li><a href="https://github.com/fabasoad/twilio-voice-call-action/" rel="external" target="_self">Twilio Voice Call</a> - Make Twilio voice call with defined text.</li>
+<li><a href="https://github.com/maxim-lobanov/setup-xcode" rel="external" target="_self">Setup Xcode</a> - Switch between pre-installed versions of Xcode for macOS images.</li>
+<li><a href="https://github.com/maxim-lobanov/setup-xamarin" rel="external" target="_self">Setup Xamarin</a> - Switch between pre-installed versions of Xamarin and Mono for macOS images.</li>
+<li><a href="https://github.com/Bhupesh-V/memer-action" rel="external" target="_self">Memer Action</a> - A GitHub Action for Programmer Memes xD.</li>
+<li><a href="https://github.com/maxim-lobanov/setup-cocoapods" rel="external" target="_self">Setup Cocoapods</a> - Setup specific version of Cocoapods.</li>
+<li><a href="https://github.com/haythem/public-ip" rel="external" target="_self">Public IP</a> - Queries GitHub actions runner&rsquo;s public IP address.</li>
+<li><a href="https://github.com/gcarreno/setup-lazarus" rel="external" target="_self">GitHub Actions for Lazarus/FPC</a></li>
+<li><a href="https://github.com/fabasoad/twilio-fax-action/" rel="external" target="_self">Twilio Fax</a> - Sends a document by fax using your Twilio account.</li>
+<li><a href="https://github.com/yokawasa/action-setup-kube-tools" rel="external" target="_self">Setup Kubernetes tools</a> - Install Kubernetes tools (kubectl, kustomize, helm, kubeval, conftest, and yq) on the runner.</li>
+<li><a href="https://github.com/yokawasa/action-setup-ecctl" rel="external" target="_self">Setup Elastic Cloud Control Tool</a> - Install a specific version of ecctl on the runner.</li>
+<li><a href="https://github.com/Amadevus/pwsh-script" rel="external" target="_self">PowerShell Script</a> - Run PowerShell scripts with workflow contexts (e.g. <code>$github.token</code>) and cmdlets, return value =&gt; action output.</li>
+<li><a href="https://github.com/crazy-max/ghaction-virustotal" rel="external" target="_self">Upload and Scan Files with VirusTotal</a></li>
+<li><a href="https://github.com/crazy-max/ghaction-import-gpg" rel="external" target="_self">Import a GPG Key</a></li>
+<li><a href="https://github.com/crazy-max/ghaction-upx" rel="external" target="_self">Compress with UPX</a> - The Ultimate Packer for eXecutables.</li>
+<li><a href="https://github.com/andrewslotin/go-proxy-pull-action" rel="external" target="_self">Pull the New Go Module Version Into the Proxy Cache</a> - Ensures the latest version of your Go module is in the proxy cache. Also updates the pkg.go.dev documentation upon release.</li>
+<li><a href="https://github.com/marketplace/actions/delete-run-artifacts" rel="external" target="_self">Delete Run Artifacts</a> - Deletes all artifacts at the end of a workflow run.</li>
+<li><a href="https://github.com/FranzDiebold/github-env-vars-action" rel="external" target="_self">GitHub Environment Variables Action</a> - Expose environment variables such as the branch/tag name, repository slug, and ref slug.</li>
+<li><a href="https://github.com/abatilo/github-action-locks/blob/master/README.md" rel="external" target="_self">GitHub Action Locks</a> - Guarantee atomic execution of your GitHub Action workflows.</li>
+<li><a href="https://github.com/dorny/paths-filter" rel="external" target="_self">Paths Filter</a> - Conditionally run actions based on files modified by PR, feature branch or pushed commits.</li>
+<li><a href="https://github.com/TeamTigers/minisauras" rel="external" target="_self">Minisauras</a> -  Pulls all the JavaScript and CSS files from your base branch, minify them and creates a pull-request with a new branch.</li>
+<li><a href="https://github.com/PabloLec/website-to-gif" rel="external" target="_self">Website to GIF</a> - Turn any webpage into a GIF to display on your README, docs, etc.</li>
+<li><a href="https://github.com/boasiHQ/interactive-inputs" rel="external" target="_self">Interactive Inputs - Runtime workflow inputs</a> - Add dynamic inputs at runtime for your GitHub Actions workflows</li>
+</ul>
+<h4 id="environments">Environments</h4>
+<ul>
+<li><a href="https://github.com/SpicyPizza/create-envfile" rel="external" target="_self">Create an envfile</a></li>
+<li><a href="https://github.com/zweitag/github-actions" rel="external" target="_self">Export global environment variables for succeeding build steps</a></li>
+<li><a href="https://github.com/allenevans/set-env" rel="external" target="_self">Programmatically set environment variables for use in subsequent steps</a></li>
+<li><a href="https://github.com/goanpeca/setup-miniconda" rel="external" target="_self">Install Conda environments for Python</a></li>
+<li><a href="https://github.com/hrueger/setup-nativescript" rel="external" target="_self">Setup NativeScript</a></li>
+<li><a href="https://github.com/schdck/create-env-json" rel="external" target="_self">Create a JSON Environment File</a></li>
+</ul>
+<h4 id="dependencies">Dependencies</h4>
+<ul>
+<li><a href="https://github.com/bahmutov/npm-install" rel="external" target="_self">Install NPM Dependencies with Caching</a></li>
+<li><a href="https://github.com/hiwelo/new-dependencies-action" rel="external" target="_self">Highlight New NPM Dependencies</a> - Comments on pull requests newly added NPM dependencies information.</li>
+<li><a href="https://github.com/c-hive/gha-npm-cache" rel="external" target="_self">Cache NPM Dependencies</a></li>
+<li><a href="https://github.com/c-hive/gha-yarn-cache" rel="external" target="_self">Cache Yarn Dependencies</a></li>
+</ul>
+<h4 id="semantic-versioning">Semantic Versioning</h4>
+<ul>
+<li><a href="https://github.com/WyriHaximus/github-action-next-semvers" rel="external" target="_self">Next SemVers</a> - Output the next version for major, minor, and patch version based on the given semver version.</li>
+<li><a href="https://github.com/jessicalostinspace/github-action-get-regex-branch" rel="external" target="_self">Get latest SemVer and branch name given a search string</a></li>
+<li><a href="https://github.com/jessicalostinspace/cut-release-action" rel="external" target="_self">Cut Release Branch</a> - Cuts a release branch given a branch prefix and optional semantic version.</li>
+<li><a href="https://github.com/christian-draeger/increment-semantic-version" rel="external" target="_self">Increment Semantic Version</a> - Bump a given semantic version (SemVer), depending on given release type.</li>
+</ul>
+<h3 id="static-analysis">Static Analysis</h3>
+<ul>
+<li><a href="https://github.com/OskarStark/phpstan-ga" rel="external" target="_self">PHPStan Static code analyzer Action</a></li>
+<li><a href="https://github.com/kamilkisiela/graphql-inspector" rel="external" target="_self">GraphQL Inspector Action</a></li>
+<li><a href="https://github.com/devblackops/github-action-psscriptanalyzer" rel="external" target="_self">PowerShell static analysis with PSScriptAnalyzer</a></li>
+<li><a href="https://github.com/reviewdog/action-tfsec" rel="external" target="_self">Run tfsec, with reviewdog output on the PR</a></li>
+</ul>
+<h4 id="testing">Testing</h4>
+<ul>
+<li><a href="https://github.com/ianwalter/puppeteer" rel="external" target="_self">Run Tests through Puppeteer, the Headless Chrome Node API</a></li>
+<li><a href="https://github.com/ivanklee86/xunit-slack-reporter" rel="external" target="_self">xUnit Slack Reporter: Sends summary of tests from xUnit reports to a Slack channel</a></li>
+<li><a href="https://github.com/joelwmale/codeception-action" rel="external" target="_self">Run codeception tests</a></li>
+<li><a href="https://github.com/DevExpress/testcafe-action" rel="external" target="_self">Run TestCafe tests</a></li>
+<li><a href="https://github.com/webbertakken/unity-test-runner" rel="external" target="_self">Run Unity tests</a></li>
+<li><a href="https://github.com/cypress-io/github-action" rel="external" target="_self">Run Cypress E2E tests</a></li>
+<li><a href="https://github.com/robertdebock/molecule-action" rel="external" target="_self">Test Ansible roles with Molecule</a></li>
+<li><a href="https://github.com/kenju/github-actions-artillery" rel="external" target="_self">Run performance testing with artillery.io</a></li>
+<li><a href="https://github.com/Workshop64/buildpulse-action" rel="external" target="_self">Detect Flaky Tests with BuildPulse</a></li>
+<li><a href="https://github.com/IgnusG/jest-report-action" rel="external" target="_self">Display Inline Code Annotations for Jest Tests</a></li>
+<li><a href="https://github.com/julia-actions/julia-runtest" rel="external" target="_self">Run Julia tests</a></li>
+</ul>
+<h4 id="linting">Linting</h4>
+<ul>
+<li><a href="https://github.com/OskarStark/php-cs-fixer-ga" rel="external" target="_self">PHP Coding Standards Fixer Action</a></li>
+<li><a href="https://github.com/burdzwastaken/hadolint-action" rel="external" target="_self">Runs Hadolint against a Dockerfile within a repository</a></li>
+<li><a href="https://github.com/reviewdog/action-eslint" rel="external" target="_self">Run ESLint, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/OmarTawfik/github-actions-js" rel="external" target="_self">JavaScript-based linter for *.workflow files</a></li>
+<li><a href="https://github.com/reviewdog/action-tflint" rel="external" target="_self">Lint terraform files using tflint, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/peter-evans/autopep8" rel="external" target="_self">autopep8: Automatically formats Python code to conform to the PEP 8 style guide</a></li>
+<li><a href="https://github.com/ergebnis/composer-normalize-action" rel="external" target="_self">Run <code>ergebnis/composer-normalize</code> to ensure your PHP project has a normalized <code>composer.json</code></a></li>
+<li><a href="https://github.com/raphaelstolt/lean-package-validator-action" rel="external" target="_self">Run <code>stolt/lean-package-validator</code> to ensure your package has only the required <code>runtime</code> artifacts</a></li>
+<li><a href="https://github.com/ArangoGutierrez/GoLinty-Action" rel="external" target="_self">Run Go lint checks on PR event</a></li>
+<li><a href="https://github.com/MarvinJWendt/run-node-formatter" rel="external" target="_self">Node.js - Automatically run the <code>format</code> and/or <code>lint</code> script used by the package</a></li>
+<li><a href="https://github.com/exelban/stylelint" rel="external" target="_self">Stylelinter - GitHub Action that runs stylelint</a></li>
+<li><a href="https://github.com/reviewdog/action-stylelint" rel="external" target="_self">Run stylelint, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/ankitvgupta/pycodestyle-action" rel="external" target="_self">PyCodeStyle Action - A GitHub Action that leaves a comment on your PR with pycodestyle (autopep8) feedback</a></li>
+<li><a href="https://github.com/wemake-services/wemake-python-styleguide" rel="external" target="_self">wemake-python-styleguide - The strictest and most opinionated python linter ever, with optional reviewdog output on the PR</a></li>
+<li><a href="https://github.com/mooyoul/tslint-actions" rel="external" target="_self">Run TSLint with status checks and file diff annotations</a></li>
+<li><a href="https://github.com/wagoid/commitlint-github-action" rel="external" target="_self">Lint Pull Request commits with commitlint</a></li>
+<li><a href="https://github.com/reviewdog/action-vint" rel="external" target="_self">Run vint, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/reviewdog/action-misspell" rel="external" target="_self">Run mispell, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/reviewdog/action-golangci-lint" rel="external" target="_self">Run golangci-lint, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/reviewdog/action-shellcheck" rel="external" target="_self">Run shellcheck, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/theashraf/alex-action" rel="external" target="_self">Catch insensitive, inconsiderate writing in your markdown docs</a></li>
+<li><a href="https://github.com/wemake-services/dotenv-linter" rel="external" target="_self">Run dotenv-linter - Lints your .env files like a charm, with optional reviewdog output on the PR</a></li>
+<li><a href="https://github.com/mgrachev/action-dotenv-linter" rel="external" target="_self">Run dotenv-linter, with reviewdog output on the PR</a></li>
+<li><a href="https://github.com/samuelmeuli/lint-action" rel="external" target="_self">Show and auto-fix linting errors for many programming languages</a></li>
+<li><a href="https://github.com/chekalsky/phpcs-action" rel="external" target="_self">PHP_CodeSniffer With Annotations</a></li>
+<li><a href="https://github.com/avto-dev/markdown-lint" rel="external" target="_self">Linter for markdown (with presets)</a></li>
+<li><a href="https://github.com/xt0rted/stylelint-problem-matcher" rel="external" target="_self">Stylelint problem matcher to create annotations</a></li>
+<li><a href="https://github.com/yokawasa/action-sqlcheck" rel="external" target="_self">Run sqlcheck on the PR to identifies anti-patterns in SQL queries</a></li>
+<li><a href="https://github.com/ashutoshgngwr/validate-fastlane-supply-metadata" rel="external" target="_self">Validate Fastlane Supply Metadata Against the Play Store Guidelines</a></li>
+<li><a href="https://github.com/Jerome1337/golint-action" rel="external" target="_self">Run Golint to lint your Golang code</a></li>
+</ul>
+<h4 id="security">Security</h4>
+<ul>
+<li><a href="https://github.com/phonito/phonito-scanner-action" rel="external" target="_self">A vulnerability scanner for your docker images</a></li>
+<li><a href="https://github.com/ridedott/dependabot-auto-merge-action" rel="external" target="_self">Automatically approve and merge Dependabot updates</a></li>
+<li><a href="https://github.com/xen0l/dlint-check" rel="external" target="_self">Run dlint security linter on your Python code</a></li>
+<li><a href="https://github.com/say8425/aws-secrets-manager-actions" rel="external" target="_self">AWS Secrets Manager Actions</a> - Define AWS Secrets Manager secrets to environment values.</li>
+<li><a href="https://github.com/xen0l/iam-lint" rel="external" target="_self">Linting your AWS IAM policy documents for correctness and security issues</a></li>
+<li><a href="https://github.com/webfactory/secret-spreader" rel="external" target="_self">Secret Spreader</a> - Not an action per se, but a tool to manage Actions Secrets across a list of repositories.</li>
+<li><a href="https://github.com/google/secrets-sync-action" rel="external" target="_self">Secrets Sync Action</a> - Action syncs secrets across multiple repositories.</li>
+<li><a href="https://github.com/snyk/actions" rel="external" target="_self">Snyk Test Action</a></li>
+<li><a href="https://github.com/unfor19/githubsecrets" rel="external" target="_self">Manage Your GitHub Actions Secrets With A Simple CLI</a></li>
+<li><a href="https://github.com/secrethub/actions" rel="external" target="_self">SecretHub</a> - Have a single source of truth for your secrets and load them into GitHub Actions on demand.</li>
+</ul>
+<h4 id="code-coverage">Code Coverage</h4>
+<ul>
+<li><a href="https://github.com/sonarsource/sonarcloud-github-action" rel="external" target="_self">Scan code with SonarCloud</a></li>
+<li><a href="https://github.com/codecov/codecov-action" rel="external" target="_self">Send your code coverage to codecov.io</a></li>
+<li><a href="https://github.com/paambaati/codeclimate-action" rel="external" target="_self">Publishing code coverage to CodeClimate</a></li>
+<li><a href="https://github.com/creekorful/goreportcard-action" rel="external" target="_self">Update repository go report card</a></li>
+</ul>
+<h3 id="dynamic-analysis">Dynamic Analysis</h3>
+<ul>
+<li><a href="https://github.com/Jerome1337/gofmt-action" rel="external" target="_self">Run Gofmt to check Golang code formatting</a></li>
+<li><a href="https://github.com/Jerome1337/goimports-action" rel="external" target="_self">Run Goimports to check Golang imports order</a></li>
+</ul>
+<h3 id="monitoring">Monitoring</h3>
+<ul>
+<li><a href="https://github.com/jakejarvis/lighthouse-action" rel="external" target="_self">Audit a webpage with Google Chrome&rsquo;s Lighthouse tests</a></li>
+<li><a href="https://github.com/foo-software/lighthouse-check-action" rel="external" target="_self">Runs Lighthouse and posts results to PRs and Slack</a></li>
+<li><a href="https://github.com/treosh/lighthouse-ci-action" rel="external" target="_self">Run Lighthouse in CI using GitHub Actions</a></li>
+<li><a href="https://github.com/bobheadxi/gobenchdata" rel="external" target="_self">Continuous Benchmarking and Benchmark Visualization for Go</a></li>
+<li><a href="https://github.com/andresz1/size-limit-action" rel="external" target="_self">Size Limit Action</a> - Comments cost comparison of your JS in PRs and rejects them if limit is exceeded.</li>
+<li><a href="https://github.com/carlesnunez/check-my-bundlephobia" rel="external" target="_self">Check bundlephobia</a> - Comments new and modified package size according to bundlephobia.io website and rejects PR on threshold surpassed.</li>
+</ul>
+<h3 id="pull-requests">Pull Requests</h3>
+<ul>
+<li><a href="https://github.com/pullreminders/assignee-to-reviewer-action" rel="external" target="_self">Set PR Reviewers Based on Assignees</a></li>
+<li><a href="https://github.com/vsoch/pull-request-action" rel="external" target="_self">Open or Update PR on Branch Push (with Branch Selection)</a></li>
+<li><a href="https://github.com/cirrus-actions/rebase" rel="external" target="_self">Automatically Rebase a PR</a></li>
+<li><a href="https://github.com/pullreminders/label-when-approved-action" rel="external" target="_self">Label PR once it has a Specified Number of Approvals</a></li>
+<li><a href="https://github.com/banyan/auto-label" rel="external" target="_self">Add Labels to a PR based on Matched File Patterns</a></li>
+<li><a href="https://github.com/hmarr/auto-approve-action" rel="external" target="_self">Auto-Approve PRs</a></li>
+<li><a href="https://github.com/kentaro-m/auto-assign-action" rel="external" target="_self">Automatically add Reviewers to PR based on the Configuration File</a></li>
+<li><a href="https://github.com/TimonVS/pr-labeler-action" rel="external" target="_self">Add Labels to a PR based on Branch Name Patterns</a></li>
+<li><a href="https://github.com/pascalgn/size-label-action" rel="external" target="_self">Add Labels to a PR based on Total Size of the Diff</a></li>
+<li><a href="https://github.com/pascalgn/automerge-action" rel="external" target="_self">Automatically merge PRs That Are Ready</a></li>
+<li><a href="https://github.com/vijaykramesh/pr-lint-action" rel="external" target="_self">Verify That PRs Contain a Ticket Reference</a></li>
+<li><a href="https://github.com/peter-evans/create-pull-request" rel="external" target="_self">Create a PR for Changes to your Repository in the Actions Workspace</a></li>
+<li><a href="https://github.com/seferov/pr-lint-action" rel="external" target="_self">Lint a PR</a></li>
+<li><a href="https://github.com/machine-learning-apps/actions-chatops" rel="external" target="_self">ChatOps for PRs</a></li>
+<li><a href="https://github.com/tzkhan/pr-update-action" rel="external" target="_self">Prefix Title and Body of a PR Based on Text Extracted from Branch Name</a></li>
+<li><a href="https://github.com/xt0rted/block-autosquash-commits-action" rel="external" target="_self">Block Autosquash Commits</a></li>
+<li><a href="https://github.com/anothrNick/github-tag-action" rel="external" target="_self">Automatically Bump and Tag on Merge</a></li>
+<li><a href="https://github.com/tibdex/autosquash" rel="external" target="_self">Automatically Update PRs with Outdated Checks and Squash and Merge the Ones Matching All Branch Protections</a></li>
+<li><a href="https://github.com/maxkomarychev/merge-pal-action" rel="external" target="_self">Merge Pal - Automatically Update and Merge PRs</a></li>
+<li><a href="https://github.com/deepakputhraya/action-pr-title" rel="external" target="_self">Enforce naming convention on pull request title</a></li>
+<li><a href="https://github.com/jrylan/github-action-stuck-pr-notifier" rel="external" target="_self">Pull Request Stuck Notifier</a></li>
+<li><a href="https://github.com/JulienKode/pull-request-name-linter-action" rel="external" target="_self">Lint pull request name with commitlint (Awesome if you squash merge !)</a></li>
+<li><a href="https://github.com/cirrus-actions/branch-guard" rel="external" target="_self">Block PR merges when Checks for target branches are failing</a></li>
+<li><a href="https://github.com/ssowonny/diff-pages-action" rel="external" target="_self">Get generated static site screenshots updated by Pull Request</a></li>
+<li><a href="https://github.com/AlbertHernandez/working-label-action" rel="external" target="_self">Add Labels Depending if the Pull Request Still in Progress</a></li>
+<li><a href="https://github.com/neofinancial/ticket-check-action" rel="external" target="_self">Ticket Check Action</a> - Automatically add a ticket or issue number to the start of all Pull Request titles.</li>
+<li><a href="https://github.com/MorrisonCole/pr-lint-action" rel="external" target="_self">Pull Request Lint With Regex</a></li>
+<li><a href="https://github.com/tylermurry/github-pr-landmine" rel="external" target="_self">Pull Request Landmines</a></li>
+<li><a href="https://github.com/staabm/annotate-pull-request-from-checkstyle" rel="external" target="_self">Annotate a GitHub Pull Request Based on a Checkstyle XML-Report</a></li>
+<li><a href="https://github.com/flowwer-dev/pull-request-stats" rel="external" target="_self">Pull Request Stats</a> -  Print relevant stats about reviewers.</li>
+<li><a href="https://github.com/derkinderfietsen/pr-description-enforcer" rel="external" target="_self">Pull Request Description Enforcer</a> - Enforces description on pull requests.</li>
+</ul>
+<h3 id="github-pages">GitHub Pages</h3>
+<ul>
+<li><a href="https://github.com/shalzz/zola-deploy-action" rel="external" target="_self">Deploy a Zola site to GitHub Pages</a></li>
+<li><a href="https://github.com/khanhicetea/gh-actions-hugo-deploy-gh-pages" rel="external" target="_self">Build Hugo static content site and publish it to gh-pages branch</a></li>
+<li><a href="https://github.com/BryanSchuetz/jekyll-deploy-gh-pages" rel="external" target="_self">Build a Jekyll site—with Custom Jekyll Plugins &amp; Build Scripts—and deploy it back to the Gh-Pages Branch</a></li>
+<li><a href="https://www.github.com/openschemas/extractors/" rel="external" target="_self">Google Dataset Search Metadata</a> - And other schema.org extractors to make datasets discoverable from GitHub pages.</li>
+<li><a href="https://github.com/peaceiris/actions-gh-pages" rel="external" target="_self">GitHub Actions for deploying to GitHub Pages with Static Site Generators</a></li>
+<li><a href="https://github.com/heowc/action-hexo" rel="external" target="_self">GitHub Action for Hexo</a></li>
+<li><a href="https://github.com/cristianpb/analytics-google" rel="external" target="_self">Deploy Google Analytics stats to GitHub Pages</a></li>
+<li><a href="https://github.com/fastai/fastpages" rel="external" target="_self">A Jupyter Notebook Blogging Platform Powered by GitHub Actions, Pages and Jekyll</a></li>
+<li><a href="https://github.com/appleboy/gh-pages-action" rel="external" target="_self">Deploy A Static Site to GitHub Pages</a> - Deploy to custom directory and ignore folder/file.</li>
+<li><a href="https://github.com/crazy-max/ghaction-github-pages" rel="external" target="_self">Deploy to GitHub Pages with Advanced Settings</a></li>
+</ul>
+<h3 id="notifications-and-messages">Notifications and Messages</h3>
+<ul>
+<li><a href="https://github.com/Ilshidur/action-discord" rel="external" target="_self">Send a Discord notification</a></li>
+<li><a href="https://github.com/pullreminders/slack-action" rel="external" target="_self">Post a Slack message as a bot</a></li>
+<li><a href="https://github.com/nexmo-community/nexmo-sms-action" rel="external" target="_self">Send an SMS from GitHub Actions using Nexmo</a></li>
+<li><a href="https://github.com/bharathvaj1995/clockwork-sms-action" rel="external" target="_self">Send an SMS from GitHub Actions using Clockworksms</a></li>
+<li><a href="https://github.com/appleboy/telegram-action" rel="external" target="_self">Send a Telegram Message</a></li>
+<li><a href="https://github.com/appleboy/discord-action" rel="external" target="_self">Send a File or Text Message to Discord (custom define color, username or avatar)</a></li>
+<li><a href="https://github.com/gr2m/twitter-together" rel="external" target="_self">Collaborate on tweets using pull requests</a></li>
+<li><a href="https://github.com/techulus/push-github-action" rel="external" target="_self">Send a Push Notification via Push by Techulus</a></li>
+<li><a href="https://github.com/peter-evans/sendgrid-action" rel="external" target="_self">Send email with SendGrid</a></li>
+<li><a href="https://github.com/ShaunLWM/action-join" rel="external" target="_self">Send a Push Notification via Join</a></li>
+<li><a href="https://github.com/MeilCli/npm-update-check-action" rel="external" target="_self">New package version checker for npm</a></li>
+<li><a href="https://github.com/MeilCli/nuget-update-check-action" rel="external" target="_self">New package version checker for NuGet</a></li>
+<li><a href="https://github.com/MeilCli/gradle-update-check-action" rel="external" target="_self">New package version checker for Gradle</a></li>
+<li><a href="https://github.com/ShaunLWM/action-pushbullet" rel="external" target="_self">Send a Push Notification via Pushbullet</a></li>
+<li><a href="https://github.com/anoopt/ms-graph-create-event" rel="external" target="_self">Create an Outlook Calendar Event using Microsoft Graph</a></li>
+<li><a href="https://github.com/benmatselby/gollum-page-watcher-action" rel="external" target="_self">Watch for GitHub Wiki page changes and post to Slack</a></li>
+<li><a href="https://github.com/nikitasavinov/messagebird-sms-action" rel="external" target="_self">Send an SMS using MessageBird</a></li>
+<li><a href="https://github.com/c-hive/fresh-bot" rel="external" target="_self">Reply to Stale Bots</a></li>
+<li><a href="https://github.com/sarisia/actions-status-discord" rel="external" target="_self">Send an Embed Message to Discord</a></li>
+<li><a href="https://github.com/Teamwork/github-sync" rel="external" target="_self">Keep Your PRs in Sync With Teamwork Tasks</a></li>
+<li><a href="https://github.com/opsless/ms-teams-github-actions" rel="external" target="_self">Send Microsoft Teams Notification</a></li>
+</ul>
+<h3 id="deployment">Deployment</h3>
+<ul>
+<li><a href="https://github.com/netlify/actions" rel="external" target="_self">Deploy to Netlify</a></li>
+<li><a href="https://probot.github.io/docs/deployment/#github-actions" rel="external" target="_self">Deploy a Probot App using Actions</a></li>
+<li><a href="https://github.com/swinton/SpotHub" rel="external" target="_self">Deploy a playlist to Spotify</a></li>
+<li><a href="https://github.com/lannonbr/vsce-action" rel="external" target="_self">Deploy VS Code extensions with vsce</a></li>
+<li><a href="https://github.com/jakejarvis/cloudflare-purge-action" rel="external" target="_self">Purge Cloudflare cache after updating a website</a></li>
+<li><a href="https://github.com/koenrh/dnscontrol-action" rel="external" target="_self">Deploy your DNS configuration using DNS Control</a></li>
+<li><a href="https://github.com/pgrimaud/action-shopify" rel="external" target="_self">Deploy a Theme to Shopify</a></li>
+<li><a href="https://github.com/appleboy/gitlab-ci-action" rel="external" target="_self">Trigger multiple GitLab CI Pipeline</a></li>
+<li><a href="https://github.com/appleboy/jenkins-action" rel="external" target="_self">Trigger multiple Jenkins Jobs</a></li>
+<li><a href="https://github.com/izumin5210/action-homebrew-tap" rel="external" target="_self">GitHub Action for Homebrew Tap</a></li>
+<li><a href="https://github.com/appleboy/scp-action" rel="external" target="_self">Copy files and artifacts via SSH</a></li>
+<li><a href="https://github.com/appleboy/ssh-action" rel="external" target="_self">Executing remote ssh commands</a></li>
+<li><a href="https://github.com/pypa/gh-action-pypi-publish" rel="external" target="_self">Publish a Python distribution package to PyPI</a></li>
+<li><a href="https://github.com/feeloor/azure-static-website-deploy" rel="external" target="_self">Deploy Static Website to Azure Storage</a></li>
+<li><a href="https://github.com/crazy-max/ghaction-chocolatey" rel="external" target="_self">Cross platform Chocolatey CLI to build and publish packages</a></li>
+<li><a href="https://github.com/michaelhenry/deploy-to-cocoapods-github-action" rel="external" target="_self">Deploy iOS Pod Library to Cocoapods</a></li>
+<li><a href="https://github.com/Juliiii/action-scf" rel="external" target="_self">GitHub Action for TencentCloud Serverless</a></li>
+<li><a href="https://github.com/epeli/npm-release/" rel="external" target="_self">Publish npm (pre)releases</a></li>
+<li><a href="https://github.com/yavisht/deploy-via-surge.sh-github-action-template" rel="external" target="_self">Deploy a static site to Surge.sh</a></li>
+<li><a href="https://github.com/goreleaser/goreleaser-action" rel="external" target="_self">GitHub Action for GoReleaser, a release automation tool for Go projects</a></li>
+<li><a href="https://github.com/SamKirkland/FTP-Deploy-Action" rel="external" target="_self">FTP Deploy Action, Deploys a GitHub project to a FTP server using GitHub actions</a></li>
+<li><a href="https://github.com/tylerauerbeck/publish-to-dev.to-action" rel="external" target="_self">Publish Article to Dev.to</a></li>
+<li><a href="https://github.com/cycjimmy/semantic-release-action" rel="external" target="_self">Action For Semantic Release</a></li>
+<li><a href="https://github.com/artis3n/ansible_galaxy_collection" rel="external" target="_self">Deploy a Collection to Ansible Galaxy</a></li>
+<li><a href="https://github.com/barnumbirr/action-forge-publish" rel="external" target="_self">Publish module to Puppet Forge</a></li>
+<li><a href="https://github.com/samuelmeuli/action-electron-builder" rel="external" target="_self">Build and publish Electron apps</a></li>
+<li><a href="https://github.com/samuelmeuli/action-maven-publish" rel="external" target="_self">Publish a Maven package</a></li>
+<li><a href="https://github.com/TryGhost/action-deploy-theme" rel="external" target="_self">Build and deploy a theme to Ghost CMS</a></li>
+<li><a href="https://github.com/robertdebock/galaxy-action" rel="external" target="_self">Deploy an Ansible role to Ansible Galaxy</a></li>
+<li><a href="https://github.com/author/action-publish" rel="external" target="_self">Publish one or more JS modules to a registry</a></li>
+<li><a href="https://github.com/erezrokah/2fa-with-slack-action" rel="external" target="_self">Publish a package with 2FA using Slack</a></li>
+<li><a href="https://github.com/softprops/turnstyle" rel="external" target="_self">Serialize Workflow Runs in Continuous Deployment Pipelines</a></li>
+<li><a href="https://github.com/nwtgck/actions-netlify" rel="external" target="_self">Netlify Deploy GitHub Action for each commit</a></li>
+<li><a href="https://github.com/arillso/action.playbook" rel="external" target="_self">Run Ansible Playbooks</a></li>
+<li><a href="https://github.com/fcakyon/conda-publish-action" rel="external" target="_self">Publish a Python Distribution Package to Anaconda Cloud</a></li>
+<li><a href="https://github.com/HaaLeo/publish-vscode-extension" rel="external" target="_self">Deploy VS Code Extension to Visual Studio Marketplace or the Open VSX Registry</a></li>
+<li><a href="https://github.com/Schrodinger-Hat/youtube-to-anchorfm" rel="external" target="_self">Deploy a YouTube Video to Anchor.fm Podcast</a></li>
+<li><a href="https://github.com/webfactory/create-aws-codedeploy-deployment" rel="external" target="_self">Deploy with AWS CodeDeploy</a></li>
+</ul>
+<h4 id="docker">Docker</h4>
+<ul>
+<li><a href="https://github.com/peter-evans/dockerhub-description" rel="external" target="_self">Update a Docker Hub repository description from README.md</a></li>
+<li><a href="https://github.com/machine-learning-apps/gpr-docker-publish" rel="external" target="_self">Publish Docker Images to the GitHub Package Registry (GPR)</a></li>
+<li><a href="https://github.com/mpepping/github-actions/tree/master/docker-hub-metadata" rel="external" target="_self">Update a repository&rsquo;s &ldquo;Full description&rdquo; on Docker Hub</a></li>
+<li><a href="https://github.com/outillage/kaniko-action" rel="external" target="_self">Build and publish docker images to any registry using Kaniko</a></li>
+<li><a href="https://github.com/wemake-services/docker-image-size-limit" rel="external" target="_self">Monitor and limit your docker image size</a></li>
+<li><a href="https://github.com/appleboy/docker-ecr-action" rel="external" target="_self">Publish Docker Images to the Amazon Elastic Container Registry (ECR)</a></li>
+<li><a href="https://github.com/whoan/docker-build-with-cache-action" rel="external" target="_self">Build And Push Your Docker Images Caching Each Stage To Reduce Build Time</a></li>
+<li><a href="https://github.com/crazy-max/ghaction-docker-buildx" rel="external" target="_self">Set up Docker Buildx</a></li>
+<li><a href="https://github.com/ankitvgupta/ref-to-tag-action/" rel="external" target="_self">Convert Branch or Tag Name Into Docker-Compatible Image Tag</a></li>
+<li><a href="https://github.com/marketplace/actions/update-container-description-action" rel="external" target="_self">Update a Container Repository Description From README.md</a> - Supported Registries: Docker Hub, Quay, Harbor.</li>
+</ul>
+<h4 id="kubernetes">Kubernetes</h4>
+<ul>
+<li><a href="https://github.com/pulumi/actions" rel="external" target="_self">Deploy to any Cloud or Kubernetes Using Pulumi</a></li>
+<li><a href="https://github.com/steebchen/kubectl" rel="external" target="_self">Deploy to Kubernetes with kubectl</a></li>
+<li><a href="https://github.com/machine-learning-apps/gke-kubeconfig" rel="external" target="_self">Get Kubeconfig File From Google Kubernetes Engine (GKE)</a></li>
+<li><a href="https://github.com/karancode/kustomize-github-action" rel="external" target="_self">Kustomize Kubernetes Config YAMLs</a></li>
+<li><a href="https://github.com/Krucible/krucible-github-action" rel="external" target="_self">Create a Kubernetes Cluster for Testing Using Krucible</a></li>
+</ul>
+<h4 id="aws">AWS</h4>
+<ul>
+<li><a href="https://github.com/jakejarvis/s3-sync-action" rel="external" target="_self">Sync/upload a directory to an AWS S3 bucket</a></li>
+<li><a href="https://github.com/appleboy/lambda-action" rel="external" target="_self">Deploy Lambda code to an existing function</a></li>
+</ul>
+<h4 id="terraform">Terraform</h4>
+<ul>
+<li><a href="https://github.com/Dirrk/terraform-docs" rel="external" target="_self">Generate terraform documentation</a> - Uses terraform-docs to generate docs for terraform modules.</li>
+<li><a href="https://github.com/asgharlabs/github-terraform/tree/master/.github/workflows" rel="external" target="_self">An example of using Terraform to validate and apply GitHub administration</a></li>
+</ul>
+<h3 id="external-services">External Services</h3>
+<ul>
+<li><a href="https://github.com/jonico/jenkinsfile-runner-github-actions" rel="external" target="_self">Use a Jenkinsfile</a></li>
+<li><a href="https://github.com/w9jds/firebase-action" rel="external" target="_self">GitHub Action for Firebase</a></li>
+<li><a href="https://github.com/Shy/contentful-action" rel="external" target="_self">GitHub Action for Contentful Migration CLI</a></li>
+<li><a href="https://github.com/peaceiris/actions-pixela" rel="external" target="_self">GitHub Actions for Pixela (a-know/pi)</a></li>
+<li><a href="https://github.com/exelban/gcloud" rel="external" target="_self">GitHub Action for Google Cloud Platform (GCP)</a></li>
+<li><a href="https://github.com/iksaku/openstack-swift-action" rel="external" target="_self">Upload files to any OpenStack Swift service provider</a></li>
+<li><a href="https://github.com/logankilpatrick/StackOverflowBot" rel="external" target="_self">GitHub Action for sending Stack Overflow posts to Slack</a></li>
+<li><a href="https://github.com/nordcloud/aws-assume-role/" rel="external" target="_self">Assume AWS role</a></li>
+<li><a href="https://github.com/fabasoad/jsonbin-action" rel="external" target="_self">Generate Custom Response using JSONbin</a></li>
+</ul>
+<h3 id="frontend-tools">Frontend Tools</h3>
+<ul>
+<li><a href="https://github.com/MrRamych/gradle-actions" rel="external" target="_self">Execute Gradle task</a></li>
+<li><a href="https://github.com/elstudio/actions-js-build" rel="external" target="_self">JS Build Actions</a> - Run Grunt or Gulp build tasks and commit file changes.</li>
+<li><a href="https://github.com/jzweifel/gatsby-cli-github-action" rel="external" target="_self">GitHub Action for Gatsby CLI</a></li>
+<li><a href="https://github.com/JCofman/webPagetestAction" rel="external" target="_self">Runs a WebPageTest audit and prints the results as commit comment</a></li>
+<li><a href="https://github.com/peaceiris/actions-hugo" rel="external" target="_self">GitHub Actions for Hugo extended</a></li>
+<li><a href="https://github.com/BoyWithSilverWings/generate-og-image" rel="external" target="_self">Generate OG Image</a> - Generate customisable open graph images from Markdown files.</li>
+<li><a href="https://github.com/peaceiris/actions-mdbook" rel="external" target="_self">GitHub Actions for mdBook</a></li>
+<li><a href="https://github.com/fabasoad/setup-mint-action" rel="external" target="_self">Setup Mint</a> - Setup Mint (programming language for writing single page applications).</li>
+<li><a href="https://github.com/jonelantha/gatsby-s3-action" rel="external" target="_self">Gatsby AWS S3 Deployment</a> - Deploy Gatsby to S3 (supports CloudFront).</li>
+</ul>
+<h3 id="machine-learning-ops">Machine Learning Ops</h3>
+<ul>
+<li><a href="https://github.com/machine-learning-apps/actions-argo" rel="external" target="_self">Submitting Argo Workflows (Cloud Agnostic)</a></li>
+<li><a href="https://github.com/machine-learning-apps/gke-argo" rel="external" target="_self">Submitting Argo Workflows to GKE</a></li>
+<li><a href="https://github.com/machine-learning-apps/wandb-action" rel="external" target="_self">Query Experiment Tracking Results From Weights &amp; Biases</a></li>
+<li><a href="https://github.com/yaananth/run-notebook" rel="external" target="_self">Run Parameterized Jupyter Notebooks</a></li>
+<li><a href="https://github.com/NikeNano/kubeflow-github-action" rel="external" target="_self">Compile, Deploy and Run Kubeflow Pipeline</a></li>
+<li><a href="https://github.com/jupyterhub/repo2docker-action" rel="external" target="_self">Automatically Dockerize A Data-Science Repo As A Jupyter Server</a></li>
+<li><a href="https://github.com/machine-learning-apps/ml-template-azure" rel="external" target="_self">Azure Machine Learning With GitHub Actions</a></li>
+</ul>
+<h3 id="build">Build</h3>
+<ul>
+<li><a href="https://github.com/lukka/run-cmake" rel="external" target="_self">run-cmake</a> - Multi platform action to build C/C++ software with <a href="https://cmake.org" rel="external" target="_self">CMake</a> and <a href="https://ninja-build.org/" rel="external" target="_self">Ninja</a>.</li>
+<li><a href="https://github.com/lukka/run-vcpkg" rel="external" target="_self">run-vcpkg</a> - Multi platform action to build and install C/C++ dependencies with <a href="https://github.com/microsoft/vcpkg" rel="external" target="_self">vcpkg</a>.</li>
+<li><a href="https://github.com/izumin5210/action-go-crossbuild" rel="external" target="_self">Build Go applications for multiplatform</a></li>
+<li><a href="https://github.com/whelk-io/maven-settings-xml-action" rel="external" target="_self">Generate ~/.m2/settings.xml for Maven builds</a></li>
+<li><a href="https://github.com/fabasoad/pascal-action" rel="external" target="_self">Run Pascal Script</a></li>
+<li><a href="https://github.com/fabasoad/setup-brainfuck-action" rel="external" target="_self">Setup Brainfuck</a> - Setup brainfuck interpreter.</li>
+<li><a href="https://github.com/wangyoucao577/go-release-action" rel="external" target="_self">Publish Go Binaries to GitHub Release Assets</a></li>
+<li><a href="https://github.com/fabasoad/setup-cobol-action" rel="external" target="_self">Setup COBOL</a></li>
+<li><a href="https://github.com/madhead/check-gradle-version" rel="external" target="_self">Check Gradle version</a> - Keep your Gradle version up to date.</li>
+</ul>
+<h3 id="database">Database</h3>
+<ul>
+<li><a href="https://github.com/fabasoad/setup-cassandra-action" rel="external" target="_self">Setup Cassandra Schema</a> - Running scripts from the provided folder on top of Cassandra cluster.</li>
+</ul>
+<h3 id="networking">Networking</h3>
+<ul>
+<li><a href="https://github.com/zerotier/github-action" rel="external" target="_self">Setup ZeroTier</a> - Connect your runner to a ZeroTier network.</li>
+</ul>
+<h3 id="localization">Localization</h3>
+<ul>
+<li><a href="https://github.com/sobolevn/misspell-fixer-action" rel="external" target="_self">Find and automatically fix typos and grammar issues in your code</a></li>
+<li><a href="https://github.com/fabasoad/translation-action" rel="external" target="_self">Translation</a> - Translate text from any language to any language.</li>
+</ul>
+<h3 id="fun">Fun</h3>
+<ul>
+<li><a href="https://github.com/ariary/Readme-Like-Button" rel="external" target="_self">Add equivalent of a like button in your README</a> - Visualize community approval on some part of your readme (can be used as a poll).</li>
+</ul>
+<h3 id="cheat-sheet">Cheat Sheet</h3>
+<ul>
+<li><a href="https://haya14busa.github.io/github-action-brandings/" rel="external" target="_self">GitHub Actions Branding Cheat Sheet</a></li>
+</ul>
+<h2 id="tutorials">Tutorials</h2>
+<ul>
+<li><a href="https://medium.com/@romanenko/simple-ci-for-next-js-projects-with-apex-up-github-actions-6f0b1b9a5400" rel="external" target="_self">Continuous deployment of Next.js app with Up</a></li>
+<li><a href="https://httgp.com/converting-github-actions-from-docker-to-javascript/" rel="external" target="_self">Converting Docker-based Actions to JavaScript/TypeScript</a></li>
+<li><a href="https://medium.com/rosberryapps/github-actions-ci-for-swift-projects-c129baceed1a" rel="external" target="_self">GitHub Actions CI for Swift/iOS Projects</a></li>
+<li><a href="https://jeffrafter.com/working-with-github-actions" rel="external" target="_self">Working with GitHub Actions</a></li>
+<li><a href="https://www.youtube.com/watch?v=gGUXydw22zw" rel="external" target="_self">GitHub Actions for Rails Developers</a></li>
+<li><a href="https://www.edwardthomson.com/blog/github_actions_advent_calendar.html" rel="external" target="_self">GitHub Actions Advent Calendar</a></li>
+<li><a href="https://atymic.dev/blog/github-actions-laravel-ci-cd/" rel="external" target="_self">Zero Downtime Laravel Deployments with GitHub Actions</a></li>
+<li><a href="https://www.pluralsight.com/courses/building-custom-github-actions/" rel="external" target="_self">Building Custom GitHub Actions Pluralsight Course</a></li>
+<li><a href="https://testdriven.io/blog/deploying-django-to-digitalocean-with-docker-and-github-actions/" rel="external" target="_self">Continuously Deploying Django to DigitalOcean with Docker and GitHub Actions</a></li>
+<li><a href="https://testdriven.io/blog/github-actions-docker/" rel="external" target="_self">Deploying Self-Hosted GitHub Actions Runners with Docker</a> - Deploy self-hosted GitHub Actions runners with Docker and Docker Swarm to DigitalOcean.</li>
+<li><a href="https://040code.github.io/2020/05/25/scaling-selfhosted-action-runners" rel="external" target="_self">Setup Auto-scaled self-hosted GitHub Actions Runners on AWS Spot-instances</a></li>
+<li><a href="https://gist.github.com/br3ndonland/f9c753eb27381f97336aa21b8d932be6" rel="external" target="_self">Getting the Gist of GitHub Actions</a></li>
+</ul>
+<blockquote>
+<p>Please don&rsquo;t hesitate to make a PR if you have more resources to share. Check out <a href="contributing.md">contributing.md</a> for more information.</p>
+</blockquote>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 29, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/github-actions-ci/cd/index.html">Github, Actions, CI/CD</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          
+          <a id="R-logo" href="../../index.html">
+<svg class="inlinecontent lazy figure-image" style=" height: auto; width: auto;" xmlns="http://www.w3.org/2000/svg" viewBox="75 75 350 350">
+  <style>
+    @media (prefers-color-scheme: dark) {
+    path { fill: white; }
+    }
+  </style>
+  <path
+    d="M250,80 a170,170 0 1,0 0,340 a170,170 0 1,0 0,-340 M250,95 a155,155 0 1,1 0,310 a155,155 0 1,1 0,-310 Z" />
+  <path
+    d="M 250 110 C 223.33333 123.33333 203.33333 156.66667 190 210 C 190 230 200 246.66667 220 260 C 246.66667 273.33333 270 273.33333 290 260 C 310 246.66667 316.66667 230 310 210 C 296.66667 156.66667 276.66667 123.33333 250 110 z M 230 152 A 22 28 0 0 1 250.02539 168.43164 A 22 28 0 0 1 270 152 A 22 28 0 0 1 292 180 A 22 28 0 0 1 270 208 A 22 28 0 0 1 250 191.48828 A 22 28 0 0 1 230 208 A 22 28 0 0 1 208 180 A 22 28 0 0 1 230 152 z " />
+  <path
+    d="M 232 190 A 7 7 0 1 0 218 190 A 7 7 0 1 0 232 190" />
+  <path
+    d="M 282 190 A 7 7 0 1 0 268 190 A 7 7 0 1 0 282 190" />
+  <path
+    d="m 251.62695,262.67773 -3.2539,14.64454 c 29.6411,6.58691 52.50119,14.00059 68.27343,21.88671 15.77224,7.88612 23.89316,16.12675 26.23829,23.16211 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.45724,-7.3717 0.9861,-15.4399 -2.90625,-23.22461 l 0.40625,0.98243 c -4.32154,-12.96464 -16.20062,-23.05735 -33.76171,-31.83789 -17.5611,-8.78055 -41.36767,-16.36687 -71.72657,-23.11329 z" />
+  <path
+    d="m 251.06055,262.57617 -2.1211,14.84766 c 22.66512,3.23787 40.0389,8.90614 52.08594,16.43554 12.04704,7.52941 18.84739,16.55167 21.69922,27.95899 l 0.19922,0.79883 0.36719,0.73633 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36474,-7.09422 1.02935,-14.82889 -2.53906,-22.33984 -3.93242,-14.96263 -13.69431,-27.38609 -28.10156,-36.39063 -14.61962,-9.13726 -33.91251,-15.13566 -57.91406,-18.56445 z" />
+  <path
+    d="m 254.16016,263.75977 -8.32032,12.48046 c 18.87994,12.58663 30.93166,27.79106 37.04493,46.13086 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36103,-7.08308 1.03217,-14.80481 -2.52343,-22.30468 -7.22746,-21.63209 -21.83225,-39.74038 -42.93164,-53.80664 z" />
+  <path
+    d="m 245.83984,263.75977 c -21.09939,14.06626 -35.70418,32.17455 -42.93164,53.80664 -3.5556,7.49987 -4.88446,15.2216 -2.52343,22.30468 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 6.11327,-18.3398 18.16499,-33.54423 37.04493,-46.13086 z" />
+  <path
+    d="m 248.5293,262.64648 c -35.0305,7.0061 -60.89872,25.32088 -75.23828,54 C 169.62227,323.98397 167.5,330.83333 167.5,337.5 c 0,6.66667 2.53811,13.14358 7.19727,17.80273 5.1011,5.1011 13.27646,6.61163 20.17382,4.3125 6.89737,-2.29912 13.32304,-7.20389 20.43164,-14.3125 l 0.86133,-0.85937 0.54492,-1.08984 c 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.58408,11.16816 5.64385,21.1051 0.42382,32.1914 -5.75159,5.55819 -10.66362,8.86574 -13.58593,9.83985 -3.10264,1.03421 -3.26061,0.87806 -4.82618,-0.6875 C 183.29523,342.68976 182.5,340.83333 182.5,337.5 c 0,-3.33333 1.21106,-8.15064 4.20898,-14.14648 12.32711,-24.65421 33.12555,-39.67277 64.76172,-46 z" />
+  <path
+    d="m 248.37305,262.67773 c -30.3589,6.74642 -54.16547,14.33274 -71.72657,23.11329 -17.56109,8.78054 -29.44017,18.87325 -33.76171,31.83789 l 0.40625,-0.98243 c -3.89235,7.78471 -5.36349,15.85291 -2.90625,23.22461 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 2.34513,-7.03536 10.46605,-15.27599 26.23829,-23.16211 15.77224,-7.88612 38.63233,-15.2998 68.27343,-21.88671 z" />
+</svg>
+            <div class="logo-title">GharibBlog</div>
+          </a>
+        </div>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="../../index.html"><i class="fa-fw fas fa-anchor"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/about/index.html"><a class="padding" href="../../about/index.html"><i class="fa-fw fas fa-info-circle"></i> About</a></li>
+            <li class="" data-nav-id="/linux/index.html"><a class="padding" href="../../linux/index.html">Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/sec/index.html"><a class="padding" href="../../sec/index.html">Security</a><ul id="R-subsections-00a310d136b3ca0ada6555e05603515b" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/devops/index.html"><a class="padding" href="../../devops/index.html">DevOps</a><ul id="R-subsections-389d4feb4920b919bcbc0b1e9947dace" class="collapsible-menu">
+            <li class="" data-nav-id="/devops/ntopng/index.html"><a class="padding" href="../../devops/ntopng/index.html">Install nTopNG on Linux</a></li>
+            <li class="" data-nav-id="/devops/freshrss/index.html"><a class="padding" href="../../devops/freshrss/index.html">Run FreshRSS With Docker-Compose</a></li>
+            <li class="" data-nav-id="/devops/sysadmin/index.html"><a class="padding" href="../../devops/sysadmin/index.html">SysAdmin Tools</a></li>
+            <li class="" data-nav-id="/devops/vps/index.html"><a class="padding" href="../../devops/vps/index.html">VPS, Dedicated Server, VDS, VPN, email, and Domain Providers</a></li>
+            <li class="" data-nav-id="/devops/mastodon/index.html"><a class="padding" href="../../devops/mastodon/index.html">Run Private Mastodon Instance</a></li>
+            <li class="" data-nav-id="/devops/element/index.html"><a class="padding" href="../../devops/element/index.html">Run Private Matrix (Element) Instance</a></li>
+            <li class="active " data-nav-id="/devops/githubactions/index.html"><a class="padding" href="../../devops/githubactions/index.html">Github Actions</a></li>
+            <li class="" data-nav-id="/devops/selfhosted/index.html"><a class="padding" href="../../devops/selfhosted/index.html">Self-Hosted</a></li>
+            <li class="" data-nav-id="/devops/haproxy/index.html"><a class="padding" href="../../devops/haproxy/index.html">HAProxy as an upstream reverse proxy</a></li>
+            <li class="" data-nav-id="/devops/tonsite/index.html"><a class="padding" href="../../devops/tonsite/index.html">Let&#39;s Deploy TON Site </a></li></ul></li>
+            <li class="" data-nav-id="/data/index.html"><a class="padding" href="../../data/index.html">Data</a><ul id="R-subsections-4caa791091d21d23e63637080226f370" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vpn/index.html"><a class="padding" href="../../vpn/index.html">VPN</a><ul id="R-subsections-db063ce8b8420f6f2b9daa1d41f37eaf" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/software/index.html"><a class="padding" href="../../software/index.html">Software</a><ul id="R-subsections-3cdb59a63a3cd12f868155fa9018f956" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/onion/index.html"><a class="padding" href="../../onion/index.html">ONION</a><ul id="R-subsections-1741fdcc6dd4676b5d37f741fb66e01c" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/osint/index.html"><a class="padding" href="../../osint/index.html">OSINT</a><ul id="R-subsections-b7b3e3b782000076c296abdb0bfb1528" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://alirezagharib.ir"><a class="padding" href="https://alirezagharib.ir" rel="external" target="_self"><i class="fa-fw fas fa-puzzle-piece"></i> Author</a></li>
+            <li class="" data-nav-id="https://github.com/gharib-uk"><a class="padding" href="https://github.com/gharib-uk" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard/clipboard.min.js?1745990494" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990494" defer></script>
+    <script src="../../js/theme.min.js?1745990494" defer></script>
+  </body>
+</html>

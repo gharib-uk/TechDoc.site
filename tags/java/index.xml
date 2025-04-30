@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java :: Tag :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/tags/java/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate>Tue, 27 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Language Frameworks</title>
+      <link>https://blog.alirezagharib.ir/software/java/index.html</link>
+      <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/software/java/index.html</guid>
+      <description>Java various frameworks and tools</description>
+    </item>
+  </channel>
+</rss>

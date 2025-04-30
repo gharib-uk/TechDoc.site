@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Install Common VPN Protocols :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/vpn/common-vpn-protocols/index.html</link>
+    <description>How to install and use Common VPN Protocols ?!</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/vpn/common-vpn-protocols/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

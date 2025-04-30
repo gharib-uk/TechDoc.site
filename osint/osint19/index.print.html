@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="OSINT Tools">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="OSINT Tools :: Gharib Blog">
+    <meta name="twitter:description" content="OSINT Tools">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/osint/osint19/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="OSINT Tools :: Gharib Blog">
+    <meta property="og:description" content="OSINT Tools">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="OSINt">
+    <meta property="article:published_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:tag" content="Osint">
+    <meta itemprop="name" content="OSINT Tools :: Gharib Blog">
+    <meta itemprop="description" content="OSINT Tools">
+    <meta itemprop="datePublished" content="2024-08-06T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-06T00:00:00+00:00">
+    <meta itemprop="wordCount" content="2280">
+    <meta itemprop="keywords" content="Osint">
+    <title>OSINT Tools :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/osint/osint19/index.html" rel="canonical" type="text/html" title="OSINT Tools :: Gharib Blog">
+    <link href="../../osint/osint19/index.xml" rel="alternate" type="application/rss+xml" title="OSINT Tools :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/osint\/osint19\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../osint/osint19/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#osintko-is-a-customized-kali-linux-based-iso-image-with-pre-installed-packages-and-scripts">OSINTk.o is a customized Kali Linux-based ISO image with pre-installed packages and scripts</a></li>
+    <li><a href="#cyberpunkos-is-a-virtual-machine-that-incorporates-several-tools-for-open-source-intelligence-osint-to-dismantle-fake-news">CyberPunkOS is a virtual machine that incorporates several tools for Open Source Intelligence (OSINT) to dismantle Fake News</a></li>
+    <li><a href="#chiasmodon-">Chiasmodon 🥷🏼</a></li>
+    <li><a href="#one-click-face-swap">One-click face swap</a></li>
+    <li><a href="#this-software-is-designed-to-contribute-positively-to-the-ai-generated-media-industry-assisting-artists-with-tasks-like-character-animation-and-models-for-clothing">This software is designed to contribute positively to the AI-generated media industry, assisting artists with tasks like character animation and models for clothing.</a></li>
+    <li><a href="#short-osint-automation-courses-each-of-which-requires-only-one-hour-of-reading-to-learn">Short OSINT automation courses, each of which requires only one hour of reading to learn:</a></li>
+    <li><a href="#linux-for-osint-21-day">Linux for OSINT. 21-day</a></li>
+    <li><a href="#python-for-osint-21-day">Python for OSINT. 21-day</a></li>
+    <li><a href="#alfred-is-a-advanced-osint-information-gathering-tool-that-finds-social-media-accounts-based-on-inputs">Alfred is a advanced OSINT information gathering tool that finds social media accounts based on inputs</a></li>
+    <li><a href="#prying-deep---an-osint-tool-to-collect-intelligence-on-the-dark-web">Prying Deep - An OSINT tool to collect intelligence on the dark web.</a></li>
+    <li><a href="#this-python-script-is-an-osint-open-source-intelligence-tool-called-ominis-osint---information-gathering-it-performs-online-information-gathering-by-querying-google-for-search-results-related-to-a-user-inputted-query">This Python script is an OSINT (Open Source Intelligence) tool called &ldquo;Ominis OSINT - Information Gathering.&rdquo; It performs online information gathering by querying Google for search results related to a user-inputted query.</a></li>
+    <li><a href="#cheat-sheet---osint-">Cheat Sheet - OSINT 🕵🏽‍♂️</a></li>
+    <li><a href="#an-online-tool-to-visualize-the-relationships-of-different-entry-points-in-an-investigation-domain-email-phone-person-etc-extreme-simplified-analog-of-maltego">An online tool to visualize the relationships of different entry points in an investigation (domain, email, phone, person etc). Extreme simplified analog of Maltego.</a></li>
+    <li><a href="#social-media-osint-tools-collection-">Social Media #OSINT Tools Collection 👨🏽‍💻</a></li>
+    <li><a href="#tools-and-packages-that-are-used-for-countering-forensic-activities-including-encryption-steganography-and-anything-that-modify-attributes">Tools and packages that are used for countering forensic activities, including encryption, steganography, and anything that modify attributes.</a></li>
+    <li><a href="#osint-toolkit-is-a-full-stack-web-application-designed-to-assist-security-analysts-in-their-work">OSINT Toolkit is a full-stack web application designed to assist security analysts in their work</a></li>
+    <li><a href="#imago-forensics-">imago-forensics 🕵️</a></li>
+    <li><a href="#-collection-of-4000-osint-resources">🕵️ Collection of 4000+ OSINT resources</a></li>
+    <li><a href="#avilla-forensics-30---tool-for-pollice-investigation-forensics-whatsapp-signal-other-poppular-apps-message">Avilla Forensics 3.0  / Tool for pollice investigation forensics Whatsapp-Signal other poppular apps message</a></li>
+    <li><a href="#bbhtv2">BBHTv2</a></li>
+    <li><a href="#a-single-script-for-all-the-tools-you-need-for-bug-bounty-thanks-to-the-original-creator-of-bbhtv1-for-the-idea--httpsgithubcomnahamsec">A single script for all the tools you need for bug bounty. Thanks to the original creator of bbhtv1 for the idea &raquo; <a href="https://github.com/nahamsec">https://github.com/nahamsec</a></a></li>
+    <li><a href="#bug-bounty-hunting-tools-is-a-script-to-install-the-most-popular-tools">Bug Bounty Hunting Tools is a script to install the most popular tools</a></li>
+    <li><a href="#one-liner-install-curl-httpsrawgithubusercontentcomunethicalnoobbbhtv2masterbbhtv2sh--sudo-bash">One-Liner Install curl <a href="https://raw.githubusercontent.com/unethicalnoob/BBHTv2/master/bbhtv2.sh">https://raw.githubusercontent.com/unethicalnoob/BBHTv2/master/bbhtv2.sh</a> | sudo bash</a></li>
+    <li><a href="#tools-osintforensics-mobile">Tools OSINT/FORENSICS MOBILE</a></li>
+    <li><a href="#a-collection-of-tools--some-theory-for-cell-phone-related-investigations">A collection of tools (+ some theory) for cell phone related investigations</a></li>
+    <li><a href="#forensic-copy-acquisition-and-analysis-tools">Forensic Copy Acquisition and Analysis Tools</a></li>
+    <li><a href="#useful-extensions-for-osint">Useful Extensions for OSINT</a></li>
+    <li><a href="#so-what-is-this-all-about-yep-its-an-osint-blog-and-a-collection-of-osint-resources-and-tools-suggestions-for-new-osint-resources-is-always-welcomed">So what is this all about? Yep, its an OSINT blog and a collection of OSINT resources and tools. Suggestions for new OSINT resources is always welcomed.</a></li>
+    <li><a href="#documentation-and-sharing-repository-for-threatpinch-lookup-chrome--firefox-extension">Documentation and Sharing Repository for ThreatPinch Lookup Chrome &amp; Firefox Extension</a></li>
+    <li><a href="#a-tool-to-quickly-identify-relevant-publicly-available-open-source-intelligence-osint-tools-and-resources-saving-valuable-time-during-investigations-research-and-analysis">A tool to quickly identify relevant, publicly-available open source intelligence (&ldquo;OSINT&rdquo;) tools and resources, saving valuable time during investigations, research, and analysis.</a></li>
+    <li><a href="#geospatial-intelligence-library">Geospatial Intelligence Library</a></li>
+    <li><a href="#protintelligence-is-a-python-script-for-the-cyber-community-it-also-uses-neutrosint-made-by-kr0wz-will-help-you-get-info-on-protonmail-accounts-and-users-protonvpn-ip-adresses-protonmail-users-pgp-keys-digital-footprints-left-by-the-protonmail-user-on-the-clear-and-dark-web">Protintelligence is a Python script for the Cyber Community. It also uses NeutrOSINT made by Kr0wZ. Will help you get info on Protonmail accounts and users, ProtonVPN IP adresses, ProtonMail users&rsquo; PGP Keys, Digital Footprints left by the ProtonMail user on the Clear and Dark Web</a></li>
+    <li><a href="#current-links-from-the-osint-inception-start-me-project">Current links from the OSINT Inception start-me project</a></li>
+    <li><a href="#bevigil-cli-provides-a-unified-command-line-interface-and-python-library-for-using-bevigil-osint-api">Bevigil-cli provides a unified command line interface and python library for using BeVigil OSINT API.</a></li>
+    <li><a href="#curl-tool-usage-for-osint-open-source-intelligence">cURL Tool Usage for OSINT (Open-Source Intelligence)</a></li>
+    <li><a href="#social-analyzer---api-cli-and-web-app-for-analyzing--finding-a-persons-profile-across-1000-social-media--websites-it-includes-different-analysis-and-detection-modules-and-you-can-choose-which-modules-to-use-during-the-investigation-process">Social Analyzer - API, CLI, and Web App for analyzing &amp; finding a person&rsquo;s profile across +1000 social media \ websites. It includes different analysis and detection modules, and you can choose which modules to use during the investigation process.</a></li>
+    <li><a href="#complete-list-of-sites-where-you-can-download-the-distros-that-may-be-useful-to-those-who-are-about-to-or-are-already-in-an-advanced-state-in-the-context-of-osint-penetration-testing-digital-forensics-and-therefore-also-of-information-security">Complete list of sites where you can download the Distros that may be useful to those who are about to or are already in an advanced state in the context of OSINT, Penetration Testing, Digital Forensics and therefore also of Information Security.</a></li>
+    <li><a href="#a-set-of-social-media-osint-tools-that-i-use-when-participating-in-trace-labs-search-party-ctf">A set of social media OSINT tools that I use when participating in Trace Labs Search Party CTF</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#-andriller---is-software-utility-with-a-collection-of-forensic-tools-for-smartphones-it-performs-read-only-forensically-sound-non-destructive-acquisition-from-android-devices">📱 Andriller - is software utility with a collection of forensic tools for smartphones. It performs read-only, forensically sound, non-destructive acquisition from Android devices.</a></li>
+    <li><a href="#linkedin-enumeration-tool-to-extract-valid-employee-names-from-an-organization-through-search-engine-scraping">LinkedIn enumeration tool to extract valid employee names from an organization through search engine scraping.</a></li>
+    <li><a href="#osint-advancing-your-email-investigations-using-iky">OSINT ADVANCING YOUR EMAIL INVESTIGATIONS USING IKY</a></li>
+    <li><a href="#osint-automation-for-hackers">OSINT automation for hackers.</a></li>
+    <li><a href="#citizen-intelligence-agency-open-source-intelligence-osint-project">Citizen Intelligence Agency, open-source intelligence (OSINT) project</a></li>
+    <li><a href="#this-toolkit-aims-to-help-forensicators-perform-different-kinds-of-acquisitions-on-ios-devices">This toolkit aims to help forensicators perform different kinds of acquisitions on iOS devices</a></li>
+    <li><a href="#simple-imager-has-been-created-for-performing-live-acquisition-of-windows-based-systems-in-a-forensically-sound-manner">Simple Imager has been created for performing live acquisition of Windows based systems in a forensically sound manner</a></li>
+    <li><a href="#autoexif-want-to-remove-sensitive-data-from-photos-or-even-view-it-use-autoexif-to-easily-help-you-do-that-no-more-remembering-syntaxs--note-this-is-now-merged-into-snd-and-phisherprice">Autoexif want to remove sensitive data from photos or even view it? use autoexif to easily help you do that no more remembering syntaxs, -note: this is now merged into snd and phisherprice</a></li>
+    <li><a href="#sabonis-a-digital-forensics-and-incident-response-pivoting-tool">Sabonis, a Digital Forensics and Incident Response pivoting tool</a></li>
+    <li><a href="#scraping-legifrance-naturalisation-decrees-for-fun-and-osint-profit">Scraping LegiFrance naturalisation decrees for fun and OSINT profit</a></li>
+    <li><a href="#an-osint-tool-to-search-for-accounts-by-username-in-social-networks">An OSINT tool to search for accounts by username in social networks</a></li>
+    <li><a href="#ransomware-groups-posts">Ransomware groups posts</a></li>
+    <li><a href="#public-release-of-telepathy-an-osint-toolkit-for-investigating-telegram-chats">Public release of Telepathy, an OSINT toolkit for investigating Telegram chats.</a></li>
+    <li><a href="#an-open-source-intelligence-framework-to-investigate-and-keep-track-of-the-investigation-of-a-certain-individual">An Open Source Intelligence Framework to investigate and keep track of the investigation of a certain individual</a></li>
+    <li><a href="#osint-tool-to-scrape-names-and-usernames-from-large-friend-lists-on-facebook-without-being-rate-limited">OSINT tool to scrape names and usernames from large friend lists on Facebook, without being rate limited.</a></li>
+    <li><a href="#-offensive-google-framework">🕵️‍♂️ Offensive Google framework.</a></li>
+    <li><a href="#heading"></a></li>
+    <li><a href="#docker-image-for-osint">Docker image for osint</a></li>
+    <li><a href="#python-pentester-tool---easily-addcreate-plugins-available-in-command-line-tool-and-module">Python Pentester Tool - easily add/create plugins, available in command line tool and module.</a></li>
+    <li><a href="#exif-looter---exiflooter-finds-geolocation-on-all-image-urls-and-directories-also-integrates-with-openstreetmap">Exif Looter:&ndash; ExifLooter finds geolocation on all image urls and directories also integrates with OpenStreetMap.</a></li>
+    <li><a href="#this-tool-gives-information-about-the-phone-number-that-you-entered">This tool gives information about the phone number that you entered.</a></li>
+    <li><a href="#list-of-osint-resources">List of OSINT resources</a></li>
+    <li><a href="#goofuzz-is-a-tool-to-perform-fuzzing-with-an-osint-approach-managing-to-enumerate-directories-files-subdomains-or-parameters-without-leaving-evidence-on-the-targets-server-and-by-means-of-advanced-google-searches-google-dorking">GooFuzz is a tool to perform fuzzing with an OSINT approach, managing to enumerate directories, files, subdomains or parameters without leaving evidence on the target&rsquo;s server and by means of advanced Google searches (Google Dorking).</a></li>
+    <li><a href="#the-best-tools-and-resources-for-forensic-analysis">The best tools and resources for forensic analysis</a></li>
+    <li><a href="#spiderfoot-automates-osint-for-threat-intelligence-and-mapping-your-attack-surface">SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.</a></li>
+    <li><a href="#hayabusa">Hayabusa</a></li>
+    <li><a href="#awesome-forensics">Awesome forensics</a></li>
+    <li><a href="#mvt">MVT</a></li>
+    <li><a href="#firefox-security-researcher">FireFox Security Researcher</a></li>
+    <li><a href="#iris-web">Iris Web</a></li>
+    <li><a href="#offensive-osint-blog">Offensive OSINT Blog</a></li>
+    <li><a href="#judge-jury-and-executable">Judge Jury and Executable</a></li>
+    <li><a href="#forensics-tools">Forensics Tools</a></li>
+    <li><a href="#commit-stream">Commit-stream</a></li>
+    <li><a href="#quidam">Quidam</a></li>
+    <li><a href="#quidam-maltego-transform">Quidam maltego transform</a></li>
+    <li><a href="#onionsearch">OnionSearch</a></li>
+    <li><a href="#linux-explorer">Linux explorer</a></li>
+    <li><a href="#daprofiler">DaProfiler</a></li>
+    <li><a href="#collection-osint-resources-and-tools">Collection OSINT resources and tools</a></li>
+    <li><a href="#tools-and-techniques-related-with-cloud-osint">Tools and techniques related with Cloud Osint</a></li>
+    <li><a href="#forensics-toolkit-for-image-audionetwork-and-disk-image-analyis">Forensics Toolkit for image ,audio,network and disk image analyis.</a></li>
+    <li><a href="#rapid7-osint">Rapid7 OSINT</a></li>
+    <li><a href="#mihari">Mihari</a></li>
+    <li><a href="#tracee">TRACEE</a></li>
+    <li><a href="#tlosint-live">Tlosint live</a></li>
+    <li><a href="#gosint">gOSINT</a></li>
+    <li><a href="#karma-v2">Karma v2</a></li>
+    <li><a href="#secure-elf">Secure ELF</a></li>
+    <li><a href="#toutatis">Toutatis</a></li>
+    <li><a href="#octosuite">Octosuite</a></li>
+    <li><a href="#should-i-trust">Should i trust</a></li>
+    <li><a href="#forensix">Forensix</a></li>
+    <li><a href="#sub3suite">Sub3suite</a></li>
+    <li><a href="#live-forensicator">Live Forensicator</a></li>
+    <li><a href="#profil3r">Profil3r</a></li>
+    <li><a href="#infoooze">Infoooze</a></li>
+    <li><a href="#oblivion">Oblivion</a></li>
+    <li><a href="#mrholmes">Mr.Holmes</a></li>
+    <li><a href="#avosint">AVOSINT</a></li>
+    <li><a href="#darvester">Darvester</a></li>
+    <li><a href="#ghost-recon">Ghost Recon</a></li>
+    <li><a href="#collector">Collector</a></li>
+    <li><a href="#twayback">Twayback</a></li>
+    <li><a href="#opensquat">Opensquat</a></li>
+    <li><a href="#telegram-trilateration">Telegram Trilateration</a></li>
+    <li><a href="#telegram-nearby-map">Telegram Nearby Map</a></li>
+    <li><a href="#holehe-maltego-transform">Holehe Maltego Transform</a></li>
+    <li><a href="#terra">Terra</a></li>
+    <li><a href="#prosint">Prosint</a></li>
+    <li><a href="#toolkit">Toolkit</a></li>
+    <li><a href="#ios-frequent-locations-dumper">iOS Frequent Locations Dumper</a></li>
+    <li><a href="#whapa">Whapa</a></li>
+    <li><a href="#kupa3">Kupa3</a></li>
+    <li><a href="#abuse-insight">Abuse Insight</a></li>
+    <li><a href="#octosuite-1">Octosuite</a></li>
+    <li><a href="#kamerka-gui">Kamerka Gui</a></li>
+    <li><a href="#social-path">Social Path</a></li>
+    <li><a href="#osint-stuff-tool-collection">Osint stuff tool collection</a></li>
+    <li><a href="#teler">Teler</a></li>
+    <li><a href="#arrestats">ArreStats</a></li>
+    <li><a href="#osint-jump">OSINT JUMP</a></li>
+    <li><a href="#infoga">Infoga</a></li>
+    <li><a href="#crime-data-explorer">Crime data explorer</a></li>
+    <li><a href="#pdfmted">PDFMtEd</a></li>
+    <li><a href="#audio-metadata">Audio metadata</a></li>
+    <li><a href="#gesmask">Gesmask</a></li>
+    <li><a href="#check-ifemail-exists">Check ifemail exists</a></li>
+    <li><a href="#app-metadata">App Metadata</a></li>
+    <li><a href="#androphsy">ANDROPHSY</a></li>
+    <li><a href="#rdpcachestitcher">RdpCacheStitcher</a></li>
+    <li><a href="#androidqf">Androidqf</a></li>
+    <li><a href="#iped">IPED</a></li>
+    <li><a href="#turbinia">Turbinia</a></li>
+    <li><a href="#chrome-extractor">Chrome Extractor</a></li>
+    <li><a href="#firefox-decrypt">Firefox Decrypt</a></li>
+    <li><a href="#ip-geolocation">Ip Geolocation</a></li>
+    <li><a href="#cameradar">Cameradar</a></li>
+    <li><a href="#power-forensic">Power Forensic</a></li>
+    <li><a href="#face-recognition">Face Recognition</a></li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../osint/index.html"><span itemprop="name">OSINT</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OSINT Tools</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint19/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint21/index.html" title="OSINT Collections (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint/index.html" title="OSINT Tools 1 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/osint/index.html">Osint</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="osint-tools">OSINT Tools</h1>
+
+<h1 id="osint-tools-collection">OSINT Tools Collection</h1>
+<h2 id="osintko-is-a-customized-kali-linux-based-iso-image-with-pre-installed-packages-and-scripts">OSINTk.o is a customized Kali Linux-based ISO image with pre-installed packages and scripts</h2>
+<p><a href="https://github.com/LinaYorda/OSINTko" rel="external" target="_self">https://github.com/LinaYorda/OSINTko</a></p>
+<h2 id="cyberpunkos-is-a-virtual-machine-that-incorporates-several-tools-for-open-source-intelligence-osint-to-dismantle-fake-news">CyberPunkOS is a virtual machine that incorporates several tools for Open Source Intelligence (OSINT) to dismantle Fake News</h2>
+<p><a href="https://github.com/cyberpunkOS/CyberPunkOS" rel="external" target="_self">https://github.com/cyberpunkOS/CyberPunkOS</a></p>
+<h2 id="chiasmodon-">Chiasmodon 🥷🏼</h2>
+<p>Command line #osint toolkit for domain information gathering.
+Partly free.
+<a href="https://github.com/chiasmod0n/chiasmodon" rel="external" target="_self">https://github.com/chiasmod0n/chiasmodon</a></p>
+<h2 id="one-click-face-swap">One-click face swap</h2>
+<h2 id="this-software-is-designed-to-contribute-positively-to-the-ai-generated-media-industry-assisting-artists-with-tasks-like-character-animation-and-models-for-clothing">This software is designed to contribute positively to the AI-generated media industry, assisting artists with tasks like character animation and models for clothing.</h2>
+<p><a href="https://github.com/s0md3v/roop" rel="external" target="_self">https://github.com/s0md3v/roop</a></p>
+<h2 id="short-osint-automation-courses-each-of-which-requires-only-one-hour-of-reading-to-learn">Short OSINT automation courses, each of which requires only one hour of reading to learn:</h2>
+<h2 id="linux-for-osint-21-day">Linux for OSINT. 21-day</h2>
+<p><a href="https://github.com/cipher387/linux-for-OSINT-21-day" rel="external" target="_self">https://github.com/cipher387/linux-for-OSINT-21-day</a></p>
+<h2 id="python-for-osint-21-day">Python for OSINT. 21-day</h2>
+<p><a href="https://github.com/cipher387/python-for-OSINT-21-days" rel="external" target="_self">https://github.com/cipher387/python-for-OSINT-21-days</a></p>
+<h2 id="alfred-is-a-advanced-osint-information-gathering-tool-that-finds-social-media-accounts-based-on-inputs">Alfred is a advanced OSINT information gathering tool that finds social media accounts based on inputs</h2>
+<p><a href="https://github.com/Alfredredbird/alfred" rel="external" target="_self">https://github.com/Alfredredbird/alfred</a></p>
+<h2 id="prying-deep---an-osint-tool-to-collect-intelligence-on-the-dark-web">Prying Deep - An OSINT tool to collect intelligence on the dark web.</h2>
+<p><a href="https://github.com/iudicium/pryingdeep" rel="external" target="_self">https://github.com/iudicium/pryingdeep</a></p>
+<h2 id="this-python-script-is-an-osint-open-source-intelligence-tool-called-ominis-osint---information-gathering-it-performs-online-information-gathering-by-querying-google-for-search-results-related-to-a-user-inputted-query">This Python script is an OSINT (Open Source Intelligence) tool called &ldquo;Ominis OSINT - Information Gathering.&rdquo; It performs online information gathering by querying Google for search results related to a user-inputted query.</h2>
+<p><a href="https://github.com/AnonCatalyst/Ominis-Osint" rel="external" target="_self">https://github.com/AnonCatalyst/Ominis-Osint</a></p>
+<h2 id="cheat-sheet---osint-">Cheat Sheet - OSINT 🕵🏽‍♂️</h2>
+<p><a href="https://piratemoo.gitbook.io/moo/moosint/osint" rel="external" target="_self">https://piratemoo.gitbook.io/moo/moosint/osint</a></p>
+<h2 id="an-online-tool-to-visualize-the-relationships-of-different-entry-points-in-an-investigation-domain-email-phone-person-etc-extreme-simplified-analog-of-maltego">An online tool to visualize the relationships of different entry points in an investigation (domain, email, phone, person etc). Extreme simplified analog of Maltego.</h2>
+<p><a href="https://app.netlas.io/asd/" rel="external" target="_self">https://app.netlas.io/asd/</a></p>
+<h2 id="social-media-osint-tools-collection-">Social Media #OSINT Tools Collection 👨🏽‍💻</h2>
+<p>🔗https://github.com/osintambition/Social-Media-OSINT-Tools-Collection</p>
+<h2 id="tools-and-packages-that-are-used-for-countering-forensic-activities-including-encryption-steganography-and-anything-that-modify-attributes">Tools and packages that are used for countering forensic activities, including encryption, steganography, and anything that modify attributes.</h2>
+<p><a href="https://github.com/shadawck/awesome-anti-forensic" rel="external" target="_self">https://github.com/shadawck/awesome-anti-forensic</a></p>
+<h2 id="osint-toolkit-is-a-full-stack-web-application-designed-to-assist-security-analysts-in-their-work">OSINT Toolkit is a full-stack web application designed to assist security analysts in their work</h2>
+<p><a href="https://github.com/dev-lu/osint_toolkit" rel="external" target="_self">https://github.com/dev-lu/osint_toolkit</a></p>
+<h2 id="imago-forensics-">imago-forensics 🕵️</h2>
+<p>Imago is a python tool that extract digital evidences from images recursively. This tool is useful throughout a digital forensic investigation.
+<a href="https://github.com/redaelli/imago-forensics" rel="external" target="_self">https://github.com/redaelli/imago-forensics</a></p>
+<h2 id="-collection-of-4000-osint-resources">🕵️ Collection of 4000+ OSINT resources</h2>
+<p><a href="https://metaosint.github.io/table/" rel="external" target="_self">https://metaosint.github.io/table/</a></p>
+<h2 id="avilla-forensics-30---tool-for-pollice-investigation-forensics-whatsapp-signal-other-poppular-apps-message">Avilla Forensics 3.0  / Tool for pollice investigation forensics Whatsapp-Signal other poppular apps message</h2>
+<p><a href="https://github.com/AvillaDaniel/AvillaForensics" rel="external" target="_self">https://github.com/AvillaDaniel/AvillaForensics</a></p>
+<h2 id="bbhtv2">BBHTv2</h2>
+<h2 id="a-single-script-for-all-the-tools-you-need-for-bug-bounty-thanks-to-the-original-creator-of-bbhtv1-for-the-idea--httpsgithubcomnahamsec">A single script for all the tools you need for bug bounty. Thanks to the original creator of bbhtv1 for the idea &raquo; <a href="https://github.com/nahamsec" rel="external" target="_self">https://github.com/nahamsec</a></h2>
+<h2 id="bug-bounty-hunting-tools-is-a-script-to-install-the-most-popular-tools">Bug Bounty Hunting Tools is a script to install the most popular tools</h2>
+<h2 id="one-liner-install-curl-httpsrawgithubusercontentcomunethicalnoobbbhtv2masterbbhtv2sh--sudo-bash">One-Liner Install curl <a href="https://raw.githubusercontent.com/unethicalnoob/BBHTv2/master/bbhtv2.sh" rel="external" target="_self">https://raw.githubusercontent.com/unethicalnoob/BBHTv2/master/bbhtv2.sh</a> | sudo bash</h2>
+<h2 id="tools-osintforensics-mobile">Tools OSINT/FORENSICS MOBILE</h2>
+<p>Features</p>
+<h2 id="a-collection-of-tools--some-theory-for-cell-phone-related-investigations">A collection of tools (+ some theory) for cell phone related investigations</h2>
+<p><a href="https://github.com/CScorza/OSINT-FORENSICS-MOBILE" rel="external" target="_self">https://github.com/CScorza/OSINT-FORENSICS-MOBILE</a></p>
+<h2 id="forensic-copy-acquisition-and-analysis-tools">Forensic Copy Acquisition and Analysis Tools</h2>
+<p><a href="https://github.com/CScorza/Analisi-Digital-Forense" rel="external" target="_self">https://github.com/CScorza/Analisi-Digital-Forense</a></p>
+<h2 id="useful-extensions-for-osint">Useful Extensions for OSINT</h2>
+<p><a href="https://github.com/CScorza/EstensioniChromeOSINT" rel="external" target="_self">https://github.com/CScorza/EstensioniChromeOSINT</a></p>
+<h2 id="so-what-is-this-all-about-yep-its-an-osint-blog-and-a-collection-of-osint-resources-and-tools-suggestions-for-new-osint-resources-is-always-welcomed">So what is this all about? Yep, its an OSINT blog and a collection of OSINT resources and tools. Suggestions for new OSINT resources is always welcomed.</h2>
+<p><a href="https://github.com/OhShINT/ohshint.gitbook.io" rel="external" target="_self">https://github.com/OhShINT/ohshint.gitbook.io</a></p>
+<h2 id="documentation-and-sharing-repository-for-threatpinch-lookup-chrome--firefox-extension">Documentation and Sharing Repository for ThreatPinch Lookup Chrome &amp; Firefox Extension</h2>
+<p><a href="https://github.com/cloudtracer/ThreatPinchLookup" rel="external" target="_self">https://github.com/cloudtracer/ThreatPinchLookup</a></p>
+<h2 id="a-tool-to-quickly-identify-relevant-publicly-available-open-source-intelligence-osint-tools-and-resources-saving-valuable-time-during-investigations-research-and-analysis">A tool to quickly identify relevant, publicly-available open source intelligence (&ldquo;OSINT&rdquo;) tools and resources, saving valuable time during investigations, research, and analysis.</h2>
+<p><a href="https://github.com/MetaOSINT/MetaOSINT.github.io" rel="external" target="_self">https://github.com/MetaOSINT/MetaOSINT.github.io</a></p>
+<h2 id="geospatial-intelligence-library">Geospatial Intelligence Library</h2>
+<p>This repository contains a curated list of open source intelligence tools and resources focused on geolocation and chronolocation. A bookmark version of the most recent iteration of the following recourses is also available.
+<a href="https://github.com/cartographia/geospatial-intelligence-library" rel="external" target="_self">https://github.com/cartographia/geospatial-intelligence-library</a></p>
+<h2 id="protintelligence-is-a-python-script-for-the-cyber-community-it-also-uses-neutrosint-made-by-kr0wz-will-help-you-get-info-on-protonmail-accounts-and-users-protonvpn-ip-adresses-protonmail-users-pgp-keys-digital-footprints-left-by-the-protonmail-user-on-the-clear-and-dark-web">Protintelligence is a Python script for the Cyber Community. It also uses NeutrOSINT made by Kr0wZ. Will help you get info on Protonmail accounts and users, ProtonVPN IP adresses, ProtonMail users&rsquo; PGP Keys, Digital Footprints left by the ProtonMail user on the Clear and Dark Web</h2>
+<p><a href="https://github.com/C3n7ral051nt4g3ncy/Prot1ntelligence" rel="external" target="_self">https://github.com/C3n7ral051nt4g3ncy/Prot1ntelligence</a></p>
+<h2 id="current-links-from-the-osint-inception-start-me-project">Current links from the OSINT Inception start-me project</h2>
+<p><a href="https://github.com/C3n7ral051nt4g3ncy/OSINT_Inception-links" rel="external" target="_self">https://github.com/C3n7ral051nt4g3ncy/OSINT_Inception-links</a></p>
+<h2 id="bevigil-cli-provides-a-unified-command-line-interface-and-python-library-for-using-bevigil-osint-api">Bevigil-cli provides a unified command line interface and python library for using BeVigil OSINT API.</h2>
+<p><a href="https://github.com/Bevigil/BeVigil-OSINT-CLI" rel="external" target="_self">https://github.com/Bevigil/BeVigil-OSINT-CLI</a></p>
+<h2 id="curl-tool-usage-for-osint-open-source-intelligence">cURL Tool Usage for OSINT (Open-Source Intelligence)</h2>
+<p><a href="https://github.com/C3n7ral051nt4g3ncy/cURL_for_OSINT" rel="external" target="_self">https://github.com/C3n7ral051nt4g3ncy/cURL_for_OSINT</a></p>
+<h2 id="social-analyzer---api-cli-and-web-app-for-analyzing--finding-a-persons-profile-across-1000-social-media--websites-it-includes-different-analysis-and-detection-modules-and-you-can-choose-which-modules-to-use-during-the-investigation-process">Social Analyzer - API, CLI, and Web App for analyzing &amp; finding a person&rsquo;s profile across +1000 social media \ websites. It includes different analysis and detection modules, and you can choose which modules to use during the investigation process.</h2>
+<p><a href="https://github.com/qeeqbox/social-analyzer" rel="external" target="_self">https://github.com/qeeqbox/social-analyzer</a></p>
+<h2 id="complete-list-of-sites-where-you-can-download-the-distros-that-may-be-useful-to-those-who-are-about-to-or-are-already-in-an-advanced-state-in-the-context-of-osint-penetration-testing-digital-forensics-and-therefore-also-of-information-security">Complete list of sites where you can download the Distros that may be useful to those who are about to or are already in an advanced state in the context of OSINT, Penetration Testing, Digital Forensics and therefore also of Information Security.</h2>
+<p><a href="https://github.com/CScorza/DistroForensics" rel="external" target="_self">https://github.com/CScorza/DistroForensics</a></p>
+<h2 id="a-set-of-social-media-osint-tools-that-i-use-when-participating-in-trace-labs-search-party-ctf">A set of social media OSINT tools that I use when participating in Trace Labs Search Party CTF</h2>
+<p><a href="https://github.com/LinaYorda/OSINTtools" rel="external" target="_self">https://github.com/LinaYorda/OSINTtools</a></p>
+<h2 id="about">About</h2>
+<p>This toolkit aims to help forensicators perform different kinds of acquisitions on iOS devices
+<a href="https://github.com/jfarley248/MEAT" rel="external" target="_self">https://github.com/jfarley248/MEAT</a></p>
+<h2 id="-andriller---is-software-utility-with-a-collection-of-forensic-tools-for-smartphones-it-performs-read-only-forensically-sound-non-destructive-acquisition-from-android-devices">📱 Andriller - is software utility with a collection of forensic tools for smartphones. It performs read-only, forensically sound, non-destructive acquisition from Android devices.</h2>
+<p><a href="https://github.com/den4uk/andriller" rel="external" target="_self">https://github.com/den4uk/andriller</a></p>
+<h2 id="linkedin-enumeration-tool-to-extract-valid-employee-names-from-an-organization-through-search-engine-scraping">LinkedIn enumeration tool to extract valid employee names from an organization through search engine scraping.</h2>
+<p><a href="https://github.com/m8sec/CrossLinked" rel="external" target="_self">https://github.com/m8sec/CrossLinked</a></p>
+<h2 id="osint-advancing-your-email-investigations-using-iky">OSINT ADVANCING YOUR EMAIL INVESTIGATIONS USING IKY</h2>
+<p><a href="https://github.com/kennbroorg/iKy" rel="external" target="_self">https://github.com/kennbroorg/iKy</a></p>
+<h2 id="osint-automation-for-hackers">OSINT automation for hackers.</h2>
+<p><a href="https://github.com/blacklanternsecurity/bbot" rel="external" target="_self">https://github.com/blacklanternsecurity/bbot</a></p>
+<h2 id="citizen-intelligence-agency-open-source-intelligence-osint-project">Citizen Intelligence Agency, open-source intelligence (OSINT) project</h2>
+<p><a href="https://github.com/Hack23/cia" rel="external" target="_self">https://github.com/Hack23/cia</a></p>
+<h2 id="this-toolkit-aims-to-help-forensicators-perform-different-kinds-of-acquisitions-on-ios-devices">This toolkit aims to help forensicators perform different kinds of acquisitions on iOS devices</h2>
+<p><a href="https://github.com/jfarley248/MEAT" rel="external" target="_self">https://github.com/jfarley248/MEAT</a></p>
+<h2 id="simple-imager-has-been-created-for-performing-live-acquisition-of-windows-based-systems-in-a-forensically-sound-manner">Simple Imager has been created for performing live acquisition of Windows based systems in a forensically sound manner</h2>
+<p><a href="https://github.com/QXJ6YW4/SimpleImager" rel="external" target="_self">https://github.com/QXJ6YW4/SimpleImager</a></p>
+<h2 id="autoexif-want-to-remove-sensitive-data-from-photos-or-even-view-it-use-autoexif-to-easily-help-you-do-that-no-more-remembering-syntaxs--note-this-is-now-merged-into-snd-and-phisherprice">Autoexif want to remove sensitive data from photos or even view it? use autoexif to easily help you do that no more remembering syntaxs, -note: this is now merged into snd and phisherprice</h2>
+<p><a href="https://github.com/SirCryptic/autoexif" rel="external" target="_self">https://github.com/SirCryptic/autoexif</a></p>
+<h2 id="sabonis-a-digital-forensics-and-incident-response-pivoting-tool">Sabonis, a Digital Forensics and Incident Response pivoting tool</h2>
+<p><a href="https://github.com/thedfirofficer/sabonis" rel="external" target="_self">https://github.com/thedfirofficer/sabonis</a></p>
+<h2 id="scraping-legifrance-naturalisation-decrees-for-fun-and-osint-profit">Scraping LegiFrance naturalisation decrees for fun and OSINT profit</h2>
+<p><a href="https://github.com/vadimkantorov/natudump" rel="external" target="_self">https://github.com/vadimkantorov/natudump</a></p>
+<h2 id="an-osint-tool-to-search-for-accounts-by-username-in-social-networks">An OSINT tool to search for accounts by username in social networks</h2>
+<p><a href="https://github.com/p1ngul1n0/blackbird" rel="external" target="_self">https://github.com/p1ngul1n0/blackbird</a></p>
+<h2 id="ransomware-groups-posts">Ransomware groups posts</h2>
+<p><a href="https://github.com/privtools/ransomposts" rel="external" target="_self">https://github.com/privtools/ransomposts</a></p>
+<h2 id="public-release-of-telepathy-an-osint-toolkit-for-investigating-telegram-chats">Public release of Telepathy, an OSINT toolkit for investigating Telegram chats.</h2>
+<p><a href="https://github.com/jordanwildon/Telepathy" rel="external" target="_self">https://github.com/jordanwildon/Telepathy</a></p>
+<h2 id="an-open-source-intelligence-framework-to-investigate-and-keep-track-of-the-investigation-of-a-certain-individual">An Open Source Intelligence Framework to investigate and keep track of the investigation of a certain individual</h2>
+<p><a href="https://github.com/MustafaAP/pinosint" rel="external" target="_self">https://github.com/MustafaAP/pinosint</a></p>
+<h2 id="osint-tool-to-scrape-names-and-usernames-from-large-friend-lists-on-facebook-without-being-rate-limited">OSINT tool to scrape names and usernames from large friend lists on Facebook, without being rate limited.</h2>
+<p><a href="https://github.com/narkopolo/fb_friend_list_scraper" rel="external" target="_self">https://github.com/narkopolo/fb_friend_list_scraper</a></p>
+<h2 id="-offensive-google-framework">🕵️‍♂️ Offensive Google framework.</h2>
+<p><a href="https://github.com/mxrch/GHunt" rel="external" target="_self">https://github.com/mxrch/GHunt</a></p>
+<h2 id="heading"></h2>
+<h2 id="docker-image-for-osint">Docker image for osint</h2>
+<p><a href="https://github.com/Vault-Cyber-Security/osint" rel="external" target="_self">https://github.com/Vault-Cyber-Security/osint</a></p>
+<h2 id="python-pentester-tool---easily-addcreate-plugins-available-in-command-line-tool-and-module">Python Pentester Tool - easily add/create plugins, available in command line tool and module.</h2>
+<p><a href="https://github.com/HarryLudemann/Ngoto" rel="external" target="_self">https://github.com/HarryLudemann/Ngoto</a></p>
+<h2 id="exif-looter---exiflooter-finds-geolocation-on-all-image-urls-and-directories-also-integrates-with-openstreetmap">Exif Looter:&ndash; ExifLooter finds geolocation on all image urls and directories also integrates with OpenStreetMap.</h2>
+<p><a href="https://github.com/aydinnyunus/exifLooter" rel="external" target="_self">https://github.com/aydinnyunus/exifLooter</a></p>
+<h2 id="this-tool-gives-information-about-the-phone-number-that-you-entered">This tool gives information about the phone number that you entered.</h2>
+<p><a href="https://github.com/AzizKpln/Moriarty-Project" rel="external" target="_self">https://github.com/AzizKpln/Moriarty-Project</a></p>
+<h2 id="list-of-osint-resources">List of OSINT resources</h2>
+<p><a href="https://github.com/romz0mbie/OSINT-Lists" rel="external" target="_self">https://github.com/romz0mbie/OSINT-Lists</a></p>
+<h2 id="goofuzz-is-a-tool-to-perform-fuzzing-with-an-osint-approach-managing-to-enumerate-directories-files-subdomains-or-parameters-without-leaving-evidence-on-the-targets-server-and-by-means-of-advanced-google-searches-google-dorking">GooFuzz is a tool to perform fuzzing with an OSINT approach, managing to enumerate directories, files, subdomains or parameters without leaving evidence on the target&rsquo;s server and by means of advanced Google searches (Google Dorking).</h2>
+<p><a href="https://github.com/m3n0sd0n4ld/GooFuzz" rel="external" target="_self">https://github.com/m3n0sd0n4ld/GooFuzz</a></p>
+<h2 id="the-best-tools-and-resources-for-forensic-analysis">The best tools and resources for forensic analysis</h2>
+<p><a href="https://github.com/HSNHK/Computer-forensics" rel="external" target="_self">https://github.com/HSNHK/Computer-forensics</a></p>
+<h2 id="spiderfoot-automates-osint-for-threat-intelligence-and-mapping-your-attack-surface">SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.</h2>
+<p><a href="https://github.com/smicallef/spiderfoot" rel="external" target="_self">https://github.com/smicallef/spiderfoot</a></p>
+<h2 id="hayabusa">Hayabusa</h2>
+<p>Hayabusa is a sigma-based threat hunting and fast forensics timeline generator for Windows event logs written in Rust. :
+<a href="https://github.com/Yamato-Security/hayabusa" rel="external" target="_self">https://github.com/Yamato-Security/hayabusa</a></p>
+<h2 id="awesome-forensics">Awesome forensics</h2>
+<p>A curated list of awesome forensic analysis tools and resources. :
+<a href="https://github.com/patronuscode/awesome-forensics" rel="external" target="_self">https://github.com/patronuscode/awesome-forensics</a></p>
+<h2 id="mvt">MVT</h2>
+<p>MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.:
+<a href="https://github.com/mvt-project/mvt" rel="external" target="_self">https://github.com/mvt-project/mvt</a></p>
+<h2 id="firefox-security-researcher">FireFox Security Researcher</h2>
+<p>Configure FireFox with Security and Intelligance features for OSINT and Security Investigations.
+<a href="https://github.com/simeononsecurity/FireFox-Security-Researcher" rel="external" target="_self">https://github.com/simeononsecurity/FireFox-Security-Researcher</a></p>
+<h2 id="iris-web">Iris Web</h2>
+<p>Collaborative Incident Response platform. : <a href="https://github.com/dfir-iris/iris-web" rel="external" target="_self">https://github.com/dfir-iris/iris-web</a></p>
+<h2 id="offensive-osint-blog">Offensive OSINT Blog</h2>
+<p><a href="https://www.offensiveosint.io/" rel="external" target="_self">https://www.offensiveosint.io/</a></p>
+<h2 id="judge-jury-and-executable">Judge Jury and Executable</h2>
+<p>A file system forensics analysis scanner and threat hunting tool. Scans file systems at the MFT and OS level and stores data in SQL, SQLite or CSV. Threats and data can be probed harnessing the power and syntax of SQL. : <a href="https://github.com/AdamWhiteHat/Judge-Jury-and-Executable" rel="external" target="_self">https://github.com/AdamWhiteHat/Judge-Jury-and-Executable</a></p>
+<h2 id="forensics-tools">Forensics Tools</h2>
+<p>A list of free and open forensics analysis tools and other resources. : <a href="https://github.com/mesquidar/ForensicsTools" rel="external" target="_self">https://github.com/mesquidar/ForensicsTools</a></p>
+<h2 id="commit-stream">Commit-stream</h2>
+<p>OSINT tool for finding Github repositories by extracting commit logs in real time from the Github event API. : <a href="https://github.com/x1sec/commit-stream" rel="external" target="_self">https://github.com/x1sec/commit-stream</a></p>
+<h2 id="quidam">Quidam</h2>
+<p>Quidam allows you to retrieve information thanks to the forgotten password function of some sites.: <a href="https://github.com/megadose/Quidam" rel="external" target="_self">https://github.com/megadose/Quidam</a></p>
+<h2 id="quidam-maltego-transform">Quidam maltego transform</h2>
+<p><a href="https://github.com/megadose/quidam-maltego" rel="external" target="_self">https://github.com/megadose/quidam-maltego</a></p>
+<h2 id="onionsearch">OnionSearch</h2>
+<p>OnionSearch is a script that scrapes urls on different .onion search engines. : <a href="https://github.com/megadose/OnionSearch" rel="external" target="_self">https://github.com/megadose/OnionSearch</a></p>
+<h2 id="linux-explorer">Linux explorer</h2>
+<p>Easy-to-use live forensics toolbox for Linux endpoints. : <a href="https://github.com/intezer/linux-explorer" rel="external" target="_self">https://github.com/intezer/linux-explorer</a></p>
+<h2 id="daprofiler">DaProfiler</h2>
+<p>DaProfiler allows you to get emails, social medias, adresses, works and more on your target using web scraping and google dorking techniques, based in France Only. The particularity of this program is its ability to find your target&rsquo;s e-mail adresses.: <a href="https://github.com/daprofiler/DaProfiler" rel="external" target="_self">https://github.com/daprofiler/DaProfiler</a></p>
+<h2 id="collection-osint-resources-and-tools">Collection OSINT resources and tools</h2>
+<p>So what is this all about? Yep, its an OSINT blog and a collection of OSINT resources and tools.: <a href="https://github.com/OhShINT/ohshint.gitbook.io" rel="external" target="_self">https://github.com/OhShINT/ohshint.gitbook.io</a></p>
+<h2 id="tools-and-techniques-related-with-cloud-osint">Tools and techniques related with Cloud Osint</h2>
+<p>A repository with information related to differnet resources, tools and techniques related with Cloud OSINT. : <a href="https://github.com/7WaySecurity/cloud_osint" rel="external" target="_self">https://github.com/7WaySecurity/cloud_osint</a></p>
+<h2 id="forensics-toolkit-for-image-audionetwork-and-disk-image-analyis">Forensics Toolkit for image ,audio,network and disk image analyis.</h2>
+<p>Major tools used for Digital Forensic Investigation, includes tools used for Image, Audio, Memory, Network and Disk Image data analysis. Helpful resource for CTF Challenges. : <a href="https://github.com/karthik997/Forensic_Toolkit" rel="external" target="_self">https://github.com/karthik997/Forensic_Toolkit</a></p>
+<h2 id="rapid7-osint">Rapid7 OSINT</h2>
+<p>All the tools you need to make your own mind up from the Open Data Sets.: <a href="https://github.com/tg12/rapid7_OSINT" rel="external" target="_self">https://github.com/tg12/rapid7_OSINT</a></p>
+<h2 id="mihari">Mihari</h2>
+<p>A tool for OSINT based threat hunting. : <a href="https://github.com/ninoseki/mihari" rel="external" target="_self">https://github.com/ninoseki/mihari</a></p>
+<h2 id="tracee">TRACEE</h2>
+<p>Tracee: Runtime Security and Forensics using eBPF. : <a href="https://github.com/aquasecurity/tracee" rel="external" target="_self">https://github.com/aquasecurity/tracee</a></p>
+<h2 id="tlosint-live">Tlosint live</h2>
+<p>Trace Labs OSINT Linux Distribution based on Kali.: <a href="https://github.com/tracelabs/tlosint-live" rel="external" target="_self">https://github.com/tracelabs/tlosint-live</a></p>
+<h2 id="gosint">gOSINT</h2>
+<p>OSINT Swiss Army Knife
+<a href="https://github.com/Nhoya/gOSINT" rel="external" target="_self">https://github.com/Nhoya/gOSINT</a></p>
+<h2 id="karma-v2">Karma v2</h2>
+<p>K𝚊𝚛𝚖𝚊 𝚟𝟸 is a Passive Open Source Intelligence. : (OSINT) Automated Reconnaissance (framework) <a href="https://github.com/Dheerajmadhukar/karma_v2" rel="external" target="_self">https://github.com/Dheerajmadhukar/karma_v2</a></p>
+<h2 id="secure-elf">Secure ELF</h2>
+<p>Secure ELF parsing/loading library for forensics reconstruction of malware, and robust reverse engineering tools. : <a href="https://github.com/elfmaster/libelfmaster" rel="external" target="_self">https://github.com/elfmaster/libelfmaster</a></p>
+<h2 id="toutatis">Toutatis</h2>
+<p>Toutatis is a tool that allows you to extract information from instagrams accounts such as e-mails, phone numbers and more. : <a href="https://github.com/megadose/toutatis" rel="external" target="_self">https://github.com/megadose/toutatis</a></p>
+<h2 id="octosuite">Octosuite</h2>
+<p>Octosuite :&ndash; Advanced Github OSINT Framework. : <a href="https://github.com/rly0nheart/octosuite" rel="external" target="_self">https://github.com/rly0nheart/octosuite</a></p>
+<h2 id="should-i-trust">Should i trust</h2>
+<p>OSINT tool to evaluate the trustworthiness of a company. : <a href="https://github.com/ericalexanderorg/should-i-trust" rel="external" target="_self">https://github.com/ericalexanderorg/should-i-trust</a></p>
+<h2 id="forensix">Forensix</h2>
+<p>Google Chrome forensic tool to process, analyze and visualize browsing artifacts. : <a href="https://github.com/ChmaraX/forensix" rel="external" target="_self">https://github.com/ChmaraX/forensix</a></p>
+<h2 id="sub3suite">Sub3suite</h2>
+<p>A free, open source, cross platform Intelligence gathering tool. : <a href="https://github.com/3nock/sub3suite" rel="external" target="_self">https://github.com/3nock/sub3suite</a></p>
+<h2 id="live-forensicator">Live Forensicator</h2>
+<p>Powershell Script to aid Incidence Response and Live Forensics:  <a href="https://github.com/Johnng007/Live-Forensicator" rel="external" target="_self">https://github.com/Johnng007/Live-Forensicator</a></p>
+<h2 id="profil3r">Profil3r</h2>
+<p>OSINT tool that allows you to find a person&rsquo;s accounts and emails + breached emails:  <a href="https://github.com/Greyjedix/Profil3r" rel="external" target="_self">https://github.com/Greyjedix/Profil3r</a></p>
+<h2 id="infoooze">Infoooze</h2>
+<p>Infoooze is an Open-source intelligence (OSINT) tool in NodeJs. It provides various modules that allow efficient searches. : <a href="https://github.com/7ORP3DO/infoooze" rel="external" target="_self">https://github.com/7ORP3DO/infoooze</a></p>
+<h2 id="oblivion">Oblivion</h2>
+<p>Oblivion is a tool focused in real time monitoring of new data leaks, notifying if the credentials of the user has been leak out. It&rsquo;s possible too verify if any credential of user has been leak out before. : <a href="https://github.com/loseys/Oblivion/tree/0f5619ecba6a9b1ebc6dc6f4988ef6c542bf8ca3" rel="external" target="_self">https://github.com/loseys/Oblivion/tree/0f5619ecba6a9b1ebc6dc6f4988ef6c542bf8ca3</a></p>
+<h2 id="mrholmes">Mr.Holmes</h2>
+<p>🔍 A Complete Osint Tool : <a href="https://github.com/Lucksi/Mr.Holmes" rel="external" target="_self">https://github.com/Lucksi/Mr.Holmes</a></p>
+<h2 id="avosint">AVOSINT</h2>
+<p>A tool to search Aviation-related intelligence from public sources. : <a href="https://github.com/n0skill/AVOSINT" rel="external" target="_self">https://github.com/n0skill/AVOSINT</a></p>
+<h2 id="darvester">Darvester</h2>
+<p>PoC OSINT Discord user and guild information harvester : <a href="https://github.com/V3ntus/darvester" rel="external" target="_self">https://github.com/V3ntus/darvester</a></p>
+<h2 id="ghost-recon">Ghost Recon</h2>
+<p>An OSINT framework updated weekly, wich with you can search on precise targets, with a lot of features like person search, criminal search, or social media scanning with eamail/phone, and ip changer. :
+<a href="https://github.com/DR34M-M4K3R/GhostRecon" rel="external" target="_self">https://github.com/DR34M-M4K3R/GhostRecon</a></p>
+<h2 id="collector">Collector</h2>
+<p>Collector is a tool for osint (open source intelligence). : <a href="https://github.com/galihap76/collector" rel="external" target="_self">https://github.com/galihap76/collector</a></p>
+<h2 id="twayback">Twayback</h2>
+<p>Automate downloading archived deleted ets.: <a href="https://github.com/Mennaruuk/twayback" rel="external" target="_self">https://github.com/Mennaruuk/twayback</a></p>
+<h2 id="opensquat">Opensquat</h2>
+<p>Detection of phishing domains and domain squatting. Supports permutations such as homograph attack, typosquatting and bitsquatting. :
+<a href="https://github.com/atenreiro/opensquat" rel="external" target="_self">https://github.com/atenreiro/opensquat</a></p>
+<h2 id="telegram-trilateration">Telegram Trilateration</h2>
+<p>Proof of concept for abusing Telegram&rsquo;s &ldquo;People Near Me&rdquo; feature and tracking people&rsquo;s location:
+<a href="https://github.com/jkctech/Telegram-Trilateration" rel="external" target="_self">https://github.com/jkctech/Telegram-Trilateration</a></p>
+<h2 id="telegram-nearby-map">Telegram Nearby Map</h2>
+<p>Discover the location of nearby Telegram users 📡🌍 : <a href="https://github.com/tejado/telegram-nearby-map" rel="external" target="_self">https://github.com/tejado/telegram-nearby-map</a></p>
+<p>Holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.
+<a href="https://github.com/megadose/holehe" rel="external" target="_self">https://github.com/megadose/holehe</a></p>
+<h2 id="holehe-maltego-transform">Holehe Maltego Transform</h2>
+<p><a href="https://github.com/megadose/holehe-maltego" rel="external" target="_self">https://github.com/megadose/holehe-maltego</a></p>
+<h2 id="terra">Terra</h2>
+<p>OSINT Tool on Twitter and Instagram. : <a href="https://github.com/xadhrit/terra" rel="external" target="_self">https://github.com/xadhrit/terra</a></p>
+<h2 id="prosint">Prosint</h2>
+<p>ProtOSINT is a Python script that helps you investigate Protonmail accounts and ProtonVPN IP addresses
+<a href="https://github.com/pixelbubble/ProtOSINT" rel="external" target="_self">https://github.com/pixelbubble/ProtOSINT</a></p>
+<h2 id="toolkit">Toolkit</h2>
+<p>A toolkit for the post-mortem examination of Docker containers from forensic HDD copies
+<a href="https://github.com/docker-forensics-toolkit/toolkit" rel="external" target="_self">https://github.com/docker-forensics-toolkit/toolkit</a></p>
+<h2 id="ios-frequent-locations-dumper">iOS Frequent Locations Dumper</h2>
+<p>Dump the iOS Frequent Location binary plist files
+<a href="https://github.com/mac4n6/iOS-Frequent-Locations-Dumper" rel="external" target="_self">https://github.com/mac4n6/iOS-Frequent-Locations-Dumper</a></p>
+<h2 id="whapa">Whapa</h2>
+<p>Whapa is a set of graphical forensic tools to analyze whatsapp from Android and soon iOS devices. All the tools have been written in Python 3.8 and have been tested on linux, windows and macOS systems.
+<a href="https://github.com/B16f00t/whapa" rel="external" target="_self">https://github.com/B16f00t/whapa</a></p>
+<h2 id="kupa3">Kupa3</h2>
+<p>Tracking the trackers. Draw connections between scripts and domains on website.
+<a href="https://github.com/woj-ciech/kupa3" rel="external" target="_self">https://github.com/woj-ciech/kupa3</a></p>
+<h2 id="abuse-insight">Abuse Insight</h2>
+<p>To extract the usernames attempted by a compromised host. This information is obtained from Abuse IP DB, reports&rsquo; comments. : <a href="https://github.com/west-wind/abuse-insights" rel="external" target="_self">https://github.com/west-wind/abuse-insights</a></p>
+<h2 id="octosuite-1">Octosuite</h2>
+<p>Advanced Github OSINT Framework : <a href="https://github.com/rly0nheart/octosuite" rel="external" target="_self">https://github.com/rly0nheart/octosuite</a></p>
+<h2 id="kamerka-gui">Kamerka Gui</h2>
+<p>Ultimate Internet of Things/Industrial Control Systems reconnaissance tool.
+<a href="https://github.com/woj-ciech/Kamerka-GUI" rel="external" target="_self">https://github.com/woj-ciech/Kamerka-GUI</a></p>
+<h2 id="social-path">Social Path</h2>
+<p>Track users across social media platform
+<a href="https://github.com/woj-ciech/SocialPath" rel="external" target="_self">https://github.com/woj-ciech/SocialPath</a></p>
+<h2 id="osint-stuff-tool-collection">Osint stuff tool collection</h2>
+<p>A collection of several hundred online tools for OSINT
+<a href="https://github.com/cipher387/osint_stuff_tool_collection" rel="external" target="_self">https://github.com/cipher387/osint_stuff_tool_collection</a></p>
+<h2 id="teler">Teler</h2>
+<p>Real-time HTTP Intrusion Detection. : <a href="https://github.com/kitabisa/teler" rel="external" target="_self">https://github.com/kitabisa/teler</a></p>
+<h2 id="arrestats">ArreStats</h2>
+<p>A Search Tool created to explore the FBI&rsquo;s nj arrest file. Created For Hack Jersey 2.0
+<a href="https://github.com/CarlaAstudillo/ArreStats" rel="external" target="_self">https://github.com/CarlaAstudillo/ArreStats</a></p>
+<h2 id="osint-jump">OSINT JUMP</h2>
+<p>This virtual machine image is intended for open source offensive reconnaissance. The iso image of the kali linux NetInstall operating system is taken as a basis. Other required packages were installed manually. The image includes the following packages.:
+<a href="https://github.com/delikely/OSINT-JUMP" rel="external" target="_self">https://github.com/delikely/OSINT-JUMP</a></p>
+<h2 id="infoga">Infoga</h2>
+<p>Infoga - Collection of information by e-mail
+<a href="https://github.com/m4ll0k/Infoga" rel="external" target="_self">https://github.com/m4ll0k/Infoga</a></p>
+<h2 id="crime-data-explorer">Crime data explorer</h2>
+<p>Chief report of the FBI crime data explorer project
+<a href="https://github.com/18F/crime-data-explorer" rel="external" target="_self">https://github.com/18F/crime-data-explorer</a></p>
+<h2 id="pdfmted">PDFMtEd</h2>
+<p>Pdfmted (PDF Metadata Editor) is a set of tools designed to simplify work with pdf metadata on Linux. The utilities hosted in this repository are graphic interfaces for the wonderful exiftool of Phil Harvey.
+<a href="https://github.com/glutanimate/PDFMtEd" rel="external" target="_self">https://github.com/glutanimate/PDFMtEd</a></p>
+<h2 id="audio-metadata">Audio metadata</h2>
+<p>Extract Metadata from several audio containers
+<a href="https://github.com/tmont/audio-metadata" rel="external" target="_self">https://github.com/tmont/audio-metadata</a></p>
+<h2 id="gesmask">Gesmask</h2>
+<p>Information gathering tool - OSINT
+<a href="https://github.com/twelvesec/gasmask" rel="external" target="_self">https://github.com/twelvesec/gasmask</a></p>
+<h2 id="check-ifemail-exists">Check ifemail exists</h2>
+<p>Check if there is an e-mail address without sending any email. Use Telnet.
+<a href="https://github.com/amaurymartiny/check-if-email-exists" rel="external" target="_self">https://github.com/amaurymartiny/check-if-email-exists</a></p>
+<h2 id="app-metadata">App Metadata</h2>
+<p>Provides Metadata extraction for IOS, Android and windows packages.
+<a href="https://github.com/Microsoft/app-metadata" rel="external" target="_self">https://github.com/Microsoft/app-metadata</a></p>
+<h2 id="androphsy">ANDROPHSY</h2>
+<p>An Open-Source Mobile Forensic Research Tool for android platform
+<a href="https://github.com/scorelab/ANDROPHSY" rel="external" target="_self">https://github.com/scorelab/ANDROPHSY</a></p>
+<h2 id="rdpcachestitcher">RdpCacheStitcher</h2>
+<p>RdpCacheStitcher is a tool that supports forensic analysts in
+reconstructing useful images out of RDP cache bitmaps. - <a href="https://github.com/BSI-Bund/RdpCacheStitcher" rel="external" target="_self">https://github.com/BSI-Bund/RdpCacheStitcher</a></p>
+<h2 id="androidqf">Androidqf</h2>
+<p>Androidqf (Android Quick Forensics) helps quickly gathering forensic
+evidence from Android devices, in order to identify potential traces of
+compromise. - <a href="https://github.com/botherder/androidqf" rel="external" target="_self">https://github.com/botherder/androidqf</a></p>
+<h2 id="iped">IPED</h2>
+<p>IPED is an open source software that can be used to process and analyze
+digital evidence, often seized at crime scenes by law enforcement or in a
+corporate investigation by private examiners. - <a href="https://github.com/sepinf-inc/IPED" rel="external" target="_self">https://github.com/sepinf-inc/IPED</a></p>
+<h2 id="turbinia">Turbinia</h2>
+<p>Automation and automation of digital forensic tools
+<a href="https://github.com/google/turbinia" rel="external" target="_self">https://github.com/google/turbinia</a></p>
+<h2 id="chrome-extractor">Chrome Extractor</h2>
+<p>Script that will extract all the passwords stored from your Google Chrome Database and will keep them in Chrome. Txt txt txt txt txt txt txt txt txt
+<a href="https://github.com/D4Vinci/Chrome-Extractor" rel="external" target="_self">https://github.com/D4Vinci/Chrome-Extractor</a></p>
+<h2 id="firefox-decrypt">Firefox Decrypt</h2>
+<p>Firefox decrypt is a tool to extract passwords from Mozilla Profiles (Firefox / Thunderbird / Seabird)
+<a href="https://github.com/unode/firefox_decrypt" rel="external" target="_self">https://github.com/unode/firefox_decrypt</a></p>
+<h2 id="ip-geolocation">Ip Geolocation</h2>
+<p>Recover information from ip geolocation
+<a href="https://github.com/maldevel/IPGeoLocation" rel="external" target="_self">https://github.com/maldevel/IPGeoLocation</a></p>
+<h2 id="cameradar">Cameradar</h2>
+<p>Cameradar hacks its way into RTSP videosurveillance cameras
+<a href="https://github.com/Ullaakut/cameradar" rel="external" target="_self">https://github.com/Ullaakut/cameradar</a></p>
+<h2 id="power-forensic">Power Forensic</h2>
+<p>Powerforensics is a framework for forensic analysis of live records
+<a href="https://github.com/Invoke-IR/PowerForensics" rel="external" target="_self">https://github.com/Invoke-IR/PowerForensics</a></p>
+<h2 id="face-recognition">Face Recognition</h2>
+<p>The World&rsquo;s simplest facial recognition api for python and the command line
+<a href="https://github.com/ageitgey/face_recognition" rel="external" target="_self">https://github.com/ageitgey/face_recognition</a></p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 6, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/osint/index.html">OSINT</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

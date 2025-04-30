@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="System Design Resources">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="System Design :: Gharib Blog">
+    <meta name="twitter:description" content="System Design Resources">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/software/systemdesign/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="System Design :: Gharib Blog">
+    <meta property="og:description" content="System Design Resources">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Software">
+    <meta property="article:published_time" content="2024-08-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-22T00:00:00+00:00">
+    <meta property="article:tag" content="System-Design,">
+    <meta itemprop="name" content="System Design :: Gharib Blog">
+    <meta itemprop="description" content="System Design Resources">
+    <meta itemprop="datePublished" content="2024-08-22T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-22T00:00:00+00:00">
+    <meta itemprop="wordCount" content="505">
+    <meta itemprop="keywords" content="System-Design,">
+    <title>System Design :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/software/systemdesign/index.html" rel="canonical" type="text/html" title="System Design :: Gharib Blog">
+    <link href="../../software/systemdesign/index.xml" rel="alternate" type="application/rss+xml" title="System Design :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/software\/systemdesign\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../software/systemdesign/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-system-design-key-concepts">📌 System Design Key Concepts</a></li>
+    <li><a href="#-system-design-building-blocks">🛠️ System Design Building Blocks</a></li>
+    <li><a href="#-system-design-tradeoffs">⚖️ System Design Tradeoffs</a></li>
+    <li><a href="#-system-design-architectural-patterns">🖇️ System Design Architectural Patterns</a></li>
+    <li><a href="#-how-to-answer-a-system-design-interview-problem">✅ How to Answer a System Design Interview Problem</a>
+      <ul>
+        <li><a href="#read-the-full-articlehttpsblogalgomasteriophow-to-answer-a-system-design-interview-problem"><a href="https://blog.algomaster.io/p/how-to-answer-a-system-design-interview-problem">Read the Full Article</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#-system-design-interview-problems">💻 System Design Interview Problems</a>
+      <ul>
+        <li><a href="#easy">Easy</a></li>
+        <li><a href="#medium">Medium</a></li>
+        <li><a href="#hard">Hard</a></li>
+      </ul>
+    </li>
+    <li><a href="#-books">📚 Books</a></li>
+    <li><a href="#-youtube-channels">📺 YouTube Channels</a></li>
+    <li><a href="#-must-read-engineering-articles">📜 Must-Read Engineering Articles</a></li>
+    <li><a href="#-must-read-distributed-systems-papers">🗞️ Must-Read Distributed Systems Papers</a></li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../software/index.html"><span itemprop="name">Software</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">System Design</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../software/systemdesign/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../software/go/index.html" title="Go Language (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../software/ai/index.html" title="AI Tools (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/system-design/index.html">System-Design,</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="system-design">System Design</h1>
+
+<h1 id="system-design-resources">System Design Resources</h1>
+<p>This repository contains resources to learn System Design concepts and prepare for interviews.</p>
+<h2 id="-system-design-key-concepts">📌 System Design Key Concepts</h2>
+<ul>
+<li><a href="https://blog.algomaster.io/p/scalability" rel="external" target="_self">Scalability</a></li>
+<li><a href="https://blog.algomaster.io/p/system-design-what-is-availability" rel="external" target="_self">Availability</a></li>
+<li><a href="https://blog.algomaster.io/p/cap-theorem-explained" rel="external" target="_self">CAP Theorem</a></li>
+<li><a href="https://blog.algomaster.io/p/ecae03ba-1930-42ef-8796-83e2fa818989" rel="external" target="_self">ACID Transactions</a></li>
+<li><a href="https://highscalability.com/consistent-hashing-algorithm/" rel="external" target="_self">Consistent Hashing</a></li>
+<li><a href="https://blog.algomaster.io/p/rate-limiting-algorithms-explained-with-code" rel="external" target="_self">Rate Limiting</a></li>
+<li><a href="https://abdulrwahab.medium.com/api-architecture-best-practices-for-designing-rest-apis-bf907025f5f" rel="external" target="_self">API Design</a></li>
+<li><a href="https://www.cockroachlabs.com/blog/what-is-fault-tolerance/" rel="external" target="_self">Fault Tolerance</a></li>
+<li><a href="https://medium.com/@sourabhatta1819/consensus-in-distributed-system-ac79f8ba2b8c" rel="external" target="_self">Consensus Algorithms</a></li>
+<li><a href="http://highscalability.com/blog/2023/7/16/gossip-protocol-explained.html" rel="external" target="_self">Gossip Protocol</a></li>
+<li><a href="https://blog.algomaster.io/p/0204da93-f0e9-49b9-a88a-cb20b9931575" rel="external" target="_self">Service Discovery</a></li>
+<li><a href="https://cloud.google.com/learn/what-is-disaster-recovery" rel="external" target="_self">Disaster Recovery</a></li>
+<li><a href="https://www.dynatrace.com/news/blog/what-is-distributed-tracing/" rel="external" target="_self">Distributed Tracing</a></li>
+</ul>
+<h2 id="-system-design-building-blocks">🛠️ System Design Building Blocks</h2>
+<ul>
+<li><a href="https://blog.algomaster.io/p/15-types-of-databases" rel="external" target="_self">Databases Types</a></li>
+<li><a href="https://blog.algomaster.io/p/27c62e07-f25b-40ac-a397-101cc54f1f0a" rel="external" target="_self">Content Delivery Network (CDN)</a></li>
+<li><a href="https://www.cloudflare.com/learning/dns/what-is-dns/" rel="external" target="_self">Domain Name System (DNS)</a></li>
+<li><a href="https://blog.algomaster.io/p/4d7d6f8a-6803-4c7b-85ca-864c87c2cbf2" rel="external" target="_self">Caching</a></li>
+<li><a href="https://redis.com/glossary/distributed-caching/" rel="external" target="_self">Distributed Caching</a></li>
+<li><a href="https://blog.algomaster.io/p/load-balancing-algorithms-explained-with-code" rel="external" target="_self">Load Balancing</a></li>
+<li><a href="https://blog.algomaster.io/p/5310f615-f6cc-46f4-8890-09fc82a04b7e" rel="external" target="_self">SQL vs NoSQL</a></li>
+<li><a href="https://blog.algomaster.io/p/a-detailed-guide-on-database-indexes" rel="external" target="_self">Database Indexes</a></li>
+<li><a href="https://systemdesign.one/consistency-patterns/" rel="external" target="_self">Consistency Patterns</a></li>
+<li><a href="https://blog.algomaster.io/p/heartbeats-in-distributed-systems" rel="external" target="_self">HeartBeats</a></li>
+<li><a href="https://medium.com/geekculture/design-patterns-for-microservices-circuit-breaker-pattern-276249ffab33" rel="external" target="_self">Circuit Breaker</a></li>
+<li><a href="https://blog.algomaster.io/p/ff43e079-98db-428d-83f7-fd34697df678" rel="external" target="_self">Idempotency</a></li>
+<li><a href="https://blog.algomaster.io/p/system-design-how-to-scale-a-database" rel="external" target="_self">Database Scaling</a></li>
+<li><a href="https://redis.com/blog/what-is-data-replication/" rel="external" target="_self">Data Replication</a></li>
+<li><a href="https://blog.algomaster.io/p/489440f1-9c80-4241-9ec8-de156964c3b9" rel="external" target="_self">Data Redundancy</a></li>
+<li><a href="https://blog.algomaster.io/p/what-is-database-sharding" rel="external" target="_self">Database Sharding</a></li>
+<li><a href="https://www.mongodb.com/developer/products/mongodb/active-active-application-architectures/" rel="external" target="_self">Database Architectures</a></li>
+<li><a href="https://avinetworks.com/glossary/failover/" rel="external" target="_self">Failover</a></li>
+<li><a href="https://www.fortinet.com/resources/cyberglossary/proxy-server" rel="external" target="_self">Proxy Server</a></li>
+<li><a href="https://blog.algomaster.io/p/message-queues" rel="external" target="_self">Message Queues</a></li>
+<li><a href="https://blog.algomaster.io/p/what-are-checksums" rel="external" target="_self">Checksums</a></li>
+<li><a href="https://blog.algomaster.io/p/websockets" rel="external" target="_self">WebSockets</a></li>
+<li><a href="https://www.enjoyalgorithms.com/blog/bloom-filter" rel="external" target="_self">Bloom Filters</a></li>
+<li><a href="https://www.nginx.com/learn/api-gateway/" rel="external" target="_self">API Gateway</a></li>
+<li><a href="https://newsletter.systemdesign.one/p/netflix-microservices" rel="external" target="_self">Microservices Guidelines</a></li>
+<li><a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" rel="external" target="_self">Distributed Locking</a></li>
+</ul>
+<h2 id="-system-design-tradeoffs">⚖️ System Design Tradeoffs</h2>
+<ul>
+<li><a href="https://blog.algomaster.io/p/system-design-top-15-trade-offs" rel="external" target="_self">Top 15 Tradeoffs</a></li>
+<li><a href="https://blog.algomaster.io/p/system-design-vertical-vs-horizontal-scaling" rel="external" target="_self">Vertical vs Horizontal Scaling</a></li>
+<li><a href="https://blog.algomaster.io/p/741dff8e-10ea-413e-8dd2-be57434917d2" rel="external" target="_self">Stateful vs Stateless Design</a></li>
+<li><a href="https://blog.algomaster.io/p/7d9da525-fe25-4e16-94e8-8056e7c57934" rel="external" target="_self">Strong vs Eventual Consistency</a></li>
+<li><a href="https://blog.algomaster.io/p/59cae60d-9717-4e20-a59e-759e370db4e5" rel="external" target="_self">Read-Through vs Write-Through Cache</a></li>
+<li><a href="https://blog.algomaster.io/p/af5fe2fe-9a4f-4708-af43-184945a243af" rel="external" target="_self">Push vs Pull Architecture</a></li>
+<li><a href="https://blog.algomaster.io/p/60bfcee4-8ac5-4500-a557-a04c8cbcaf48" rel="external" target="_self">Long-polling vs WebSockets</a></li>
+<li><a href="https://blog.algomaster.io/p/106604fb-b746-41de-88fb-60e932b2ff68" rel="external" target="_self">REST vs RPC</a></li>
+<li><a href="https://aws.amazon.com/compare/the-difference-between-throughput-and-latency/" rel="external" target="_self">Latency vs Throughput</a></li>
+<li><a href="https://blog.algomaster.io/p/aec1cebf-6060-45a7-8e00-47364ca70761" rel="external" target="_self">Synchronous vs. asynchronous communications</a></li>
+<li><a href="https://blog.algomaster.io/p/d9442268-03d8-4f55-a103-7a3d4fb54661" rel="external" target="_self">Batch Processing vs Stream Processing</a></li>
+</ul>
+<h2 id="-system-design-architectural-patterns">🖇️ System Design Architectural Patterns</h2>
+<ul>
+<li><a href="https://blog.algomaster.io/p/4585cf8e-30a4-4295-936f-308a25cb716c" rel="external" target="_self">Client-Server Architecture</a></li>
+<li><a href="https://medium.com/hashmapinc/the-what-why-and-how-of-a-microservices-architecture-4179579423a9" rel="external" target="_self">Microservices Architecture</a></li>
+<li><a href="https://blog.algomaster.io/p/2edeb23b-cfa5-4b24-845e-3f6f7a39d162" rel="external" target="_self">Serverless Architecture</a></li>
+<li><a href="https://www.confluent.io/learn/event-driven-architecture/" rel="external" target="_self">Event-Driven Architecture</a></li>
+<li><a href="https://www.spiceworks.com/tech/networking/articles/what-is-peer-to-peer/" rel="external" target="_self">Peer-to-Peer (P2P) Architecture</a></li>
+</ul>
+<h2 id="-how-to-answer-a-system-design-interview-problem">✅ How to Answer a System Design Interview Problem</h2>
+<h3 id="read-the-full-articlehttpsblogalgomasteriophow-to-answer-a-system-design-interview-problem"><a href="https://blog.algomaster.io/p/how-to-answer-a-system-design-interview-problem" rel="external" target="_self">Read the Full Article</a></h3>
+<h2 id="-system-design-interview-problems">💻 System Design Interview Problems</h2>
+<h3 id="easy">Easy</h3>
+<ul>
+<li><a href="https://blog.algomaster.io/p/design-a-url-shortener" rel="external" target="_self">Design URL Shortener like TinyURL</a></li>
+<li><a href="https://www.youtube.com/watch?v=josjRSBqEBI" rel="external" target="_self">Design Text Storage Service like Pastebin</a></li>
+<li><a href="https://systemdesign.one/leaderboard-system-design/" rel="external" target="_self">Design Leaderboard</a></li>
+<li><a href="https://www.youtube.com/watch?v=8zX0rue2Hic" rel="external" target="_self">Design Content Delivery Network (CDN)</a></li>
+<li><a href="https://www.youtube.com/watch?v=NtMvNh0WFVM" rel="external" target="_self">Design Parking Garage</a></li>
+<li><a href="https://www.youtube.com/watch?v=D0kDMUgo27c" rel="external" target="_self">Design Vending Machine</a></li>
+<li><a href="https://www.youtube.com/watch?v=rnZmdmlR-2M" rel="external" target="_self">Design Distributed Key-Value Store</a></li>
+<li><a href="https://www.youtube.com/watch?v=iuqZvajTOyA" rel="external" target="_self">Design Distributed Cache</a></li>
+<li><a href="https://towardsdatascience.com/ace-the-system-design-interview-job-scheduling-system-b25693817950" rel="external" target="_self">Design Distributed Job Scheduler</a></li>
+<li><a href="https://www.youtube.com/watch?v=uj_4vxm9u90" rel="external" target="_self">Design Authentication System</a></li>
+<li><a href="https://www.youtube.com/watch?v=QpLy0_c_RXk" rel="external" target="_self">Design Unified Payments Interface (UPI)</a></li>
+</ul>
+<h3 id="medium">Medium</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=VJpfO6KdyWE" rel="external" target="_self">Design Instagram</a></li>
+<li><a href="https://www.youtube.com/watch?v=tndzLznxq40" rel="external" target="_self">Design Tinder</a></li>
+<li><a href="https://www.youtube.com/watch?v=vvhC64hQZMk" rel="external" target="_self">Design WhatsApp</a></li>
+<li><a href="https://www.youtube.com/watch?v=9-hjBGxuiEs" rel="external" target="_self">Design Facebook</a></li>
+<li><a href="https://www.youtube.com/watch?v=wYk0xPP_P_8" rel="external" target="_self">Design Twitter</a></li>
+<li><a href="https://www.youtube.com/watch?v=KYExYE_9nIY" rel="external" target="_self">Design Reddit</a></li>
+<li><a href="https://www.youtube.com/watch?v=psQzyFfsUGU" rel="external" target="_self">Design Netflix</a></li>
+<li><a href="https://www.youtube.com/watch?v=jPKTo1iGQiE" rel="external" target="_self">Design Youtube</a></li>
+<li><a href="https://www.youtube.com/watch?v=CeGtqouT8eA" rel="external" target="_self">Design Google Search</a></li>
+<li><a href="https://www.youtube.com/watch?v=EpASu_1dUdE" rel="external" target="_self">Design E-commerce Store like Amazon</a></li>
+<li><a href="https://www.youtube.com/watch?v=_K-eupuDVEc" rel="external" target="_self">Design Spotify</a></li>
+<li><a href="https://www.youtube.com/watch?v=Z-0g_aJL5Fw" rel="external" target="_self">Design TikTok</a></li>
+<li><a href="https://www.youtube.com/watch?v=lEL4F_0J3l8" rel="external" target="_self">Design Shopify</a></li>
+<li><a href="https://www.youtube.com/watch?v=YyOXt2MEkv4" rel="external" target="_self">Design Airbnb</a></li>
+<li><a href="https://www.youtube.com/watch?v=us0qySiUsGU" rel="external" target="_self">Design Autocomplete for Search Engines</a></li>
+<li><a href="https://www.youtube.com/watch?v=mhUQe4BKZXs" rel="external" target="_self">Design Rate Limiter</a></li>
+<li><a href="https://www.youtube.com/watch?v=iJLL-KPqBpM" rel="external" target="_self">Design Distributed Message Queue like Kafka</a></li>
+<li><a href="https://www.youtube.com/watch?v=qsGcfVGvFSs" rel="external" target="_self">Design Flight Booking System</a></li>
+<li><a href="https://www.youtube.com/watch?v=07jkn4jUtso" rel="external" target="_self">Design Online Code Editor</a></li>
+<li><a href="https://www.youtube.com/watch?v=dUMWMZmMsVE" rel="external" target="_self">Design Stock Exchange System</a></li>
+<li><a href="https://www.youtube.com/watch?v=kIcq1_pBQSY" rel="external" target="_self">Design an Analytics Platform (Metrics &amp; Logging)</a></li>
+<li><a href="https://www.youtube.com/watch?v=CUwt9_l0DOg" rel="external" target="_self">Design Notification Service</a></li>
+<li><a href="https://www.youtube.com/watch?v=olfaBgJrUBI" rel="external" target="_self">Design Payment System</a></li>
+<li><a href="https://www.youtube.com/watch?v=4ijjIUeq6hE" rel="external" target="_self">Design a Digital Wallet</a></li>
+</ul>
+<h3 id="hard">Hard</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=M4lR_Va97cQ" rel="external" target="_self">Design Location Based Service like Yelp</a></li>
+<li><a href="https://www.youtube.com/watch?v=umWABit-wbk" rel="external" target="_self">Design Uber</a></li>
+<li><a href="https://www.youtube.com/watch?v=iRhSAR3ldTw" rel="external" target="_self">Design Food Delivery App like Doordash</a></li>
+<li><a href="https://www.youtube.com/watch?v=2auwirNBvGg" rel="external" target="_self">Design Google Docs</a></li>
+<li><a href="https://www.youtube.com/watch?v=jk3yvVfNvds" rel="external" target="_self">Design Google Maps</a></li>
+<li><a href="https://www.youtube.com/watch?v=G32ThJakeHk" rel="external" target="_self">Design Zoom</a></li>
+<li><a href="https://systemdesign.one/distributed-counter-system-design/" rel="external" target="_self">Design Distributed Counter</a></li>
+<li><a href="https://www.youtube.com/watch?v=U0xTu6E2CT8" rel="external" target="_self">Design File Sharing System like Dropbox</a></li>
+<li><a href="https://www.youtube.com/watch?v=lBAwJgoO3Ek" rel="external" target="_self">Design Ticket Booking System like BookMyShow</a></li>
+<li><a href="https://www.youtube.com/watch?v=BKZxZwUgL3Y" rel="external" target="_self">Design Distributed Web Crawler</a></li>
+<li><a href="https://www.youtube.com/watch?v=q0KGYwNbf-0" rel="external" target="_self">Design Code Deployment System</a></li>
+<li><a href="https://www.youtube.com/watch?v=UmWtcgC96X8" rel="external" target="_self">Design Distributed Cloud Storage like S3</a></li>
+<li><a href="https://www.youtube.com/watch?v=v7x75aN9liM" rel="external" target="_self">Design Distributed Locking Service</a></li>
+<li><a href="https://systemdesign.one/slack-architecture/" rel="external" target="_self">Design Slack</a></li>
+<li><a href="https://systemdesign.one/live-comment-system-design/" rel="external" target="_self">Design Live Comments</a></li>
+</ul>
+<h2 id="-books">📚 Books</h2>
+<ul>
+<li><a href="https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/B08VL1BLHB/" rel="external" target="_self">Designing Data-Intensive Applications</a></li>
+<li><a href="https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF/" rel="external" target="_self">System Design Interview – An insider&rsquo;s guide</a></li>
+</ul>
+<h2 id="-youtube-channels">📺 YouTube Channels</h2>
+<ul>
+<li><a href="https://www.youtube.com/@TechDummiesNarendraL" rel="external" target="_self">Tech Dummies Narendra L</a></li>
+<li><a href="https://www.youtube.com/@gkcs" rel="external" target="_self">Gaurav Sen</a></li>
+<li><a href="https://www.youtube.com/@codeKarle" rel="external" target="_self">codeKarle</a></li>
+<li><a href="https://www.youtube.com/@ByteByteGo" rel="external" target="_self">ByteByteGo</a></li>
+<li><a href="https://www.youtube.com/@SystemDesignInterview" rel="external" target="_self">System Design Interview</a></li>
+<li><a href="https://www.youtube.com/@sudocode" rel="external" target="_self">sudoCODE</a></li>
+<li><a href="https://www.youtube.com/@SuccessinTech/videos" rel="external" target="_self">Success in Tech</a></li>
+</ul>
+<h2 id="-must-read-engineering-articles">📜 Must-Read Engineering Articles</h2>
+<ul>
+<li><a href="https://discord.com/blog/how-discord-stores-trillions-of-messages" rel="external" target="_self">How Discord stores trillions of messages</a></li>
+<li><a href="https://netflixtechblog.com/building-in-video-search-936766f0017c" rel="external" target="_self">Building In-Video Search at Netflix</a></li>
+<li><a href="https://www.canva.dev/blog/engineering/from-zero-to-50-million-uploads-per-day-scaling-media-at-canva/" rel="external" target="_self">How Canva scaled Media uploads from Zero to 50 Million per Day</a></li>
+<li><a href="https://medium.com/airbnb-engineering/avoiding-double-payments-in-a-distributed-payments-system-2981f6b070bb" rel="external" target="_self">How Airbnb avoids double payments in a Distributed Payments System</a></li>
+<li><a href="https://stripe.com/blog/payment-api-design" rel="external" target="_self">Stripe’s payments APIs - The first 10 years</a></li>
+<li><a href="https://slack.engineering/real-time-messaging/" rel="external" target="_self">Real time messaging at Slack</a></li>
+</ul>
+<h2 id="-must-read-distributed-systems-papers">🗞️ Must-Read Distributed Systems Papers</h2>
+<ul>
+<li><a href="https://lamport.azurewebsites.net/pubs/lamport-paxos.pdf" rel="external" target="_self">Paxos: The Part-Time Parliament</a></li>
+<li><a href="https://research.google.com/archive/mapreduce-osdi04.pdf" rel="external" target="_self">MapReduce: Simplified Data Processing on Large Clusters</a></li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf" rel="external" target="_self">The Google File System</a></li>
+<li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf" rel="external" target="_self">Dynamo: Amazon’s Highly Available Key-value Store</a></li>
+<li><a href="https://notes.stephenholiday.com/Kafka.pdf" rel="external" target="_self">Kafka: a Distributed Messaging System for Log Processing</a></li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf" rel="external" target="_self">Spanner: Google’s Globally-Distributed Database</a></li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf" rel="external" target="_self">Bigtable: A Distributed Storage System for Structured Data</a></li>
+<li><a href="https://www.usenix.org/legacy/event/usenix10/tech/full_papers/Hunt.pdf" rel="external" target="_self">ZooKeeper: Wait-free coordination for Internet-scale systems</a></li>
+<li><a href="https://www.cs.umb.edu/~poneil/lsmtree.pdf" rel="external" target="_self">The Log-Structured Merge-Tree (LSM-Tree)</a></li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//archive/chubby-osdi06.pdf" rel="external" target="_self">The Chubby lock service for loosely-coupled distributed systems</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 22, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/systemdesign/index.html">SystemDesign</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

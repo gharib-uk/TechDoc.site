@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="How to run a Private Mastodon Instance ?">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Run Private Mastodon Instance :: Gharib Blog">
+    <meta name="twitter:description" content="How to run a Private Mastodon Instance ?">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/devops/mastodon/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="Run Private Mastodon Instance :: Gharib Blog">
+    <meta property="og:description" content="How to run a Private Mastodon Instance ?">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="DevOps">
+    <meta property="article:published_time" content="2024-09-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-09-10T00:00:00+00:00">
+    <meta property="article:tag" content="Mastodon, Federation">
+    <meta itemprop="name" content="Run Private Mastodon Instance :: Gharib Blog">
+    <meta itemprop="description" content="How to run a Private Mastodon Instance ?">
+    <meta itemprop="datePublished" content="2024-09-10T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-09-10T00:00:00+00:00">
+    <meta itemprop="wordCount" content="1033">
+    <meta itemprop="keywords" content="Mastodon, Federation">
+    <title>Run Private Mastodon Instance :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/devops/mastodon/index.html" rel="canonical" type="text/html" title="Run Private Mastodon Instance :: Gharib Blog">
+    <link href="../../devops/mastodon/index.xml" rel="alternate" type="application/rss+xml" title="Run Private Mastodon Instance :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/devops\/mastodon\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../devops/mastodon/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../devops/index.html"><span itemprop="name">DevOps</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Run Private Mastodon Instance</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../devops/mastodon/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../devops/vps/index.html" title="VPS, Dedicated Server, VDS, VPN, email, and Domain Providers (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../devops/element/index.html" title="Run Private Matrix (Element) Instance (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/mastodon-federation/index.html">Mastodon, Federation</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="run-private-mastodon-instance">Run Private Mastodon Instance</h1>
+
+<p>This guide helps you to run a private Mastodon Instance.
+I personally prefer to use mastodon with docker and docker-compose to isolate my application from main server environment.
+The following docker compose yaml file helps you to deploy your instance. After that we try to modify the settings of our application to make it private instance (Personal Instance with just One Account).
+Put the content of the following docker-compose config into a seperate folder.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># This file is designed for production server deployment, not local development work</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres:14-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">shm_size</span><span class="p">:</span><span class="w"> </span><span class="l">256mb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;CMD&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pg_isready&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-U&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;postgres&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./mastodon/postgres14:/var/lib/postgresql/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;POSTGRES_HOST_AUTH_METHOD=trust&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;POSTGRES_USER=mastodon&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;POSTGRES_DB=mastodon&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;POSTGRES_PASSWORD=pasword&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">redis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">redis:7-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;CMD&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;redis-cli&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ping&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./mastodon/redis:/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># es:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   restart: always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   environment:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;xpack.license.self_generated.type=basic&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;xpack.security.enabled=false&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;xpack.watcher.enabled=false&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;xpack.graph.enabled=false&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;xpack.ml.enabled=false&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;bootstrap.memory_lock=true&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;cluster.name=es-mastodon&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;discovery.type=single-node&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#34;thread_pool.write.queue_size=1000&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   networks:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#      - external_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#      - internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   healthcheck:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#      test: [&#34;CMD-SHELL&#34;, &#34;curl --silent --fail localhost:9200/_cluster/health || exit 1&#34;]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   volumes:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#      - ./elasticsearch:/usr/share/elasticsearch/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   ulimits:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     memlock:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#       soft: -1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#       hard: -1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     nofile:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#       soft: 65536</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#       hard: 65536</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   ports:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - &#39;127.0.0.1:9200:9200&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># build: .</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ghcr.io/mastodon/mastodon:v4.2.12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env.production</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec puma -C config/puma.rb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">external_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># prettier-ignore</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;CMD-SHELL&#39;</span><span class="p">,</span><span class="s2">&#34;curl -s --noproxy localhost localhost:3000/health | grep -q &#39;OK&#39; || exit 1&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;127.0.0.1:3000:3000&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># - es</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./mastodon/public/system/:/mastodon/public/system</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">streaming</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># You can uncomment the following lines if you want to not use the prebuilt image, for example if you have local code changes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># build:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#   dockerfile: ./streaming/Dockerfile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#   context: .</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ghcr.io/mastodon/mastodon-streaming:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env.production</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">node ./streaming/index.js</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">external_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># prettier-ignore</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;CMD-SHELL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q &#39;OK&#39; || exit 1&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;127.0.0.1:4000:4000&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sidekiq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ghcr.io/mastodon/mastodon:v4.2.12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env.production</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec sidekiq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">external_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./mastodon/public/system/:/mastodon/public/system/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;CMD-SHELL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;ps aux | grep &#39;[s]idekiq\ 6&#39; || false&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">## Uncomment to enable federation with tor instances along with adding the following ENV variables</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">## http_hidden_proxy=http://privoxy:8118</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># tor:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   image: sirboops/tor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   networks:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#      - external_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#      - internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># privoxy:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   image: sirboops/privoxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   volumes:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - ./priv-config:/opt/config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   networks:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - external_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     - internal_network</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">external_network</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">internal_network</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">internal</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+<p>The <code>.env.prodution</code> file store critical information about your instance.
+It is better to use password with your redis instance.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">DB_HOST</span><span class="o">=</span>db
+</span></span><span class="line"><span class="cl"><span class="nv">DB_PORT</span><span class="o">=</span><span class="m">5432</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DB_NAME</span><span class="o">=</span>mastodon
+</span></span><span class="line"><span class="cl"><span class="nv">DB_USER</span><span class="o">=</span>mastodon
+</span></span><span class="line"><span class="cl"><span class="nv">DB_PASS</span><span class="o">=</span>password
+</span></span><span class="line"><span class="cl"><span class="nv">REDIS_HOST</span><span class="o">=</span>redis
+</span></span><span class="line"><span class="cl"><span class="nv">REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
+</span></span><span class="line"><span class="cl"><span class="nv">REDIS_PASSWORD</span><span class="o">=</span></span></span></code></pre></div>
+<p>Run <code>docker-compose run --rm web bundle exec rake mastodon:setup</code> in the folder which holds <code>docker-compose.yml</code> then follow the instructions and answer the questions.</p>
+<p>Run the following commands to create a user and make it admin.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production tootctl accounts create --email EMAIL --confirmed --role Admin
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production tootctl accounts modify USERNAME --approve
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production tootctl accounts approve USERNAME</span></span></code></pre></div>
+<p>The commands above give you the requirement information to login to your server.</p>
+<p>I prefer using nginx to expose my instance to the internet.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">map <span class="nv">$http_upgrade</span> <span class="nv">$connection_upgrade</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  default upgrade<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;&#39;</span>      close<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">upstream backend <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    server 127.0.0.1:3000 <span class="nv">fail_timeout</span><span class="o">=</span>0<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">upstream streaming <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Instruct nginx to send connections to the server with the least number of connections</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># to ensure load is distributed evenly.</span>
+</span></span><span class="line"><span class="cl">    least_conn<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    server 127.0.0.1:4000 <span class="nv">fail_timeout</span><span class="o">=</span>0<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Uncomment these lines for load-balancing multiple instances of streaming for scaling,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># this assumes your running the streaming server on ports 4000, 4001, and 4002:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># server 127.0.0.1:4001 fail_timeout=0;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># server 127.0.0.1:4002 fail_timeout=0;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">proxy_cache_path /var/cache/nginx <span class="nv">levels</span><span class="o">=</span>1:2 <span class="nv">keys_zone</span><span class="o">=</span>CACHE:10m <span class="nv">inactive</span><span class="o">=</span>7d <span class="nv">max_size</span><span class="o">=</span>1g<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  listen &lt;IP&gt;:80<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  server_name domain.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  root /var/www/mastodon/public<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  location /.well-known/acme-challenge/ <span class="o">{</span> allow all<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  location / <span class="o">{</span> <span class="k">return</span> <span class="m">301</span> https://<span class="nv">$host$request_uri</span><span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  listen &lt;IP&gt;:443 ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  server_name domain.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  ssl_protocols TLSv1.2 TLSv1.3<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  ssl_prefer_server_ciphers on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_session_cache shared:SSL:10m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_session_tickets off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  access_log /var/log/nginx/mastodonaccess.log<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  error_log /var/log/nginx/mastodonerror.log warn<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  ssl_certificate /root/ghariib.ir.crt<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_certificate_key /root/ghariib.ir.key<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  keepalive_timeout 70<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  sendfile on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  client_max_body_size 99m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  root /var/www/mastodon/public<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  gzip on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  gzip_disable <span class="s2">&#34;msie6&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  gzip_vary on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  gzip_proxied any<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  gzip_comp_level 6<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  gzip_buffers <span class="m">16</span> 8k<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  gzip_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml image/x-icon<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> @proxy<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nv">location</span> <span class="o">=</span> /sw.js <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=604800, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/assets/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/avatars/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/emoji/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/headers/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/packs/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/shortcuts/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/sounds/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, must-revalidate&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ~ ^/system/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    root /root/mastodon/public/system;  # New root path for /system/</span>
+</span></span><span class="line"><span class="cl">    add_header Cache-Control <span class="s2">&#34;public, max-age=2419200, immutable&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header X-Content-Type-Options nosniff<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header Content-Security-Policy <span class="s2">&#34;default-src &#39;none&#39;; form-action &#39;none&#39;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location ^~ /api/v1/streaming <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header X-Forwarded-Proto <span class="nv">$scheme</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Proxy <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    proxy_pass http://streaming<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_buffering off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_redirect off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Upgrade <span class="nv">$http_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Connection <span class="nv">$connection_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    tcp_nodelay on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location @proxy <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header X-Forwarded-Proto <span class="nv">$scheme</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Proxy <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_pass_header Server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    proxy_pass http://backend<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_buffering on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_redirect off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Upgrade <span class="nv">$http_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Connection <span class="nv">$connection_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    proxy_cache CACHE<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_cache_valid <span class="m">200</span> 7d<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_cache_valid <span class="m">410</span> 24h<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    add_header X-Cached <span class="nv">$upstream_cache_status</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    tcp_nodelay on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  error_page <span class="m">404</span> <span class="m">500</span> <span class="m">501</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span> /500.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Sep 10, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/mastodon-federation/index.html">Mastodon, Federation</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

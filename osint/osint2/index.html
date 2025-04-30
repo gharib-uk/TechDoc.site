@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="OSINT Tools set 2">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="OSINT Tools 2 :: Gharib Blog">
+    <meta name="twitter:description" content="OSINT Tools set 2">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/osint/osint2/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="OSINT Tools 2 :: Gharib Blog">
+    <meta property="og:description" content="OSINT Tools set 2">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="OSINt">
+    <meta property="article:published_time" content="2024-08-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-05T00:00:00+00:00">
+    <meta property="article:tag" content="Osint">
+    <meta itemprop="name" content="OSINT Tools 2 :: Gharib Blog">
+    <meta itemprop="description" content="OSINT Tools set 2">
+    <meta itemprop="datePublished" content="2024-08-05T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-05T00:00:00+00:00">
+    <meta itemprop="wordCount" content="3739">
+    <meta itemprop="keywords" content="Osint">
+    <title>OSINT Tools 2 :: Gharib Blog</title>
+    <link href="../../osint/osint2/index.xml" rel="alternate" type="application/rss+xml" title="OSINT Tools 2 :: Gharib Blog">
+    <link href="../../osint/osint2/index.print.html" rel="alternate" type="text/html" title="OSINT Tools 2 :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990495" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990495" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990495" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990495" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990495" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1745990495" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990495" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990495" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990495" defer></script>
+    <script src="../../js/search.min.js?1745990495" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/osint\/osint2\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990495";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support html" data-url="../../osint/osint2/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#start">Start</a>
+      <ul>
+        <li><a href="#shodan">shodan</a></li>
+        <li><a href="#ip-test">ip-test</a></li>
+        <li><a href="#virtual-host-finding">Virtual Host Finding</a></li>
+        <li><a href="#dns">dns</a></li>
+        <li><a href="#dns-public-name-server">DNS public name server</a></li>
+        <li><a href="#internet-search-engine-discovery">internet-search-engine-discovery</a></li>
+        <li><a href="#subdomain-enumeration">subdomain-enumeration</a></li>
+        <li><a href="#exceptionweb-subdomain-enumeration">Exception(web) subdomain enumeration</a></li>
+        <li><a href="#find-subdomain-on-github">Find subdomain on GitHub</a></li>
+        <li><a href="#find-subdomain-from-official-doddepart-of-defence-website">Find subdomain from Official DoD(Depart of Defence) website</a></li>
+        <li><a href="#dns-bruteforce">dns-bruteforce</a></li>
+        <li><a href="#osint">osint</a></li>
+        <li><a href="#http-probing">http-probing</a></li>
+        <li><a href="#web-screenshot">web-screenshot</a></li>
+        <li><a href="#cms-enumeration">cms-enumeration</a></li>
+        <li><a href="#automation">automation</a></li>
+        <li><a href="#ile-upload-scanner">ile upload scanner</a></li>
+        <li><a href="#network-scanner">Network Scanner</a></li>
+        <li><a href="#vulnerable-pattern-search">Vulnerable Pattern Search</a></li>
+        <li><a href="#wordpress">wordpress</a></li>
+        <li><a href="#joomla">joomla</a></li>
+        <li><a href="#drupal">drupal</a></li>
+        <li><a href="#cloud-enumeration">cloud-enumeration</a></li>
+        <li><a href="#buckets">Buckets</a></li>
+        <li><a href="#github-secrets">github-secrets</a></li>
+        <li><a href="#github-dork-wordlist">GitHub dork wordlist</a></li>
+        <li><a href="#git">Git</a></li>
+        <li><a href="#email-hunting">email-hunting</a></li>
+        <li><a href="#data-breach">data-breach</a></li>
+        <li><a href="#web-wayback">web-wayback</a></li>
+        <li><a href="#replace-parameter-value">Replace parameter value</a></li>
+        <li><a href="#find-reflected-params">Find reflected params</a></li>
+        <li><a href="#find-js-file-from-waybackurlstxt">Find js file from waybackurls.txt</a></li>
+        <li><a href="#automatic-put-parameter-value">Automatic put parameter value</a></li>
+        <li><a href="#declutters-url-lists">Declutters url lists</a></li>
+        <li><a href="#ports-scanning">ports-scanning</a></li>
+        <li><a href="#brute-forcing-from-nmap-output">Brute-Forcing from Nmap output</a></li>
+        <li><a href="#waf">waf</a></li>
+        <li><a href="#waf-bypass">Waf bypass</a></li>
+        <li><a href="#directory-search">directory-search</a></li>
+        <li><a href="#fuzzing">Fuzzing</a></li>
+        <li><a href="#hidden-file-or-directory">hidden-file-or-directory</a></li>
+        <li><a href="#18-03-22">18-03-22</a></li>
+        <li><a href="#js">JS</a></li>
+        <li><a href="#metadata">Metadata</a></li>
+        <li><a href="#broken-link">Broken link</a></li>
+        <li><a href="#parameter-finder">parameter-finder</a></li>
+        <li><a href="#dlelte-duplicate-from-waybacks">Dlelte Duplicate from waybacks</a></li>
+        <li><a href="#bypass-forbidder-directory">bypass-forbidder-directory</a></li>
+        <li><a href="#wordlists-payloads">wordlists-payloads</a></li>
+        <li><a href="#exceptional">Exceptional</a></li>
+        <li><a href="#miscellaneous">miscellaneous</a></li>
+        <li><a href="#social-engineering">social-engineering</a></li>
+        <li><a href="#uncategorized">Uncategorized</a></li>
+        <li><a href="#scripts">scripts</a></li>
+        <li><a href="#api_key">API_key</a></li>
+        <li><a href="#code_review">Code_review</a></li>
+        <li><a href="#log-file-analyze">log-file-analyze</a></li>
+        <li><a href="#programs">programs</a></li>
+        <li><a href="#burp-suite-extesion">burp-suite-extesion</a></li>
+        <li><a href="#burp-suite-pro">Burp suite pro</a></li>
+        <li><a href="#dos">DOS</a></li>
+        <li><a href="#websocket">Websocket</a></li>
+        <li><a href="#smart-contract">Smart-Contract</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../osint/index.html"><span itemprop="name">OSINT</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OSINT Tools 2</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint2/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint15/index.html" title="Social Engineering Tools (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint3/index.html" title="OSINT-Forensic Tools (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/osint/index.html">Osint</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="osint-tools-2">OSINT Tools 2</h1>
+
+<h2 id="start">Start</h2>
+<ul>
+<li><a href="https://www.zoomeye.org/" rel="external" target="_self">zoomeye</a></li>
+<li><a href="https://www.sitelike.org/" rel="external" target="_self">sitelike</a></li>
+<li><a href="https://scans.io/" rel="external" target="_self">scans</a></li>
+<li><a href="https://github.com/cipher387/Dorks-collections-list/" rel="external" target="_self">Dorks-collections-list</a> - List of Github repositories and articles with list of dorks for different search engines</li>
+<li><a href="https://dorksearch.com/" rel="external" target="_self">dorksearch</a> - Fast google dork</li>
+</ul>
+<h3 id="shodan">shodan</h3>
+<ul>
+<li><a href="https://exposure.shodan.io/" rel="external" target="_self">exposure</a></li>
+<li><a href="http://faviconhasher.herokuapp.com/" rel="external" target="_self">faviconhasher</a></li>
+<li><a href="https://www.shodan.io/search/facet?query=&facet=http.title" rel="external" target="_self">Shodan Facet</a> - recon website</li>
+<li><a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a" rel="external" target="_self">http.favicon.hash</a> - http.favicon.hash:</li>
+</ul>
+<h3 id="ip-test">ip-test</h3>
+<ul>
+<li><a href="https://centralops.net/co/" rel="external" target="_self">centralops</a></li>
+<li><a href="https://spyonweb.com/" rel="external" target="_self">spyonweb</a></li>
+<li><a href="https://tools.whoisxmlapi.com/reverse-whois-search" rel="external" target="_self">whoisxmlapi</a></li>
+<li><a href="https://viewdns.info/" rel="external" target="_self">viewdns</a></li>
+<li><a href="https://bgp.he.net/" rel="external" target="_self">bgp.he.net</a></li>
+<li><a href="https://cli.shodan.io/" rel="external" target="_self">shodan cli</a></li>
+<li><a href="https://github.com/pielco11/fav-up" rel="external" target="_self">fav-up</a> - IP lookup by favicon using Shodan</li>
+<li><a href="https://github.com/drwetter/testssl.sh" rel="external" target="_self">testssl.sh</a> - Testing TLS/SSL encryption anywhere on any port</li>
+<li><a href="https://www.ipaddressguide.com/" rel="external" target="_self">ipaddressguide</a> - IP address, traceroute an IP address, convert IP address into decimal value or CIDR format, and so on for both IPv4 and IPv6 format.</li>
+</ul>
+<h3 id="virtual-host-finding">Virtual Host Finding</h3>
+<ul>
+<li><a href="https://scantrics.io/tools/" rel="external" target="_self">scantrics</a></li>
+</ul>
+<h3 id="dns">dns</h3>
+<ul>
+<li><a href="https://github.com/darkoperator/dnsrecon" rel="external" target="_self">dnsrecon</a></li>
+<li><a href="https://tools.kali.org/" rel="external" target="_self">host linux tool</a></li>
+<li><a href="https://www.nslookup.io/" rel="external" target="_self">nslookup</a></li>
+<li><a href="https://domaineye.com/" rel="external" target="_self">domaineye</a></li>
+<li><a href="https://github.com/yassineaboukir/Asnlookup" rel="external" target="_self">anslookup</a></li>
+<li><a href="https://github.com/miekg/dns" rel="external" target="_self">dns</a></li>
+<li><a href="https://github.com/mhaskar/DNSStager" rel="external" target="_self">DNSStager</a></li>
+<li><a href="https://github.com/nccgroup/singularity" rel="external" target="_self">singularity</a> - A DNS rebinding attack framework.</li>
+<li><a href="https://github.com/brannondorsey/whonow" rel="external" target="_self">whonow</a> - A &ldquo;malicious&rdquo; DNS server for executing DNS Rebinding attacks on the fly (public instance running on rebind.network:53)</li>
+<li><a href="https://github.com/brannondorsey/dns-rebind-toolkit" rel="external" target="_self">dns-rebind-toolkit</a> - A front-end JavaScript toolkit for creating DNS rebinding attacks.</li>
+<li><a href="https://github.com/FSecureLABS/dref" rel="external" target="_self">dref</a> - DNS Rebinding Exploitation Framework</li>
+<li><a href="https://github.com/taviso/rbndr" rel="external" target="_self">rbndr</a> - Simple DNS Rebinding Service</li>
+<li><a href="https://github.com/daeken/httprebind" rel="external" target="_self">httprebind</a> - Automatic tool for DNS rebinding-based SSRF attacks</li>
+<li><a href="https://github.com/makuga01/dnsFookup" rel="external" target="_self">dnsFookup</a> - DNS rebinding toolkit</li>
+</ul>
+<h3 id="dns-public-name-server">DNS public name server</h3>
+<ul>
+<li><a href="https://public-dns.info/nameservers.txt" rel="external" target="_self">nameserver</a></li>
+<li><a href="https://github.com/BBerastegui/fresh-dns-servers" rel="external" target="_self">fresh-dns-servers</a> - Fresh DNS servers</li>
+</ul>
+<h3 id="internet-search-engine-discovery">internet-search-engine-discovery</h3>
+<ul>
+<li><a href="https://www.shodan.io/" rel="external" target="_self">shodan.io</a>
+<ul>
+<li><a href="https://help.shodan.io/the-basics/search-query-fundamentals" rel="external" target="_self">shodan query</a> - shodan basic query</li>
+</ul>
+</li>
+<li><a href="https://spyse.com/" rel="external" target="_self">spyse</a></li>
+<li><a href="https://censys.io/ipv4" rel="external" target="_self">censys</a></li>
+<li><a href="https://fofa.so/" rel="external" target="_self">fofa</a></li>
+<li><a href="https://www.binaryedge.io/" rel="external" target="_self">binary edge</a></li>
+</ul>
+<h3 id="subdomain-enumeration">subdomain-enumeration</h3>
+<ul>
+<li>
+<p><a href="https://certificate.transparency.dev/" rel="external" target="_self">certificate.transparency</a></p>
+</li>
+<li>
+<p><a href="https://developers.facebook.com/tools/" rel="external" target="_self">facebook</a></p>
+</li>
+<li>
+<p><a href="https://crt.sh/" rel="external" target="_self">crt.sh</a></p>
+</li>
+<li>
+<p><a href="https://github.com/hannob/tlshelpers" rel="external" target="_self">tlshelpers</a> - A collection of shell scripts that help handling X.509 certificate and TLS issues</p>
+</li>
+<li>
+<p><a href="https://github.com/eslam3kl/crtfinder" rel="external" target="_self">crtfinder</a> - Fast tool to extract all subdomains from crt.sh website. Output will be up to sub.sub.sub.subdomain.com with standard and advanced search techniques</p>
+</li>
+<li>
+<p><a href="https://github.com/OWASP/Amass" rel="external" target="_self">amass</a></p>
+</li>
+<li>
+<p><a href="https://github.com/projectdiscovery/subfinder" rel="external" target="_self">subfinder</a></p>
+</li>
+<li>
+<p><a href="https://dnsdumpster.com/" rel="external" target="_self">dnsdumpster</a></p>
+<ul>
+<li><a href="https://github.com/PaulSec/API-dnsdumpster.com" rel="external" target="_self">API-dnsdumpster.com</a> - (Unofficial) Python API</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/tomnomnom/assetfinder" rel="external" target="_self">assetfinder</a></p>
+</li>
+<li>
+<p><a href="https://www.rubydoc.info/gems/aquatone/0.4.1" rel="external" target="_self">aquatone</a></p>
+</li>
+<li>
+<p><a href="https://censys.io/ipv4" rel="external" target="_self">censys</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Findomain/Findomain" rel="external" target="_self">findomain</a></p>
+</li>
+<li>
+<p><a href="https://github.com/yassineaboukir/sublert" rel="external" target="_self">sublert</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nsonaniya2010/SubDomainizer" rel="external" target="_self">subdomainizer</a></p>
+</li>
+<li>
+<p><a href="https://github.com/d3mondev/puredns" rel="external" target="_self">puredns</a></p>
+</li>
+<li>
+<p><a href="https://github.com/rvrsh3ll/FindFrontableDomains" rel="external" target="_self">findfrontabledoamin</a></p>
+</li>
+<li>
+<p><a href="https://github.com/threatexpress/domainhunter" rel="external" target="_self">domainhunter</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Screetsec/Sudomy" rel="external" target="_self">sudomy</a></p>
+</li>
+<li>
+<p><a href="https://domainbigdata.com/" rel="external" target="_self">domainbigdate</a></p>
+</li>
+<li>
+<p><a href="https://github.com/jonluca/anubis" rel="external" target="_self">anubis</a></p>
+</li>
+<li>
+<p><a href="https://github.com/UnaPibaGeek/ctfr" rel="external" target="_self">ctfr</a></p>
+</li>
+<li>
+<p><a href="https://rapiddns.io/" rel="external" target="_self">rapiddns</a></p>
+</li>
+</ul>
+<h3 id="exceptionweb-subdomain-enumeration">Exception(web) subdomain enumeration</h3>
+<ul>
+<li><a href="https://dns.bufferover.run/dns?q=" rel="external" target="_self">dns</a></li>
+<li><a href="https://tls.bufferover.run/dns?q=" rel="external" target="_self">tls</a></li>
+<li><a href="https://threatcrowd.org/searchApi/v2/domain/report/?domain=" rel="external" target="_self">threatcrowd</a></li>
+</ul>
+<h3 id="find-subdomain-on-github">Find subdomain on GitHub</h3>
+<ul>
+<li><a href="https://github.com/gwen001/github-subdomains" rel="external" target="_self">github-subdomain</a></li>
+</ul>
+<h3 id="find-subdomain-from-official-doddepart-of-defence-website">Find subdomain from Official DoD(Depart of Defence) website</h3>
+<ul>
+<li><a href="https://github.com/daehee/mildew" rel="external" target="_self">mildew</a></li>
+</ul>
+<h3 id="dns-bruteforce">dns-bruteforce</h3>
+<ul>
+<li><a href="https://github.com/ProjectAnte/dnsgen" rel="external" target="_self">dnsgen</a></li>
+<li><a href="https://github.com/infosec-au/altdns" rel="external" target="_self">altdns</a></li>
+<li><a href="https://github.com/projectdiscovery/shuffledns" rel="external" target="_self">shuffledns</a></li>
+<li><a href="https://github.com/projectdiscovery/dnsx" rel="external" target="_self">dnsx</a></li>
+<li><a href="https://github.com/zmap/zdns" rel="external" target="_self">zdns</a></li>
+<li><a href="https://github.com/Ice3man543/SubOver" rel="external" target="_self">subover</a></li>
+<li><a href="https://github.com/vortexau/dnsvalidator" rel="external" target="_self">dnsvalidator</a></li>
+<li><a href="https://github.com/Josue87/gotator" rel="external" target="_self">gotator</a></li>
+<li><a href="https://github.com/Josue87/resolveDomains" rel="external" target="_self">resolve domains</a></li>
+</ul>
+<h3 id="osint">osint</h3>
+<ul>
+<li><a href="https://github.com/itsmehacker/DarkScrape" rel="external" target="_self">DarkScrape</a> - OSINT Tool For Scraping Dark Websites</li>
+<li><a href="https://www.virustotal.com/gui/home/search" rel="external" target="_self">virustotal</a> - Analyze suspicious files and URLs to detect types of malware, automatically share them with the security community</li>
+<li><a href="https://github.com/Tuhinshubhra/RED_HAWK" rel="external" target="_self">RED_HAWK</a> - All in one tool for Information Gathering, Vulnerability Scanning and Crawling. A must have tool for all penetration testers</li>
+<li><a href="https://www.siteindices.com/" rel="external" target="_self">siteindices</a> - siteindices</li>
+<li><a href="https://github.com/m3n0sd0n4ld/uDork" rel="external" target="_self">udork.sh</a></li>
+<li><a href="https://github.com/pielco11/fav-up" rel="external" target="_self">fav-up</a></li>
+<li><a href="https://github.com/drwetter/testssl.sh" rel="external" target="_self">testssl</a> - Testing TLS/SSL encryption anywhere on any port</li>
+<li><a href="https://github.com/m4ll0k/BBTz" rel="external" target="_self">bbtz</a></li>
+<li><a href="https://github.com/Cgboal/SonarSearch" rel="external" target="_self">sonar search</a></li>
+<li><a href="https://github.com/projectdiscovery/notify" rel="external" target="_self">notify</a> - Notify is a Go-based assistance package that enables you to stream the output of several tools (or read from a file) and publish it to a variety of supported platforms.</li>
+<li><a href="https://github.com/Josue87/EmailFinder" rel="external" target="_self">email finder</a></li>
+<li><a href="https://github.com/Josue87/AnalyticsRelationships" rel="external" target="_self">analytics relationships</a></li>
+<li><a href="https://github.com/projectdiscovery/mapcidr" rel="external" target="_self">mapcidr</a></li>
+<li><a href="https://github.com/dwisiswant0/ppfuzz" rel="external" target="_self">ppfuzz</a></li>
+<li><a href="https://github.com/dgzlopes/cloud-detect" rel="external" target="_self">cloud-detect</a></li>
+<li><a href="https://github.com/projectdiscovery/interactsh" rel="external" target="_self">interactsh</a></li>
+<li><a href="https://github.com/honoki/bbrf-client" rel="external" target="_self">bbrf</a></li>
+<li><a href="https://github.com/smicallef/spiderfoot" rel="external" target="_self">spiderfoot</a> - SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.</li>
+<li><a href="http://www.visualsitemapper.com/" rel="external" target="_self">visualsitemapper</a> - free service that can quickly show an interactive visual map of your site.</li>
+<li><a href="https://jwt.io/" rel="external" target="_self">jwt</a> - JWT.IO allows you to decode, verify and generate JWT. Gain control over your JWTs</li>
+<li><a href="https://bgp.he.net/" rel="external" target="_self">bgp.he</a> - Internet Backbone and Colocation Provider</li>
+<li><a href="https://spyse.com/search?query&target=ip" rel="external" target="ip">spyse</a> - Find any Internet asset by digital fingerprints</li>
+<li><a href="https://www.whoxy.com/" rel="external" target="_self">whoxy</a> - whois database</li>
+</ul>
+<h3 id="http-probing">http-probing</h3>
+<ul>
+<li><a href="https://github.com/tomnomnom/httprobe" rel="external" target="_self">httprobe</a> - by tomnomnom</li>
+<li><a href="https://github.com/projectdiscovery/httpx" rel="external" target="_self">httpx</a> - by project discovery</li>
+<li><a href="https://httpstatus.io/" rel="external" target="_self">httpstatus</a> - web version</li>
+</ul>
+<h4 id="subdomain-takeover">subdomain-takeover</h4>
+<ul>
+<li><a href="https://github.com/haccer/subjack" rel="external" target="_self">subjack</a> - Subdomain Takeover tool written in Go</li>
+<li><a href="https://github.com/Ice3man543/SubOver" rel="external" target="_self">SubOver</a> - A Powerful Subdomain Takeover Tool</li>
+<li><a href="https://github.com/JordyZomer/autoSubTakeover" rel="external" target="_self">autoSubTakeover</a> - A tool used to check if a CNAME resolves to the scope address. If the CNAME resolves to a non-scope address it might be worth checking out if subdomain takeover is possible.</li>
+<li><a href="https://github.com/shivsahni/NSBrute" rel="external" target="_self">NSBrute</a> - Python utility to takeover domains vulnerable to AWS NS Takeover</li>
+<li><a href="https://github.com/EdOverflow/can-i-take-over-xyz" rel="external" target="_self">can-i-take-over-xyz</a> - &ldquo;Can I take over XYZ?&rdquo; — a list of services and how to claim (sub)domains with dangling DNS records.</li>
+<li><a href="https://github.com/shifa123/Can-I-take-over-xyz-v2" rel="external" target="_self">Can-I-take-over-xyz-v2</a> - V2</li>
+<li><a href="https://github.com/cybercdh/cnames" rel="external" target="_self">cnames</a> - take a list of resolved subdomains and output any corresponding CNAMES en masse.</li>
+<li><a href="https://github.com/vavkamil/old-repos-backup/tree/master/subHijack-master" rel="external" target="_self">subHijack</a> - Hijacking forgotten &amp; misconfigured subdomains</li>
+<li><a href="https://github.com/anshumanbh/tko-subs" rel="external" target="_self">tko-subs</a> - A tool that can help detect and takeover subdomains with dead DNS records</li>
+<li><a href="https://github.com/nahamsec/HostileSubBruteforcer" rel="external" target="_self">HostileSubBruteforcer</a> - This app will bruteforce for exisiting subdomains and provide information if the 3rd party host has been properly setup.</li>
+<li><a href="https://github.com/mhmdiaa/second-order" rel="external" target="_self">second-order</a> - Second-order subdomain takeover scanner</li>
+<li><a href="https://github.com/mzfr/takeover" rel="external" target="_self">takeover</a> - A tool for testing subdomain takeover possibilities at a mass scale.</li>
+</ul>
+<h3 id="web-screenshot">web-screenshot</h3>
+<ul>
+<li><a href="https://github.com/FortyNorthSecurity/EyeWitness" rel="external" target="_self">EyeWitness</a> - EyeWitness is designed to take screenshots of websites, provide some server header info, and identify default credentials if possible.</li>
+<li><a href="https://github.com/michenriksen/aquatone" rel="external" target="_self">aquatone</a> - Aquatone is a tool for visual inspection of websites across a large amount of hosts and is convenient for quickly gaining an overview of HTTP-based attack surface.</li>
+<li><a href="https://github.com/vladocar/screenshoteer" rel="external" target="_self">screenshoteer</a> - Make website screenshots and mobile emulations from the command line.</li>
+<li><a href="https://github.com/sensepost/gowitness" rel="external" target="_self">gowitness</a> - gowitness - a golang, web screenshot utility using Chrome Headless</li>
+<li><a href="https://github.com/byt3bl33d3r/WitnessMe" rel="external" target="_self">WitnessMe</a> - Web Inventory tool, takes screenshots of webpages using Pyppeteer (headless Chrome/Chromium) and provides some extra bells &amp; whistles to make life easier.</li>
+<li><a href="https://github.com/BishopFox/eyeballer" rel="external" target="_self">eyeballer</a> - Convolutional neural network for analyzing pentest screenshots</li>
+<li><a href="https://github.com/nccgroup/scrying" rel="external" target="_self">scrying</a> - A tool for collecting RDP, web and VNC screenshots all in one place</li>
+<li><a href="https://github.com/beurtschipper/Depix" rel="external" target="_self">Depix</a> - Recovers passwords from pixelized screenshots</li>
+<li><a href="https://github.com/breenmachine/httpscreenshot/" rel="external" target="_self">httpscreenshot</a> - HTTPScreenshot is a tool for grabbing screenshots and HTML of large numbers of websites.</li>
+</ul>
+<h3 id="cms-enumeration">cms-enumeration</h3>
+<ul>
+<li><a href="https://github.com/0x727/ObserverWard" rel="external" target="_self">ObserverWard</a> - Cross platform community web fingerprint identification tool AEM</li>
+<li><a href="https://github.com/0ang3el/aem-hacker" rel="external" target="_self">aem-hacker</a></li>
+<li><a href="https://github.com/Tuhinshubhra/CMSeeK" rel="external" target="_self">cmseek</a> - CMS Detection and Exploitation suite - Scan WordPress, Joomla, Drupal and over 180 other CMSs</li>
+<li><a href="https://github.com/rverton/webanalyze" rel="external" target="_self">webanlyze</a> - Port of Wappalyzer (uncovers technologies used on websites) to automate mass scanning.</li>
+<li><a href="https://github.com/urbanadventurer/WhatWeb" rel="external" target="_self">whatweb</a> - Next generation web scanner</li>
+<li><a href="https://www.wappalyzer.com/" rel="external" target="_self">wappalyzer</a> - wappalyzer website</li>
+<li><a href="https://github.com/AliasIO" rel="external" target="_self">wappalyzer cli</a> - Identify technology on websites.</li>
+<li><a href="https://builtwith.com/" rel="external" target="_self">build with</a></li>
+<li><a href="https://github.com/claymation/python-builtwith" rel="external" target="_self">build with cli</a> - BuiltWith API client</li>
+<li><a href="http://backlinkwatch.com/index.php" rel="external" target="_self">backlinkwatch</a> - Website for backlink finding</li>
+<li><a href="https://github.com/RetireJS/retire.js" rel="external" target="_self">retirejs</a> -scanner detecting the use of JavaScript libraries with known vulnerabilities</li>
+</ul>
+<h3 id="automation">automation</h3>
+<ul>
+<li><a href="https://github.com/trickest/inventory" rel="external" target="_self">inventory</a> - Asset inventory on public bug bounty programs.</li>
+<li><a href="https://github.com/samet-g/bugradar" rel="external" target="_self">bugradar</a> - Advanced external automation on bug bounty programs by running the best set of tools to perform scanning and finding out vulnerabilities.</li>
+<li><a href="https://github.com/wapiti-scanner" rel="external" target="_self">wapiti-scanner</a> - Scan your website</li>
+<li><a href="https://github.com/projectdiscovery/nuclei" rel="external" target="_self">nuclei</a> - Nuclei is a fast tool for configurable targeted scanning based on templates offering massive extensibility and ease of use.</li>
+<li><a href="https://github.com/emadshanab/Nuclei-Templates-Collection" rel="external" target="_self">Nuclei-Templates-Collection</a> - Nuclei templates collection</li>
+<li><a href="https://github.com/geeknik/the-nuclei-templates" rel="external" target="_self">the-nuclei-templates</a> - Nuclei templates written by us.</li>
+<li><a href="https://github.com/knassar702/scant3r" rel="external" target="_self">scant3r</a> - ScanT3r - Module based Bug Bounty Automation Tool</li>
+<li><a href="https://github.com/1N3/Sn1per" rel="external" target="_self">Sn1per</a> - Automated pentest framework for offensive security experts</li>
+<li><a href="https://github.com/rapid7/metasploit-framework" rel="external" target="_self">metasploit-framework</a> - Metasploit Framework</li>
+<li><a href="https://github.com/sullo/nikto" rel="external" target="_self">nikto</a> - Nikto web server scanner</li>
+<li><a href="https://github.com/Arachni/arachni" rel="external" target="_self">arachni</a> - Web Application Security Scanner Framework</li>
+<li><a href="https://github.com/jaeles-project/jaeles" rel="external" target="_self">jaeles</a> - The Swiss Army knife for automated Web Application Testing</li>
+<li><a href="https://github.com/RetireJS/retire.js" rel="external" target="_self">retire.js</a> - scanner detecting the use of JavaScript libraries with known vulnerabilities</li>
+<li><a href="https://github.com/j3ssie/Osmedeus" rel="external" target="_self">Osmedeus</a> - Fully automated offensive security framework for reconnaissance and vulnerability scanning</li>
+<li><a href="https://github.com/vulnersCom/getsploit" rel="external" target="_self">getsploit</a> - Command line utility for searching and downloading exploits</li>
+<li><a href="https://github.com/cloudflare/flan" rel="external" target="_self">flan</a> - A pretty sweet vulnerability scanner</li>
+<li><a href="https://github.com/1N3/Findsploit" rel="external" target="_self">Findsploit</a> - Find exploits in local and online databases instantly</li>
+<li><a href="https://github.com/1N3/BlackWidow" rel="external" target="_self">BlackWidow</a> - A Python based web application scanner to gather OSINT and fuzz for OWASP vulnerabilities on a target website.</li>
+<li><a href="https://github.com/PortSwigger/backslash-powered-scanner" rel="external" target="_self">backslash-powered-scanner</a> - Finds unknown classes of injection vulnerabilities</li>
+<li><a href="https://github.com/BitTheByte/Eagle" rel="external" target="_self">Eagle</a> - Multithreaded Plugin based vulnerability scanner for mass detection of web-based applications vulnerabilities</li>
+<li><a href="https://github.com/edoardottt/cariddi" rel="external" target="_self">cariddi</a> - Take a list of domains, crawl urls and scan for endpoints, secrets, api keys, file extensions, tokens and more&hellip;</li>
+<li><a href="https://github.com/ARPSyndicate/kenzer" rel="external" target="_self">kenzer</a> - automated web assets enumeration &amp; scanning</li>
+<li><a href="https://github.com/2bdenny/ReScue" rel="external" target="_self">ReScue</a> - An automated tool for the detection of regexes&rsquo; slow-matching vulnerabilities.</li>
+</ul>
+<h3 id="ile-upload-scanner">ile upload scanner</h3>
+<ul>
+<li><a href="https://github.com/almandin/fuxploider" rel="external" target="_self">fuxploider</a> - File upload vulnerability scanner and exploitation tool.</li>
+</ul>
+<h3 id="network-scanner">Network Scanner</h3>
+<ul>
+<li><a href="https://www.openvas.org/" rel="external" target="_self">openvas</a> - Free software implementation of the popular Nessus vulnerability assessment system.</li>
+<li><a href="https://github.com/future-architect/vuls" rel="external" target="_self">vuls</a> - Agentless vulnerability scanner for GNU/Linux and FreeBSD, written in Go.</li>
+<li><a href="https://www.rapid7.com/products/nexpose/download/" rel="external" target="_self">nexpose</a> - Commercial vulnerability and risk management assessment engine that integrates with Metasploit, sold by Rapid7.</li>
+<li><a href="https://www.tenable.com/products/nessus" rel="external" target="_self">nessus</a> - Commercial vulnerability management, configuration, and compliance assessment platform, sold by Tenable.</li>
+</ul>
+<h3 id="vulnerable-pattern-search">Vulnerable Pattern Search</h3>
+<ul>
+<li><a href="https://github.com/tomnomnom/gf" rel="external" target="_self">gf</a> - A wrapper around grep, to help you grep for things</li>
+<li><a href="https://github.com/emadshanab/Gf-Patterns-Collection" rel="external" target="_self">Gf-Patterns-Collection</a> - More and more</li>
+</ul>
+<h3 id="wordpress">wordpress</h3>
+<ul>
+<li><a href="https://github.com/wpscanteam/wpscan" rel="external" target="_self">wpscan</a></li>
+</ul>
+<h3 id="joomla">joomla</h3>
+<ul>
+<li><a href="https://github.com/OWASP/joomscan" rel="external" target="_self">joomscan</a></li>
+</ul>
+<h3 id="drupal">drupal</h3>
+<ul>
+<li><a href="https://github.com/SamJoan/droopescan" rel="external" target="_self">droopescan</a> - A plugin-based scanner that aids security researchers in identifying issues with several CMSs, mainly Drupal &amp; Silverstripe.</li>
+</ul>
+<h3 id="cloud-enumeration">cloud-enumeration</h3>
+<ul>
+<li><a href="https://github.com/clario-tech/s3-inspector" rel="external" target="_self">s3-inspector</a> - Tool to check AWS S3 bucket permissions</li>
+<li><a href="https://github.com/subzero987/S3-Recon/blob/main/S3-Recon.txt" rel="external" target="_self">S3-Recon</a> - S3 RECON TIPS</li>
+<li><a href="https://github.com/nccgroup/ScoutSuite" rel="external" target="_self">ScoutSuite</a></li>
+<li><a href="https://github.com/0xbharath/slurp" rel="external" target="_self">slurp</a></li>
+<li><a href="https://github.com/nahamsec/lazys3" rel="external" target="_self">lazys3</a></li>
+<li><a href="https://github.com/initstring/cloud_enum" rel="external" target="_self">cloud_enum</a></li>
+<li><a href="https://github.com/mlcsec/clovery" rel="external" target="_self">clovery</a></li>
+<li><a href="https://github.com/RhinoSecurityLabs/GCPBucketBrute" rel="external" target="_self">gcpbucketbrute</a></li>
+<li><a href="https://github.com/tomdev/teh_s3_bucketeers" rel="external" target="_self">teh S3 bucketeers</a></li>
+</ul>
+<h3 id="buckets">Buckets</h3>
+<ul>
+<li><a href="https://github.com/sa7mon/S3Scanner" rel="external" target="_self">S3Scanner</a> - Scan for open AWS S3 buckets and dump the contents</li>
+<li><a href="https://github.com/jordanpotti/AWSBucketDump" rel="external" target="_self">AWSBucketDump</a> - Security Tool to Look For Interesting Files in S3 Buckets</li>
+<li><a href="https://github.com/jordanpotti/CloudScraper" rel="external" target="_self">CloudScraper</a> - CloudScraper: Tool to enumerate targets in search of cloud resources. S3 Buckets, Azure Blobs, Digital Ocean Storage Space.</li>
+<li><a href="https://github.com/SharonBrizinov/s3viewer" rel="external" target="_self">s3viewer</a> - Publicly Open Amazon AWS S3 Bucket Viewer</li>
+<li><a href="https://github.com/cr0hn/festin" rel="external" target="_self">festin</a> - FestIn - S3 Bucket Weakness Discovery</li>
+<li><a href="https://github.com/hahwul/s3reverse" rel="external" target="_self">s3reverse</a> - The format of various s3 buckets is convert in one format. for bugbounty and security testing.</li>
+<li><a href="https://github.com/random-robbie/mass-s3-bucket-tester" rel="external" target="_self">mass-s3-bucket-tester</a> - This tests a list of s3 buckets to see if they have dir listings enabled or if they are uploadable</li>
+<li><a href="https://github.com/AlecBlance/S3BucketList" rel="external" target="_self">S3BucketList</a> - Firefox plugin that lists Amazon S3 Buckets found in requests</li>
+<li><a href="https://github.com/cybercdh/dirlstr" rel="external" target="_self">dirlstr</a> - Finds Directory Listings or open S3 buckets from a list of URLs</li>
+<li><a href="https://github.com/codewatchorg/Burp-AnonymousCloud" rel="external" target="_self">Burp-AnonymousCloud</a> - Burp extension that performs a passive scan to identify cloud buckets and then test them for publicly accessible vulnerabilities</li>
+<li><a href="https://github.com/abuvanth/kicks3" rel="external" target="_self">kicks3</a> - S3 bucket finder from html,js and bucket misconfiguration testing tool</li>
+<li><a href="https://github.com/Revenant40/2tearsinabucket" rel="external" target="_self">2tearsinabucket</a> - Enumerate s3 buckets for a specific target.</li>
+<li><a href="https://github.com/nccgroup/s3_objects_check" rel="external" target="_self">s3_objects_check</a> - Whitebox evaluation of effective S3 object permissions, to identify publicly accessible files.</li>
+<li><a href="https://github.com/ankane/s3tk" rel="external" target="_self">s3tk</a> - A security toolkit for Amazon S3</li>
+<li><a href="https://github.com/0xsha/CloudBrute" rel="external" target="_self">CloudBrute</a> - Awesome cloud enumerator</li>
+<li><a href="https://github.com/0xspade/s3cario" rel="external" target="_self">s3cario</a> - This tool will get the CNAME first if it&rsquo;s a valid Amazon s3 bucket and if it&rsquo;s not, it will try to check if the domain is a bucket name.</li>
+<li><a href="https://github.com/JR0ch17/S3Cruze" rel="external" target="_self">S3Cruze</a> - All-in-one AWS S3 bucket tool for pentesters.</li>
+</ul>
+<h3 id="github-secrets">github-secrets</h3>
+<ul>
+<li><a href="https://github.com/WangYihang/GitHacker" rel="external" target="_self">githacker</a></li>
+<li><a href="https://github.com/tillson/git-hound" rel="external" target="_self">git-hound</a></li>
+<li><a href="https://github.com/molly/gh-dork" rel="external" target="_self">gh-dork</a> - Github dorking tool</li>
+<li><a href="https://github.com/obheda12/GitDorker" rel="external" target="_self">gitdorker</a> - A Python program to scrape secrets from GitHub through usage of a large repository of dorks.</li>
+<li><a href="https://github.com/gwen001/github-endpoints" rel="external" target="_self">github-endpoints</a></li>
+<li><a href="https://github.com/awslabs/git-secrets" rel="external" target="_self">git-secrets</a> - Prevents you from committing secrets and credentials into git repositories</li>
+<li><a href="https://github.com/zricethezav/gitleaks" rel="external" target="_self">gitleaks</a> - Scan git repos (or files) for secrets using regex and entropy</li>
+<li><a href="https://github.com/dxa4481/truffleHog" rel="external" target="_self">truffleHog</a> - Searches through git repositories for high entropy strings and secrets, digging deep into commit history</li>
+<li><a href="https://github.com/hisxo/gitGraber" rel="external" target="_self">gitGraber</a> - gitGraber: monitor GitHub to search and find sensitive data in real time for different online services</li>
+<li><a href="https://github.com/thoughtworks/talisman" rel="external" target="_self">talisman</a> - By hooking into the pre-push hook provided by Git, Talisman validates the outgoing changeset for things that look suspicious - such as authorization tokens and private keys.</li>
+<li><a href="https://github.com/BishopFox/GitGot" rel="external" target="_self">GitGot</a> - Semi-automated, feedback-driven tool to rapidly search through troves of public data on GitHub for sensitive secrets.</li>
+<li><a href="https://github.com/anshumanbh/git-all-secrets" rel="external" target="_self">git-all-secrets</a> - A tool to capture all the git secrets by leveraging multiple open source git searching tools</li>
+<li><a href="https://github.com/gwen001/github-search" rel="external" target="_self">github-search</a> - Tools to perform basic search on GitHub.</li>
+<li><a href="https://github.com/cve-search/git-vuln-finder" rel="external" target="_self">git-vuln-finder</a> - Finding potential software vulnerabilities from git commit messages</li>
+<li><a href="https://github.com/x1sec/commit-stream" rel="external" target="_self">commit-stream</a> - #OSINT tool for finding Github repositories by extracting commit logs in real time from the Github event API</li>
+<li><a href="https://github.com/michenriksen/gitrob" rel="external" target="_self">gitrob</a> - Reconnaissance tool for GitHub organizations</li>
+<li><a href="https://github.com/auth0/repo-supervisor" rel="external" target="_self">repo-supervisor</a> - Scan your code for security misconfiguration, search for passwords and secrets.</li>
+<li><a href="https://github.com/UnkL4b/GitMiner" rel="external" target="_self">GitMiner</a> - Tool for advanced mining for content on Github</li>
+<li><a href="https://github.com/eth0izzle/shhgit" rel="external" target="_self">shhgit</a> - Ah shhgit! Find GitHub secrets in real time</li>
+<li><a href="https://github.com/Yelp/detect-secrets" rel="external" target="_self">detect-secrets</a> - An enterprise friendly way of detecting and preventing secrets in code.</li>
+<li><a href="https://github.com/newrelic/rusty-hog" rel="external" target="_self">rusty-hog</a> - A suite of secret scanners built in Rust for performance. Based on TruffleHog</li>
+<li><a href="https://github.com/Skyscanner/whispers" rel="external" target="_self">whispers</a> - Identify hardcoded secrets and dangerous behaviours</li>
+<li><a href="https://github.com/nielsing/yar" rel="external" target="_self">yar</a> - Yar is a tool for plunderin&rsquo; organizations, users and/or repositories.</li>
+<li><a href="https://github.com/BishopFox/dufflebag" rel="external" target="_self">dufflebag</a> - Search exposed EBS volumes for secrets</li>
+<li><a href="https://github.com/duo-labs/secret-bridge" rel="external" target="_self">secret-bridge</a> - Monitors Github for leaked secrets</li>
+<li><a href="https://github.com/americanexpress/earlybird" rel="external" target="_self">earlybird</a> - EarlyBird is a sensitive data detection tool capable of scanning source code repositories for clear text password violations, PII, outdated cryptography methods, key files and more.</li>
+</ul>
+<h3 id="github-dork-wordlist">GitHub dork wordlist</h3>
+<ul>
+<li><a href="https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt" rel="external" target="_self">dork list</a></li>
+<li><a href="https://github.com/techgaun/github-dorks/blob/master/github-dorks.txt" rel="external" target="_self">github-dorks</a></li>
+</ul>
+<h3 id="git">Git</h3>
+<ul>
+<li><a href="https://github.com/internetwache/GitTools" rel="external" target="_self">GitTools</a> - A repository with 3 tools for pwn&rsquo;ing websites with .git repositories available</li>
+<li><a href="https://github.com/liamg/gitjacker" rel="external" target="_self">gitjacker</a> - Leak git repositories from misconfigured websites</li>
+<li><a href="https://github.com/arthaud/git-dumper" rel="external" target="_self">git-dumper</a> - A tool to dump a git repository from a website</li>
+<li><a href="https://github.com/digininja/GitHunter" rel="external" target="_self">GitHunter</a> - A tool for searching a Git repository for interesting content</li>
+<li><a href="https://github.com/kost/dvcs-ripper" rel="external" target="_self">dvcs-ripper</a> - Rip web accessible (distributed) version control systems: SVN/GIT/HG&hellip;</li>
+</ul>
+<h3 id="email-hunting">email-hunting</h3>
+<ul>
+<li><a href="https://github.com/mxrch/GHunt" rel="external" target="_self">GHunt</a> - 🕵️‍♂️ Investigate Google emails and documents.</li>
+<li><a href="https://github.com/m4ll0k/infoga" rel="external" target="_self">infoga</a> - Infoga - Email OSINT</li>
+<li><a href="https://github.com/bhavsec/reconspider" rel="external" target="_self">reconspider</a> - 🔎 Most Advanced Open Source Intelligence (OSINT) Framework for scanning IP Address, Emails, Websites, Organizations.</li>
+<li><a href="https://github.com/laramies/theHarvester" rel="external" target="_self">theHarvester</a> - E-mails, subdomains and names Harvester - OSINT</li>
+<li><a href="https://hunter.io/" rel="external" target="_self">hunter</a></li>
+<li><a href="https://phonebook.cz/" rel="external" target="_self">phonebook</a></li>
+<li><a href="https://www.voilanorbert.com/" rel="external" target="_self">voilanorbert</a></li>
+<li><a href="https://tools.verifyemailaddress.io/" rel="external" target="_self">verifyemailaddress</a></li>
+<li><a href="https://email-checker.net/" rel="external" target="_self">email-checker</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/clearbit-connect-supercha/pmnhcgfcafcnkbengdcanjablaabjplo?hl=en" rel="external" target="_self">Clearbit-Connect</a></li>
+</ul>
+<h3 id="data-breach">data-breach</h3>
+<ul>
+<li><a href="https://github.com/davidtavarez/pwndb/" rel="external" target="_self">pwndb</a></li>
+<li><a href="https://github.com/hmaverickadams/breach-parse" rel="external" target="_self">breach-parse</a></li>
+<li><a href="https://dehashed.com/" rel="external" target="_self">dehashed</a></li>
+<li><a href="https://weleakinfo.to/" rel="external" target="_self">weleakinfo</a></li>
+<li><a href="https://leakcheck.io/" rel="external" target="_self">leakcheck</a></li>
+<li><a href="https://snusbase.com/" rel="external" target="_self">sunbase</a></li>
+<li><a href="https://intelx.io/" rel="external" target="_self">intelx</a></li>
+<li><a href="https://haveibeenpwned.com/" rel="external" target="_self">haveibeenpwned</a></li>
+<li><a href="https://scatteredsecrets.com/" rel="external" target="_self">scatteredsecrets</a></li>
+</ul>
+<h3 id="web-wayback">web-wayback</h3>
+<ul>
+<li><a href="https://github.com/xnl-h4ck3r/waymore" rel="external" target="_self">waymore</a> - Find way more from the Wayback Machine!</li>
+<li><a href="https://github.com/signedsecurity/sigurlfind3r" rel="external" target="_self">sigurlfind3r</a> - A passive reconnaissance tool for known URLs discovery - it gathers a list of URLs passively using various online sources</li>
+<li><a href="https://github.com/tomnomnom/waybackurls" rel="external" target="_self">waybackurls</a> - Fetch all the URLs that the Wayback Machine knows about for a domain</li>
+<li><a href="https://github.com/lc/gau" rel="external" target="_self">gau</a> - Fetch known URLs from AlienVault&rsquo;s Open Threat Exchange, the Wayback Machine, and Common Crawl.</li>
+<li><a href="https://github.com/bp0lr/gauplus" rel="external" target="_self">gauplus</a> - A modified version of gau</li>
+<li><a href="https://github.com/akamhy/waybackpy" rel="external" target="_self">waybackpy</a> - Wayback Machine API Python interfaces and CLI tool.</li>
+<li><a href="https://github.com/mhmdiaa/chronos" rel="external" target="_self">chronos</a> - Extract pieces of info from a web page&rsquo;s Wayback Machine history</li>
+</ul>
+<h3 id="replace-parameter-value">Replace parameter value</h3>
+<ul>
+<li><a href="https://github.com/R0X4R/bhedak" rel="external" target="_self">bhedak</a> - A replacement of &ldquo;qsreplace&rdquo;, accepts URLs as standard input, replaces all query string values with user-supplied values and stdout.</li>
+</ul>
+<h3 id="find-reflected-params">Find reflected params</h3>
+<ul>
+<li><a href="https://github.com/KathanP19/Gxss" rel="external" target="_self">gxss</a> - A tool to check a bunch of URLs that contain reflecting params.</li>
+<li><a href="https://github.com/takshal/freq" rel="external" target="_self">freq</a> - This is go CLI tool for send fast Multiple get HTTP request.</li>
+<li><a href="https://github.com/ethicalhackingplayground/bxss/" rel="external" target="_self">bxss</a> - A Blind XSS Injector tool</li>
+</ul>
+<h3 id="find-js-file-from-waybackurlstxt">Find js file from waybackurls.txt</h3>
+<ul>
+<li><a href="https://github.com/lc/subjs" rel="external" target="_self">subjs</a></li>
+</ul>
+<h3 id="automatic-put-parameter-value">Automatic put parameter value</h3>
+<ul>
+<li><a href="https://github.com/tomnomnom/qsreplace" rel="external" target="_self">qsreplace</a></li>
+<li><a href="https://github.com/ameenmaali/urldedupe" rel="external" target="_self">url dedupe</a></li>
+</ul>
+<h3 id="declutters-url-lists">Declutters url lists</h3>
+<ul>
+<li><a href="https://github.com/s0md3v/uro" rel="external" target="_self">uro</a></li>
+</ul>
+<h3 id="ports-scanning">ports-scanning</h3>
+<ul>
+<li><a href="https://github.com/robertdavidgraham/masscan" rel="external" target="_self">masscan</a> - TCP port scanner, spews SYN packets asynchronously, scanning entire Internet in under 5 minutes.</li>
+<li><a href="https://github.com/RustScan/RustScan" rel="external" target="_self">RustScan</a> - The Modern Port Scanner</li>
+<li><a href="https://github.com/projectdiscovery/naabu" rel="external" target="_self">naabu</a> - A fast port scanner written in go with focus on reliability and simplicity.</li>
+<li><a href="https://github.com/nmap/nmap" rel="external" target="_self">nmap</a> - Nmap - the Network Mapper. Github mirror of official SVN repository.</li>
+<li><a href="https://github.com/trimstray/sandmap" rel="external" target="_self">sandmap</a> - Nmap on steroids. Simple CLI with the ability to run pure Nmap engine, 31 modules with 459 scan profiles.</li>
+<li><a href="https://github.com/johnnyxmas/ScanCannon" rel="external" target="_self">ScanCannon</a> - Combines the speed of masscan with the reliability and detailed enumeration of nmap</li>
+<li><a href="https://github.com/Edu4rdSHL/unimap" rel="external" target="_self">unimap</a></li>
+</ul>
+<h3 id="brute-forcing-from-nmap-output">Brute-Forcing from Nmap output</h3>
+<ul>
+<li><a href="https://github.com/x90skysn3k/brutespray" rel="external" target="_self">brutespray</a></li>
+</ul>
+<h3 id="waf">waf</h3>
+<ul>
+<li><a href="https://github.com/enablesecurity/wafw00f" rel="external" target="_self">wafw00f</a></li>
+<li><a href="https://github.com/dwisiswant0/cf-check" rel="external" target="_self">cf-check</a></li>
+<li><a href="https://github.com/andresriancho/w3af" rel="external" target="_self">w3af</a> - w3af: web application attack and audit framework, the open source web vulnerability scanner.</li>
+</ul>
+<h3 id="waf-bypass">Waf bypass</h3>
+<ul>
+<li><a href="https://github.com/vincentcox/bypass-firewalls-by-DNS-history" rel="external" target="_self">bypass-firewalls-by-DNS-history</a> - Firewall bypass script based on DNS history records. This script will search for DNS A history records and check if the server replies for that domain. Handy for bugbounty hunters.</li>
+<li><a href="https://github.com/m0rtem/CloudFail" rel="external" target="_self">CloudFail</a> - Utilize misconfigured DNS and old database records to find hidden IP&rsquo;s behind the CloudFlare network</li>
+</ul>
+<h3 id="directory-search">directory-search</h3>
+<ul>
+<li><a href="https://github.com/OJ/gobuster" rel="external" target="_self">gobuster</a> - Directory/File, DNS and VHost busting tool written in Go</li>
+<li><a href="https://github.com/C-Sto/recursebuster" rel="external" target="_self">recursebuster</a> - rapid content discovery tool for recursively querying webservers, handy in pentesting and web application assessments</li>
+<li><a href="https://github.com/epi052/feroxbuster" rel="external" target="_self">feroxbuster</a> - A fast, simple, recursive content discovery tool written in Rust.</li>
+<li><a href="https://github.com/maurosoria/dirsearch" rel="external" target="_self">dirsearch</a> - Web path scanner</li>
+<li><a href="https://github.com/evilsocket/dirsearch" rel="external" target="_self">dirsearch</a> - A Go implementation of dirsearch.</li>
+<li><a href="https://github.com/henshin/filebuster" rel="external" target="_self">filebuster</a> - An extremely fast and flexible web fuzzer</li>
+<li><a href="https://github.com/stefanoj3/dirstalk" rel="external" target="_self">dirstalk</a> - Modern alternative to dirbuster/dirb</li>
+<li><a href="https://github.com/digination/dirbuster-ng" rel="external" target="_self">dirbuster-ng</a> - dirbuster-ng is C CLI implementation of the Java dirbuster tool</li>
+<li><a href="https://github.com/jaeles-project/gospider" rel="external" target="_self">gospider</a> - Gospider - Fast web spider written in Go</li>
+<li><a href="https://github.com/hakluke/hakrawler" rel="external" target="_self">hakrawler</a> - Simple, fast web crawler designed for easy, quick discovery of endpoints and assets within a web application</li>
+</ul>
+<h3 id="fuzzing">Fuzzing</h3>
+<ul>
+<li><a href="https://github.com/ffuf/ffuf" rel="external" target="_self">ffuf</a> - Fast web fuzzer written in Go</li>
+<li><a href="https://github.com/xmendez/wfuzz" rel="external" target="_self">wfuzz</a> - Web application fuzzer</li>
+<li><a href="https://github.com/fuzzdb-project/fuzzdb" rel="external" target="_self">fuzzdb</a> - Dictionary of attack patterns and primitives for black-box application fault injection and resource discovery.</li>
+<li><a href="https://github.com/1N3/IntruderPayloads" rel="external" target="_self">IntruderPayloads</a> - A collection of Burpsuite Intruder payloads, BurpBounty payloads, fuzz lists, malicious file uploads and web pentesting methodologies and checklists.</li>
+<li><a href="https://github.com/Bo0oM/fuzz.txt" rel="external" target="_self">fuzz.txt</a> - Potentially dangerous files</li>
+<li><a href="https://github.com/googleprojectzero/fuzzilli" rel="external" target="_self">fuzzilli</a> - A JavaScript Engine Fuzzer</li>
+<li><a href="https://github.com/Fuzzapi/fuzzapi" rel="external" target="_self">fuzzapi</a> - Fuzzapi is a tool used for REST API pentesting and uses API_Fuzzer gem</li>
+<li><a href="https://github.com/ameenmaali/qsfuzz" rel="external" target="_self">qsfuzz</a> - qsfuzz (Query String Fuzz) allows you to build your own rules to fuzz query strings and easily identify vulnerabilities.</li>
+</ul>
+<h3 id="hidden-file-or-directory">hidden-file-or-directory</h3>
+<h3 id="18-03-22">18-03-22</h3>
+<ul>
+<li><a href="https://github.com/jobertabma/relative-url-extractor" rel="external" target="_self">relative-url-extractor</a> - A small tool that extracts relative URLs from a file.</li>
+<li><a href="https://github.com/jobertabma/virtual-host-discovery" rel="external" target="_self">virtual-host-discovery</a> - A script to enumerate virtual hosts on a server.</li>
+</ul>
+<h3 id="js">JS</h3>
+<ul>
+<li><a href="https://github.com/riza/linx" rel="external" target="_self">linx</a> - Reveals invisible links within JavaScript files</li>
+<li><a href="https://github.com/CaptainFreak/diffJs" rel="external" target="_self">diffJs</a> - Tool for monitoring changes in javascript files on WebApps for reconnaissance.</li>
+<li><a href="https://github.com/robre/scripthunter" rel="external" target="_self">scripthunter</a> - Tool to find JavaScript files on Websites</li>
+</ul>
+<h3 id="metadata">Metadata</h3>
+<ul>
+<li>
+<p><a href="https://github.com/exiftool/exiftool" rel="external" target="_self">exiftool</a> - ExifTool meta information reader/writer</p>
+</li>
+<li>
+<p><a href="https://github.com/americanexpress/earlybird" rel="external" target="_self">earlybird</a> - EarlyBird is a sensitive data detection tool capable of scanning source code repositories for clear text password violations, PII, outdated cryptography methods, key files and more.</p>
+</li>
+<li>
+<p><a href="https://github.com/securing/DumpsterDiver" rel="external" target="_self">DumpsterDiver</a> - Tool to search secrets in various filetypes.</p>
+</li>
+<li>
+<p><a href="https://github.com/michelin/ChopChop" rel="external" target="_self">ChopChop</a> - ChopChop is a CLI to help developers scanning endpoints and identifying exposition of sensitive services/files/folders.</p>
+</li>
+<li>
+<p><a href="https://github.com/jaeles-project/gospider" rel="external" target="_self">gospider</a> -  Fast web spider written in Go</p>
+</li>
+<li>
+<p><a href="https://github.com/OJ/gobuster" rel="external" target="_self">gobuster</a> - Directory/File, DNS and VHost busting tool written in Go</p>
+</li>
+<li>
+<p><a href="https://github.com/Janusec/janusec" rel="external" target="_self">janusec</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WangYihang/SourceLeakHacker" rel="external" target="_self">source leak hacker</a></p>
+</li>
+<li>
+<p><a href="https://github.com/devanshbatham/FavFreak" rel="external" target="_self">favfreak</a></p>
+</li>
+<li>
+<p><a href="https://github.com/DontPanicO/jwtXploiter" rel="external" target="_self">jwsxploiter</a> - A tool to test security of json web token</p>
+</li>
+<li>
+<p><a href="https://github.com/mazen160/bfac" rel="external" target="_self">bfac</a> - BFAC (Backup File Artifacts Checker): An automated tool that checks for backup artifacts that may disclose the web-application&rsquo;s source code.</p>
+</li>
+<li>
+<p><a href="https://github.com/d3ftx/jsearch" rel="external" target="_self">jsearch</a></p>
+</li>
+<li>
+<p><a href="https://github.com/GerbenJavado/LinkFinder" rel="external" target="_self">linkfinder</a> - A python script that finds endpoints in JavaScript files</p>
+</li>
+<li>
+<p><a href="https://github.com/m4ll0k/SecretFinder" rel="external" target="_self">secretfinder</a> - A python script for find sensitive data (apikeys, accesstoken,jwt,..) and search anything on javascript files</p>
+</li>
+<li>
+<p><a href="https://github.com/w9w/JSA" rel="external" target="_self">jsa</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nahamsec/JSParser" rel="external" target="_self">JSParser</a> - A python 2.7 script using Tornado and JSBeautifier to parse relative URLs from JavaScript files. Useful for easily discovering AJAX requests when performing security research or bug bounty hunting.</p>
+</li>
+</ul>
+<h3 id="broken-link">Broken link</h3>
+<ul>
+<li><a href="https://github.com/stevenvachon/broken-link-checker" rel="external" target="_self">broken-link-checker</a> - Find broken links, missing images, etc within your HTML.</li>
+<li><a href="https://github.com/MayankPandey01/BrokenLinkHijacker" rel="external" target="_self">brokenlinkhijacker</a> - A Fast Broken Link Hijacker Tool written in Python</li>
+</ul>
+<h3 id="parameter-finder">parameter-finder</h3>
+<ul>
+<li><a href="https://github.com/devanshbatham/ParamSpider" rel="external" target="_self">paramspider</a> - Mining parameters from dark corners of Web Archives</li>
+<li><a href="https://github.com/maK-/parameth" rel="external" target="_self">parameth</a> - This tool can be used to brute discover GET and POST parameters</li>
+<li><a href="https://github.com/PortSwigger/param-miner" rel="external" target="_self">param-miner</a> - This extension identifies hidden, unlinked parameters. It&rsquo;s particularly useful for finding web cache poisoning vulnerabilities.</li>
+<li><a href="https://github.com/Bo0oM/ParamPamPam" rel="external" target="_self">ParamPamPam</a> - This tool for brute discover GET and POST parameters.</li>
+<li><a href="https://github.com/s0md3v/Arjun" rel="external" target="_self">Arjun</a> - HTTP parameter discovery suite.</li>
+</ul>
+<h3 id="dlelte-duplicate-from-waybacks">Dlelte Duplicate from waybacks</h3>
+<ul>
+<li><a href="https://github.com/Abdulrahman-Kamel/dpfilter" rel="external" target="_self">dpfilter</a> - BugBounty , sort and delete duplicates param value without missing original value</li>
+</ul>
+<h3 id="bypass-forbidder-directory">bypass-forbidder-directory</h3>
+<ul>
+<li><a href="https://github.com/M4DM0e/DirDar" rel="external" target="_self">dirdar</a> - DirDar is a tool that searches for (403-Forbidden) directories to break it and get dir listing on it</li>
+<li><a href="https://github.com/Dheerajmadhukar/4-ZERO-3" rel="external" target="_self">4-ZERO-3</a> - 403/401 Bypass Methods</li>
+<li><a href="https://github.com/lobuhi/byp4xx" rel="external" target="_self">byp4xx</a> - Pyhton script for HTTP 40X responses bypassing. Features: Verb tampering, headers, #bugbountytips tricks and 2454 User-Agents.</li>
+<li><a href="https://github.com/yunemse48/403bypasser" rel="external" target="_self">403bypasser</a> - 403bypasser automates techniques used to bypass access control restrictions on target pages. This tool will continue to be developed, contributions are welcome.</li>
+</ul>
+<h3 id="wordlists-payloads">wordlists-payloads</h3>
+<ul>
+<li>
+<p><a href="https://github.com/random-robbie/bruteforce-lists" rel="external" target="_self">bruteforce-lists</a> - Some files for bruteforcing certain things.</p>
+</li>
+<li>
+<p><a href="https://github.com/OWASP/CheatSheetSeries" rel="external" target="_self">CheatSheetSeries</a> - The OWASP Cheat Sheet Series was created to provide a concise collection of high value information on specific application security topics.</p>
+</li>
+<li>
+<p><a href="https://github.com/Karanxa/Bug-Bounty-Wordlists" rel="external" target="_self">Bug-Bounty-Wordlists</a> - A repository that includes all the important wordlists used while bug hunting.</p>
+</li>
+<li>
+<p><a href="https://github.com/danielmiessler/SecLists" rel="external" target="_self">seclists</a> - SecLists is the security tester&rsquo;s companion. It&rsquo;s a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.</p>
+</li>
+<li>
+<p><a href="https://github.com/payloadbox" rel="external" target="_self">Payload Box</a> - Attack payloads only 📦</p>
+</li>
+<li>
+<p><a href="https://github.com/gmelodie/awesome-wordlists" rel="external" target="_self">awesome-wordlists</a> - A curated list wordlists for bruteforcing and fuzzing</p>
+</li>
+<li>
+<p><a href="https://gowthams.gitbook.io/bughunter-handbook/fuzzing-wordlists" rel="external" target="_self">Fuzzing-wordlist</a> - fuzzing-wordlists</p>
+</li>
+<li>
+<p><a href="https://github.com/riramar/Web-Attack-Cheat-Sheet" rel="external" target="_self">Web-Attack-Cheat-Sheet</a> - Web Attack Cheat Sheet</p>
+</li>
+<li>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings" rel="external" target="_self">payloadsallthethings</a> - A list of useful payloads and bypass for Web Application Security and Pentest/CT</p>
+</li>
+<li>
+<p><a href="http://pentestmonkey.net/" rel="external" target="_self">pentestmonkey</a> - Taking the monkey work out of pentesting</p>
+</li>
+<li>
+<p>STOK suggest</p>
+<ul>
+<li>
+<p><a href="https://wordlists.assetnote.io/" rel="external" target="_self">assetnote</a></p>
+</li>
+<li>
+<p><a href="https://github.com/BonJarber/SecUtils" rel="external" target="_self">SecUtils</a> - Random utilities from my security projects that might be useful to others</p>
+</li>
+<li>
+<p><a href="https://gist.github.com/jhaddix" rel="external" target="_self">jhaddix</a></p>
+</li>
+<li>
+<p><a href="https://github.com/the-xentropy/samlists" rel="external" target="_self">samlists</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Bo0oM/fuzz.txt" rel="external" target="_self">fuzz</a></p>
+</li>
+<li>
+<p><a href="https://github.com/tennc/webshell" rel="external" target="_self">webshell</a> - This is a webshell open source project</p>
+</li>
+<li>
+<p><a href="https://github.com/six2dez/OneListForAll" rel="external" target="_self">OneListForAll</a> - Rockyou for web fuzzing</p>
+</li>
+<li>
+<p><a href="https://github.com/random-robbie/bruteforce-lists" rel="external" target="_self">bruteforce-lists</a> - Some files for bruteforcing certain things.</p>
+</li>
+<li>
+<p><a href="https://github.com/dwyl/english-words" rel="external" target="_self">english-words</a> - 📝 A text file containing 479k English words for all your dictionary/word-based projects e.g: auto-completion / autosuggestion</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="exceptional">Exceptional</h3>
+<ul>
+<li><a href="https://github.com/imran-parray/Web-Sec-CheatSheet" rel="external" target="_self">Web-Sec-CheatSheet</a></li>
+<li><a href="https://github.com/assetnote/wordlists" rel="external" target="_self">wordlists</a> - Automated &amp; Manual Wordlists provided by Assetnote</li>
+<li><a href="https://github.com/fuzzdb-project/fuzzdb" rel="external" target="_self">fuzzdb</a> - Dictionary of attack patterns and primitives for black-box application fault injection and resource discovery.</li>
+<li><a href="https://github.com/orwagodfather/WordList" rel="external" target="_self">WordList</a></li>
+<li><a href="https://github.com/xsscx/Commodity-Injection-Signatures" rel="external" target="_self">Commodity-Injection-Signatures</a> - Commodity Injection Signatures, Malicious Inputs, XSS, HTTP Header Injection, XXE, RCE, Javascript, XSLT</li>
+</ul>
+<h3 id="miscellaneous">miscellaneous</h3>
+<ul>
+<li><a href="https://github.com/edoardottt/lit-bb-hack-tools" rel="external" target="_self">hack-tools</a></li>
+<li><a href="https://github.com/ShutdownRepo/httpmethods" rel="external" target="_self">httpmethods</a> - HTTP verb tampering &amp; methods enumeration</li>
+<li><a href="https://github.com/0x4D31/awesome-oscp" rel="external" target="_self">awesome oscp</a></li>
+<li><a href="https://www.maltego.com/" rel="external" target="_self">maltego</a></li>
+<li><a href="https://github.com/owtf/owtf" rel="external" target="_self">owtf</a></li>
+<li><a href="https://github.com/Anon-Exploiter/SiteBroker" rel="external" target="_self">site broker</a></li>
+<li><a href="https://github.com/telekom-security/explo" rel="external" target="_self">explo</a></li>
+<li><a href="https://github.com/Viralmaniar/BigBountyRecon" rel="external" target="_self">big bounty</a></li>
+<li><a href="https://github.com/vavkamil/awesome-bugbounty-tools" rel="external" target="_self">awesome bug bounty tools</a></li>
+<li><a href="https://github.com/infoslack/awesome-web-hacking" rel="external" target="_self">awesome web hacking</a></li>
+<li><a href="https://awesomeopensource.com/" rel="external" target="_self">awesome open source</a></li>
+<li><a href="https://github.com/Cerbrutus-BruteForcer/cerbrutus" rel="external" target="_self">cerbrutus</a></li>
+<li><a href="https://gitlab.com/akihe/radamsa" rel="external" target="_self">radamsa</a></li>
+<li><a href="https://github.com/YouGina/reconmaster/" rel="external" target="_self">reconmaster</a></li>
+<li><a href="https://www.branah.com/unicode-converter" rel="external" target="_self">unicode-converter</a> - Unicode Converter  Decimal, text, URL, and unicode converter</li>
+<li><a href="https://buer.haus/breport/" rel="external" target="_self">breport</a> - Bounty report genarator</li>
+<li><a href="https://www.hackerone.com/ethical-hacker/100-hacking-tools-and-resources" rel="external" target="_self">hackerone 100 tools</a> - Hackerone 100 tools for hacker</li>
+<li><a href="https://github.com/Ignitetechnologies/Nmap-For-Pentester" rel="external" target="_self">Nmap-For-Pentester</a> - hunt the vulnerabilties with &ldquo;Nmap&rdquo;.</li>
+</ul>
+<h3 id="social-engineering">social-engineering</h3>
+<ul>
+<li><a href="https://github.com/trustedsec/social-engineer-toolkit" rel="external" target="_self">social-engineer-toolkit</a> - The Social-Engineer Toolkit (SET) repository from TrustedSec - All new versions of SET will be deployed here.</li>
+</ul>
+<h3 id="uncategorized">Uncategorized</h3>
+<ul>
+<li><a href="https://github.com/zigoo0/JSONBee" rel="external" target="_self">JSONBee</a> - A ready to use JSONP endpoints/payloads to help bypass content security policy (CSP) of different websites.</li>
+<li><a href="https://github.com/gchq/CyberChef" rel="external" target="_self">CyberChef</a> - The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis</li>
+<li><a href="https://github.com/fransr/bountyplz" rel="external" target="_self">bountyplz</a> - Automated security reporting from markdown templates (HackerOne and Bugcrowd are currently the platforms supported)</li>
+<li><a href="https://github.com/vavkamil/awesome-vulnerable-apps" rel="external" target="_self">awesome-vulnerable-apps</a> - Awesome Vulnerable Applications</li>
+<li><a href="https://github.com/vavkamil/XFFenum" rel="external" target="_self">XFFenum</a> - X-Forwarded-For [403 forbidden] enumeration</li>
+</ul>
+<h3 id="scripts">scripts</h3>
+<ul>
+<li><a href="https://github.com/devanshbatham/awesome-bughunting-oneliners" rel="external" target="_self">awesome-bughunting-oneliners</a> - A list of Awesome Bughunting oneliners , collected from the various sources</li>
+<li><a href="https://github.com/dwisiswant0/awesome-oneliner-bugbounty" rel="external" target="_self">awesome-oneliner-bugbounty</a> - A collection of awesome one-liner scripts especially for bug bounty tips.</li>
+<li><a href="https://github.com/punishell/bbtips" rel="external" target="_self">bbtips</a> - BugBountyTips</li>
+<li><a href="https://github.com/twseptian/oneliner-bugbounty" rel="external" target="_self">oneliner-bugbounty</a> - oneliner commands for bug bounties</li>
+<li><a href="https://github.com/litt1eb0yy/One-Liner-Scripts" rel="external" target="_self">One-Liner-Scripts</a> - A collection of awesome one-liner scripts for bug bounty hunting.</li>
+</ul>
+<hr>
+<h3 id="api_key">API_key</h3>
+<ul>
+<li><a href="https://github.com/streaak/keyhacks" rel="external" target="_self">keyhacks</a> - Keyhacks is a repository which shows quick ways in which API keys leaked by a bug bounty program can be checked to see if they&rsquo;re valid.</li>
+<li><a href="https://github.com/ozguralp/gmapsapiscanner" rel="external" target="_self">gmapsapiscanner</a> - Used for determining whether a leaked/found Google Maps API Key is vulnerable to unauthorized access by other applications or not.</li>
+</ul>
+<hr>
+<h3 id="code_review">Code_review</h3>
+<ul>
+<li><a href="https://github.com/ecriminal/phpvuln" rel="external" target="_self">phpvuln</a> - 🕸️ Audit tool to find common vulnerabilities in PHP source code</li>
+</ul>
+<hr>
+<h3 id="log-file-analyze">log-file-analyze</h3>
+<ul>
+<li><a href="https://github.com/SxNade/DiaLog" rel="external" target="_self">Dialog</a></li>
+</ul>
+<h3 id="programs">programs</h3>
+<ul>
+<li><a href="https://github.com/disclose" rel="external" target="_self">disclose</a> -Open-source vulnerability disclosure and bug bounty program database.</li>
+<li><a href="https://github.com/sushiwushi/bug-bounty-dorks" rel="external" target="_self">bug bounty dork</a> - List of Google Dorks for sites that have responsible disclosure program / bug bounty program</li>
+<li><a href="https://www.crunchbase.com/" rel="external" target="_self">crunchbase</a> - Discover innovative companies and the people behind them</li>
+<li><a href="https://github.com/arkadiyt/bounty-targets-data" rel="external" target="_self">bounty-targets-data</a> - This repo contains hourly-updated data dumps of bug bounty platform scopes (like Hackerone/Bugcrowd/Intigriti/etc) that are eligible for reports</li>
+<li><a href="https://github.com/darshanjogi/Vdps_are_love" rel="external" target="_self">Vdps_are_love</a> - This repo is made for those hunters who love to hunt on VDP programs. List of Vdp programs which are not affiliated with known bug bounty platforms such as HackerOne or Bugcrowd.</li>
+<li><a href="https://chaos.projectdiscovery.io/#/" rel="external" target="_self">chaos</a> - We actively collect and maintain internet-wide assets&rsquo; data, this project is meant to enhance research and analyse changes around DNS for better insights.</li>
+<li><a href="https://www.bugcrowd.com/bug-bounty-list/" rel="external" target="_self">bug-bounty-list</a> - The most comprehensive, up to date crowdsourced list of bug bounty and security vulnerability disclosure programs from across the web curated by the hacker community.</li>
+</ul>
+<h3 id="burp-suite-extesion">burp-suite-extesion</h3>
+<ul>
+<li><a href="../../osint/osint2/index.html">Active scan ++</a></li>
+<li><a href="../../osint/osint2/index.html">Content Type Converter</a></li>
+<li><a href="../../osint/osint2/index.html">Param miner</a></li>
+<li><a href="../../osint/osint2/index.html">Logger ++</a></li>
+<li><a href="../../osint/osint2/index.html">Turbo intruder</a></li>
+<li><a href="../../osint/osint2/index.html">Upload scanner</a></li>
+<li><a href="../../osint/osint2/index.html">Reflected parameters</a></li>
+<li><a href="../../osint/osint2/index.html">Collaborator everywhere</a></li>
+<li><a href="../../osint/osint2/index.html">Backslash powered scanner</a></li>
+<li><a href="../../osint/osint2/index.html">Software version Reporter</a></li>
+<li><a href="../../osint/osint2/index.html">Software vulnerability scanner</a></li>
+<li><a href="../../osint/osint2/index.html">Autorize</a></li>
+<li><a href="../../osint/osint2/index.html">HTTP request smuggler</a></li>
+<li><a href="../../osint/osint2/index.html">Flow</a></li>
+<li><a href="../../osint/osint2/index.html">Hunt</a></li>
+<li><a href="../../osint/osint2/index.html">Burp Bounty</a></li>
+<li><a href="../../osint/osint2/index.html">Taborator</a></li>
+<li><a href="../../osint/osint2/index.html">Add custom header</a></li>
+<li><a href="../../osint/osint2/index.html">command injection attacker</a></li>
+<li><a href="https://github.com/vsec7/BurpSuite-Xkeys" rel="external" target="_self">BurpSuite-Xkeys</a> - A Burp Suite Extension to extract interesting strings (key, secret, token, or etc.) from a webpage.</li>
+<li><a href="https://github.com/moeinfatehi/Admin-Panel_Finder" rel="external" target="_self">Admin-Panel_Finder</a> - A burp suite extension that enumerates infrastructure and application admin interfaces (OTG-CONFIG-005)</li>
+<li><a href="https://github.com/Impact-I/x8-Burp" rel="external" target="_self">x8-Burp</a> - Hidden parameters discovery suite</li>
+<li><a href="https://github.com/xnl-h4ck3r/burp-extensions" rel="external" target="_self">burp-extensions</a> - Burp Extensions</li>
+<li><a href="https://github.com/doyensec/inql" rel="external" target="_self">inql</a> - InQL - A Burp Extension for GraphQL Security Testing</li>
+<li><a href="https://github.com/PortSwigger/ip-rotate" rel="external" target="_self">ip-rotate</a> - Extension for Burp Suite which uses AWS API Gateway to rotate your IP on every request.</li>
+<li><a href="https://github.com/portswigger/saml-raider" rel="external" target="_self">saml-raider</a> - SAML2 Burp Extension</li>
+<li><a href="https://github.com/portswigger/jwt-editor" rel="external" target="_self">jwt-editor</a> - A Burp Suite extension and standalone application for creating and editing JSON Web Tokens. This tool supports signing and verification of JWS, encryption and decryption of JWE and automation of several well-known attacks against applications that consume JWT.</li>
+</ul>
+<h3 id="burp-suite-pro">Burp suite pro</h3>
+<ul>
+<li><a href="https://github.com/SNGWN/Burp-Suite" rel="external" target="_self">Burp-Suite</a> - || Activate Burp Suite Pro with Loader and Key-Generator ||</li>
+</ul>
+<h3 id="dos">DOS</h3>
+<ul>
+<li><a href="https://github.com/shekyan/slowhttptest" rel="external" target="_self">slowhttptest</a> - Application Layer DoS attack simulator</li>
+</ul>
+<hr>
+<h3 id="websocket">Websocket</h3>
+<ul>
+<li><a href="https://github.com/PalindromeLabs/STEWS" rel="external" target="_self">STEWS</a> - A Security Tool for Enumerating WebSockets</li>
+</ul>
+<hr>
+<h3 id="smart-contract">Smart-Contract</h3>
+<ul>
+<li><a href="https://github.com/ConsenSys/mythril" rel="external" target="_self">mythril</a> - Security analysis tool for EVM bytecode. Supports smart contracts built for Ethereum, Hedera, Quorum, Vechain, Roostock, Tron and other EVM-compatible blockchains.</li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 5, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/osint/index.html">OSINT</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          
+          <a id="R-logo" href="../../index.html">
+<svg class="inlinecontent lazy figure-image" style=" height: auto; width: auto;" xmlns="http://www.w3.org/2000/svg" viewBox="75 75 350 350">
+  <style>
+    @media (prefers-color-scheme: dark) {
+    path { fill: white; }
+    }
+  </style>
+  <path
+    d="M250,80 a170,170 0 1,0 0,340 a170,170 0 1,0 0,-340 M250,95 a155,155 0 1,1 0,310 a155,155 0 1,1 0,-310 Z" />
+  <path
+    d="M 250 110 C 223.33333 123.33333 203.33333 156.66667 190 210 C 190 230 200 246.66667 220 260 C 246.66667 273.33333 270 273.33333 290 260 C 310 246.66667 316.66667 230 310 210 C 296.66667 156.66667 276.66667 123.33333 250 110 z M 230 152 A 22 28 0 0 1 250.02539 168.43164 A 22 28 0 0 1 270 152 A 22 28 0 0 1 292 180 A 22 28 0 0 1 270 208 A 22 28 0 0 1 250 191.48828 A 22 28 0 0 1 230 208 A 22 28 0 0 1 208 180 A 22 28 0 0 1 230 152 z " />
+  <path
+    d="M 232 190 A 7 7 0 1 0 218 190 A 7 7 0 1 0 232 190" />
+  <path
+    d="M 282 190 A 7 7 0 1 0 268 190 A 7 7 0 1 0 282 190" />
+  <path
+    d="m 251.62695,262.67773 -3.2539,14.64454 c 29.6411,6.58691 52.50119,14.00059 68.27343,21.88671 15.77224,7.88612 23.89316,16.12675 26.23829,23.16211 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.45724,-7.3717 0.9861,-15.4399 -2.90625,-23.22461 l 0.40625,0.98243 c -4.32154,-12.96464 -16.20062,-23.05735 -33.76171,-31.83789 -17.5611,-8.78055 -41.36767,-16.36687 -71.72657,-23.11329 z" />
+  <path
+    d="m 251.06055,262.57617 -2.1211,14.84766 c 22.66512,3.23787 40.0389,8.90614 52.08594,16.43554 12.04704,7.52941 18.84739,16.55167 21.69922,27.95899 l 0.19922,0.79883 0.36719,0.73633 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36474,-7.09422 1.02935,-14.82889 -2.53906,-22.33984 -3.93242,-14.96263 -13.69431,-27.38609 -28.10156,-36.39063 -14.61962,-9.13726 -33.91251,-15.13566 -57.91406,-18.56445 z" />
+  <path
+    d="m 254.16016,263.75977 -8.32032,12.48046 c 18.87994,12.58663 30.93166,27.79106 37.04493,46.13086 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36103,-7.08308 1.03217,-14.80481 -2.52343,-22.30468 -7.22746,-21.63209 -21.83225,-39.74038 -42.93164,-53.80664 z" />
+  <path
+    d="m 245.83984,263.75977 c -21.09939,14.06626 -35.70418,32.17455 -42.93164,53.80664 -3.5556,7.49987 -4.88446,15.2216 -2.52343,22.30468 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 6.11327,-18.3398 18.16499,-33.54423 37.04493,-46.13086 z" />
+  <path
+    d="m 248.5293,262.64648 c -35.0305,7.0061 -60.89872,25.32088 -75.23828,54 C 169.62227,323.98397 167.5,330.83333 167.5,337.5 c 0,6.66667 2.53811,13.14358 7.19727,17.80273 5.1011,5.1011 13.27646,6.61163 20.17382,4.3125 6.89737,-2.29912 13.32304,-7.20389 20.43164,-14.3125 l 0.86133,-0.85937 0.54492,-1.08984 c 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.58408,11.16816 5.64385,21.1051 0.42382,32.1914 -5.75159,5.55819 -10.66362,8.86574 -13.58593,9.83985 -3.10264,1.03421 -3.26061,0.87806 -4.82618,-0.6875 C 183.29523,342.68976 182.5,340.83333 182.5,337.5 c 0,-3.33333 1.21106,-8.15064 4.20898,-14.14648 12.32711,-24.65421 33.12555,-39.67277 64.76172,-46 z" />
+  <path
+    d="m 248.37305,262.67773 c -30.3589,6.74642 -54.16547,14.33274 -71.72657,23.11329 -17.56109,8.78054 -29.44017,18.87325 -33.76171,31.83789 l 0.40625,-0.98243 c -3.89235,7.78471 -5.36349,15.85291 -2.90625,23.22461 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 2.34513,-7.03536 10.46605,-15.27599 26.23829,-23.16211 15.77224,-7.88612 38.63233,-15.2998 68.27343,-21.88671 z" />
+</svg>
+            <div class="logo-title">GharibBlog</div>
+          </a>
+        </div>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="../../index.html"><i class="fa-fw fas fa-anchor"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/about/index.html"><a class="padding" href="../../about/index.html"><i class="fa-fw fas fa-info-circle"></i> About</a></li>
+            <li class="" data-nav-id="/linux/index.html"><a class="padding" href="../../linux/index.html">Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/sec/index.html"><a class="padding" href="../../sec/index.html">Security</a><ul id="R-subsections-00a310d136b3ca0ada6555e05603515b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/devops/index.html"><a class="padding" href="../../devops/index.html">DevOps</a><ul id="R-subsections-389d4feb4920b919bcbc0b1e9947dace" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/data/index.html"><a class="padding" href="../../data/index.html">Data</a><ul id="R-subsections-4caa791091d21d23e63637080226f370" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vpn/index.html"><a class="padding" href="../../vpn/index.html">VPN</a><ul id="R-subsections-db063ce8b8420f6f2b9daa1d41f37eaf" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/software/index.html"><a class="padding" href="../../software/index.html">Software</a><ul id="R-subsections-3cdb59a63a3cd12f868155fa9018f956" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/onion/index.html"><a class="padding" href="../../onion/index.html">ONION</a><ul id="R-subsections-1741fdcc6dd4676b5d37f741fb66e01c" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/osint/index.html"><a class="padding" href="../../osint/index.html">OSINT</a><ul id="R-subsections-b7b3e3b782000076c296abdb0bfb1528" class="collapsible-menu">
+            <li class="" data-nav-id="/osint/osint5/index.html"><a class="padding" href="../../osint/osint5/index.html">Android Sec</a></li>
+            <li class="" data-nav-id="/osint/osint6/index.html"><a class="padding" href="../../osint/osint6/index.html">App Sec</a></li>
+            <li class="" data-nav-id="/osint/osint7/index.html"><a class="padding" href="../../osint/osint7/index.html">Capture The Flag</a></li>
+            <li class="" data-nav-id="/osint/osint21/index.html"><a class="padding" href="../../osint/osint21/index.html">OSINT Collections</a></li>
+            <li class="" data-nav-id="/osint/osint19/index.html"><a class="padding" href="../../osint/osint19/index.html">OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint/index.html"><a class="padding" href="../../osint/osint/index.html">OSINT Tools 1</a></li>
+            <li class="" data-nav-id="/osint/osint15/index.html"><a class="padding" href="../../osint/osint15/index.html">Social Engineering Tools</a></li>
+            <li class="active " data-nav-id="/osint/osint2/index.html"><a class="padding" href="../../osint/osint2/index.html">OSINT Tools 2</a></li>
+            <li class="" data-nav-id="/osint/osint3/index.html"><a class="padding" href="../../osint/osint3/index.html">OSINT-Forensic Tools</a></li>
+            <li class="" data-nav-id="/osint/osint4/index.html"><a class="padding" href="../../osint/osint4/index.html">OSINT-Forensic Tools 2</a></li>
+            <li class="" data-nav-id="/osint/osint14/index.html"><a class="padding" href="../../osint/osint14/index.html">Security Tools</a></li>
+            <li class="" data-nav-id="/osint/osint8/index.html"><a class="padding" href="../../osint/osint8/index.html">Hacking Tools</a></li>
+            <li class="" data-nav-id="/osint/osint18/index.html"><a class="padding" href="../../osint/osint18/index.html">Social Media OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint10/index.html"><a class="padding" href="../../osint/osint10/index.html">Incident Resposne Tools</a></li>
+            <li class="" data-nav-id="/osint/osint17/index.html"><a class="padding" href="../../osint/osint17/index.html">Offensive OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint20/index.html"><a class="padding" href="../../osint/osint20/index.html">OSINT Countries Tools</a></li>
+            <li class="" data-nav-id="/osint/osint9/index.html"><a class="padding" href="../../osint/osint9/index.html">Honeypots Tools</a></li>
+            <li class="" data-nav-id="/osint/osint16/index.html"><a class="padding" href="../../osint/osint16/index.html">OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint11/index.html"><a class="padding" href="../../osint/osint11/index.html">Infosec Tools</a></li>
+            <li class="" data-nav-id="/osint/osint12/index.html"><a class="padding" href="../../osint/osint12/index.html">Malware Analysis Tools</a></li>
+            <li class="" data-nav-id="/osint/osint13/index.html"><a class="padding" href="../../osint/osint13/index.html">Penetration Testing Tools</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://alirezagharib.ir"><a class="padding" href="https://alirezagharib.ir" rel="external" target="_self"><i class="fa-fw fas fa-puzzle-piece"></i> Author</a></li>
+            <li class="" data-nav-id="https://github.com/gharib-uk"><a class="padding" href="https://github.com/gharib-uk" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard/clipboard.min.js?1745990495" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990495" defer></script>
+    <script src="../../js/theme.min.js?1745990495" defer></script>
+  </body>
+</html>

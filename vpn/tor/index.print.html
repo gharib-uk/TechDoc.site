@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="How to Deploy OBFS4 and WebTunnel Bridges ?">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="How to Run TOR Bridge ? :: Gharib Blog">
+    <meta name="twitter:description" content="How to Deploy OBFS4 and WebTunnel Bridges ?">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/vpn/tor/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="How to Run TOR Bridge ? :: Gharib Blog">
+    <meta property="og:description" content="How to Deploy OBFS4 and WebTunnel Bridges ?">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="VPN">
+    <meta property="article:published_time" content="2024-07-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-28T00:00:00+00:00">
+    <meta property="article:tag" content="Proxifying">
+    <meta itemprop="name" content="How to Run TOR Bridge ? :: Gharib Blog">
+    <meta itemprop="description" content="How to Deploy OBFS4 and WebTunnel Bridges ?">
+    <meta itemprop="datePublished" content="2024-07-28T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-07-28T00:00:00+00:00">
+    <meta itemprop="wordCount" content="345">
+    <meta itemprop="keywords" content="Proxifying">
+    <title>How to Run TOR Bridge ? :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/vpn/tor/index.html" rel="canonical" type="text/html" title="How to Run TOR Bridge ? :: Gharib Blog">
+    <link href="../../vpn/tor/index.xml" rel="alternate" type="application/rss+xml" title="How to Run TOR Bridge ? :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/vpn\/tor\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../vpn/tor/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../vpn/index.html"><span itemprop="name">VPN</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">How to Run TOR Bridge ?</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../vpn/tor/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../vpn/common-vpn-protocols/index.html" title="Install Common VPN Protocols (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../vpn/sniproxy/index.html" title="SniProxy (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/proxifying/index.html">Proxifying</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="how-to-run-tor-bridge-">How to Run TOR Bridge ?</h1>
+
+<h1 id="installing-tor-on-debian-based-distros">Installing TOR on Debian Based Distros</h1>
+<ul>
+<li>Install apt-transport-https <code>apt install apt-transport-https</code></li>
+<li>Create a new file in /etc/apt/sources.list.d/ named tor.list. Add the following entries</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">deb     <span class="o">[</span><span class="nv">arch</span><span class="o">=</span>amd64 signed-by<span class="o">=</span>/usr/share/keyrings/deb.torproject.org-keyring.gpg<span class="o">]</span> https://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt;/jammy main
+</span></span><span class="line"><span class="cl">deb-src <span class="o">[</span><span class="nv">arch</span><span class="o">=</span>amd64 signed-by<span class="o">=</span>/usr/share/keyrings/deb.torproject.org-keyring.gpg<span class="o">]</span> https://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt;/jammy main</span></span></code></pre></div>
+<ul>
+<li>Then add the gpg key used to sign the packages <code>wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | tee /usr/share/keyrings/deb.torproject.org-keyring.gpg &gt;/dev/null</code></li>
+<li>Finally Run <code>apt update &amp;&amp; apt install tor deb.torproject.org-keyring</code></li>
+</ul>
+<h1 id="configuring-obfs4-bridge">Configuring Obfs4 Bridge</h1>
+<ul>
+<li>Clone <code>https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/lyrebird</code></li>
+<li>Install gvm <code>https://github.com/jetsung/golang-install</code> and latest golang tools</li>
+<li>Compile the lyrebird with the instruction provided in its repository then put the binary in <code>/usr/local/bin/</code> directory</li>
+<li>Open <code>/etc/tor/torrc</code> file add the following lines</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">RunAsDaemon <span class="m">1</span>
+</span></span><span class="line"><span class="cl">ORPort <span class="m">6889</span>
+</span></span><span class="line"><span class="cl">ExtORPort auto
+</span></span><span class="line"><span class="cl">ExitPolicy reject *:*
+</span></span><span class="line"><span class="cl">BridgeRelay <span class="m">1</span>
+</span></span><span class="line"><span class="cl">PublishServerDescriptor <span class="m">0</span>
+</span></span><span class="line"><span class="cl">ServerTransportPlugin obfs4 <span class="nb">exec</span> /usr/local/bin/lyrebird
+</span></span><span class="line"><span class="cl">ServerTransportListenAddr obfs4 0.0.0.0:&lt;port&gt;
+</span></span><span class="line"><span class="cl">ContactInfo yourname@example.com
+</span></span><span class="line"><span class="cl">Nickname FreeBeerPrivate</span></span></code></pre></div>
+<ul>
+<li>Open <code>/etc/apparmor.d/system_tor</code> and add this line  <code>/usr/local/bin/lyrebird ix,</code></li>
+<li>Run <code>sudo apparmor_parser -r /etc/apparmor.d/system_tor</code></li>
+<li>Restart the <code>tor.service</code> with systemd</li>
+<li>Obtain fingerprint and the bridge with these two commands <code>cat /var/lib/tor/pt_state/obfs4_bridgeline.txt</code>, <code>cat /var/lib/tor/fingerprint</code></li>
+</ul>
+<h1 id="configuring-webtunnel-bridge">Configuring WebTunnel Bridge</h1>
+<ul>
+<li>You can create a new tor instance with <code>tor-instances create &lt;name&gt;</code> or replace it with OBFS4</li>
+<li>Open the instance torrc file or the original torrc file and add the following lines</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ORPort <span class="m">36788</span>
+</span></span><span class="line"><span class="cl">ExtORPort auto
+</span></span><span class="line"><span class="cl">ExitPolicy reject *:*
+</span></span><span class="line"><span class="cl">BridgeRelay <span class="m">1</span>
+</span></span><span class="line"><span class="cl">PublishServerDescriptor <span class="m">0</span>
+</span></span><span class="line"><span class="cl">ServerTransportPlugin webtunnel <span class="nb">exec</span> /usr/local/bin/webtunnel
+</span></span><span class="line"><span class="cl">ServerTransportListenAddr webtunnel 127.0.0.1:15003
+</span></span><span class="line"><span class="cl">ServerTransportOptions webtunnel <span class="nv">url</span><span class="o">=</span>https://domain.sth:443/&lt;sth&gt;
+</span></span><span class="line"><span class="cl">ContactInfo sth@protonmail.com
+</span></span><span class="line"><span class="cl">Nickname sth</span></span></code></pre></div>
+<ul>
+<li>Like Obfs4 do the following</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nano/vi /etc/apparmor.d/system_tor
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">add this line: /usr/local/bin/webtunnel ix,
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apparmor_parser -r /etc/apparmor.d/system_tor</span></span></code></pre></div>
+<ul>
+<li>install nginx and add a conf like this</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    listen <span class="o">[</span>::<span class="o">]</span>:443 ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    listen <span class="m">443</span> ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server_name domain.sth<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#ssl on;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># certificates generated via acme.sh</span>
+</span></span><span class="line"><span class="cl">    ssl_certificate path.crt<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    ssl_certificate_key path.key<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ssl_session_timeout 15m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ssl_protocols TLSv1.2 TLSv1.3<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ssl_prefer_server_ciphers off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ssl_session_cache shared:MozSSL:50m<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#ssl_ecdh_curve secp521r1,prime256v1,secp384r1;</span>
+</span></span><span class="line"><span class="cl">    ssl_session_tickets off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000&#34;</span> always<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">location</span> <span class="o">=</span> /&lt;sth&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        proxy_pass http://127.0.0.1:15003<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">### Set WebSocket headers ###</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Upgrade <span class="nv">$http_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Connection <span class="s2">&#34;upgrade&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">### Set Proxy headers ###</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header        Accept-Encoding   <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header        Host            <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header        X-Real-IP       <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header        X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header        X-Forwarded-Proto <span class="nv">$scheme</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        add_header              Front-End-Https   on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        proxy_redirect     off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        access_log  off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        error_log off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<ul>
+<li>You can put the domain.sth behind CDN or not ;)</li>
+</ul>
+<p>Thanks and Enjoy The Bridge</p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Jul 28, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/proxy-vpn/index.html">Proxy, VPN</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

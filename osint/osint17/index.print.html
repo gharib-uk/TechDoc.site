@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="Offensive OSINT Tools">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Offensive OSINT Tools :: Gharib Blog">
+    <meta name="twitter:description" content="Offensive OSINT Tools">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/osint/osint17/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="Offensive OSINT Tools :: Gharib Blog">
+    <meta property="og:description" content="Offensive OSINT Tools">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="OSINt">
+    <meta property="article:published_time" content="2024-08-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-02T00:00:00+00:00">
+    <meta property="article:tag" content="Osint, Offensive_osint">
+    <meta itemprop="name" content="Offensive OSINT Tools :: Gharib Blog">
+    <meta itemprop="description" content="Offensive OSINT Tools">
+    <meta itemprop="datePublished" content="2024-08-02T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-02T00:00:00+00:00">
+    <meta itemprop="wordCount" content="874">
+    <meta itemprop="keywords" content="Osint, Offensive_osint">
+    <title>Offensive OSINT Tools :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/osint/osint17/index.html" rel="canonical" type="text/html" title="Offensive OSINT Tools :: Gharib Blog">
+    <link href="../../osint/osint17/index.xml" rel="alternate" type="application/rss+xml" title="Offensive OSINT Tools :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/osint\/osint17\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../osint/osint17/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-table-of-contents">📖 Table of Contents</a></li>
+    <li><a href="#-table-of-contents-contributing"><a href="#-table-of-contents">↑</a> Contributing</a></li>
+    <li><a href="#-table-of-contents-search-engines"><a href="#-table-of-contents">↑</a> Search Engines</a></li>
+    <li><a href="#-table-of-contents-email-addresses"><a href="#-table-of-contents">↑</a> Email addresses</a></li>
+    <li><a href="#-table-of-contents-source-code"><a href="#-table-of-contents">↑</a> Source code</a></li>
+    <li><a href="#-table-of-contents-subdomains"><a href="#-table-of-contents">↑</a> SubDomain&rsquo;s</a>
+      <ul>
+        <li><a href="#tools">Tools</a></li>
+      </ul>
+    </li>
+    <li><a href="#-table-of-contents-urls"><a href="#-table-of-contents">↑</a> URLs</a></li>
+    <li><a href="#-table-of-contents-dark-web"><a href="#-table-of-contents">↑</a> Dark web</a></li>
+    <li><a href="#-table-of-contents-intelligence"><a href="#-table-of-contents">↑</a> Intelligence</a></li>
+    <li><a href="#-table-of-contents-network-info"><a href="#-table-of-contents">↑</a> Network Info</a></li>
+    <li><a href="#-table-of-contents-dnshistory"><a href="#-table-of-contents">↑</a> DnsHistory</a></li>
+    <li><a href="#-table-of-contents-certifications"><a href="#-table-of-contents"></a> Certifications</a></li>
+    <li><a href="#-table-of-contents-ftp-servers"><a href="#-table-of-contents">↑</a> FTP servers</a></li>
+    <li><a href="#-table-of-contents-passive-infrastructure-scanner"><a href="#-table-of-contents">↑</a> Passive Infrastructure scanner</a></li>
+    <li><a href="#-table-of-contents-microsoft-exchange"><a href="#-table-of-contents">↑</a> Microsoft Exchange</a></li>
+    <li><a href="#-table-of-contents-telegram"><a href="#-table-of-contents">↑</a> Telegram</a></li>
+    <li><a href="#-table-of-contents-google-dorks"><a href="#-table-of-contents">↑</a> Google Dorks</a></li>
+    <li><a href="#-table-of-contents-nickname-search"><a href="#-table-of-contents">↑</a> Nickname search</a></li>
+    <li><a href="#-table-of-contents-phone-number"><a href="#-table-of-contents">↑</a> Phone number</a></li>
+    <li><a href="#-table-of-contents-wifi"><a href="#-table-of-contents">↑</a> Wifi</a></li>
+    <li><a href="#-table-of-contents-cloud"><a href="#-table-of-contents">↑</a> Cloud</a></li>
+    <li><a href="#-table-of-contents-information-gathering-tools"><a href="#-table-of-contents">↑</a> Information gathering tools</a></li>
+    <li><a href="#-table-of-contents-usefull-links"><a href="-table-of-contents">↑</a> Usefull links</a></li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../osint/index.html"><span itemprop="name">OSINT</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Offensive OSINT Tools</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint17/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint10/index.html" title="Incident Resposne Tools (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint20/index.html" title="OSINT Countries Tools (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/osint-offensive_osint/index.html">Osint, Offensive_osint</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="offensive-osint-tools">Offensive OSINT Tools</h1>
+
+<h1 id="offensive-osint-tools">Offensive-OSINT-Tools</h1>
+<p>This repository contains tools and links that can be used during OSINT in Pentest or Red Team. Currently, there are numerous awesome lists with tons of tools, but Offensive Security specialists often don&rsquo;t need such an extensive selection. This motivated the creation of this list. These tools cover almost all the needs of Offensive Security specialists and will help you get the job done efficiently.</p>
+<p>If the tool performs multiple functions, for example collecting subdomains <strong>and</strong> URLs, it will be listed in two places.</p>
+<h2 id="-table-of-contents">📖 Table of Contents</h2>
+<ul>
+<li><a href="../../osint/osint17/index.html#-search-engines">Search Engines</a></li>
+<li><a href="../../osint/osint17/index.html#-email-addresses">Email addresses</a></li>
+<li><a href="../../osint/osint17/index.html#-source-code">Source code</a></li>
+<li><a href="../../osint/osint17/index.html#-subdomains">SubDomain&rsquo;s</a></li>
+<li><a href="../../osint/osint17/index.html#-urls">URLs</a></li>
+<li><a href="../../osint/osint17/index.html#-dark-web">Dark Web</a></li>
+<li><a href="../../osint/osint17/index.html#-intelligence">Intelligence</a></li>
+<li><a href="../../osint/osint17/index.html#-network-info">Network Info</a></li>
+<li><a href="../../osint/osint17/index.html#-dnshistory">DnsHistory</a></li>
+<li><a href="../../osint/osint17/index.html#-certifications">Certifications</a></li>
+<li><a href="../../osint/osint17/index.html#-ftp-servers">FTP servers</a></li>
+<li><a href="../../osint/osint17/index.html#-passive-infrastructure-scanner">Passive Infrastructure scanner</a></li>
+<li><a href="../../osint/osint17/index.html#-microsoft-exchange">Microsoft Exchange</a></li>
+<li><a href="../../osint/osint17/index.html#-telegram">Telegram</a></li>
+<li><a href="../../osint/osint17/index.html#-google-dorks">Google Dorks</a></li>
+<li><a href="../../osint/osint17/index.html#-nickname-search">Nickname search</a></li>
+<li><a href="../../osint/osint17/index.html#-phone-number">Phone number</a></li>
+<li><a href="../../osint/osint17/index.html#-wifi">Wifi</a></li>
+<li><a href="../../osint/osint17/index.html#-cloud">Cloud</a></li>
+<li><a href="../../osint/osint17/index.html#-information-gathering-tools">Information gathering tools</a></li>
+<li><a href="../../osint/osint17/index.html#-usefull-links">Usefull links</a></li>
+</ul>
+<h2 id="-table-of-contents-contributing"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Contributing</h2>
+<p><strong>Welcome!</strong> If you find that any of your favourite offensive tools is not on the list, you can suggest adding it.</p>
+<hr>
+<h2 id="-table-of-contents-search-engines"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Search Engines</h2>
+<p>Search Engines for Investigation Domains/IP Addresses.</p>
+<ul>
+<li><a href="https://censys.io/" rel="external" target="_self">Censys</a></li>
+<li><a href="https://www.shodan.io/" rel="external" target="_self">Shodan</a></li>
+<li><a href="https://viz.greynoise.io/" rel="external" target="_self">Greynoise.io</a></li>
+<li><a href="https://www.zoomeye.org/" rel="external" target="_self">ZoomEye</a></li>
+<li><a href="https://www.onyphe.io/" rel="external" target="_self">Onyphe</a></li>
+<li><a href="https://fofa.info/" rel="external" target="_self">Fofa</a></li>
+<li><a href="https://app.binaryedge.io/" rel="external" target="_self">Binaryedge</a></li>
+<li><a href="https://fullhunt.io/" rel="external" target="_self">FullHunt</a></li>
+<li><a href="https://app.netlas.io/" rel="external" target="_self">Netlas</a></li>
+<li><a href="https://quake.360.net/quake/#/index" rel="external" target="_self">Quake360</a></li>
+<li><a href="https://www.criminalip.io/" rel="external" target="_self">Criminalip</a></li>
+<li><a href="https://synapsint.com/" rel="external" target="_self">Synapsint</a></li>
+<li><a href="https://natlas.io/" rel="external" target="_self">Natlas</a></li>
+<li><a href="https://leakix.net/" rel="external" target="_self">Leakix</a></li>
+<li><a href="https://dorki.io/" rel="external" target="_self">Dorki.io</a></li>
+</ul>
+<h2 id="-table-of-contents-email-addresses"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Email addresses</h2>
+<p>Tools that help you collect email addresses. Usually the search requires the domain of the company.</p>
+<ul>
+<li><a href="https://hunter.io/" rel="external" target="_self">Hunter.io</a></li>
+<li><a href="https://snov.io/" rel="external" target="_self">Snov.io</a></li>
+<li><a href="https://phonebook.cz/" rel="external" target="_self">Phonebook</a></li>
+<li><a href="https://findemail.io/" rel="external" target="_self">findemail.io</a></li>
+<li><a href="https://omail.io/leads/download.html" rel="external" target="_self">Omail</a></li>
+<li><a href="https://www.skymem.info/" rel="external" target="_self">Skymem</a></li>
+<li><a href="https://www.signalhire.com/" rel="external" target="_self">Signalhire</a></li>
+<li><a href="https://rocketreach.co/" rel="external" target="_self">Rocketreach</a></li>
+<li><a href="https://github.com/N0rz3/Eyes" rel="external" target="_self">Eyes</a> - Email osint tool</li>
+<li><a href="https://github.com/m4ll0k/Infoga" rel="external" target="_self">Infoga</a></li>
+<li><a href="https://github.com/jakecreps/poastal" rel="external" target="_self">Poastal</a> - Tool that provides valuable information on any email address</li>
+<li><a href="https://www.email-format.com/" rel="external" target="_self">Email-format</a> - Analyses the company&rsquo;s mail format.</li>
+<li><a href="https://github.com/khast3x/h8mail" rel="external" target="_self">h8mail</a> - Email OSINT &amp; Password breach hunting tool</li>
+<li><a href="https://github.com/Josue87/EmailFinder" rel="external" target="_self">EmailFinder</a> - Search emails from a domain through search engines</li>
+<li><a href="https://github.com/laramies/theHarvester" rel="external" target="_self">theHarvester</a></li>
+<li><a href="https://anymailfinder.com/" rel="external" target="_self">Anymailfinder</a> - Find Verified Emails</li>
+<li><a href="https://rextracter.streamlit.app/" rel="external" target="_self">Rextracter.streamlit</a> - Gathers links and analyses content</li>
+<li><a href="https://github.com/ronin-rb/ronin-recon#readme" rel="external" target="_self">ronin-recon</a> - Recursive recon engine and framework that can enumerate subdomains, DNS records, port scan, grab TLS certs, spider websites, and collect email addresses.</li>
+</ul>
+<h2 id="-table-of-contents-source-code"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Source code</h2>
+<p>Tools for finding mentions in code. Useful to search for company/company mentions to find passwords/secrets/confidential information.</p>
+<ul>
+<li><a href="https://publicwww.com/" rel="external" target="_self">Publicwww</a></li>
+<li><a href="https://www.nerdydata.com/" rel="external" target="_self">Nerdydata</a></li>
+<li><a href="https://searchcode.com/" rel="external" target="_self">Searchcode</a></li>
+<li><a href="https://grep.app/" rel="external" target="_self">Grep.app</a></li>
+</ul>
+<h2 id="-table-of-contents-subdomains"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> SubDomain&rsquo;s</h2>
+<p>Tools for automatic search of subdomains. Most of them require API keys to work correctly.</p>
+<h3 id="tools">Tools</h3>
+<ul>
+<li><a href="https://github.com/blacklanternsecurity/bbot" rel="external" target="_self">Bbot</a></li>
+<li><a href="https://github.com/e1abrador/sub.Monitor" rel="external" target="_self">sub.Monitor</a> - Passive subdomain continous monitoring tool</li>
+<li><a href="https://github.com/screetsec/Sudomy" rel="external" target="_self">Sudomy</a></li>
+<li><a href="https://github.com/OWASP/Amass" rel="external" target="_self">Amass</a></li>
+<li><a href="https://github.com/laramies/theHarvester" rel="external" target="_self">theHarvester</a></li>
+<li><a href="https://github.com/smicallef/spiderfoot" rel="external" target="_self">Spiderfoot</a></li>
+<li><a href="https://github.com/tokiakasu/subchase" rel="external" target="_self">subchase</a> - Chase subdomains by parsing the results of Google and Yandex search results</li>
+<li><a href="https://github.com/m3n0sd0n4ld/GooFuzz" rel="external" target="_self">GooFuzz</a> - Enumerate directories, files, subdomains or parameters without leaving evidence on the target&rsquo;s serve</li>
+<li><a href="https://github.com/s0md3v/SubGPT" rel="external" target="_self">SubGPT</a> - SubGPT looks at subdomains you have already discovered for a domain and uses BingGPT to find more.</li>
+<li><a href="https://github.com/projectdiscovery/alterx" rel="external" target="_self">alterx</a> - Fast and customizable subdomain wordlist generator using DSL.</li>
+<li><a href="https://github.com/s0md3v/Photon" rel="external" target="_self">Photon</a> - Incredibly fast crawler designed for OSINT.</li>
+<li><a href="https://github.com/ronin-rb/ronin-recon#readme" rel="external" target="_self">ronin-recon</a> - Recursive recon engine and framework that can enumerate subdomains, DNS records, port scan, grab TLS certs, spider websites, and collect email addresses.</li>
+<li><a href="https://github.com/chaitanyakrishna/subdomain-enum" rel="external" target="_self">subdomain-enum</a> - securitytrails api</li>
+</ul>
+<p><em>Only sites/tools whose search is not automated by the tools above are listed here.</em></p>
+<ul>
+<li><a href="https://ti.defender.microsoft.com/" rel="external" target="_self">TI.defender.microsoft</a></li>
+<li><a href="https://securitytrails.com/" rel="external" target="_self">Securitytrails</a></li>
+<li><a href="https://shrewdeye.app/" rel="external" target="_self">Shrewdeye</a></li>
+<li><a href="https://phonebook.cz/" rel="external" target="_self">Phonebook</a></li>
+<li><a href="https://nmmapper.com/" rel="external" target="_self">Nmmapper</a></li>
+<li><a href="https://subdomainfinder.c99.nl/" rel="external" target="_self">subdomainfinder.c99.</a> - A subdomain finder is a tool used to find the subdomains of a given domain.</li>
+</ul>
+<h2 id="-table-of-contents-urls"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> URLs</h2>
+<p>Tools for passive collection and analysis URLs</p>
+<ul>
+<li><a href="https://github.com/lc/gau" rel="external" target="_self">Gau</a></li>
+<li><a href="https://github.com/hueristiq/xurlfind3r" rel="external" target="_self">Xurlfind3r</a></li>
+<li><a href="https://github.com/ninjhacks/unja" rel="external" target="_self">Unja</a></li>
+<li><a href="https://github.com/utkusen/urlhunter" rel="external" target="_self">urlhunter</a> - a recon tool that allows searching on URLs that are exposed via shortener services</li>
+<li><a href="https://github.com/xnl-h4ck3r/waymore" rel="external" target="_self">Waymore</a></li>
+<li><a href="https://github.com/smicallef/spiderfoot" rel="external" target="_self">Spiderfoot</a></li>
+<li><a href="https://github.com/laramies/theHarvester" rel="external" target="_self">theHarvester</a></li>
+<li><a href="https://github.com/m3n0sd0n4ld/GooFuzz" rel="external" target="_self">GooFuzz</a> - Enumerate directories, files, subdomains or parameters without leaving evidence on the target&rsquo;s serve</li>
+<li><a href="https://rextracter.streamlit.app/" rel="external" target="_self">Rextracter.streamlit</a> - Gathers links and analyses content</li>
+<li><a href="https://github.com/z0m31en7/Uscrapper" rel="external" target="_self">Uscrapper</a> - Tool that allows users to extract various personal information from a website.</li>
+<li><a href="https://github.com/ronin-rb/ronin-recon#readme" rel="external" target="_self">ronin-recon</a> - Recursive recon engine and framework that can enumerate subdomains, DNS records, port scan, grab TLS certs, spider websites, and collect email addresses.</li>
+<li><a href="https://github.com/AnonCatalyst/Ominis-Osint" rel="external" target="_self">Ominis-Osint</a> - The tool extracts relevant information such as titles, URLs, and potential mentions of the query in the results.</li>
+</ul>
+<h2 id="-table-of-contents-dark-web"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Dark web</h2>
+<p>An undiscovered area, the author is too dumb for that. Will gradually expand.</p>
+<ul>
+<li><a href="https://ahmia.fi/" rel="external" target="_self">Ahmia</a></li>
+</ul>
+<h2 id="-table-of-contents-intelligence"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Intelligence</h2>
+<p>Threat Intelligence tools containing extensive company information, subdomains, DNS information, URLs and much more.</p>
+<ul>
+<li><a href="https://ti.defender.microsoft.com/" rel="external" target="_self">TI.defender.microsoft</a></li>
+<li><a href="https://securitytrails.com/" rel="external" target="_self">Securitytrails</a></li>
+<li><a href="https://pulsedive.com/" rel="external" target="_self">Pulsedive</a></li>
+<li><a href="https://threatbook.io/" rel="external" target="_self">ThreatBook</a></li>
+<li><a href="https://otx.alienvault.com/" rel="external" target="_self">Alienvault</a></li>
+</ul>
+<h2 id="-table-of-contents-network-info"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Network Info</h2>
+<p>IP/Domain network analysis tools.</p>
+<ul>
+<li><a href="https://bgp.he.net/" rel="external" target="_self">Bgp.he</a></li>
+<li><a href="http://whoistory.com/" rel="external" target="_self">whoistory</a></li>
+<li><a href="https://asnlookup.com/" rel="external" target="_self">Asnlookup</a></li>
+<li><a href="http://centralops.net/" rel="external" target="_self">centralops</a></li>
+<li><a href="https://bgp.tools/" rel="external" target="_self">Bgp.tools</a></li>
+<li><a href="https://myip.ms/" rel="external" target="_self">Myip</a></li>
+<li><a href="https://ipinfo.io/" rel="external" target="_self">IpInfo</a> | <a href="https://github.com/ipinfo/cli" rel="external" target="_self">Cmd version</a></li>
+<li><a href="https://main.whoisxmlapi.com/" rel="external" target="_self">Whoisxmlapi</a></li>
+</ul>
+<h2 id="-table-of-contents-dnshistory"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> DnsHistory</h2>
+<p>Tools for viewing the DNS history of a domain.</p>
+<ul>
+<li><a href="https://bigdomaindata.com" rel="external" target="_self">Bigdomaindata</a></li>
+<li><a href="https://dnshistory.org/" rel="external" target="_self">Dnshistory</a></li>
+<li><a href="https://viewdns.info/" rel="external" target="_self">Viewdns</a></li>
+<li><a href="https://ti.defender.microsoft.com/" rel="external" target="_self">TI.defender.microsoft</a></li>
+<li><a href="https://securitytrails.com/" rel="external" target="_self">Securitytrails</a></li>
+</ul>
+<h2 id="-table-of-contents-certifications"><a href="../../osint/osint17/index.html#-table-of-contents"></a> Certifications</h2>
+<ul>
+<li><a href="https://crt.sh/" rel="external" target="_self">Crt.sh</a></li>
+<li><a href="https://github.com/Lissy93/web-check" rel="external" target="_self">Web-check</a> + <a href="https://web-check.as93.net/" rel="external" target="_self">Web version</a></li>
+</ul>
+<h2 id="-table-of-contents-ftp-servers"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> FTP servers</h2>
+<p>Tools allowing you to search for and download files located on public FTP servers.</p>
+<ul>
+<li><a href="https://www.searchftps.net/" rel="external" target="_self">Searchftps</a></li>
+</ul>
+<h2 id="-table-of-contents-passive-infrastructure-scanner"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Passive Infrastructure scanner</h2>
+<p>Tools for automated passive IP address/subnet scanning.</p>
+<ul>
+<li><a href="https://github.com/s0md3v/Smap" rel="external" target="_self">Smap</a></li>
+<li><a href="https://github.com/censys/nmap-censys" rel="external" target="_self">Nmap-censys</a></li>
+</ul>
+<h2 id="-table-of-contents-microsoft-exchange"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Microsoft Exchange</h2>
+<p>Tools that help in passive/semi-passive analysis of Microsoft Exchange.</p>
+<ul>
+<li><a href="https://github.com/mhaskar/ExchangeFinder" rel="external" target="_self">ExchangeFinder</a> | #SemiOSINT</li>
+</ul>
+<h2 id="-table-of-contents-telegram"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Telegram</h2>
+<p>Tools for investigating Telegram chats.</p>
+<ul>
+<li><a href="https://github.com/jordanwildon/Telepathy" rel="external" target="_self">Telepathy</a></li>
+</ul>
+<h2 id="-table-of-contents-google-dorks"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Google Dorks</h2>
+<p>Tools for Google Dorks.</p>
+<ul>
+<li><a href="https://github.com/opsdisk/pagodo" rel="external" target="_self">Pagodo</a></li>
+<li><a href="https://www.exploit-db.com/google-hacking-database" rel="external" target="_self">Google hacking database</a></li>
+<li><a href="https://recruitin.net/" rel="external" target="_self">Recruitin</a> - Compiles Google dorks to search on LinkedIn, Dribbble, GitHub, Xing, StackOverflow, Twitter</li>
+<li><a href="https://github.com/pbkompasz/search" rel="external" target="_self">Search</a> - Custom queries in Google</li>
+</ul>
+<h2 id="-table-of-contents-nickname-search"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Nickname search</h2>
+<p>Nickname search tools.</p>
+<ul>
+<li><a href="https://github.com/soxoj/maigret" rel="external" target="_self">maigret</a></li>
+<li><a href="https://github.com/sherlock-project/sherlock" rel="external" target="_self">Sherlock</a></li>
+<li><a href="https://github.com/qeeqbox/social-analyzer" rel="external" target="_self">Social analyzer</a></li>
+<li><a href="https://github.com/thewhiteh4t/nexfil" rel="external" target="_self">nexfil</a></li>
+<li><a href="https://github.com/webbreacher/whatsmyname" rel="external" target="_self">whatsmyname</a></li>
+<li><a href="https://github.com/snooppr/snoop" rel="external" target="_self">snoop</a></li>
+<li><a href="https://github.com/wishihab/userrecon" rel="external" target="_self">userrecon</a></li>
+<li><a href="https://github.com/restanse/NicknameFinder" rel="external" target="_self">NicknameFinder</a></li>
+<li><a href="https://github.com/YouVBeenHacked/gideon" rel="external" target="_self">gideon</a></li>
+<li><a href="https://github.com/AlexC-ux/Arina-OSINT" rel="external" target="_self">Arina-OSINT</a></li>
+<li><a href="https://github.com/rahulrajpl/netizenship" rel="external" target="_self">netizenship</a></li>
+<li><a href="https://github.com/0xknown/Search4" rel="external" target="_self">Search4</a></li>
+<li><a href="https://github.com/iojw/socialscan" rel="external" target="_self">socialscan</a></li>
+<li><a href="https://github.com/mesuutt/sherlock" rel="external" target="_self">Sherlock</a></li>
+<li><a href="https://github.com/lanmaster53/recon-ng/" rel="external" target="_self">recon-ng</a></li>
+<li><a href="https://github.com/woj-ciech/SocialPath" rel="external" target="_self">SocialPath</a></li>
+<li><a href="https://castrickclues.com/" rel="external" target="_self">Castrick</a></li>
+</ul>
+<h2 id="-table-of-contents-phone-number"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Phone number</h2>
+<p>Sometimes situations happen that require analysing an employee&rsquo;s phone number to get more information.</p>
+<ul>
+<li><a href="https://github.com/sundowndev/PhoneInfoga" rel="external" target="_self">PhoneInfoga</a> + <a href="https://demo.phoneinfoga.crvx.fr/" rel="external" target="_self">Web Demo</a></li>
+<li><a href="https://github.com/HunxByts/GhostTrack" rel="external" target="_self">GhostTrack</a></li>
+<li><a href="https://osint.industries/" rel="external" target="_self">Osint.industries</a></li>
+<li><a href="https://www.emobiletracker.com/" rel="external" target="_self">Emobiletracker</a></li>
+<li><a href="https://castrickclues.com/" rel="external" target="_self">Castrick</a></li>
+<li><a href="https://www.predictasearch.com/" rel="external" target="_self">Predicta Search</a></li>
+</ul>
+<h2 id="-table-of-contents-wifi"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Wifi</h2>
+<ul>
+<li><a href="https://3wifi.stascorp.com/" rel="external" target="_self">3Wifi</a> - free base of access points</li>
+</ul>
+<h2 id="-table-of-contents-cloud"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Cloud</h2>
+<p>Tools for searching, gathering information from cloud.</p>
+<ul>
+<li><a href="https://github.com/Group-IB/cloud_sherlock" rel="external" target="_self">Cloud_sherlock</a></li>
+</ul>
+<h2 id="-table-of-contents-information-gathering-tools"><a href="../../osint/osint17/index.html#-table-of-contents">↑</a> Information gathering tools</h2>
+<ul>
+<li><a href="https://github.com/twelvesec/gasmask" rel="external" target="_self">Gasmask</a></li>
+<li><a href="https://github.com/Moham3dRiahi/Th3inspector" rel="external" target="_self">Th3inspector</a></li>
+<li><a href="https://cylect.io/" rel="external" target="_self">Cylect.io</a></li>
+</ul>
+<h2 id="-table-of-contents-usefull-links"><a href="-table-of-contents">↑</a> Usefull links</h2>
+<p>Links to guide, methodologies and any information that would be useful.</p>
+<ul>
+<li><a href="https://github.com/valeriyshevchenko90/WhereToGo" rel="external" target="_self">WhereToGo</a> - list of popular services that might be used in organizations. By having an account of the user - you can try to find entry points to the organization data. #semiosint</li>
+<li><a href="https://github.com/7WaySecurity/cloud_osint" rel="external" target="_self">Cloud OSINT</a> - Repository with information related to Cloud Osint</li>
+<li><a href="https://github.com/soxoj/information-disclosure-writeups-and-pocs" rel="external" target="_self">Information Disclosure Write-Ups And PoCs</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 2, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/osint-offensiveosint/index.html">OSINT, OffensiveOSINT</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

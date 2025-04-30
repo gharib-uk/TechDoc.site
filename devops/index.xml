@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/devops/index.html</link>
+    <description>Everything about DevOps tools and methods.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install nTopNG on Linux</title>
+      <link>https://blog.alirezagharib.ir/devops/ntopng/index.html</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/ntopng/index.html</guid>
+      <description>Install nTopNG on debian based distros</description>
+    </item>
+    <item>
+      <title>Run FreshRSS With Docker-Compose</title>
+      <link>https://blog.alirezagharib.ir/devops/freshrss/index.html</link>
+      <pubDate>Mon, 18 Nov 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/freshrss/index.html</guid>
+      <description>How to run FreshRSS with Docker</description>
+    </item>
+    <item>
+      <title>SysAdmin Tools</title>
+      <link>https://blog.alirezagharib.ir/devops/sysadmin/index.html</link>
+      <pubDate>Tue, 08 Oct 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/sysadmin/index.html</guid>
+      <description>A curated list of SysAdmin Tools</description>
+    </item>
+    <item>
+      <title>VPS, Dedicated Server, VDS, VPN, email, and Domain Providers</title>
+      <link>https://blog.alirezagharib.ir/devops/vps/index.html</link>
+      <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/vps/index.html</guid>
+      <description>List of VPS, dedicated server, VDS, VPN, email, and domain providers</description>
+    </item>
+    <item>
+      <title>Run Private Mastodon Instance</title>
+      <link>https://blog.alirezagharib.ir/devops/mastodon/index.html</link>
+      <pubDate>Tue, 10 Sep 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/mastodon/index.html</guid>
+      <description>How to run a Private Mastodon Instance ?</description>
+    </item>
+    <item>
+      <title>Run Private Matrix (Element) Instance</title>
+      <link>https://blog.alirezagharib.ir/devops/element/index.html</link>
+      <pubDate>Tue, 10 Sep 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/element/index.html</guid>
+      <description>How to run a Private Matrix (Element) Instance ?</description>
+    </item>
+    <item>
+      <title>Github Actions</title>
+      <link>https://blog.alirezagharib.ir/devops/githubactions/index.html</link>
+      <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/githubactions/index.html</guid>
+      <description>How efficiently use Github Action ?</description>
+    </item>
+    <item>
+      <title>Self-Hosted</title>
+      <link>https://blog.alirezagharib.ir/devops/selfhosted/index.html</link>
+      <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/selfhosted/index.html</guid>
+      <description>List of Self-Hosted Tools</description>
+    </item>
+    <item>
+      <title>HAProxy as an upstream reverse proxy</title>
+      <link>https://blog.alirezagharib.ir/devops/haproxy/index.html</link>
+      <pubDate>Fri, 02 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/haproxy/index.html</guid>
+      <description>How to use HAProxy as an upstream Reverse Proxy ?</description>
+    </item>
+    <item>
+      <title>Let&#39;s Deploy TON Site </title>
+      <link>https://blog.alirezagharib.ir/devops/tonsite/index.html</link>
+      <pubDate>Fri, 02 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/tonsite/index.html</guid>
+      <description>How to Deploy TON Website ?</description>
+    </item>
+  </channel>
+</rss>

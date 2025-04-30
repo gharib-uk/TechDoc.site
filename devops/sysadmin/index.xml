@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SysAdmin Tools :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/devops/sysadmin/index.html</link>
+    <description>A curated list of SysAdmin Tools</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/devops/sysadmin/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

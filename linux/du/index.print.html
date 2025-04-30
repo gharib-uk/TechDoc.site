@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="Working with du command">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="du command :: Gharib Blog">
+    <meta name="twitter:description" content="Working with du command">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/linux/du/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="du command :: Gharib Blog">
+    <meta property="og:description" content="Working with du command">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta property="article:published_time" content="2025-04-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-16T00:00:00+00:00">
+    <meta property="article:tag" content="Linux, Du">
+    <meta itemprop="name" content="du command :: Gharib Blog">
+    <meta itemprop="description" content="Working with du command">
+    <meta itemprop="datePublished" content="2025-04-16T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-04-16T00:00:00+00:00">
+    <meta itemprop="wordCount" content="276">
+    <meta itemprop="keywords" content="Linux, Du">
+    <title>du command :: Gharib Blog</title>
+    <link href="https://blog.alirezagharib.ir/linux/du/index.html" rel="canonical" type="text/html" title="du command :: Gharib Blog">
+    <link href="../../linux/du/index.xml" rel="alternate" type="application/rss+xml" title="du command :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990496" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990496" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990496" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1745990496" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990496" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990496" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990496" defer></script>
+    <script src="../../js/search.min.js?1745990496" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/linux\/du\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990496";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-url="../../linux/du/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#working-with-du-command-in-linux-efficiently">Working with <code>du</code> command in linux efficiently</a></li>
+    <li><a href="#1-find-the-largest-directories-sorted"><strong>1. Find the Largest Directories (Sorted)</strong></a></li>
+    <li><a href="#2-find-the-largest-directories-only-excluding-files"><strong>2. Find the Largest Directories Only (Excluding Files)</strong></a></li>
+    <li><a href="#3-find-the-largest-files-over-500mb"><strong>3. Find the Largest Files (Over 500MB)</strong></a></li>
+    <li><a href="#4-exclude-certain-directories-like-proc-sys-etc"><strong>4. Exclude Certain Directories (Like /proc, /sys, etc.)</strong></a></li>
+    <li><a href="#5-find-the-largest-users-disk-usage-by-user"><strong>5. Find the Largest Users (Disk Usage by User)</strong></a></li>
+    <li><a href="#6-save-output-to-a-file"><strong>6. Save Output to a File</strong></a>
+      <ul>
+        <li><a href="#next-steps-after-finding-large-files"><strong>Next Steps After Finding Large Files:</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../linux/index.html"><span itemprop="name">Linux</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">du command</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../linux/du/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../linux/index.html" title="Linux (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../linux/kali-tools/index.html" title="Essential Linux Security Tools (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/linux-du/index.html">Linux, Du</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="du-command">du command</h1>
+
+<h2 id="working-with-du-command-in-linux-efficiently">Working with <code>du</code> command in linux efficiently</h2>
+<h2 id="1-find-the-largest-directories-sorted"><strong>1. Find the Largest Directories (Sorted)</strong></h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo du -ahx / <span class="p">|</span> sort -rh <span class="p">|</span> head -20</span></span></code></pre></div>
+<ul>
+<li><code>-a</code> → Show both <strong>files</strong> and <strong>directories</strong></li>
+<li><code>-h</code> → Human-readable sizes (e.g., MB, GB)</li>
+<li><code>-x</code> → Stay on the same filesystem (avoid mounted drives)</li>
+<li><code>sort -rh</code> → Sort by <strong>size</strong>, largest first</li>
+<li><code>head -20</code> → Show <strong>top 20</strong> largest directories/files</li>
+</ul>
+<hr>
+<h2 id="2-find-the-largest-directories-only-excluding-files"><strong>2. Find the Largest Directories Only (Excluding Files)</strong></h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo du -hx --max-depth<span class="o">=</span><span class="m">3</span> / <span class="p">|</span> sort -rh <span class="p">|</span> head -20</span></span></code></pre></div>
+<ul>
+<li><code>--max-depth=3</code> → Limits output to top 3 levels for better readability</li>
+</ul>
+<hr>
+<h2 id="3-find-the-largest-files-over-500mb"><strong>3. Find the Largest Files (Over 500MB)</strong></h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo find / -type f -size +500M -exec du -h <span class="o">{}</span> + <span class="p">|</span> sort -rh <span class="p">|</span> head -20</span></span></code></pre></div>
+<ul>
+<li><code>-type f</code> → Only files</li>
+<li><code>-size +500M</code> → Files larger than <strong>500MB</strong></li>
+<li><code>du -h</code> → Show <strong>file sizes</strong> in human-readable format</li>
+</ul>
+<hr>
+<h2 id="4-exclude-certain-directories-like-proc-sys-etc"><strong>4. Exclude Certain Directories (Like /proc, /sys, etc.)</strong></h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo du -ahx --exclude<span class="o">={</span>/proc,/sys,/dev,/run,/snap,/tmp,/mnt,/media<span class="o">}</span> / <span class="p">|</span> sort -rh <span class="p">|</span> head -20</span></span></code></pre></div>
+<ul>
+<li>This avoids system directories that don’t consume real disk space.</li>
+</ul>
+<hr>
+<h2 id="5-find-the-largest-users-disk-usage-by-user"><strong>5. Find the Largest Users (Disk Usage by User)</strong></h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo du -sh /home/* 2&gt;/dev/null</span></span></code></pre></div>
+<ul>
+<li>This shows how much each user is consuming in <code>/home</code>.</li>
+</ul>
+<hr>
+<h2 id="6-save-output-to-a-file"><strong>6. Save Output to a File</strong></h2>
+<p>If you want to analyze later:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo du -ahx / <span class="p">|</span> sort -rh &gt; large_files.txt</span></span></code></pre></div>
+<p>Then open it:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">less large_files.txt</span></span></code></pre></div>
+<hr>
+<h3 id="next-steps-after-finding-large-files"><strong>Next Steps After Finding Large Files:</strong></h3>
+<ol>
+<li>
+<p><strong>Check logs</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo du -sh /var/log/*</span></span></code></pre></div>
+<ul>
+<li>You can clear logs with:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo journalctl --vacuum-time<span class="o">=</span>7d  <span class="c1"># Keep logs for 7 days</span></span></span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Check package cache</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo du -sh /var/cache/apt</span></span></code></pre></div>
+<ul>
+<li>Clean it with:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt clean</span></span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Check old kernels</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dpkg --list <span class="p">|</span> grep linux-image</span></span></code></pre></div>
+<ul>
+<li>Remove old ones (except the current):
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt remove --purge linux-image-OLD-VERSION</span></span></code></pre></div>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Apr 16, 2025
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/du-linux/index.html">Du, Linux</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard/clipboard.min.js?1745990496" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990496" defer></script>
+    <script src="../../js/theme.min.js?1745990496" defer></script>
+  </body>
+</html>

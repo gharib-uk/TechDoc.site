@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.126.3">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="description" content="Incident Resposne Tools">
+    <meta name="author" content="Alireza Gharib">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Incident Resposne Tools :: Gharib Blog">
+    <meta name="twitter:description" content="Incident Resposne Tools">
+    <meta property="og:url" content="https://blog.alirezagharib.ir/osint/osint10/index.html">
+    <meta property="og:site_name" content="Gharib Blog">
+    <meta property="og:title" content="Incident Resposne Tools :: Gharib Blog">
+    <meta property="og:description" content="Incident Resposne Tools">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="OSINt">
+    <meta property="article:published_time" content="2024-08-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-02T00:00:00+00:00">
+    <meta property="article:tag" content="Incident_response">
+    <meta itemprop="name" content="Incident Resposne Tools :: Gharib Blog">
+    <meta itemprop="description" content="Incident Resposne Tools">
+    <meta itemprop="datePublished" content="2024-08-02T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-02T00:00:00+00:00">
+    <meta itemprop="wordCount" content="4890">
+    <meta itemprop="keywords" content="Incident_response">
+    <title>Incident Resposne Tools :: Gharib Blog</title>
+    <link href="../../osint/osint10/index.xml" rel="alternate" type="application/rss+xml" title="Incident Resposne Tools :: Gharib Blog">
+    <link href="../../osint/osint10/index.print.html" rel="alternate" type="text/html" title="Incident Resposne Tools :: Gharib Blog">
+    <link href="../../images/logo.svg?1745990494" rel="icon" type="image/svg+xml">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990494" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1745990494" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1745990494" rel="stylesheet">
+    <link href="../../css/theme.min.css?1745990494" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1745990494" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1745990494" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1745990494" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1745990494" defer></script>
+    <script src="../../js/search.min.js?1745990494" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/osint\/osint10\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/blog.alirezagharib.ir';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1745990494";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-dark' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <style>
+       
+      #R-body svg.purple,
+      #R-body svg.purple :not([fill]),
+      #R-body svg.purple :not([fill='black']),
+      #R-body svg.purple :not([fill='#000000']) {
+        fill: var(--INTERNAL-PRIMARY-color) !important;
+      }
+
+       
+      #R-logo {
+        font-size: 1.4rem;
+        margin-bottom: -.8125rem;
+        margin-top: -.8125rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1rem;
+          margin-bottom: -.25rem;
+          margin-top: -.25rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 26% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        overflow-wrap: break-word;
+        text-align: left;
+        text-wrap: wrap;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support html" data-url="../../osint/osint10/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#ir-tools-collection">IR Tools Collection</a>
+      <ul>
+        <li><a href="#adversary-emulation">Adversary Emulation</a></li>
+        <li><a href="#all-in-one-tools">All-In-One Tools</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#communities">Communities</a></li>
+        <li><a href="#disk-image-creation-tools">Disk Image Creation Tools</a></li>
+        <li><a href="#evidence-collection">Evidence Collection</a></li>
+        <li><a href="#incident-management">Incident Management</a></li>
+        <li><a href="#knowledge-bases">Knowledge Bases</a></li>
+        <li><a href="#linux-distributions">Linux Distributions</a></li>
+        <li><a href="#linux-evidence-collection">Linux Evidence Collection</a></li>
+        <li><a href="#log-analysis-tools">Log Analysis Tools</a></li>
+        <li><a href="#memory-analysis-tools">Memory Analysis Tools</a></li>
+        <li><a href="#memory-imaging-tools">Memory Imaging Tools</a></li>
+        <li><a href="#osx-evidence-collection">OSX Evidence Collection</a></li>
+        <li><a href="#other-lists">Other Lists</a></li>
+        <li><a href="#other-tools">Other Tools</a></li>
+        <li><a href="#playbooks">Playbooks</a></li>
+        <li><a href="#process-dump-tools">Process Dump Tools</a></li>
+        <li><a href="#sandboxingreversing-tools">Sandboxing/Reversing Tools</a></li>
+        <li><a href="#scanner-tools">Scanner Tools</a></li>
+        <li><a href="#timeline-tools">Timeline Tools</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#windows-evidence-collection">Windows Evidence Collection</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">GharibBlog</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../osint/index.html"><span itemprop="name">OSINT</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Incident Resposne Tools</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint10/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint18/index.html" title="Social Media OSINT Tools (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../osint/osint17/index.html" title="Offensive OSINT Tools (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/incident_response/index.html">Incident_response</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="incident-resposne-tools">Incident Resposne Tools</h1>
+
+<h1 id="incident-response">Incident Response</h1>
+<p>A curated list of tools and resources for security incident response, aimed to help security analysts and <a href="http://www.acronymfinder.com/Digital-Forensics%2c-Incident-Response-%28DFIR%29.html" rel="external" target="_self">DFIR</a> teams.</p>
+<p>Digital Forensics and Incident Response (DFIR) teams are groups of people in an organization responsible for managing the response to a security incident, including gathering evidence of the incident, remediating its effects, and implementing controls to prevent the incident from recurring in the future.</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="../../osint/osint10/index.html#adversary-emulation">Adversary Emulation</a></li>
+<li><a href="../../osint/osint10/index.html#all-in-one-tools">All-In-One Tools</a></li>
+<li><a href="../../osint/osint10/index.html#books">Books</a></li>
+<li><a href="../../osint/osint10/index.html#communities">Communities</a></li>
+<li><a href="../../osint/osint10/index.html#disk-image-creation-tools">Disk Image Creation Tools</a></li>
+<li><a href="../../osint/osint10/index.html#evidence-collection">Evidence Collection</a></li>
+<li><a href="../../osint/osint10/index.html#incident-management">Incident Management</a></li>
+<li><a href="../../osint/osint10/index.html#knowledge-bases">Knowledge Bases</a></li>
+<li><a href="../../osint/osint10/index.html#linux-distributions">Linux Distributions</a></li>
+<li><a href="../../osint/osint10/index.html#linux-evidence-collection">Linux Evidence Collection</a></li>
+<li><a href="../../osint/osint10/index.html#log-analysis-tools">Log Analysis Tools</a></li>
+<li><a href="../../osint/osint10/index.html#memory-analysis-tools">Memory Analysis Tools</a></li>
+<li><a href="../../osint/osint10/index.html#memory-imaging-tools">Memory Imaging Tools</a></li>
+<li><a href="../../osint/osint10/index.html#osx-evidence-collection">OSX Evidence Collection</a></li>
+<li><a href="../../osint/osint10/index.html#other-lists">Other Lists</a></li>
+<li><a href="../../osint/osint10/index.html#other-tools">Other Tools</a></li>
+<li><a href="../../osint/osint10/index.html#playbooks">Playbooks</a></li>
+<li><a href="../../osint/osint10/index.html#process-dump-tools">Process Dump Tools</a></li>
+<li><a href="../../osint/osint10/index.html#sandboxingreversing-tools">Sandboxing/Reversing Tools</a></li>
+<li><a href="../../osint/osint10/index.html#scanner-tools">Scanner Tools</a></li>
+<li><a href="../../osint/osint10/index.html#timeline-tools">Timeline Tools</a></li>
+<li><a href="../../osint/osint10/index.html#videos">Videos</a></li>
+<li><a href="../../osint/osint10/index.html#windows-evidence-collection">Windows Evidence Collection</a></li>
+</ul>
+<h2 id="ir-tools-collection">IR Tools Collection</h2>
+<h3 id="adversary-emulation">Adversary Emulation</h3>
+<ul>
+<li><a href="https://github.com/NextronSystems/APTSimulator" rel="external" target="_self">APTSimulator</a> - Windows Batch script that uses a set of tools and output files to make a system look as if it was compromised.</li>
+<li><a href="https://github.com/redcanaryco/atomic-red-team" rel="external" target="_self">Atomic Red Team (ART)</a> - Small and highly portable detection tests mapped to the MITRE ATT&amp;CK Framework.</li>
+<li><a href="https://github.com/jymcheong/AutoTTP" rel="external" target="_self">AutoTTP</a> - Automated Tactics Techniques &amp; Procedures. Re-running complex sequences manually for regression tests, product evaluations, generate data for researchers.</li>
+<li><a href="https://github.com/mitre/caldera" rel="external" target="_self">Caldera</a> - Automated adversary emulation system that performs post-compromise adversarial behavior within Windows Enterprise networks. It generates plans during operation using a planning system and a pre-configured adversary model based on the Adversarial Tactics, Techniques &amp; Common Knowledge (ATT&amp;CK™) project.</li>
+<li><a href="https://github.com/TryCatchHCF/DumpsterFire" rel="external" target="_self">DumpsterFire</a> - Modular, menu-driven, cross-platform tool for building repeatable, time-delayed, distributed security events. Easily create custom event chains for Blue Team drills and sensor /   alert mapping. Red Teams can create decoy incidents, distractions, and lures to support and scale their operations.</li>
+<li><a href="https://github.com/uber-common/metta" rel="external" target="_self">Metta</a> - Information security preparedness tool to do adversarial simulation.</li>
+<li><a href="https://github.com/alphasoc/flightsim" rel="external" target="_self">Network Flight Simulator</a> - Lightweight utility used to generate malicious network traffic and help security teams to evaluate security controls and network visibility.</li>
+<li><a href="https://github.com/endgameinc/RTA" rel="external" target="_self">Red Team Automation (RTA)</a> - RTA provides a framework of scripts designed to allow blue teams to test their detection capabilities against malicious tradecraft, modeled after MITRE ATT&amp;CK.</li>
+<li><a href="https://github.com/redhuntlabs/RedHunt-OS" rel="external" target="_self">RedHunt-OS</a> - Virtual machine for adversary emulation and threat hunting.</li>
+</ul>
+<h3 id="all-in-one-tools">All-In-One Tools</h3>
+<ul>
+<li><a href="https://belkasoft.com/ec" rel="external" target="_self">Belkasoft Evidence Center</a> -  The toolkit will quickly extract digital evidence from multiple sources by analyzing hard drives, drive images, memory dumps, iOS, Blackberry and Android backups, UFED, JTAG and chip-off dumps.</li>
+<li><a href="https://github.com/PowerShellMafia/CimSweep" rel="external" target="_self">CimSweep</a> - Suite of CIM/WMI-based tools that enable the ability to perform incident response and hunting operations remotely across all versions of Windows.</li>
+<li><a href="https://github.com/byt3smith/CIRTKit" rel="external" target="_self">CIRTkit</a> - CIRTKit is not just a collection of tools, but also a framework to aid in the ongoing unification of Incident Response and Forensics investigation processes.</li>
+<li><a href="http://www.cybertriage.com" rel="external" target="_self">Cyber Triage</a> - Cyber Triage collects and analyzes host data to determine if it is compromised. It&rsquo;s scoring system and recommendation engine allow you to quickly focus on the important artifacts. It can import data from its collection tool, disk images, and other collectors (such as KAPE). It can run on an examiner&rsquo;s desktop or in a server model. Developed by Sleuth Kit Labs, which also makes Autopsy.</li>
+<li><a href="https://github.com/fox-it/dissect" rel="external" target="_self">Dissect</a> - Dissect is a digital forensics &amp; incident response framework and toolset that allows you to quickly access and analyse forensic artefacts from various disk and file formats, developed by Fox-IT (part of NCC Group).</li>
+<li><a href="https://github.com/mwielgoszewski/doorman" rel="external" target="_self">Doorman</a> - osquery fleet manager that allows remote management of osquery configurations retrieved by nodes. It takes advantage of osquery&rsquo;s TLS configuration, logger, and distributed read/write endpoints, to give administrators visibility across a fleet of devices with minimal overhead and intrusiveness.</li>
+<li><a href="https://github.com/CrowdStrike/falcon-orchestrator" rel="external" target="_self">Falcon Orchestrator</a> - Extendable Windows-based application that provides workflow automation, case management and security response functionality.</li>
+<li><a href="https://github.com/fireeye/flare-vm" rel="external" target="_self">Flare</a> - A fully customizable, Windows-based security distribution for malware analysis, incident response, penetration testing.</li>
+<li><a href="https://github.com/fleetdm/fleet" rel="external" target="_self">Fleetdm</a> - State of the art host monitoring platform tailored for security experts. Leveraging Facebook&rsquo;s battle-tested osquery project, Fleetdm delivers continuous updates, features and fast answers to big questions.</li>
+<li><a href="https://github.com/google/grr" rel="external" target="_self">GRR Rapid Response</a> - Incident response framework focused on remote live forensics. It consists of a python agent (client) that is installed on target systems, and a python server infrastructure that can manage and talk to the agent. Besides the included Python API client, <a href="https://github.com/swisscom/PowerGRR" rel="external" target="_self">PowerGRR</a> provides an API client library in PowerShell working on Windows, Linux and macOS for GRR automation and scripting.</li>
+<li><a href="https://github.com/dfir-iris/iris-web" rel="external" target="_self">IRIS</a> - IRIS is a web collaborative platform for incident response analysts allowing to share investigations at a technical level.</li>
+<li><a href="https://github.com/DFIRKuiper/Kuiper" rel="external" target="_self">Kuiper</a> - Digital Forensics Investigation Platform</li>
+<li><a href="https://www.limacharlie.io/" rel="external" target="_self">Limacharlie</a> - Endpoint security platform composed of a collection of small projects all working together that gives you a cross-platform (Windows, OSX, Linux, Android and iOS) low-level environment for managing and pushing additional modules into memory to extend its functionality.</li>
+<li><a href="https://github.com/matanolabs/matano" rel="external" target="_self">Matano</a>: Open source serverless security lake platform on AWS that lets you ingest, store, and analyze petabytes of security data into an Apache Iceberg data lake and run realtime Python detections as code.</li>
+<li><a href="https://github.com/mozilla/MozDef" rel="external" target="_self">MozDef</a> - Automates the security incident handling process and facilitate the real-time activities of incident handlers.</li>
+<li><a href="https://github.com/MutableSecurity/mutablesecurity" rel="external" target="_self">MutableSecurity</a> - CLI program for automating the setup, configuration, and use of cybersecurity solutions.</li>
+<li><a href="https://github.com/biggiesmallsAG/nightHawkResponse" rel="external" target="_self">nightHawk</a> - Application built for asynchronous forensic data presentation using ElasticSearch as the backend. It&rsquo;s designed to ingest Redline collections.</li>
+<li><a href="http://sourceforge.net/projects/ocfa/" rel="external" target="_self">Open Computer Forensics Architecture</a> - Another popular distributed open-source computer forensics framework. This framework was built on Linux platform and uses postgreSQL database for storing data.</li>
+<li><a href="https://osquery.io/" rel="external" target="_self">osquery</a> - Easily ask questions about your Linux and macOS infrastructure using a SQL-like query language; the provided <em>incident-response pack</em> helps you detect and respond to breaches.</li>
+<li><a href="https://www.fireeye.com/services/freeware/redline.html" rel="external" target="_self">Redline</a> - Provides host investigative capabilities to users to find signs of malicious activity through memory and file analysis, and the development of a threat assessment profile.</li>
+<li><a href="https://github.com/zdhenard42/SOC-Multitool" rel="external" target="_self">SOC Multi-tool</a> - A powerful and user-friendly browser extension that streamlines investigations for security professionals.</li>
+<li><a href="http://www.sleuthkit.org" rel="external" target="_self">The Sleuth Kit &amp; Autopsy</a> - Unix and Windows based tool which helps in forensic analysis of computers. It comes with various tools which helps in digital forensics. These tools help in analyzing disk images, performing in-depth analysis of file systems, and various other things.</li>
+<li><a href="https://thehive-project.org/" rel="external" target="_self">TheHive</a> - Scalable 3-in-1 open source and free solution designed to make life easier for SOCs, CSIRTs, CERTs and any information security practitioner dealing with security incidents that need to be investigated and acted upon swiftly.</li>
+<li><a href="https://github.com/Velocidex/velociraptor" rel="external" target="_self">Velociraptor</a> - Endpoint visibility and collection tool</li>
+<li><a href="http://www.x-ways.net/forensics/" rel="external" target="_self">X-Ways Forensics</a> - Forensics tool for Disk cloning and imaging. It can be used to find deleted files and disk analysis.</li>
+<li><a href="https://github.com/zentralopensource/zentral" rel="external" target="_self">Zentral</a> - Combines osquery&rsquo;s powerful endpoint inventory features with a flexible notification and action framework. This enables one to identify and react to changes on OS X and Linux clients.</li>
+</ul>
+<h3 id="books">Books</h3>
+<ul>
+<li><a href="https://www.amazon.com/Applied-Incident-Response-Steve-Anson/dp/1119560268/" rel="external" target="_self">Applied Incident Response</a> - Steve Anson&rsquo;s book on Incident Response.</li>
+<li><a href="https://www.amazon.com/Art-Memory-Forensics-Detecting-Malware/dp/1118825098/" rel="external" target="_self">Art of Memory Forensics</a> - Detecting Malware and Threats in Windows, Linux, and Mac Memory.</li>
+<li><a href="https://www.amazon.com/Crafting-InfoSec-Playbook-Security-Monitoring/dp/1491949406" rel="external" target="_self">Crafting the InfoSec Playbook: Security Monitoring and Incident Response Master Plan</a> - by Jeff Bollinger, Brandon Enright and Matthew Valites.</li>
+<li><a href="https://www.amazon.com/Digital-Forensics-Incident-Response-techniques/dp/183864900X" rel="external" target="_self">Digital Forensics and Incident Response: Incident response techniques and procedures to respond to modern cyber threats</a> - by Gerard Johansen.</li>
+<li><a href="https://medium.com/@sroberts/introduction-to-dfir-d35d5de4c180/" rel="external" target="_self">Introduction to DFIR</a> - By Scott J. Roberts.</li>
+<li><a href="https://www.amazon.com/Incident-Response-Computer-Forensics-Third/dp/0071798684/" rel="external" target="_self">Incident Response &amp; Computer Forensics, Third Edition</a> - The definitive guide to incident response.</li>
+<li><a href="https://www.amazon.com/Incident-Response-Techniques-Ransomware-Attacks/dp/180324044X" rel="external" target="_self">Incident Response Techniques for Ransomware Attacks</a> - A great guide to build an incident response strategy for ransomware attacks. By Oleg Skulkin.</li>
+<li><a href="https://www.amazon.com/Incident-response-Threat-Intelligence-intelligence-based/dp/1801072957" rel="external" target="_self">Incident Response with Threat Intelligence</a> - Great reference to build an incident response plan based also on Threat Intelligence. By Roberto Martinez.</li>
+<li><a href="https://www.amazon.com/Intelligence-Driven-Incident-Response-Outwitting-Adversary-ebook-dp-B074ZRN5T7/dp/B074ZRN5T7" rel="external" target="_self">Intelligence-Driven Incident Response</a> - By Scott J. Roberts, Rebekah Brown.</li>
+<li><a href="https://www.amazon.com/Operator-Handbook-Team-OSINT-Reference/dp/B085RR67H5/" rel="external" target="_self">Operator Handbook: Red Team + OSINT + Blue Team Reference</a> - Great reference for incident responders.</li>
+<li><a href="https://www.amazon.com/Practical-Memory-Forensics-Jumpstart-effective/dp/1801070334" rel="external" target="_self">Practical Memory Forensics</a> - The definitive guide to practice memory forensics. By Svetlana Ostrovskaya and Oleg Skulkin.</li>
+<li><a href="http://www.amazon.com/gp/product/1593275099" rel="external" target="_self">The Practice of Network Security Monitoring: Understanding Incident Detection and Response</a> - Richard Bejtlich&rsquo;s book on IR.</li>
+</ul>
+<h3 id="communities">Communities</h3>
+<ul>
+<li><a href="https://discordapp.com/invite/JUqe9Ek" rel="external" target="_self">Digital Forensics Discord Server</a> - Community of 8,000+ working professionals from Law Enforcement, Private Sector, and Forensic Vendors. Additionally, plenty of students and hobbyists! Guide <a href="https://aboutdfir.com/a-beginners-guide-to-the-digital-forensics-discord-server/" rel="external" target="_self">here</a>.</li>
+<li><a href="https://dfircommunity.slack.com" rel="external" target="_self">Slack DFIR channel</a> - Slack DFIR Communitiy channel - <a href="https://start.paloaltonetworks.com/join-our-slack-community" rel="external" target="_self">Signup here</a>.</li>
+</ul>
+<h3 id="disk-image-creation-tools">Disk Image Creation Tools</h3>
+<ul>
+<li><a href="http://accessdata.com/product-download/?/support/adownloads#FTKImager" rel="external" target="_self">AccessData FTK Imager</a> - Forensics tool whose main purpose is to preview recoverable data from a disk of any kind. FTK Imager can also acquire live memory and paging file on 32bit and 64bit systems.</li>
+<li><a href="https://github.com/vitaly-kamluk/bitscout" rel="external" target="_self">Bitscout</a> - Bitscout by Vitaly Kamluk helps you build your fully-trusted customizable LiveCD/LiveUSB image to be used for remote digital forensics (or perhaps any other task of your choice). It is meant to be transparent and monitorable by the owner of the system, forensically sound, customizable and compact.</li>
+<li><a href="http://www.forensicimager.com/" rel="external" target="_self">GetData Forensic Imager</a> - Windows based program that will acquire, convert, or verify a forensic image in one of the following common forensic file formats.</li>
+<li><a href="http://guymager.sourceforge.net" rel="external" target="_self">Guymager</a> - Free forensic imager for media acquisition on Linux.</li>
+<li><a href="https://www.magnetforensics.com/magnet-acquire/" rel="external" target="_self">Magnet ACQUIRE</a> - ACQUIRE by Magnet Forensics allows various types of disk acquisitions to be performed on Windows, Linux, and OS X as well as mobile operating systems.</li>
+</ul>
+<h3 id="evidence-collection">Evidence Collection</h3>
+<ul>
+<li><a href="https://github.com/fox-it/acquire" rel="external" target="_self">Acquire</a> - Acquire is a tool to quickly gather forensic artifacts from disk images or a live system into a lightweight container. This makes Acquire an excellent tool to, among others, speedup the process of digital forensic triage. It uses <a href="https://github.com/fox-it/dissect" rel="external" target="_self">Dissect</a> to gather that information from the raw disk, if possible.</li>
+<li><a href="https://github.com/forensicanalysis/artifactcollector" rel="external" target="_self">artifactcollector</a> - The artifactcollector project provides a software that collects forensic artifacts on systems.</li>
+<li><a href="https://github.com/simsong/bulk_extractor" rel="external" target="_self">bulk_extractor</a> - Computer forensics tool that scans a disk image, a file, or a directory of files and extracts useful information without parsing the file system or file system structures. Because of ignoring the file system structure, the program distinguishes itself in terms of speed and thoroughness.</li>
+<li><a href="https://github.com/rough007/CDQR" rel="external" target="_self">Cold Disk Quick Response</a> - Streamlined list of parsers to quickly analyze a forensic image file (<code>dd</code>, E01, <code>.vmdk</code>, etc) and output nine reports.</li>
+<li><a href="https://github.com/orlikoski/CyLR" rel="external" target="_self">CyLR</a> - The CyLR tool collects forensic artifacts from hosts with NTFS file systems quickly, securely and minimizes impact to the host.</li>
+<li><a href="https://github.com/ForensicArtifacts/artifacts" rel="external" target="_self">Forensic Artifacts</a> - Digital Forensics Artifact Repository</li>
+<li><a href="https://github.com/diogo-fernan/ir-rescue" rel="external" target="_self">ir-rescue</a> - Windows Batch script and a Unix Bash script to comprehensively collect host forensic data during incident response.</li>
+<li><a href="https://www.brimorlabs.com/tools/" rel="external" target="_self">Live Response Collection</a> - Automated tool that collects volatile data from Windows, OSX, and *nix based operating systems.</li>
+<li><a href="https://github.com/ThreatResponse/margaritashotgun" rel="external" target="_self">Margarita Shotgun</a> - Command line utility (that works with or without Amazon EC2 instances) to parallelize remote memory acquisition.</li>
+<li><a href="https://github.com/alpine-sec/SPECTR3" rel="external" target="_self">SPECTR3</a> - Acquire, triage and investigate remote evidence via portable iSCSI readonly access</li>
+<li><a href="https://github.com/tclahr/uac" rel="external" target="_self">UAC</a> - UAC (Unix-like Artifacts Collector) is a Live Response collection script for Incident Response that makes use of native binaries and tools to automate the collection of AIX, Android, ESXi, FreeBSD, Linux, macOS, NetBSD, NetScaler, OpenBSD and Solaris systems artifacts.</li>
+</ul>
+<h3 id="incident-management">Incident Management</h3>
+<ul>
+<li><a href="https://github.com/SecurityBrewery/catalyst" rel="external" target="_self">Catalyst</a> - A free SOAR system that helps to automate alert handling and incident response processes.</li>
+<li><a href="https://www.cybercpr.com" rel="external" target="_self">CyberCPR</a> - Community and commercial incident management tool with Need-to-Know built in to support GDPR compliance while handling sensitive incidents.</li>
+<li><a href="https://medevel.com/cyphon/" rel="external" target="_self">Cyphon</a> - Cyphon eliminates the headaches of incident management by streamlining a multitude of related tasks through a single platform. It receives, processes and triages events to provide an all-encompassing solution for your analytic workflow — aggregating data, bundling and prioritizing alerts, and empowering analysts to investigate and document incidents.</li>
+<li><a href="https://www.paloaltonetworks.com/cortex/xsoar" rel="external" target="_self">CORTEX XSOAR</a> - Paloalto security orchestration, automation and response platform with full Incident lifecycle management and many integrations to enhance automations.</li>
+<li><a href="https://github.com/log2timeline/dftimewolf" rel="external" target="_self">DFTimewolf</a> - A framework for orchestrating forensic collection, processing and data export.</li>
+<li><a href="https://github.com/dfirtrack/dfirtrack" rel="external" target="_self">DFIRTrack</a> - Incident Response tracking application handling one or more incidents via cases and tasks with a lot of affected systems and artifacts.</li>
+<li><a href="https://github.com/certsocietegenerale/FIR/" rel="external" target="_self">Fast Incident Response (FIR)</a> - Cybersecurity incident management platform designed with agility and speed in mind. It allows for easy creation, tracking, and reporting of cybersecurity incidents and is useful for CSIRTs, CERTs and SOCs alike.</li>
+<li><a href="https://www.bestpractical.com/rtir/" rel="external" target="_self">RTIR</a> - Request Tracker for Incident Response (RTIR) is the premier open source incident handling system targeted for computer security teams. We worked with over a dozen CERT and CSIRT teams around the world to help you handle the ever-increasing volume of incident reports. RTIR builds on all the features of Request Tracker.</li>
+<li><a href="https://github.com/sandialabs/scot" rel="external" target="_self">Sandia Cyber Omni Tracker (SCOT)</a> - Incident Response collaboration and knowledge capture tool focused on flexibility and ease of use. Our goal is to add value to the incident response process without burdening the user.</li>
+<li><a href="https://github.com/frikky/Shuffle" rel="external" target="_self">Shuffle</a> - A general purpose security automation platform focused on accessibility.</li>
+<li><a href="https://github.com/defpoint/threat_note" rel="external" target="_self">threat_note</a> - Lightweight investigation notebook that allows security researchers the ability to register and retrieve indicators related to their research.</li>
+<li><a href="https://www.zenduty.com" rel="external" target="_self">Zenduty</a> - Zenduty is a novel incident management platform providing end-to-end incident alerting, on-call management and response orchestration, giving teams greater control and automation over the incident management lifecycle.</li>
+</ul>
+<h3 id="knowledge-bases">Knowledge Bases</h3>
+<ul>
+<li><a href="https://github.com/ForensicArtifacts/artifacts-kb" rel="external" target="_self">Digital Forensics Artifact Knowledge Base</a> - Digital Forensics Artifact Knowledge Base</li>
+<li><a href="https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES" rel="external" target="_self">Windows Events Attack Samples</a> - Windows Events Attack Samples</li>
+<li><a href="https://github.com/libyal/winreg-kb" rel="external" target="_self">Windows Registry Knowledge Base</a> - Windows Registry Knowledge Base</li>
+</ul>
+<h3 id="linux-distributions">Linux Distributions</h3>
+<ul>
+<li><a href="https://forensics.cert.org/#ADIA" rel="external" target="_self">The Appliance for Digital Investigation and Analysis (ADIA)</a> - VMware-based appliance used for digital investigation and acquisition and is built entirely from public domain software. Among the tools contained in ADIA are Autopsy, the Sleuth Kit, the Digital Forensics Framework, log2timeline, Xplico, and Wireshark. Most of the system maintenance uses Webmin. It is designed for small-to-medium sized digital investigations and acquisitions. The appliance runs under Linux, Windows, and Mac OS. Both i386 (32-bit) and x86_64 (64-bit) versions are available.</li>
+<li><a href="http://www.caine-live.net/index.html" rel="external" target="_self">Computer Aided Investigative Environment (CAINE)</a> - Contains numerous tools that help investigators during their analysis, including forensic evidence collection.</li>
+<li><a href="https://github.com/rough007/CCF-VM" rel="external" target="_self">CCF-VM</a> - CyLR CDQR Forensics Virtual Machine (CCF-VM): An all-in-one solution to parsing collected data, making it easily searchable with built-in common searches, enable searching of single and multiple hosts simultaneously.</li>
+<li><a href="https://sourceforge.net/projects/nst/files/latest/download?source=files" rel="external" target="_self">NST - Network Security Toolkit</a> - Linux distribution that includes a vast collection of best-of-breed open source network security applications useful to the network security professional.</li>
+<li><a href="https://sumuri.com/software/paladin/" rel="external" target="_self">PALADIN</a> - Modified Linux distribution to perform various forensics task in a forensically sound manner. It comes with many open source forensics tools included.</li>
+<li><a href="https://github.com/Security-Onion-Solutions/security-onion" rel="external" target="_self">Security Onion</a> - Special Linux distro aimed at network security monitoring featuring advanced analysis tools.</li>
+<li><a href="http://digital-forensics.sans.org/community/downloads" rel="external" target="_self">SANS Investigative Forensic Toolkit (SIFT) Workstation</a> - Demonstrates that advanced incident response capabilities and deep dive digital forensic techniques to intrusions can be accomplished using cutting-edge open-source tools that are freely available and frequently updated.</li>
+</ul>
+<h3 id="linux-evidence-collection">Linux Evidence Collection</h3>
+<ul>
+<li><a href="https://github.com/SekoiaLab/Fastir_Collector_Linux" rel="external" target="_self">FastIR Collector Linux</a> - FastIR for Linux collects different artifacts on live Linux and records the results in CSV files.</li>
+<li><a href="https://github.com/MagnetForensics/dumpit-linux" rel="external" target="_self">MAGNET DumpIt</a> - Fast memory acquisition open source tool for Linux written in Rust. Generate full memory crash dumps of Linux machines.</li>
+</ul>
+<h3 id="log-analysis-tools">Log Analysis Tools</h3>
+<ul>
+<li><a href="https://github.com/mbevilacqua/appcompatprocessor" rel="external" target="_self">AppCompatProcessor</a> - AppCompatProcessor has been designed to extract additional value from enterprise-wide AppCompat / AmCache data beyond the classic stacking and grepping techniques.</li>
+<li><a href="https://github.com/ahmedkhlief/APT-Hunter" rel="external" target="_self">APT Hunter</a> - APT-Hunter is Threat Hunting tool for windows event logs.</li>
+<li><a href="https://github.com/countercept/chainsaw" rel="external" target="_self">Chainsaw</a> - Chainsaw provides a powerful ‘first-response’ capability to quickly identify threats within Windows event logs.</li>
+<li><a href="https://eventlogxp.com/" rel="external" target="_self">Event Log Explorer</a> - Tool developed to quickly analyze log files and other data.</li>
+<li><a href="https://lizard-labs.com/event_log_observer.aspx" rel="external" target="_self">Event Log Observer</a> - View, analyze and monitor events recorded in Microsoft Windows event logs with this GUI tool.</li>
+<li><a href="https://github.com/Yamato-Security/hayabusa" rel="external" target="_self">Hayabusa</a> - Hayabusa is a Windows event log fast forensics timeline generator and threat hunting tool created by the Yamato Security group in Japan.</li>
+<li><a href="https://support.kaspersky.com/13850" rel="external" target="_self">Kaspersky CyberTrace</a> - Threat intelligence fusion and analysis tool that integrates threat data feeds with SIEM solutions. Users can immediately leverage threat intelligence for security monitoring and incident report (IR) activities in the workflow of their existing security operations.</li>
+<li><a href="https://lizard-labs.com/log_parser_lizard.aspx" rel="external" target="_self">Log Parser Lizard</a> - Execute SQL queries against structured log data: server logs, Windows Events, file system, Active Directory, log4net logs, comma/tab separated text, XML or JSON files. Also provides a GUI to Microsoft LogParser 2.2 with powerful UI elements: syntax editor, data grid, chart, pivot table, dashboard, query manager and more.</li>
+<li><a href="https://github.com/jensvoid/lorg" rel="external" target="_self">Lorg</a> - Tool for advanced HTTPD logfile security analysis and forensics.</li>
+<li><a href="https://github.com/dogoncouch/logdissect" rel="external" target="_self">Logdissect</a> - CLI utility and Python API for analyzing log files and other data.</li>
+<li><a href="https://github.com/JPCERTCC/LogonTracer" rel="external" target="_self">LogonTracer</a> - Tool to investigate malicious Windows logon by visualizing and analyzing Windows event log.</li>
+<li><a href="https://github.com/SigmaHQ/sigma" rel="external" target="_self">Sigma</a> - Generic signature format for SIEM systems already containing an extensive ruleset.</li>
+<li><a href="https://github.com/airbnb/streamalert" rel="external" target="_self">StreamAlert</a> - Serverless, real-time log data analysis framework, capable of ingesting custom data sources and triggering alerts using user-defined logic.</li>
+<li><a href="https://github.com/JPCERTCC/SysmonSearch" rel="external" target="_self">SysmonSearch</a> - SysmonSearch makes Windows event log analysis more effective and less time consuming by aggregation of event logs.</li>
+<li><a href="https://github.com/Yamato-Security/WELA" rel="external" target="_self">WELA</a> - Windows Event Log Analyzer aims to be the Swiss Army knife for Windows event logs.</li>
+<li><a href="https://github.com/wagga40/Zircolite" rel="external" target="_self">Zircolite</a> - A standalone and fast SIGMA-based detection tool for EVTX or JSON.</li>
+</ul>
+<h3 id="memory-analysis-tools">Memory Analysis Tools</h3>
+<ul>
+<li><a href="https://github.com/microsoft/avml" rel="external" target="_self">AVML</a> - A portable volatile memory acquisition tool for Linux.</li>
+<li><a href="https://github.com/JamesHabben/evolve" rel="external" target="_self">Evolve</a> - Web interface for the Volatility Memory Forensics Framework.</li>
+<li><a href="https://github.com/ShaneK2/inVtero.net" rel="external" target="_self">inVtero.net</a> - Advanced memory analysis for Windows x64 with nested hypervisor support.</li>
+<li><a href="https://github.com/504ensicsLabs/LiME" rel="external" target="_self">LiME</a> - Loadable Kernel Module (LKM), which allows the acquisition of volatile memory from Linux and Linux-based devices, formerly called DMD.</li>
+<li><a href="https://github.com/JPCERTCC/MalConfScan" rel="external" target="_self">MalConfScan</a> - MalConfScan is a Volatility plugin extracts configuration data of known malware. Volatility is an open-source memory forensics framework for incident response and malware analysis. This tool searches for malware in memory images and dumps configuration data. In addition, this tool has a function to list strings to which malicious code refers.</li>
+<li><a href="https://www.fireeye.com/services/freeware/memoryze.html" rel="external" target="_self">Memoryze</a> - Free memory forensic software that helps incident responders find evil in live memory. Memoryze can acquire and/or analyze memory images, and on live systems, can include the paging file in its analysis.</li>
+<li><a href="https://www.fireeye.com/services/freeware/memoryze.html" rel="external" target="_self">Memoryze for Mac</a> - Memoryze for Mac is Memoryze but then for Macs. A lower number of features, however.</li>
+<li>[MemProcFS] (<a href="https://github.com/ufrisk/MemProcFS" rel="external" target="_self">https://github.com/ufrisk/MemProcFS</a>) - MemProcFS is an easy and convenient way of viewing physical memory as files in a virtual file system.</li>
+<li><a href="https://github.com/LDO-CERT/orochi" rel="external" target="_self">Orochi</a> - Orochi is an open source framework for collaborative forensic memory dump analysis.</li>
+<li><a href="http://www.rekall-forensic.com/" rel="external" target="_self">Rekall</a> - Open source tool (and library) for the extraction of digital artifacts from volatile memory (RAM) samples.</li>
+<li><a href="https://github.com/volatilityfoundation/volatility" rel="external" target="_self">Volatility</a> - Advanced memory forensics framework.</li>
+<li><a href="https://github.com/volatilityfoundation/volatility3" rel="external" target="_self">Volatility 3</a> - The volatile memory extraction framework (successor of Volatility)</li>
+<li><a href="https://github.com/mkorman90/VolatilityBot" rel="external" target="_self">VolatilityBot</a> - Automation tool for researchers cuts all the guesswork and manual tasks out of the binary extraction phase, or to help the investigator in the first steps of performing a memory analysis investigation.</li>
+<li><a href="https://github.com/aim4r/VolDiff" rel="external" target="_self">VolDiff</a> - Malware Memory Footprint Analysis based on Volatility.</li>
+<li><a href="http://www.windowsscope.com/windowsscope-cyber-forensics/" rel="external" target="_self">WindowsSCOPE</a> - Memory forensics and reverse engineering tool used for analyzing volatile memory offering the capability of analyzing the Windows kernel, drivers, DLLs, and virtual and physical memory.</li>
+</ul>
+<h3 id="memory-imaging-tools">Memory Imaging Tools</h3>
+<ul>
+<li><a href="http://belkasoft.com/ram-capturer" rel="external" target="_self">Belkasoft Live RAM Capturer</a> - Tiny free forensic tool to reliably extract the entire content of the computer’s volatile memory – even if protected by an active anti-debugging or anti-dumping system.</li>
+<li><a href="https://github.com/halpomeranz/lmg/" rel="external" target="_self">Linux Memory Grabber</a> - Script for dumping Linux memory and creating Volatility profiles.</li>
+<li><a href="https://www.magnetforensics.com/resources/magnet-dumpit-for-windows" rel="external" target="_self">MAGNET DumpIt</a> - Fast memory acquisition tool for Windows (x86, x64, ARM64). Generate full memory crash dumps of Windows machines.</li>
+<li><a href="https://www.magnetforensics.com/free-tool-magnet-ram-capture/" rel="external" target="_self">Magnet RAM Capture</a> - Free imaging tool designed to capture the physical memory of a suspect’s computer. Supports recent versions of Windows.</li>
+<li><a href="http://www.osforensics.com/" rel="external" target="_self">OSForensics</a> - Tool to acquire live memory on 32-bit and 64-bit systems. A dump of an individual process’s memory space or physical memory dump can be done.</li>
+</ul>
+<h3 id="osx-evidence-collection">OSX Evidence Collection</h3>
+<ul>
+<li><a href="https://objective-see.com/products/knockknock.html" rel="external" target="_self">Knockknock</a> - Displays persistent items(scripts, commands, binaries, etc.) that are set to execute automatically on OSX.</li>
+<li><a href="https://github.com/ydkhatri/mac_apt" rel="external" target="_self">macOS Artifact Parsing Tool (mac_apt)</a> - Plugin based forensics framework for quick mac triage that works on live machines, disk images or individual artifact files.</li>
+<li><a href="https://github.com/jipegit/OSXAuditor" rel="external" target="_self">OSX Auditor</a> - Free Mac OS X computer forensics tool.</li>
+<li><a href="https://github.com/yelp/osxcollector" rel="external" target="_self">OSX Collector</a> - OSX Auditor offshoot for live response.</li>
+<li><a href="https://themittenmac.com/the-esf-playground/" rel="external" target="_self">The ESF Playground</a> - A tool to view the events in Apple Endpoint Security Framework (ESF) in real time.</li>
+</ul>
+<h3 id="other-lists">Other Lists</h3>
+<ul>
+<li><a href="https://github.com/stuhli/awesome-event-ids" rel="external" target="_self">Awesome Event IDs</a> - Collection of Event ID resources useful for Digital Forensics and Incident Response.</li>
+<li><a href="https://github.com/cugu/awesome-forensics" rel="external" target="_self">Awesome Forensics</a> - A curated list of awesome forensic analysis tools and resources.</li>
+<li><a href="https://github.com/DidierStevens/DidierStevensSuite" rel="external" target="_self">Didier Stevens Suite</a> - Tool collection</li>
+<li><a href="https://ericzimmerman.github.io/" rel="external" target="_self">Eric Zimmerman Tools</a> - An updated list of forensic tools created by Eric Zimmerman, an instructor for SANS institute.</li>
+<li><a href="https://github.com/deralexxx/security-apis" rel="external" target="_self">List of various Security APIs</a> - Collective list of public JSON APIs for use in security.</li>
+</ul>
+<h3 id="other-tools">Other Tools</h3>
+<ul>
+<li><a href="https://thehive-project.org" rel="external" target="_self">Cortex</a> - Cortex allows you to analyze observables such as IP and email addresses, URLs, domain names, files or hashes one by one or in bulk mode using a Web interface. Analysts can also automate these operations using its REST API.</li>
+<li><a href="https://crits.github.io/" rel="external" target="_self">Crits</a> - Web-based tool which combines an analytic engine with a cyber threat database.</li>
+<li><a href="https://github.com/Netflix-Skunkworks/diffy" rel="external" target="_self">Diffy</a> - DFIR tool developed by Netflix&rsquo;s SIRT that allows an investigator to quickly scope a compromise across cloud instances (Linux instances on AWS, currently) during an incident and efficiently triaging those instances for followup actions by showing differences against a baseline.</li>
+<li><a href="https://github.com/diogo-fernan/domfind" rel="external" target="_self">domfind</a> - Python DNS crawler for finding identical domain names under different TLDs.</li>
+<li><a href="https://github.com/keithjjones/fileintel" rel="external" target="_self">Fileintel</a> - Pull intelligence per file hash.</li>
+<li><a href="https://github.com/Cyb3rWard0g/HELK" rel="external" target="_self">HELK</a> - Threat Hunting platform.</li>
+<li><a href="https://github.com/obsidianforensics/hindsight" rel="external" target="_self">Hindsight</a> - Internet history forensics for Google Chrome/Chromium.</li>
+<li><a href="https://github.com/keithjjones/hostintel" rel="external" target="_self">Hostintel</a> - Pull intelligence per host.</li>
+<li><a href="https://github.com/ralphje/imagemounter" rel="external" target="_self">imagemounter</a> - Command line utility and Python package to ease the (un)mounting of forensic disk images.</li>
+<li><a href="https://github.com/davehull/Kansa/" rel="external" target="_self">Kansa</a> - Modular incident response framework in PowerShell.</li>
+<li><a href="https://github.com/kacos2000/MFT_Browser" rel="external" target="_self">MFT Browser</a> - MFT directory tree reconstruction &amp; record info.</li>
+<li><a href="https://github.com/Neo23x0/munin" rel="external" target="_self">Munin</a> - Online hash checker for VirusTotal and other services.</li>
+<li><a href="https://github.com/swisscom/PowerSponse" rel="external" target="_self">PowerSponse</a> - PowerSponse is a PowerShell module focused on targeted containment and remediation during security incident response.</li>
+<li><a href="https://github.com/nogoodconfig/pyarascanner" rel="external" target="_self">PyaraScanner</a> - Very simple multi-threaded many-rules to many-files YARA scanning Python script for malware zoos and IR.</li>
+<li><a href="https://github.com/rastrea2r/rastrea2r" rel="external" target="_self">rastrea2r</a> - Allows one to scan disks and memory for IOCs using YARA on Windows, Linux and OS X.</li>
+<li><a href="https://raqet.github.io/" rel="external" target="_self">RaQet</a> - Unconventional remote acquisition and triaging tool that allows triage a disk of a remote computer (client) that is restarted with a purposely built forensic operating system.</li>
+<li><a href="https://github.com/Neo23x0/Raccine" rel="external" target="_self">Raccine</a> - A Simple Ransomware Protection</li>
+<li><a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-stalk.html" rel="external" target="_self">Stalk</a> - Collect forensic data about MySQL when problems occur.</li>
+<li><a href="https://nccgroup.github.io/Scout2/" rel="external" target="_self">Scout2</a> - Security tool that lets Amazon Web Services administrators assess their environment&rsquo;s security posture.</li>
+<li><a href="https://github.com/google/stenographer" rel="external" target="_self">Stenographer</a> - Packet capture solution which aims to quickly spool all packets to disk, then provide simple, fast access to subsets of those packets. It stores as much history as it possible, managing disk usage, and deleting when disk limits are hit. It&rsquo;s ideal for capturing the traffic just before and during an incident, without the need explicit need to store all of the network traffic.</li>
+<li><a href="https://github.com/0x4d31/sqhunter" rel="external" target="_self">sqhunter</a> - Threat hunter based on osquery and Salt Open (SaltStack) that can issue ad-hoc or distributed queries without the need for osquery&rsquo;s tls plugin. sqhunter allows you to query open network sockets and check them against threat intelligence sources.</li>
+<li><a href="https://github.com/SwiftOnSecurity/sysmon-config" rel="external" target="_self">sysmon-config</a> - Sysmon configuration file template with default high-quality event tracing</li>
+<li><a href="https://github.com/olafhartong/sysmon-modular" rel="external" target="_self">sysmon-modular</a> - A repository of sysmon configuration modules</li>
+<li><a href="https://github.com/CIRCL/traceroute-circl" rel="external" target="_self">traceroute-circl</a> - Extended traceroute to support the activities of CSIRT (or CERT) operators. Usually CSIRT team have to handle incidents based on IP addresses received. Created by Computer Emergency Response Center Luxembourg.</li>
+<li><a href="https://www.raymond.cc/blog/xray/" rel="external" target="_self">X-Ray 2.0</a> - Windows utility (poorly maintained or no longer maintained) to submit virus samples to AV vendors.</li>
+</ul>
+<h3 id="playbooks">Playbooks</h3>
+<ul>
+<li><a href="https://github.com/aws-samples/aws-incident-response-runbooks/tree/0d9a1c0f7ad68fb2c1b2d86be8914f2069492e21" rel="external" target="_self">AWS Incident Response Runbook Samples</a> - AWS IR Runbook Samples meant to be customized per each entity using them. The three samples are: &ldquo;DoS or DDoS attack&rdquo;, &ldquo;credential leakage&rdquo;, and &ldquo;unintended access to an Amazon S3 bucket&rdquo;.</li>
+<li><a href="https://github.com/counteractive/incident-response-plan-template/tree/master/playbooks" rel="external" target="_self">Counteractive Playbooks</a> - Counteractive PLaybooks collection.</li>
+<li><a href="https://github.com/guardsight/gsvsoc_cirt-playbook-battle-cards" rel="external" target="_self">GuardSIght Playbook Battle Cards</a> - A collection of Cyber Incident Response Playbook Battle Cards</li>
+<li><a href="https://github.com/certsocietegenerale/IRM" rel="external" target="_self">IRM</a> - Incident Response Methodologies by CERT Societe Generale.</li>
+<li><a href="https://response.pagerduty.com/" rel="external" target="_self">PagerDuty Incident Response Documentation</a> - Documents that describe parts of the PagerDuty Incident Response process. It provides information not only on preparing for an incident, but also what to do during and after. Source is available on <a href="https://github.com/PagerDuty/incident-response-docs" rel="external" target="_self">GitHub</a>.</li>
+<li><a href="https://github.com/phantomcyber/playbooks" rel="external" target="_self">Phantom Community Playbooks</a> - Phantom Community Playbooks for Splunk but also customizable for other use.</li>
+<li><a href="https://github.com/OTRF/ThreatHunter-Playbook" rel="external" target="_self">ThreatHunter-Playbook</a> - Playbook to aid the development of techniques and hypothesis for hunting campaigns.</li>
+</ul>
+<h3 id="process-dump-tools">Process Dump Tools</h3>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procdump" rel="external" target="_self">Microsoft ProcDump</a> - Dumps any running Win32 processes memory image on the fly.</li>
+<li><a href="http://www.ntsecurity.nu/toolbox/pmdump/" rel="external" target="_self">PMDump</a> - Tool that lets you dump the memory contents of a process to a file without stopping the process.</li>
+</ul>
+<h3 id="sandboxingreversing-tools">Sandboxing/Reversing Tools</h3>
+<ul>
+<li><a href="https://app.any.run/" rel="external" target="_self">Any Run</a> - Interactive online malware analysis service for dynamic and static research of most types of threats using any environment.</li>
+<li><a href="https://github.com/mandiant/capa" rel="external" target="_self">CAPA</a> - detects capabilities in executable files. You run it against a PE, ELF, .NET module, or shellcode file and it tells you what it thinks the program can do.</li>
+<li><a href="https://github.com/kevoreilly/CAPEv2" rel="external" target="_self">CAPEv2</a> - Malware Configuration And Payload Extraction.</li>
+<li><a href="https://github.com/cuckoosandbox/cuckoo" rel="external" target="_self">Cuckoo</a> - Open Source Highly configurable sandboxing tool.</li>
+<li><a href="https://github.com/spender-sandbox/cuckoo-modified" rel="external" target="_self">Cuckoo-modified</a> - Heavily modified Cuckoo fork developed by community.</li>
+<li><a href="https://github.com/keithjjones/cuckoo-modified-api" rel="external" target="_self">Cuckoo-modified-api</a> - Python library to control a cuckoo-modified sandbox.</li>
+<li><a href="https://github.com/rizinorg/cutter" rel="external" target="_self">Cutter</a> - Free and Open Source Reverse Engineering Platform powered by rizin.</li>
+<li><a href="https://github.com/NationalSecurityAgency/ghidra" rel="external" target="_self">Ghidra</a> - Software Reverse Engineering Framework.</li>
+<li><a href="https://www.hybrid-analysis.com/" rel="external" target="_self">Hybrid-Analysis</a> - Free powerful online sandbox by CrowdStrike.</li>
+<li><a href="https://analyze.intezer.com/#/" rel="external" target="_self">Intezer</a> - Intezer Analyze dives into Windows binaries to detect micro-code similarities to known threats, in order to provide accurate yet easy-to-understand results.</li>
+<li><a href="https://www.joesandbox.com/" rel="external" target="_self">Joe Sandbox (Community)</a> - Joe Sandbox detects and analyzes potential malicious files and URLs on Windows, Android, Mac OS, Linux, and iOS for suspicious activities; providing comprehensive and detailed analysis reports.</li>
+<li><a href="https://github.com/KoreLogicSecurity/mastiff" rel="external" target="_self">Mastiff</a> - Static analysis framework that automates the process of extracting key characteristics from a number of different file formats.</li>
+<li><a href="https://www.metadefender.com" rel="external" target="_self">Metadefender Cloud</a> - Free threat intelligence platform providing multiscanning, data sanitization and vulnerability assessment of files.</li>
+<li><a href="https://github.com/radareorg/radare2" rel="external" target="_self">Radare2</a> - Reverse engineering framework and command-line toolset.</li>
+<li><a href="https://www.reverse.it/" rel="external" target="_self">Reverse.IT</a> - Alternative domain for the Hybrid-Analysis tool provided by CrowdStrike.</li>
+<li><a href="https://github.com/rizinorg/rizin" rel="external" target="_self">Rizin</a> - UNIX-like reverse engineering framework and command-line toolset</li>
+<li><a href="https://github.com/fireeye/stringsifter" rel="external" target="_self">StringSifter</a> - A machine learning tool that ranks strings based on their relevance for malware analysis.</li>
+<li><a href="https://app.threat.zone" rel="external" target="_self">Threat.Zone</a> - Cloud based threat analysis platform which include sandbox, CDR and interactive analysis for researchers.</li>
+<li><a href="https://valkyrie.comodo.com" rel="external" target="_self">Valkyrie Comodo</a> - Valkyrie uses run-time behavior and hundreds of features from a file to perform analysis.</li>
+<li><a href="https://github.com/viper-framework/viper" rel="external" target="_self">Viper</a> - Python based binary analysis and management framework, that works well with Cuckoo and YARA.</li>
+<li><a href="https://www.virustotal.com" rel="external" target="_self">Virustotal</a> - Free online service that analyzes files and URLs enabling the identification of viruses, worms, trojans and other kinds of malicious content detected by antivirus engines and website scanners.</li>
+<li><a href="https://github.com/keithjjones/visualize_logs" rel="external" target="_self">Visualize_Logs</a> - Open source visualization library and command line tools for logs (Cuckoo, Procmon, more to come).</li>
+<li><a href="https://yomi.yoroi.company" rel="external" target="_self">Yomi</a> - Free MultiSandbox managed and hosted by Yoroi.</li>
+</ul>
+<h3 id="scanner-tools">Scanner Tools</h3>
+<ul>
+<li><a href="https://github.com/Neo23x0/Fenrir" rel="external" target="_self">Fenrir</a> - Simple IOC scanner. It allows scanning any Linux/Unix/OSX system for IOCs in plain bash. Created by the creators of THOR and LOKI.</li>
+<li><a href="https://github.com/Neo23x0/Loki" rel="external" target="_self">LOKI</a> - Free IR scanner for scanning endpoint with yara rules and other indicators(IOCs).</li>
+<li><a href="https://github.com/spyre-project/spyre" rel="external" target="_self">Spyre</a> - Simple YARA-based IOC scanner written in Go</li>
+</ul>
+<h3 id="timeline-tools">Timeline Tools</h3>
+<ul>
+<li><a href="https://github.com/cyb3rfox/Aurora-Incident-Response" rel="external" target="_self">Aurora Incident Response</a> - Platform developed to build easily a detailed timeline of an incident.</li>
+<li><a href="https://www.fireeye.com/services/freeware/highlighter.html" rel="external" target="_self">Highlighter</a> - Free Tool available from Fire/Mandiant that will depict log/text file that can highlight areas on the graphic, that corresponded to a key word or phrase. Good for time lining an infection and what was done post compromise.</li>
+<li><a href="https://github.com/etsy/morgue" rel="external" target="_self">Morgue</a> - PHP Web app by Etsy for managing postmortems.</li>
+<li><a href="https://github.com/log2timeline/plaso" rel="external" target="_self">Plaso</a> -  a Python-based backend engine for the tool log2timeline.</li>
+<li><a href="https://github.com/google/timesketch" rel="external" target="_self">Timesketch</a> - Open source tool for collaborative forensic timeline analysis.</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=bDcx4UNpKNc" rel="external" target="_self">The Future of Incident Response</a> - Presented by Bruce Schneier at OWASP AppSecUSA 2015.</li>
+</ul>
+<h3 id="windows-evidence-collection">Windows Evidence Collection</h3>
+<ul>
+<li><a href="https://github.com/OMENScan/AChoir" rel="external" target="_self">AChoir</a> - Framework/scripting tool to standardize and simplify the process of scripting live acquisition utilities for Windows.</li>
+<li><a href="http://www.crowdstrike.com/community-tools/" rel="external" target="_self">Crowd Response</a> - Lightweight Windows console application designed to aid in the gathering of system information for incident response and security engagements. It features numerous modules and output formats.</li>
+<li><a href="http://www.cybertriage.com" rel="external" target="_self">Cyber Triage</a> - Cyber Triage has a lightweight collection tool that is free to use. It collects source files (such as registry hives and event logs), but also parses them on the live host so that it can also collect the executables that the startup items, scheduled, tasks, etc. refer to. It&rsquo;s output is a JSON file that can be imported into the free version of Cyber Triage. Cyber Triage is made by Sleuth Kit Labs, which also makes Autopsy.</li>
+<li><a href="https://dfir-orc.github.io/" rel="external" target="_self">DFIR ORC</a> - DFIR ORC is a collection of specialized tools dedicated to reliably parse and collect critical artifacts such as the MFT, registry hives or event logs. DFIR ORC collects data, but does not analyze it: it is not meant to triage machines. It provides a forensically relevant snapshot of machines running Microsoft Windows. The code can be found on <a href="https://github.com/DFIR-ORC/dfir-orc" rel="external" target="_self">GitHub</a>.</li>
+<li><a href="https://github.com/SekoiaLab/Fastir_Collector" rel="external" target="_self">FastIR Collector</a> - Tool that collects different artifacts on live Windows systems and records the results in csv files. With the analyses of these artifacts, an early compromise can be detected.</li>
+<li><a href="https://github.com/rabbitstack/fibratus" rel="external" target="_self">Fibratus</a> - Tool for exploration and tracing of the Windows kernel.</li>
+<li><a href="https://github.com/muteb/Hoarder" rel="external" target="_self">Hoarder</a> - Collecting the most valuable artifacts for forensics or incident response investigations.</li>
+<li><a href="https://binalyze.com/products/irec-free/" rel="external" target="_self">IREC</a> - All-in-one IR Evidence Collector which captures RAM Image, $MFT, EventLogs, WMI Scripts, Registry Hives, System Restore Points and much more. It is FREE, lightning fast and easy to use.</li>
+<li><a href="https://github.com/mgreen27/Invoke-LiveResponse" rel="external" target="_self">Invoke-LiveResponse</a> -  Invoke-LiveResponse is a live response tool for targeted collection.</li>
+<li><a href="https://www.fireeye.com/services/freeware/ioc-finder.html" rel="external" target="_self">IOC Finder</a> - Free tool from Mandiant for collecting host system data and reporting the presence of Indicators of Compromise (IOCs). Support for Windows only. No longer maintained. Only fully supported up to Windows 7 / Windows Server 2008 R2.</li>
+<li><a href="https://github.com/AJMartel/IRTriage" rel="external" target="_self">IRTriage</a> - Incident Response Triage - Windows Evidence Collection for Forensic Analysis.</li>
+<li><a href="https://www.kroll.com/en/services/cyber-risk/incident-response-litigation-support/kroll-artifact-parser-extractor-kape" rel="external" target="_self">KAPE</a> - Kroll Artifact Parser and Extractor (KAPE) by Eric Zimmerman. A triage tool that finds the most prevalent digital artifacts and then parses them quickly. Great and thorough when time is of the essence.</li>
+<li><a href="https://github.com/Neo23x0/Loki" rel="external" target="_self">LOKI</a> - Free IR scanner for scanning endpoint with yara rules and other indicators(IOCs).</li>
+<li><a href="https://github.com/TonyPhipps/Meerkat" rel="external" target="_self">MEERKAT</a> - PowerShell-based triage and threat hunting for Windows.</li>
+<li><a href="https://github.com/AlmCo/Panorama" rel="external" target="_self">Panorama</a> - Fast incident overview on live Windows systems.</li>
+<li><a href="https://github.com/Invoke-IR/PowerForensics" rel="external" target="_self">PowerForensics</a> - Live disk forensics platform, using PowerShell.</li>
+<li><a href="https://github.com/gfoss/PSRecon/" rel="external" target="_self">PSRecon</a> - PSRecon gathers data from a remote Windows host using PowerShell (v2 or later), organizes the data into folders, hashes all extracted data, hashes PowerShell and various system properties, and sends the data off to the security team. The data can be pushed to a share, sent over email, or retained locally.</li>
+<li><a href="https://github.com/keydet89/RegRipper3.0" rel="external" target="_self">RegRipper</a> - Open source tool, written in Perl, for extracting/parsing information (keys, values, data) from the Registry and presenting it for analysis.</li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Aug 2, 2024
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/incidentresponse/index.html">IncidentResponse</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          
+          <a id="R-logo" href="../../index.html">
+<svg class="inlinecontent lazy figure-image" style=" height: auto; width: auto;" xmlns="http://www.w3.org/2000/svg" viewBox="75 75 350 350">
+  <style>
+    @media (prefers-color-scheme: dark) {
+    path { fill: white; }
+    }
+  </style>
+  <path
+    d="M250,80 a170,170 0 1,0 0,340 a170,170 0 1,0 0,-340 M250,95 a155,155 0 1,1 0,310 a155,155 0 1,1 0,-310 Z" />
+  <path
+    d="M 250 110 C 223.33333 123.33333 203.33333 156.66667 190 210 C 190 230 200 246.66667 220 260 C 246.66667 273.33333 270 273.33333 290 260 C 310 246.66667 316.66667 230 310 210 C 296.66667 156.66667 276.66667 123.33333 250 110 z M 230 152 A 22 28 0 0 1 250.02539 168.43164 A 22 28 0 0 1 270 152 A 22 28 0 0 1 292 180 A 22 28 0 0 1 270 208 A 22 28 0 0 1 250 191.48828 A 22 28 0 0 1 230 208 A 22 28 0 0 1 208 180 A 22 28 0 0 1 230 152 z " />
+  <path
+    d="M 232 190 A 7 7 0 1 0 218 190 A 7 7 0 1 0 232 190" />
+  <path
+    d="M 282 190 A 7 7 0 1 0 268 190 A 7 7 0 1 0 282 190" />
+  <path
+    d="m 251.62695,262.67773 -3.2539,14.64454 c 29.6411,6.58691 52.50119,14.00059 68.27343,21.88671 15.77224,7.88612 23.89316,16.12675 26.23829,23.16211 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.45724,-7.3717 0.9861,-15.4399 -2.90625,-23.22461 l 0.40625,0.98243 c -4.32154,-12.96464 -16.20062,-23.05735 -33.76171,-31.83789 -17.5611,-8.78055 -41.36767,-16.36687 -71.72657,-23.11329 z" />
+  <path
+    d="m 251.06055,262.57617 -2.1211,14.84766 c 22.66512,3.23787 40.0389,8.90614 52.08594,16.43554 12.04704,7.52941 18.84739,16.55167 21.69922,27.95899 l 0.19922,0.79883 0.36719,0.73633 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36474,-7.09422 1.02935,-14.82889 -2.53906,-22.33984 -3.93242,-14.96263 -13.69431,-27.38609 -28.10156,-36.39063 -14.61962,-9.13726 -33.91251,-15.13566 -57.91406,-18.56445 z" />
+  <path
+    d="m 254.16016,263.75977 -8.32032,12.48046 c 18.87994,12.58663 30.93166,27.79106 37.04493,46.13086 l 0.16796,0.50586 0.23829,0.47657 c 2.77431,5.54863 2.96984,9.14709 2.09375,11.77539 -0.8761,2.62829 -3.18965,5.38779 -8.73829,8.16211 -5.54863,2.77431 -9.14709,2.96984 -11.77539,2.09375 -2.62829,-0.8761 -5.38779,-3.18965 -8.16211,-8.73829 -5.77224,-11.54447 -5.77224,-21.74849 0,-33.29296 l -13.41796,-6.70704 c -7.5611,15.12219 -7.5611,31.58485 0,46.70704 3.89235,7.7847 9.46618,13.80448 16.83789,16.26171 7.3717,2.45724 15.4399,0.9861 23.22461,-2.90625 7.7847,-3.89235 13.80448,-9.46618 16.26171,-16.83789 2.36103,-7.08308 1.03217,-14.80481 -2.52343,-22.30468 -7.22746,-21.63209 -21.83225,-39.74038 -42.93164,-53.80664 z" />
+  <path
+    d="m 245.83984,263.75977 c -21.09939,14.06626 -35.70418,32.17455 -42.93164,53.80664 -3.5556,7.49987 -4.88446,15.2216 -2.52343,22.30468 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 6.11327,-18.3398 18.16499,-33.54423 37.04493,-46.13086 z" />
+  <path
+    d="m 248.5293,262.64648 c -35.0305,7.0061 -60.89872,25.32088 -75.23828,54 C 169.62227,323.98397 167.5,330.83333 167.5,337.5 c 0,6.66667 2.53811,13.14358 7.19727,17.80273 5.1011,5.1011 13.27646,6.61163 20.17382,4.3125 6.89737,-2.29912 13.32304,-7.20389 20.43164,-14.3125 l 0.86133,-0.85937 0.54492,-1.08984 c 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.58408,11.16816 5.64385,21.1051 0.42382,32.1914 -5.75159,5.55819 -10.66362,8.86574 -13.58593,9.83985 -3.10264,1.03421 -3.26061,0.87806 -4.82618,-0.6875 C 183.29523,342.68976 182.5,340.83333 182.5,337.5 c 0,-3.33333 1.21106,-8.15064 4.20898,-14.14648 12.32711,-24.65421 33.12555,-39.67277 64.76172,-46 z" />
+  <path
+    d="m 248.37305,262.67773 c -30.3589,6.74642 -54.16547,14.33274 -71.72657,23.11329 -17.56109,8.78054 -29.44017,18.87325 -33.76171,31.83789 l 0.40625,-0.98243 c -3.89235,7.78471 -5.36349,15.85291 -2.90625,23.22461 2.45723,7.37171 8.47701,12.94554 16.26171,16.83789 7.78471,3.89235 15.85291,5.36349 23.22461,2.90625 7.37171,-2.45723 12.94554,-8.47701 16.83789,-16.26171 7.5611,-15.12219 7.5611,-31.58485 0,-46.70704 l -13.41796,6.70704 c 5.77224,11.54447 5.77224,21.74849 0,33.29296 -2.77432,5.54864 -5.53382,7.86219 -8.16211,8.73829 -2.6283,0.87609 -6.22676,0.68056 -11.77539,-2.09375 -5.54864,-2.77432 -7.86219,-5.53382 -8.73829,-8.16211 -0.87609,-2.6283 -0.68056,-6.22676 2.09375,-11.77539 l 0.23829,-0.47657 0.16796,-0.50586 c 2.34513,-7.03536 10.46605,-15.27599 26.23829,-23.16211 15.77224,-7.88612 38.63233,-15.2998 68.27343,-21.88671 z" />
+</svg>
+            <div class="logo-title">GharibBlog</div>
+          </a>
+        </div>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="../../index.html"><i class="fa-fw fas fa-anchor"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/about/index.html"><a class="padding" href="../../about/index.html"><i class="fa-fw fas fa-info-circle"></i> About</a></li>
+            <li class="" data-nav-id="/linux/index.html"><a class="padding" href="../../linux/index.html">Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/sec/index.html"><a class="padding" href="../../sec/index.html">Security</a><ul id="R-subsections-00a310d136b3ca0ada6555e05603515b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/devops/index.html"><a class="padding" href="../../devops/index.html">DevOps</a><ul id="R-subsections-389d4feb4920b919bcbc0b1e9947dace" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/data/index.html"><a class="padding" href="../../data/index.html">Data</a><ul id="R-subsections-4caa791091d21d23e63637080226f370" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vpn/index.html"><a class="padding" href="../../vpn/index.html">VPN</a><ul id="R-subsections-db063ce8b8420f6f2b9daa1d41f37eaf" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/software/index.html"><a class="padding" href="../../software/index.html">Software</a><ul id="R-subsections-3cdb59a63a3cd12f868155fa9018f956" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/onion/index.html"><a class="padding" href="../../onion/index.html">ONION</a><ul id="R-subsections-1741fdcc6dd4676b5d37f741fb66e01c" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/osint/index.html"><a class="padding" href="../../osint/index.html">OSINT</a><ul id="R-subsections-b7b3e3b782000076c296abdb0bfb1528" class="collapsible-menu">
+            <li class="" data-nav-id="/osint/osint5/index.html"><a class="padding" href="../../osint/osint5/index.html">Android Sec</a></li>
+            <li class="" data-nav-id="/osint/osint6/index.html"><a class="padding" href="../../osint/osint6/index.html">App Sec</a></li>
+            <li class="" data-nav-id="/osint/osint7/index.html"><a class="padding" href="../../osint/osint7/index.html">Capture The Flag</a></li>
+            <li class="" data-nav-id="/osint/osint21/index.html"><a class="padding" href="../../osint/osint21/index.html">OSINT Collections</a></li>
+            <li class="" data-nav-id="/osint/osint19/index.html"><a class="padding" href="../../osint/osint19/index.html">OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint/index.html"><a class="padding" href="../../osint/osint/index.html">OSINT Tools 1</a></li>
+            <li class="" data-nav-id="/osint/osint15/index.html"><a class="padding" href="../../osint/osint15/index.html">Social Engineering Tools</a></li>
+            <li class="" data-nav-id="/osint/osint2/index.html"><a class="padding" href="../../osint/osint2/index.html">OSINT Tools 2</a></li>
+            <li class="" data-nav-id="/osint/osint3/index.html"><a class="padding" href="../../osint/osint3/index.html">OSINT-Forensic Tools</a></li>
+            <li class="" data-nav-id="/osint/osint4/index.html"><a class="padding" href="../../osint/osint4/index.html">OSINT-Forensic Tools 2</a></li>
+            <li class="" data-nav-id="/osint/osint14/index.html"><a class="padding" href="../../osint/osint14/index.html">Security Tools</a></li>
+            <li class="" data-nav-id="/osint/osint8/index.html"><a class="padding" href="../../osint/osint8/index.html">Hacking Tools</a></li>
+            <li class="" data-nav-id="/osint/osint18/index.html"><a class="padding" href="../../osint/osint18/index.html">Social Media OSINT Tools</a></li>
+            <li class="active " data-nav-id="/osint/osint10/index.html"><a class="padding" href="../../osint/osint10/index.html">Incident Resposne Tools</a></li>
+            <li class="" data-nav-id="/osint/osint17/index.html"><a class="padding" href="../../osint/osint17/index.html">Offensive OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint20/index.html"><a class="padding" href="../../osint/osint20/index.html">OSINT Countries Tools</a></li>
+            <li class="" data-nav-id="/osint/osint9/index.html"><a class="padding" href="../../osint/osint9/index.html">Honeypots Tools</a></li>
+            <li class="" data-nav-id="/osint/osint16/index.html"><a class="padding" href="../../osint/osint16/index.html">OSINT Tools</a></li>
+            <li class="" data-nav-id="/osint/osint11/index.html"><a class="padding" href="../../osint/osint11/index.html">Infosec Tools</a></li>
+            <li class="" data-nav-id="/osint/osint12/index.html"><a class="padding" href="../../osint/osint12/index.html">Malware Analysis Tools</a></li>
+            <li class="" data-nav-id="/osint/osint13/index.html"><a class="padding" href="../../osint/osint13/index.html">Penetration Testing Tools</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://alirezagharib.ir"><a class="padding" href="https://alirezagharib.ir" rel="external" target="_self"><i class="fa-fw fas fa-puzzle-piece"></i> Author</a></li>
+            <li class="" data-nav-id="https://github.com/gharib-uk"><a class="padding" href="https://github.com/gharib-uk" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard/clipboard.min.js?1745990494" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1745990494" defer></script>
+    <script src="../../js/theme.min.js?1745990494" defer></script>
+  </body>
+</html>

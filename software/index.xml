@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/software/index.html</link>
+    <description>Everything about software engineeing and software development.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate>Tue, 27 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/software/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Language Frameworks</title>
+      <link>https://blog.alirezagharib.ir/software/java/index.html</link>
+      <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/software/java/index.html</guid>
+      <description>Java various frameworks and tools</description>
+    </item>
+    <item>
+      <title>Go Language</title>
+      <link>https://blog.alirezagharib.ir/software/go/index.html</link>
+      <pubDate>Fri, 23 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/software/go/index.html</guid>
+      <description>List of Golang Frameworks and Tools</description>
+    </item>
+    <item>
+      <title>System Design</title>
+      <link>https://blog.alirezagharib.ir/software/systemdesign/index.html</link>
+      <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/software/systemdesign/index.html</guid>
+      <description>System Design Resources</description>
+    </item>
+    <item>
+      <title>AI Tools</title>
+      <link>https://blog.alirezagharib.ir/software/ai/index.html</link>
+      <pubDate>Sun, 18 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/software/ai/index.html</guid>
+      <description>Popular and Worthy AI Tools</description>
+    </item>
+  </channel>
+</rss>

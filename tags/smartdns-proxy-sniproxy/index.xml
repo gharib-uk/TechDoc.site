@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Smartdns, Proxy, Sniproxy :: Tag :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/tags/smartdns-proxy-sniproxy/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/tags/smartdns-proxy-sniproxy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SmartDNS Proxy</title>
+      <link>https://blog.alirezagharib.ir/vpn/smartdns/index.html</link>
+      <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/vpn/smartdns/index.html</guid>
+      <description>Create a SNIProxy with SmartDNS</description>
+    </item>
+  </channel>
+</rss>

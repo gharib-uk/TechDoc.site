@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cicd, Github, Actions :: Tag :: Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/tags/cicd-github-actions/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate>Thu, 29 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/tags/cicd-github-actions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Github Actions</title>
+      <link>https://blog.alirezagharib.ir/devops/githubactions/index.html</link>
+      <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/githubactions/index.html</guid>
+      <description>How efficiently use Github Action ?</description>
+    </item>
+  </channel>
+</rss>

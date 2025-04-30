@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gharib Blog</title>
+    <link>https://blog.alirezagharib.ir/index.html</link>
+    <description>What is it ? This instance is dedicated to my posts, experiences and my daily learning or searching across the Internet. I will mention the authors if that posts does not belong to me.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>alireza@gharib.us (Alireza Gharib)</managingEditor>
+    <webMaster>alireza@gharib.us (Alireza Gharib)</webMaster>
+    <lastBuildDate>Wed, 16 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.alirezagharib.ir/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://blog.alirezagharib.ir/about/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/about/index.html</guid>
+      <description>About Me</description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://blog.alirezagharib.ir/linux/index.html</link>
+      <pubDate>Wed, 16 Apr 2025 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/linux/index.html</guid>
+      <description>Everything about Unix and GNU/Linux operating systems.</description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://blog.alirezagharib.ir/sec/index.html</link>
+      <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/sec/index.html</guid>
+      <description>Everything about security and cybersecurity.</description>
+    </item>
+    <item>
+      <title>DevOps</title>
+      <link>https://blog.alirezagharib.ir/devops/index.html</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/devops/index.html</guid>
+      <description>Everything about DevOps tools and methods.</description>
+    </item>
+    <item>
+      <title>Data</title>
+      <link>https://blog.alirezagharib.ir/data/index.html</link>
+      <pubDate>Mon, 07 Oct 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/data/index.html</guid>
+      <description>Useful data across the web.</description>
+    </item>
+    <item>
+      <title>VPN</title>
+      <link>https://blog.alirezagharib.ir/vpn/index.html</link>
+      <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/vpn/index.html</guid>
+      <description>Everything about VPNs Technologies and tools</description>
+    </item>
+    <item>
+      <title>Software</title>
+      <link>https://blog.alirezagharib.ir/software/index.html</link>
+      <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/software/index.html</guid>
+      <description>Everything about software engineeing and software development.</description>
+    </item>
+    <item>
+      <title>ONION</title>
+      <link>https://blog.alirezagharib.ir/onion/index.html</link>
+      <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/onion/index.html</guid>
+      <description>Everything about onions domains inside TOR network.</description>
+    </item>
+    <item>
+      <title>OSINt</title>
+      <link>https://blog.alirezagharib.ir/osint/index.html</link>
+      <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate><author>alireza@gharib.us (Alireza Gharib)</author>
+      <guid>https://blog.alirezagharib.ir/osint/index.html</guid>
+      <description>Everything about Open-Source Intelligence TTPs.</description>
+    </item>
+  </channel>
+</rss>
